@@ -7,8 +7,8 @@ var bless = require('gulp-bless');
 var path = require('path');
 
 var paths = {
-    src: path.join(config.assets.src, '**/*.css'),
-    dest: path.join(config.assets.dest, 'css')
+    src: path.join(config.app.src, '**/*.css'),
+    dest: path.join(config.app.dest, 'css')
 };
 
 gulp.task('css', function () {
@@ -21,7 +21,7 @@ gulp.task('css', function () {
 });
 
 gulp.task('sass', function () {
-    gulp.src(path.join(config.assets.src,'sass/motech.scss'))
+    gulp.src(path.join(config.root.src,'sass/motech.scss'))
         .pipe(sass())
         .pipe(concat('motech.css'))
         .pipe(bless())

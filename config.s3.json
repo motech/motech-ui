@@ -1,0 +1,6 @@
+{
+  "key":    "PUBLIC KEY",
+  "secret": "SECRET KEY",
+  "bucket": "BUCKET NAME",
+  "region": "AWS REGION"
+}
