@@ -3,6 +3,8 @@ var gulp = require('gulp');
 var styleguide = require('sc5-styleguide');
 var sass = require('gulp-sass');
 var path = require('path');
+var gulpSequence = require('gulp-sequence');
+var s3 = require( "gulp-s3" );
 
 var paths = {
     src: path.join(config.assets.src, '**/*.css'),
@@ -23,12 +25,21 @@ gulp.task('styleguide:generate', function() {
 });
 
 gulp.task('styleguide:applystyles', function() {
-  return gulp.src(path.join(paths.src, 'motech.css'))
+  return gulp.src(path.join(paths.dest, 'motech.css'))
     .pipe(sass({
       errLogToConsole: true
     }))
     .pipe(styleguide.applyStyles())
     .pipe(gulp.dest(outputPath));
 });
+
+gulp.task('styleguide:deploy', function() {
+  config.styleguidePath = "";
+  gulpSequence('styleguide:generate', 'styleguide:applystyles')(function(){
+    console.log(config.s3);
+    gulp.src(path.join(config.root.dest, 'styleguide', '**/*'))
+      .pipe(s3(config.s3))
+  });
+})
 
 gulp.task('styleguide', ['styleguide:generate', 'styleguide:applystyles']);

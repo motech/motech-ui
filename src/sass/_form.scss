@@ -1,0 +1,154 @@
+/*
+Forms
+
+This is a collection of how to build basic forms in the MOTECH Platform. The goal of these forms is to support an accessiable and clear experience.
+
+markup:
+<form>
+	<fieldset>
+		<legend>Enter example input</legend>
+		<div class="form-group">
+			<label for="exampleTextInput">Example text input</label>
+			<input id="exampleTextInput" type="text" />
+			<ul id="exampleTextInput-description" >
+				<li class="info">This field doesn't do anything</li>
+			</ul>
+		</div>
+		<fieldset class="form-group">
+			<legend>Example input group</legend>
+			<div class="input-group">
+				<label class="radio" >
+					<input type="radio" name="radioExample" value="1" />
+					Option 1
+				</label>
+				<label class="radio" >
+					<input type="radio" name="radioExample" value="2" />
+					Option 2
+				</label>
+				<label class="radio" >
+					<input type="radio" name="radioExample" value="3" />
+					Option 3
+				</label>
+			</div>
+		</fieldset>
+		<div class="form-group">
+			<label class="checkbox">
+				<input type="checkbox" />
+				Single checkbox
+			</label>
+		</div>
+	</fieldset>
+	<input type="submit" value="Submit example form" />
+	<button ng-click="reset()" >Reset form</button>
+</form>
+
+Styleguide 2.0
+*/
+
+form, input, button, select, textarea {
+	font-family: $font-family-base;
+}
+
+fieldset {
+	legend {
+		font-size: 1em;
+		border-bottom: 0px;
+	}
+	&.form-group legend {
+		font-weight: bold;
+	}
+}
+.form-group {
+	input {
+		@extend .form-control;
+	}
+	ul {
+		@extend .list-unstyled;
+	}
+}
+form {
+	@extend .clearfix;
+	.error{
+		@extend .alert;
+		@extend .alert-danger;
+	}
+	.warning{
+		@extend .alert;
+		@extend .alert-warning;
+	}
+	.info {
+		@extend .alert;
+		@extend .alert-info;
+	}
+	.button-primary {
+		float:right;
+	}
+	input[type="submit"] {
+		@extend .button;
+		@extend .button-primary;
+	}
+
+	.input-group{
+		width: 100%;
+	}
+
+	label.radio, label.checkbox {
+		@extend .radio;
+		margin: 0em;
+		margin-bottom: 0.5em;
+		font-weight: normal;
+		input {
+			position: static !important;
+			display: block !important;
+			float: left !important;
+			width: auto !important;
+			height: auto !important;
+			margin: 0px !important;
+			margin-right: 0.5em !important;
+		}
+	}
+}
+
+@mixin form-compact() {
+	.form-group {
+		label, legend,
+		input, ul, p,
+		.input-group,
+		.checkbox {
+			float: none;
+			width: 100%
+		}
+	}
+}
+
+@mixin form-normal() {
+	.form-group {
+		@extend .clearfix;
+		label,
+		legend {
+			display: block;
+			float: left;
+			width: 15%; // no magic numbers...
+		}
+		input, ul, p,
+		.input-group,
+		.checkbox {
+			float: right;
+			width: 85%;
+		}
+		.input-group label {
+			float: none;
+			width: 100%;
+		}
+	}
+}
+
+form {
+	@include form-compact();
+}
+
+@media (min-width: $screen-sm-min) {
+	form {
+		@include form-normal();
+	}
+}
