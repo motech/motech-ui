@@ -19,7 +19,6 @@
   "dependencies": {
     "jquery": "1.11.3",
     "angular": "~1.2.29",
-    "bootstrap": "~3.3.6",
     "highlight": "~9.0.0",
     "jquery-cron": "~0.1.4",
     "moment": "~2.10.6",
@@ -55,7 +54,8 @@
     "jquery.alerts-1.1": "http://labs.abeautifulsite.net/archived/jquery-alerts/jquery.alerts-1.1.zip",
     "jquery-ui": "~1.11.4",
     "bootstrap-multiselect": "~0.9.13",
-    "angular-bootstrap": "0.6.0"
+    "angular-bootstrap": "0.6.0",
+    "bootstrap-sass": "^3.3.6"
   },
   "resolutions": {
     "jquery": "1.11.3",
