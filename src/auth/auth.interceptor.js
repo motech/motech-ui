@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('motech-auth',[])
+        .module('motech-auth')
         .factory('authHttpInterceptor', ['$rootScope', authHttpInterceptor])
         .config(['$httpProvider', authConfigHttp]);
 
@@ -22,4 +22,4 @@
     function authConfigHttp ($httpProvider) {
         $httpProvider.interceptors.push('authHttpInterceptor');
     }
-})
+})();
