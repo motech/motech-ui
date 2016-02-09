@@ -15,17 +15,13 @@ markup:
 Styleguide 1.0
 */
 
-body{
-    background-color: $brand-primary;
+.block-title {
+  background-color: $brand-primary;
+  color: $white;
+  font-weight: bold;
+  padding: 1em 2em;
 }
 
-.container {
-	position: relative;
-}
-
-.logo {
-	@include background-image(url("../img/motech-logo.gif") center no-repeat); // TODO: Make logo SVG
-}
 
 /*
 Buttons
@@ -46,11 +42,6 @@ markup:
 Styleguide 1.1
 */
 
-<<<<<<< HEAD
-.button {
-	@extend .btn;
-	@extend .btn-default;
-=======
 @mixin button($color, $background, $border) {
 	$background-dark: darken($background, 10%);
 	$background-light: lighten($background, 10%);
@@ -84,7 +75,6 @@ button,
     @extend .fa;
     margin-right: 0.5em;
   }
->>>>>>> 8e31b4a... added slight gradient to buttons
 }
 button.primary,
 .button-primary {
@@ -172,9 +162,9 @@ button.close,
 }
 
 /*
-Background
+Button Groups
 
-These are the background definitons used within MOTECH.
+There are two different categories for button groups, primary button groups and everything else. Primary button groups are used to submit forms or take an action on an item.
 
 markup:
 <div class="button-group-primary">
@@ -188,7 +178,6 @@ markup:
 <div class="button-group">
 	<button>Filter</button>
 </div>
-
 
 Styleguide 1.1.2
 */
@@ -205,22 +194,49 @@ Styleguide 1.1.2
 	}
 }
 
-html{
-	height: 100%;
+.container {
+	position: relative;
 }
 
-body {
-	height: 100%;
-	@include background(linear-gradient(to bottom, $white 20%, $brand-accent 90%) center no-repeat);	
-/*
-Page Navigation
-
-Page navigation sections are collections of links that change the page, but don't preform actions.
-
-Styleguide 1.2
-*/
+.logo {
+	@include background-image(url("../img/motech-logo.gif") center no-repeat); // TODO: Make logo SVG
+}
 
 nav.navbar {
 	@extend .navbar;
 	@extend .navbar-default;
+}
+
+
+header.header-main {
+	@extend .clearfix;
+	.logo {
+		position: absolute;
+		top:0px;
+		left:0px;
+		display: block;
+		overflow: hidden;
+		float: left;
+		width: 160px;
+		height: 50px;
+		background-size: 160px;
+		text-indent: -3000px;
+	}
+	.description {
+		display: block;
+		font-size: $font-size-large;
+		line-height: 1.5em;
+		color: $brand-primary;
+		width: 100%;
+		text-align: center;
+		height: 50px;
+		padding-top: 50px - $font-size-large*1.35;
+		margin: 0px;
+	}
+	nav{
+		@extend .navbar;
+		@extend .navbar-brand;
+		background-color: $brand-primary;
+		width:100%;
+	}
 }

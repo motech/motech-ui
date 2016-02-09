@@ -25,7 +25,7 @@ gulp.task('styleguide:generate', function() {
 });
 
 gulp.task('styleguide:applystyles', function() {
-  return gulp.src(path.join(paths.dest, 'motech.css'))
+  return gulp.src(path.join(paths.dest, '*.css'))
     .pipe(sass({
       errLogToConsole: true
     }))

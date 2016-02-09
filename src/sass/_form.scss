@@ -84,7 +84,6 @@ form {
 		float:right;
 	}
 	input[type="submit"] {
-		@extend .button;
 		@extend .button-primary;
 	}
 

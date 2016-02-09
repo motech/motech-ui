@@ -3,5 +3,7 @@
 
     /* MOTECH-DASHBOARD APP */
     angular
-        .module('motech-dashboard', ['motech-auth']);
+        .module('motech-dashboard', [
+            'motech-auth'
+        ]);
 })();
