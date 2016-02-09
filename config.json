@@ -8,5 +8,6 @@
     "dest": "./build/assets"
   },
   "motechServerURL": "http://localhost:8080/motech_platform_server/",
-  "staticPath": "/assets/"
+  "staticPath": "/assets/",
+  "styleguidePath": "/styleguide"
 }

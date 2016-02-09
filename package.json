@@ -28,6 +28,7 @@
     "open": "0.0.5",
     "path": "~0.12.7",
     "require-dir": "~0.3.0",
+    "sc5-styleguide": "^0.3.41",
     "yargs": "~3.31.0"
   },
   "devDependencies": {
