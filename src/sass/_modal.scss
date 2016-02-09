@@ -32,10 +32,12 @@ Styleguide 3.0
 	bottom:auto;
 	left: auto;
 	display: block;
+	overflow: visible;
 }
 
 .modal-backdrop {
-	background-color: $white;
+	@include background(linear-gradient(to bottom, $brand-accent 0%, $white 20%, $brand-accent 90%) center no-repeat);
+  background-color: $white;
 }
 
 .modal-content {
@@ -44,4 +46,51 @@ Styleguide 3.0
 
 .modal-header {
 	@extend .block-title;
+}
+
+/*
+Loading modal
+
+Example of loading modal.
+
+Styleguide 3.1
+*/
+
+/*
+Form modal
+
+Forms in modals look like compressed forms.
+
+markup:
+<div class="modal modal-static" tabindex="-1" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Login</h4>
+      </div>
+      <div class="modal-body">
+      	<form>
+      		<fieldset>
+      			<legend>Enter your username and password</legend>
+	      		<div class="form-group">
+	      			<label for="exampleUsername">Username</label>
+	      			<input type="text" id="exampleUsername" />
+	      		</div>
+	      		<div class="form-group">
+	      			<label for="examplePassword">Password</label>
+	      			<input type="password" id="examplePassword" />
+	      		</div>
+	      	</fieldset>
+      		<input type="submit" value="Login" />
+      	</form>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+Styleguide 3.2
+*/
+
+.modal form{
+	@include form-compact();
 }

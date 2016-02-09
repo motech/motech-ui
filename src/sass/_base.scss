@@ -10,42 +10,122 @@ markup:
 Styleguide 1.0
 */
 
-body{
-    background-color: $brand-primary;
-}
-
-
-.button {
-	@extend .btn;
-	@extend .btn-default;
-}
-.button-primary {
-	@extend .btn;
-	@extend .btn-primary;
-}
-
-
 .block-title {
-	background-color: $brand-primary;
-	color: $white;
-	font-weight: bold;
-	padding: 1em 2em;
+  background-color: $brand-primary;
+  color: $white;
+  font-weight: bold;
+  padding: 1em 2em;
 }
-
 
 /*
-Background
+Buttons
 
-These are the background definitons used within MOTECH.
+Buttons represent taking an action in MOTECH - juxoposed to a link which represents navigating through MOTECH. Most buttons should be the default color, with the exception of: a primary action button (which submits a form of changes a state), an add button which is creating new data in MOTECH (and should launch a modal window), or a delete button (which much launch a modal window to confirm the action).
+
+markup:
+<button >Button</button>
+<button class="button-primary">Primary Button</button>
+<!-- Used to add new content and should launch a modal window -->
+<button class="button-add">Add Button</button>
+<button class="button-edit">Edit Button</button>
+<!-- Used to delete content and must launch a modal window to confirm the action -->
+<button class="button-delete">Delete Button</button>
 
 Styleguide 1.1
 */
 
-html{
-	height: 100%;
+button,
+.button,
+.button-default {
+	@extend .btn;
+	@extend .btn-default;
+  &:before{
+    @extend .fa;
+    margin-right: 0.5em;
+  }
+}
+.button-primary {
+	@extend .button;
+	@extend .btn-primary;
+}
+.button-add,
+.button-create {
+  @extend .button;
+  @extend .btn-success;
+  &:before {
+    @extend .fa-plus;
+  }
+}
+.button-edit {
+  @extend .button;
+  &:before {
+    @extend .fa-pencil;
+  }
+}
+.button-delete {
+  @extend .button;
+  @extend .btn-danger;
+  &:before {
+    @extend .fa-trash;
+  }
 }
 
-body {
-	height: 100%;
-	@include background(linear-gradient(to bottom, $white 20%, $brand-accent 90%) center no-repeat);	
+/*
+Tiny Buttons
+
+Styleguide 1.1.1
+*/
+
+/*
+Button Groups
+
+There are two different categories for button groups, primary button groups and everything else. Primary button groups are used to submit forms or take an action on an item.
+
+Styleguide 1.1.2
+*/
+
+.container {
+	position: relative;
+}
+
+.logo {
+	@include background-image(url("../img/motech-logo.gif") center no-repeat); // TODO: Make logo SVG
+}
+
+nav.navbar {
+	@extend .navbar;
+	@extend .navbar-default;
+}
+
+header.header-main {
+	@extend .clearfix;
+	.logo {
+		position: absolute;
+		top:0px;
+		left:0px;
+		display: block;
+		overflow: hidden;
+		float: left;
+		width: 160px;
+		height: 50px;
+		background-size: 160px;
+		text-indent: -3000px;
+	}
+	.description {
+		display: block;
+		font-size: $font-size-large;
+		line-height: 1.5em;
+		color: $brand-primary;
+		width: 100%;
+		text-align: center;
+		height: 50px;
+		padding-top: 50px - $font-size-large*1.35;
+		margin: 0px;
+	}
+	nav{
+		@extend .navbar;
+		@extend .navbar-brand;
+		background-color: $brand-primary;
+		width:100%;
+	}
 }
