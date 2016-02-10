@@ -1,0 +1,30 @@
+<p class="sg">The MOTECH-UI is an administration user interface to be used with the MOTECH Platform. Currently this UI package is underdevelopment, and doesn&apos;t fully support all the actions that are available in the MOTECH Platform.</p>
+<h2 class="sg" name="guidelines">Guidelines</h2>
+<p class="sg">This UI package creates a single page AngularJS applicaiton that interacts with the REST API exposed by the MOTECH Server.</p>
+<p class="sg">The AngularJS application follows John Papa structure guidelines to implement a modular codebase. This is done so that MOTECH Server Modules can extend the UI, or other projects can fork this project and create novel interfaces for the MOTECH Platform.</p>
+<p class="sg">The styles and components for this UI are documented in the StyleGuide which is avaiable here, and can also be created and run locally.</p>
+<h2 class="sg" name="how-to-build">How to Build</h2>
+<p class="sg">To use this UI package, you will need to have a working MOTECH Server instance running at an accessiable IP Address.</p>
+<p class="sg">Building this interface required the use of NodeJS, NPM, Bower, Gulp, and Sass.</p>
+<h3 class="sg" name="linux-installation">Linux Installation</h3>
+<p class="sg">Stub</p>
+<h3 class="sg" name="windows-installation">Windows Installation</h3>
+<p class="sg">Stub</p>
+<h3 class="sg" name="osx-installation">OSX Installation</h3>
+<p class="sg">Stub</p>
+<h2 class="sg" name="gulp-commands">Gulp Commands</h2>
+<h3 class="sg" name="build">Build</h3>
+<p class="sg">Builds the main <code>index.html</code> and asset files for the MOTECH-UI, and places them in the <code>/build</code> directory.</p>
+<p class="sg">The directory where files are built can be changed by passing the <code>--dest</code> option.</p>
+<pre class="sg"><code class="language-javascript">gulp build --dest=./build
+</code></pre>
+<h3 class="sg" name="watch">Watch</h3>
+<p class="sg">Watches the <code>/src</code> directory and runs build if any changes are made. Add the <code>--styleguide</code> option if you want the styleguilde to be regenerated when changes are made.</p>
+<pre class="sg"><code class="language-javascript">gulp watch --dest=./build --styleguide
+</code></pre>
+<h3 class="sg" name="serve">Serve</h3>
+<pre class="sg"><code class="language-javascript">gulp serve
+</code></pre>
+<h3 class="sg" name="styleguide">Styleguide</h3>
+<pre class="sg"><code class="language-javascript">gulp styleguide:generate
+</code></pre>
