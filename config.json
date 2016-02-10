@@ -1,12 +1,12 @@
 {
   "root": {
     "src": "./src",
-    "dest": "./build"
+    "dest": "./"
   },
   "assets": {
     "src": "./src",
     "dest": "./build/assets"
   },
   "staticPath": "../../static/common/",
-  "styleguidePath": "/styleguide"
+  "styleguidePath": ""
 }
