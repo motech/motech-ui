@@ -2,10 +2,13 @@
     'use strict';
 
     angular
-        .module('motech-auth', [])
-        .run(checkAuth);
+        .module('motech-auth', ['motech-common'])
+        .run(['AuthService', checkAuth]);
 
-    function checkAuth(){
-        console.log("Checking auth");
+    function checkAuth(AuthService){
+        AuthService.checkAuth()
+            .catch(function(){
+                console.log('Need to login');
+            });
     }
 })();
