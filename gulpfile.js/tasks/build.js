@@ -3,5 +3,5 @@ var gulp = require('gulp');
 var gulpSequence = require('gulp-sequence');
 
 gulp.task('build', function () {
-    gulpSequence('assets', 'js', 'uglify', 'sass', 'fonts', 'images')();
+    gulpSequence('assets', 'fonts', 'images', 'index', 'partials', 'sass', 'js', 'uglify')();
 });
