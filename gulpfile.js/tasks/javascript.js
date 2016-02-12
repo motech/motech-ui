@@ -8,14 +8,20 @@ var sourcemaps = require('gulp-sourcemaps');
 var path = require('path');
 
 var paths = {
-    src: path.join(config.assets.src, '**/*.js'),
     dest: path.join(config.assets.dest, 'js')
 }
 
 // Static: Compress JS files into motech.js
 gulp.task('js', function () {
     var files = lib.ext('js').files; // libraries from bower
-    files.push(paths.src); // common files
+    
+    // load module configuration files first...
+    files.push(path.join(config.assets.src, '**/*.module.js'));
+    files.push(path.join(config.assets.src, '**/*.config.js'));
+    files.push(path.join(config.assets.src, '**/*.routes.js'));
+    files.push(path.join(config.assets.src, '**/*.js'));
+    files.push(path.join(config.assets.src, '*.js')); // app.js
+    
 
     return gulp.src(files)
         .pipe(sourcemaps.init())
