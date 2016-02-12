@@ -33,6 +33,8 @@
     "yargs": "~3.31.0"
   },
   "devDependencies": {
-    "bower-files": "~3.11.3"
+    "bower-files": "~3.11.3",
+    "gulp-jshint": "^2.0.0",
+    "jshint": "^2.9.1"
   }
 }
