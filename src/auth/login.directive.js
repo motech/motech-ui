@@ -8,15 +8,15 @@
 		return {
 			restrict: 'EA',
 			replace: true,
+			scope:{},
 			templateUrl: '/auth/login.html',
 			controller: LoginFormController,
-			controllerAs: 'loginFormController',
 			link: LoginFormDirective
 		}
 	}
 
 	LoginFormController.$inject = ['$q', '$scope', 'AuthService'];
-	function LoginFormController ($scope, AuthService) {
+	function LoginFormController ($q, $scope, AuthService) {
 		$scope.login = login;
 		function login () {
 			var deferred = $q.defer();
