@@ -3,19 +3,20 @@
 		<legend>Enter your username and password to access MOTECH.</legend>
 		<div class="field-group">
 			<label for="loginForm-Username">Username</label>
-			<input id="loginForm-Username" aria-describedby="loginForm-Username-errors" ng-model="username" type="text" required />
-			<div id="loginForm-Username-errors" >
-				<span ng-if="error && form.username.$error.required" class="alert alert-error">Username is a required field</span>
-			</div>
+			<input id="loginForm-Username" aria-describedby="loginForm-Username-errors" ng-model="username" name="username" type="text" required />
+			<ul id="loginForm-Username-errors" class="field-alerts unstyled" >
+				<li ng-if="error && form.username.$error.required" class="alert alert-error">Username is a required field</li>
+			</ul>
 		</div>
 		<div class="field-group">
 			<label for="loginForm-Password">Password</label>
-			<input id="loginForm-Password" ng-model="password" type="password" required />
-			<div id="loginForm-Password-errors" >
-				<span ng-if="error && form.password.$error.required" class="alert alert-error">Username is a required field</span>
-			</div>
+			<input id="loginForm-Password" ng-model="password" name="password" type="password" required />
+			<ul id="loginForm-Password-errors" >
+				<li ng-if="error && form.password.$error.required" class="alert alert-error">Password is a required field</li>
+			</ul>
 		</div>
 	</fieldset>
-	<input type="submit" value="Login" />
+	<!-- TODO move formnovalidate elsewhere -->
+	<input type="submit" value="Login" formnovalidate />
 	<a href="#">Reset your password</a>
 </form>
