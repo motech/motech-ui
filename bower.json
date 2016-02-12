@@ -60,7 +60,7 @@
   },
   "resolutions": {
     "jquery": "1.11.3",
-    "angular": "1.2.29",
+    "angular": "~1.2.29",
     "angular-bootstrap": "0.6.0"
   },
   "overrides": {
