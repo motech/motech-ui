@@ -1,0 +1,38 @@
+/*
+Forms
+
+This is a collection of how to build basic forms in the MOTECH Platform. The goal of these forms is to support an accessiable and clear experience.
+
+Styleguide 2.0
+*/
+
+fieldset {
+	legend {
+		font-size: 1em;
+		border-bottom: 0px;
+	}
+}
+
+form {
+	.error{
+		@extend .alert;
+		@extend .alert-danger;
+	}
+	.warning{
+		@extend .alert;
+		@extend .alert-warning;
+	}
+	input[type="submit"] {
+		@extend .button-primary;
+	}
+}
+
+
+.form-group {
+	input {
+		@extend .form-control;
+	}
+	ul {
+		@extend .list-unstyled;
+	}
+}
