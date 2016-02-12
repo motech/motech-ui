@@ -3,12 +3,13 @@
 
     angular
         .module('motech-auth', ['motech-common'])
-        .run(['AuthService', checkAuth]);
+        .run(checkAuth);
 
-    function checkAuth(AuthService){
-        AuthService.checkAuth()
+    checkAuth.$inject = ['AuthService', 'LoginModal']
+    function checkAuth(AuthService, LoginModal){
+        AuthService.check()
             .catch(function(){
-                console.log('Need to login');
+                LoginModal.show();
             });
     }
 })();

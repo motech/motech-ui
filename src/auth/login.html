@@ -1,10 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-
-</body>
-</html>
+<form name="form">
+	<fieldset>
+		<legend>Enter your username and password to access MOTECH.</legend>
+		<div class="field-group">
+			<label for="loginForm-Username">Username</label>
+			<input id="loginForm-Username" ng-model="username" type="text" required />
+		</div>
+		<div class="field-group">
+			<label for="loginForm-Password">Password</label>
+			<input id="loginForm-Password" ng-model="password" type="password" required />
+		</div>
+	</fieldset>
+	<input type="submit" value="Login" />
+	<a href="#">Reset your password</a>
+</form>
