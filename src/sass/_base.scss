@@ -23,3 +23,11 @@ body{
 	@extend .btn;
 	@extend .btn-primary;
 }
+
+
+.block-title {
+	background-color: $brand-primary;
+	color: $white;
+	font-weight: bold;
+	padding: $space-size $space-size*2;
+}
