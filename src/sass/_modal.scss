@@ -4,8 +4,7 @@ Modals
 Modals are used to enter or edit context specific information into the MOTECH system. These types of data can include database entry or loging into the system. Important points to note is that the default size for our modal windows are smaller than the Bootstrap default, and that contained forms are the small form size by default. When viewed on small screen sizes, all modal windows cover the entire screen, with the exception of small modal sizes.
 
 markup:
-
-<div class="modal fade" tabindex="-1" role="dialog">
+<div class="modal modal-static" tabindex="-1" role="dialog">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -25,6 +24,15 @@ markup:
 
 Styleguide 3.0
 */
+
+.modal-static {
+	position: relative;
+	top: auto;
+	right: auto;
+	bottom:auto;
+	left: auto;
+	display: block;
+}
 
 .modal-backdrop {
 	background-color: $white;
