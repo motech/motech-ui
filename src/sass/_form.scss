@@ -23,11 +23,16 @@ form {
 		@extend .alert;
 		@extend .alert-warning;
 	}
+
+	.button-primary {
+		float:right;
+	}
+
 	input[type="submit"] {
 		@extend .button-primary;
 	}
 	.form-actions{
-		margin: 1em 0px
+		margin: 1em 0px;
 		float: right;
 	}
 }
