@@ -3,6 +3,45 @@ Forms
 
 This is a collection of how to build basic forms in the MOTECH Platform. The goal of these forms is to support an accessiable and clear experience.
 
+markup:
+<form>
+	<fieldset>
+		<legend>Enter example input</legend>
+		<div class="form-group">
+			<label for="exampleTextInput">Example Text Input</label>
+			<input id="exampleTextInput" type="text" />
+			<ul id="exampleTextInput-description" >
+				<li class="info">This field doesn't do anything</li>
+			</ul>
+		</div>
+		<fieldset class="form-group">
+			<legend>Example input group</legend>
+			<div class="input-group">
+				<label class="radio" >
+					<input type="radio" name="radioExample" value="1" />
+					Option 1
+				</label>
+				<label class="radio" >
+					<input type="radio" name="radioExample" value="2" />
+					Option 2
+				</label>
+				<label class="radio" >
+					<input type="radio" name="radioExample" value="3" />
+					Option 3
+				</label>
+			</div>
+		</fieldset>
+		<div class="form-group">
+			<label class="checkbox">
+				<input type="checkbox" />
+				Single checkbox
+			</label>
+		</div>
+	</fieldset>
+	<input type="submit" value="Submit example form" />
+	<button ng-click="reset()" >Reset form</button>
+</form>
+
 Styleguide 2.0
 */
 
@@ -12,7 +51,14 @@ fieldset {
 		border-bottom: 0px;
 	}
 }
-
+.form-group {
+	input {
+		@extend .form-control;
+	}
+	ul {
+		@extend .list-unstyled;
+	}
+}
 form {
 	@extend .clearfix;
 	.error{
@@ -23,26 +69,48 @@ form {
 		@extend .alert;
 		@extend .alert-warning;
 	}
-
 	.button-primary {
 		float:right;
 	}
-
 	input[type="submit"] {
 		@extend .button-primary;
 	}
-	.form-actions{
-		margin: 1em 0px;
-		float: right;
+
+	.input-group{
+		width: 100%;
+	}
+
+	label.radio, label.checkbox {
+		@extend .radio;
+		margin: 0em;
+		margin-bottom: 0.5em;
+		font-weight: normal;
+		input {
+			position: static !important;
+			display: block !important;
+			float: left !important;
+			width: auto !important;
+			height: auto !important;
+			margin: 0px !important;
+			margin-right: 0.5em !important;
+		}
 	}
 }
 
+.form-compact {
+	
+}
 
-.form-group {
-	input {
-		@extend .form-control;
-	}
-	ul {
-		@extend .list-unstyled;
+.form-normal {
+	
+}
+
+form {
+	@extend .form-compact;
+}
+
+@media (min-width: @screen-sm-min) {
+	form {
+		@extend .form-normal;
 	}
 }
