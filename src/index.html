@@ -6,9 +6,16 @@
     {% include 'partials/header.html' %}
 </head>
 <body ng-app="motech-dashboard">
-    <div ng-view>
-        <p class="loading">Loading MOTECH</p>
+    <header class="header-main">
+        <div class="container">
+            <a ui-sref="/" class="logo">MOTECH</a>
+            <p class="description">Mobile technology for community health</p>
+        </div>
+    </header>
+    <div class="navbar">
+        <div class="container" ui-view="topNav"></div>
     </div>
+    <div ui-view="main"></div>
     <script type="text/javascript" src="{{staticPath}}js/motech.js"></script>
     <script type="text/javascript">
         var motechServerURL = "{{motechServerURL}}";
