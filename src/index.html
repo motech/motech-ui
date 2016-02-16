@@ -8,14 +8,14 @@
 <body ng-app="motech-dashboard">
     <header class="header-main">
         <div class="container">
-            <a ui-sref="/" class="logo">MOTECH</a>
+            <a href="/" class="logo">MOTECH</a>
             <p class="description">Mobile technology for community health</p>
         </div>
         <nav>
-            <div class="container" ui-view="topNav"></div>
+            <div class="container"></div>
         </nav>
     </header>
-    <div ui-view="main"></div>
+    <div ng-view></div>
     <script type="text/javascript" src="{{staticPath}}js/motech.js"></script>
     <script type="text/javascript">
         var motechServerURL = "{{motechServerURL}}";

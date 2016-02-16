@@ -64,6 +64,7 @@ nav.navbar {
 }
 
 header.header-main {
+	@extend .clearfix;
 	.logo {
 		position: absolute;
 		top:0px;
