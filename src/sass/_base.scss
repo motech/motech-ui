@@ -49,3 +49,48 @@ body {
 	height: 100%;
 	@include background(linear-gradient(to bottom, $white 20%, $brand-accent 90%) center no-repeat);	
 }
+
+.container {
+	position: relative;
+}
+
+.logo {
+	@include background-image(url("../img/motech-logo.gif") center no-repeat); // TODO: Make logo SVG
+}
+
+nav.navbar {
+	@extend .navbar;
+	@extend .navbar-default;
+}
+
+header.header-main {
+	.logo {
+		position: absolute;
+		top:0px;
+		left:0px;
+		display: block;
+		overflow: hidden;
+		float: left;
+		width: 160px;
+		height: 50px;
+		background-size: 160px;
+		text-indent: -3000px;
+	}
+	.description {
+		display: block;
+		font-size: $font-size-large;
+		line-height: 1.5em;
+		color: $brand-primary;
+		width: 100%;
+		text-align: center;
+		height: 50px;
+		padding-top: 50px - $font-size-large*1.35;
+		margin: 0px;
+	}
+	nav{
+		@extend .navbar;
+		@extend .navbar-brand;
+		background-color: $brand-primary;
+		width:100%;
+	}
+}
