@@ -1,10 +1,12 @@
-
 // COLORS
 $brand-primary: #144573;
 $brand-secondary: #FFB900;
 $brand-accent: #c2eafe;
 
 $white: #FFFFFF;
+
+$btn-default-bg: #eee;
+$btn-primary-bg: lighten($brand-primary, 15);
 
 // BORDERS
 $border-radius-base:        0px;

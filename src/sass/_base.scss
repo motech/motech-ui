@@ -14,14 +14,61 @@ body{
     background-color: $brand-primary;
 }
 
+input, button, select, textarea {
+  font-family: $font-family-base;
+}
 
-.button {
+/*
+Buttons
+
+Buttons represent taking an action in MOTECH - juxoposed to a link which represents navigating through MOTECH. Most buttons should be the default color, with the exception of: a primary action button (which submits a form of changes a state), an add button which is creating new data in MOTECH (and should launch a modal window), or a delete button (which much launch a modal window to confirm the action).
+
+markup:
+<button >Button</button>
+<button class="button-primary">Primary Button</button>
+<!-- Used to add new content and should launch a modal window -->
+<button class="button-add">Add Button</button>
+<button class="button-edit">Edit Button</button>
+<!-- Used to delete content and must launch a modal window to confirm the action -->
+<button class="button-delete">Delete Button</button>
+
+Styleguide 1.1
+*/
+
+button,
+.button,
+.button-default {
 	@extend .btn;
 	@extend .btn-default;
+  &:before{
+    @extend .fa;
+    margin-right: 0.5em;
+  }
 }
 .button-primary {
-	@extend .btn;
+	@extend .button;
 	@extend .btn-primary;
+}
+.button-add,
+.button-create {
+  @extend .button;
+  @extend .btn-success;
+  &:before {
+    @extend .fa-plus;
+  }
+}
+.button-edit {
+  @extend .button;
+  &:before {
+    @extend .fa-pencil;
+  }
+}
+.button-delete {
+  @extend .button;
+  @extend .btn-danger;
+  &:before {
+    @extend .fa-trash;
+  }
 }
 
 
@@ -38,7 +85,7 @@ Background
 
 These are the background definitons used within MOTECH.
 
-Styleguide 1.1
+Styleguide 1.2
 */
 
 html{
