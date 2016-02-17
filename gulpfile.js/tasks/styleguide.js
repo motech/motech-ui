@@ -34,9 +34,10 @@ gulp.task('styleguide:applystyles', function() {
 });
 
 gulp.task('styleguide:deploy', function() {
-  config.styleguidePath = "/";
+  config.styleguidePath = "";
   gulpSequence('styleguide:generate', 'styleguide:applystyles')(function(){
-    gulp.src(path.join(config.root.dest, config.styleguidePath, '**/*'))
+    console.log(config.s3);
+    gulp.src(path.join(config.root.dest, 'styleguide', '**/*'))
       .pipe(s3(config.s3))
   });
 })

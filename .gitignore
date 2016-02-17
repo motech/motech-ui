@@ -4,4 +4,3 @@ build
 node_modules
 bower_components
 bourbon
-config.s3.json
