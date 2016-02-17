@@ -14,8 +14,11 @@ body{
     background-color: $brand-primary;
 }
 
-input, button, select, textarea {
-  font-family: $font-family-base;
+.block-title {
+  background-color: $brand-primary;
+  color: $white;
+  font-weight: bold;
+  padding: 1em 2em;
 }
 
 /*
@@ -71,13 +74,19 @@ button,
   }
 }
 
+/*
+Tiny Buttons
 
-.block-title {
-	background-color: $brand-primary;
-	color: $white;
-	font-weight: bold;
-	padding: 1em 2em;
-}
+Styleguide 1.1.1
+*/
+
+/*
+Button Groups
+
+There are two different categories for button groups, primary button groups and everything else. Primary button groups are used to submit forms or take an action on an item.
+
+Styleguide 1.1.2
+*/
 
 
 /*
