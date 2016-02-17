@@ -3,7 +3,14 @@
 
     angular
         .module('motech-auth', [
-            'ngRoute',
             'motech-common'
-        ]);
+        ]).run(checkAuth);
+
+    checkAuth.$inject = ['AuthService', 'LoginModal'];
+    function checkAuth (AuthService, LoginModal) {
+    	AuthService.check()
+		.catch(function () {
+			return LoginModal.show()
+		});
+    }
 })();
