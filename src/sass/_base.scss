@@ -10,10 +10,6 @@ markup:
 Styleguide 1.0
 */
 
-body{
-    background-color: $brand-primary;
-}
-
 .block-title {
   background-color: $brand-primary;
   color: $white;
@@ -87,24 +83,6 @@ There are two different categories for button groups, primary button groups and 
 
 Styleguide 1.1.2
 */
-
-
-/*
-Background
-
-These are the background definitons used within MOTECH.
-
-Styleguide 1.2
-*/
-
-html{
-	height: 100%;
-}
-
-body {
-	height: 100%;
-	@include background(linear-gradient(to bottom, $white 20%, $brand-accent 90%) center no-repeat);	
-}
 
 .container {
 	position: relative;

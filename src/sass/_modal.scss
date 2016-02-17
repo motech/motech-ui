@@ -36,7 +36,8 @@ Styleguide 3.0
 }
 
 .modal-backdrop {
-	background-color: $white;
+	@include background(linear-gradient(to bottom, $brand-accent 0%, $white 20%, $brand-accent 90%) center no-repeat);
+  background-color: $white;
 }
 
 .modal-content {
