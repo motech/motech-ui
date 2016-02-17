@@ -35,6 +35,8 @@
   "devDependencies": {
     "bower-files": "~3.11.3",
     "gulp-jshint": "^2.0.0",
+    "gulp-s3": "^0.3.0",
+    "gulp-s3-deploy": "^1.0.1",
     "jshint": "^2.9.1"
   }
 }
