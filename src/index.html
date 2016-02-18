@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>MOTECH - Mobile Technology for Community Health</title>
+    {% include 'partials/header.html' %}
+</head>
+<body ng-app="motech-dashboard">
+    <header class="header-main">
+        <div class="container">
+            <a href="/" class="logo">MOTECH</a>
+            <p class="description">Mobile technology for community health</p>
+        </div>
+        <nav>
+            <div class="container"></div>
+        </nav>
+    </header>
+    <div ng-view></div>
+    
+    <script type="text/javascript">
+        var motechServerURL = "{{motechServerURL}}";
+    </script>
+</body>
+</html>
