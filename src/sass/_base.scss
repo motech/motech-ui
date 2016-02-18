@@ -4,8 +4,13 @@ Base
 This is a collection of the basic styles that are used through the MOTECH Platform.
 
 markup:
-<h1>Sample Heading</h1>
+<h1 class="logo">MOTECH</h1>
+<h2 class="title-block">Block style title</h2>
 <p>This is a sample paragraph</p>
+<ul>
+	<li>List item</li>
+	<li>Another list item</li>
+</ul>
 
 Styleguide 1.0
 */
@@ -15,6 +20,14 @@ Styleguide 1.0
   color: $white;
   font-weight: bold;
   padding: 1em 2em;
+}
+
+.container {
+	position: relative;
+}
+
+.logo {
+	@include background-image(url("../img/motech-logo.gif") center no-repeat); // TODO: Make logo SVG
 }
 
 /*
@@ -135,48 +148,15 @@ There are two different categories for button groups, primary button groups and 
 Styleguide 1.1.2
 */
 
-.container {
-	position: relative;
-}
+/*
+Page Navigation
 
-.logo {
-	@include background-image(url("../img/motech-logo.gif") center no-repeat); // TODO: Make logo SVG
-}
+Page navigation sections are collections of links that change the page, but don't preform actions.
+
+Styleguide 1.2
+*/
 
 nav.navbar {
 	@extend .navbar;
 	@extend .navbar-default;
-}
-
-header.header-main {
-	@extend .clearfix;
-	.logo {
-		position: absolute;
-		top:0px;
-		left:0px;
-		display: block;
-		overflow: hidden;
-		float: left;
-		width: 160px;
-		height: 50px;
-		background-size: 160px;
-		text-indent: -3000px;
-	}
-	.description {
-		display: block;
-		font-size: $font-size-large;
-		line-height: 1.5em;
-		color: $brand-primary;
-		width: 100%;
-		text-align: center;
-		height: 50px;
-		padding-top: 50px - $font-size-large*1.35;
-		margin: 0px;
-	}
-	nav{
-		@extend .navbar;
-		@extend .navbar-brand;
-		background-color: $brand-primary;
-		width:100%;
-	}
 }
