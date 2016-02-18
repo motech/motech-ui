@@ -45,25 +45,25 @@ button,
   }
 }
 .button-primary {
-	@extend .button;
 	@extend .btn-primary;
 }
+button.add,
 .button-add,
+button.create,
 .button-create {
-  @extend .button;
   @extend .btn-success;
   &:before {
     @extend .fa-plus;
   }
 }
+button.edit,
 .button-edit {
-  @extend .button;
   &:before {
     @extend .fa-pencil;
   }
 }
+button.delete,
 .button-delete {
-  @extend .button;
   @extend .btn-danger;
   &:before {
     @extend .fa-trash;
@@ -71,24 +71,30 @@ button,
 }
 
 /*
-Tiny Buttons
+Icon Buttons
 
 Some buttons will be inserted into small areas and won't have visible text, an example of this would be a close button. To meet accessibility standards, the button must actually contain text to be visible to a screen reader. Additionally, we recommend that title attributes are not used on these buttons because they don't add content to most screen readers. If additional text is needed to make the use of a tiny button clear, either make it a full sized button, or implement a bootstrap popover.
 
 markup:
+<!-- .close is the only implicitly icon class -->
 <button class="close">Close</button>
+<!-- Inherits styles from .button, below are variations -->
+<button class="icon add">Add</button>
+<button class="icon button-edit">Edit</button>
+<button class="button-icon delete">Delete</button>
 
 Styleguide 1.1.1
 */
 
-button.tiny,
-.button-tiny {
+button.icon,
+.button-icon {
 	display: inline-block;
 	overflow: hidden;
-	text-indent: -300em;
 	position: relative;
+	text-indent: -300em;
 	width: 1em;
 	height: 1em;
+	padding: 0px;
 	&:before {
 		position: absolute;
 		top: 0px;
@@ -96,6 +102,7 @@ button.tiny,
 		width: 100%;
 		text-align: center;
 		margin: 0px;
+		padding: 0.1em;
 		font-size: 0.8em;
 		text-indent: 0px;
 	}
@@ -104,10 +111,9 @@ button.tiny,
 // Much of this style overwrites Bootstrap's modal .close
 button.close,
 .button-close {
-	@extend .button-tiny;
-	color: $btn-danger-color;
-	background-color: $btn-danger-bg;
-	border: $btn-danger-border 1px solid;
+	@extend .button-icon;
+	@extend .btn-danger;
+	font-size: 1em;
 	float: none;
 	opacity: 1;
 	&:hover {
