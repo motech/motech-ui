@@ -1,18 +1,16 @@
-The MOTECH-UI is an administration user interface to be used with the MOTECH Platform. Currently this UI package is underdevelopment, and doesn't fully support all the actions that are available in the MOTECH Platform.
+The MOTECH-UI is an administration user interface to be used with the [MOTECH Platform.](http://motechproject.org) Currently this UI package is underdevelopment, so it won't support all the functionality needed to administer the MOTECH Platform.
 
-Guidelines
-----------
-This UI package creates a single page AngularJS applicaiton that interacts with the REST API exposed by the MOTECH Server.
+Overview
+--------
+This UI package creates a single page [AngularJS](https://angularjs.org/) applicaiton that interacts with the REST API exposed by the MOTECH Server. Styles and components available in the UI are [documented in the MOTECH-UI Styleguide](http://styleguide.motechproject.org), which is generated from this package.
 
-The AngularJS application follows John Papa structure guidelines to implement a modular codebase. This is done so that MOTECH Server Modules can extend the UI, or other projects can fork this project and create novel interfaces for the MOTECH Platform.
+[NodeJS](https://nodejs.org) and [Gulp](http://gulpjs.com/) are used to generate the MOTECH-UI. [NPM](https://www.npmjs.com/) and [Bower](http://bower.io/) are the package managers used in the project. [Sass](http://sass-lang.com/) & [Bourbon](http://bourbon.io/)
 
-The styles and components for this UI are documented in the StyleGuide which is avaiable here, and can also be created and run locally.
+This application follows [John Papa structure guidelines](https://github.com/johnpapa/angular-styleguide) as closely as possible.
 
-How to Build
+Installation
 ------------
-To use this UI package, you will need to have a working MOTECH Server instance running at an accessiable IP Address.
-
-Building this interface required the use of NodeJS, NPM, Bower, Gulp, and Sass.
+To use this UI package a working MOTECH Server is required. It is possible to run and work on this package without a MOTECH Server, but only the styleguide will fully work.
 
 ### Linux Installation
 Stub
@@ -22,6 +20,16 @@ Stub
 
 ### OSX Installation
 Stub
+
+### Building and running
+To build and run the MOTECH-UI package:
+
+```javascript
+gulp build
+gulp server
+```
+
+Then visit http://localhost:5000/styleguide/ and you should see this page (assuming nothing went wrong).
 
 Gulp Commands
 -------------
@@ -33,21 +41,20 @@ The directory where files are built can be changed by passing the `--dest` optio
 
 ```javascript
 gulp build --dest=./build
+// Build only the app
+gulp build:app
+// Build only the style guide
+gulp build:styleguide
 ```
 
 ### Watch
 Watches the `/src` directory and runs build if any changes are made. Add the `--styleguide` option if you want the styleguilde to be regenerated when changes are made.
 
 ```javascript
-gulp watch --dest=./build --styleguide
+gulp watch
 ```
 
-### Serve
+### Development Server
 ```javascript
-gulp serve
-```
-
-### Styleguide
-```javascript
-gulp styleguide:generate
+gulp server
 ```
