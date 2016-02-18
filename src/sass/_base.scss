@@ -73,8 +73,53 @@ button,
 /*
 Tiny Buttons
 
+Some buttons will be inserted into small areas and won't have visible text, an example of this would be a close button. To meet accessibility standards, the button must actually contain text to be visible to a screen reader. Additionally, we recommend that title attributes are not used on these buttons because they don't add content to most screen readers. If additional text is needed to make the use of a tiny button clear, either make it a full sized button, or implement a bootstrap popover.
+
+markup:
+<button class="close">Close</button>
+
 Styleguide 1.1.1
 */
+
+button.tiny,
+.button-tiny {
+	display: inline-block;
+	overflow: hidden;
+	text-indent: -300em;
+	position: relative;
+	width: 1em;
+	height: 1em;
+	&:before {
+		position: absolute;
+		top: 0px;
+		left: 0px;
+		width: 100%;
+		text-align: center;
+		margin: 0px;
+		font-size: 0.8em;
+		text-indent: 0px;
+	}
+}
+
+// Much of this style overwrites Bootstrap's modal .close
+button.close,
+.button-close {
+	@extend .button-tiny;
+	color: $btn-danger-color;
+	background-color: $btn-danger-bg;
+	border: $btn-danger-border 1px solid;
+	float: none;
+	opacity: 1;
+	&:hover {
+		opacity: 1;
+		background-color: darken($btn-danger-bg, 20%);
+	}
+	&:before {
+		@extend .fa-times;
+		color: $btn-danger-color;
+		text-shadow: 0px 0px #fff;
+	}
+}
 
 /*
 Button Groups
