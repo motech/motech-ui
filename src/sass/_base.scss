@@ -57,6 +57,7 @@ button,
     margin-right: 0.5em;
   }
 }
+button.primary,
 .button-primary {
 	@extend .btn-primary;
 }
@@ -105,28 +106,31 @@ button.icon,
 	overflow: hidden;
 	position: relative;
 	text-indent: -300em;
-	width: 1em;
-	height: 1em;
-	padding: 0px;
+	width: 2em;
+	height: 2em;
 	&:before {
 		position: absolute;
-		top: 0px;
+		top: 0.5em;
 		left: 0px;
 		width: 100%;
 		text-align: center;
 		margin: 0px;
-		padding: 0.1em;
-		font-size: 0.8em;
+		font-size: 1em;
 		text-indent: 0px;
 	}
+}
+
+.close {
+	font-size: $font-size-base;
 }
 
 // Much of this style overwrites Bootstrap's modal .close
 button.close,
 .button-close {
 	@extend .button-icon;
-	@extend .btn-danger;
-	font-size: 1em;
+	color: $btn-danger-color;
+	background: $btn-danger-bg;
+	border: $btn-danger-border 1px;
 	float: none;
 	opacity: 1;
 	&:hover {
@@ -145,8 +149,34 @@ Button Groups
 
 There are two different categories for button groups, primary button groups and everything else. Primary button groups are used to submit forms or take an action on an item.
 
+markup:
+<div class="button-group-primary">
+	<button class="add">Add Sub-Item</button>
+	<button class="primary">Save</button>
+</div>
+<div class="button-group">
+	<button class="add">Add Item</button>
+	<button class="delete">Delete all items</button>
+</div>
+<div class="button-group">
+	<button>Filter</button>
+</div>
+
+
 Styleguide 1.1.2
 */
+.button-group{
+	@extend .btn-group;
+}
+
+.button-group-primary,
+.button-group.primary {
+	@extend .btn-group;
+	float: right;
+	button.icon, button-icon {
+		height: 2.37em; //magic number...
+	}
+}
 
 /*
 Page Navigation
