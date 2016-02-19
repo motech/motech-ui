@@ -16,7 +16,7 @@ markup:
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="button" class="btn btn-primary">Good job!</button>
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
@@ -46,6 +46,25 @@ Styleguide 3.0
 
 .modal-header {
 	@extend .block-title;
+  button.close {
+    @extend .btn-default;
+    position: absolute;
+    top: 1em;
+    right: 1em;
+    &:before {
+      color: $btn-default-color;
+    }
+  }
+}
+
+.modal-footer{
+  text-align:left;
+  border-top: 0px;
+  .btn-primary,
+  button-primary,
+  button.primary {
+    float:right;
+  }
 }
 
 /*
