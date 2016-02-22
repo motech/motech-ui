@@ -37,6 +37,8 @@ Buttons represent taking an action in MOTECH - juxoposed to a link which represe
 
 markup:
 <button >Button</button>
+<button class="active">Active Button</button>
+<button class="disabled">Disabled Button</button>
 <button class="button-primary">Primary Button</button>
 <!-- Used to add new content and should launch a modal window -->
 <button class="button-add">Add Button</button>
@@ -47,11 +49,35 @@ markup:
 Styleguide 1.1
 */
 
+@mixin button($color, $background, $border) {
+	$background-dark: darken($background, 10%);
+	$background-light: lighten($background, 10%);
+
+	@include button-variant($color, $background, $border);
+	@include background(linear-gradient(to bottom, $background 60%, $background-dark 90%));
+	&:hover,
+	&.hover {
+		@include background(linear-gradient(to bottom, $background 30%, $background-dark 60%));
+	}
+	&:active,
+	&.active {
+		@include background($background-dark);
+	}
+	&:disabled,
+	&.disabled {
+		background: $background-light;
+	}
+
+	&:before {
+		color: $color;
+	}
+}
+
 button,
 .button,
 .button-default {
 	@extend .btn;
-	@extend .btn-default;
+	@include button($btn-default-color, $btn-default-bg, $btn-default-border);
   &:before{
     @extend .fa;
     margin-right: 0.5em;
@@ -59,13 +85,13 @@ button,
 }
 button.primary,
 .button-primary {
-	@extend .btn-primary;
+	@include button($btn-primary-color, $btn-primary-bg, $btn-primary-border);
 }
 button.add,
 .button-add,
 button.create,
 .button-create {
-  @extend .btn-success;
+  @include button($btn-success-color, $btn-success-bg, $btn-success-border);
   &:before {
     @extend .fa-plus;
   }
@@ -78,7 +104,7 @@ button.edit,
 }
 button.delete,
 .button-delete {
-  @extend .btn-danger;
+  @include button($btn-danger-color, $btn-danger-bg, $btn-danger-border);
   &:before {
     @extend .fa-trash;
   }
@@ -128,9 +154,7 @@ button.icon,
 button.close,
 .button-close {
 	@extend .button-icon;
-	color: $btn-danger-color;
-	background: $btn-danger-bg;
-	border: $btn-danger-border 1px;
+	@include button($btn-danger-color, $btn-danger-bg, $btn-danger-border);
 	float: none;
 	opacity: 1;
 	&:hover {

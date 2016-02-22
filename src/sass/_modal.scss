@@ -15,8 +15,8 @@ markup:
         <p>Yep, we stole this modal from Bootstrap 3&hellip;</p>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Good job!</button>
+        <button type="button" data-dismiss="modal">Close</button>
+        <button type="button" class="primary">Good job!</button>
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
@@ -47,13 +47,10 @@ Styleguide 3.0
 .modal-header {
 	@extend .block-title;
   button.close {
-    @extend .btn-default;
     position: absolute;
     top: 1em;
     right: 1em;
-    &:before {
-      color: $btn-default-color;
-    }
+    @include button($btn-default-color, $btn-default-bg, $btn-default-border);
   }
 }
 
