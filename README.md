@@ -8,6 +8,17 @@ This UI package creates a single page [AngularJS](https://angularjs.org/) applic
 
 This application follows [John Papa structure guidelines](https://github.com/johnpapa/angular-styleguide) as closely as possible.
 
+### Goals
+
+#### Semantic Mark-up
+Less markup on HTML elements makes it easier for the styles to be changed in one place. An example of this is that all images that are not primary content should be implemented in CSS.
+
+#### Graceful Degredation
+We support IE9 and up, meaning our interface must function in all browsers possible — but all experiences don't need to be exactly the same, just equally functional.
+
+#### Optimized for small screens and touchpads
+MOTECH is used by people to configure health workflows. Many of these people use laptops and don't have access to a mouse.
+
 Installation
 ------------
 To use this UI package a working MOTECH Server is required. It is possible to run and work on this package without a MOTECH Server, but only the styleguide will fully work.
