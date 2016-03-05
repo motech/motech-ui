@@ -1,7 +1,7 @@
 (function () {
 	'use strict';
 
-	angular.module('motech-status')
+	angular.module('motech-server')
 		.service('ServerStatusService', motechServerStatusService);
 
 	motechServerStatusService.$inject = ['$q', '$rootScope', '$http', 'MOTECH_SERVER_URL'];

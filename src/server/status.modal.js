@@ -1,7 +1,7 @@
 (function () {
 	'use strict';
 
-	angular.module('motech-status')
+	angular.module('motech-server')
 		.service('ServerStatusModal', statusModal)
 		.run(statusModalListeners);
 

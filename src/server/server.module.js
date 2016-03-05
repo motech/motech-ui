@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('motech-status', [
+        .module('motech-server', [
             'motech-common'
         ])
         .run(displayServerStatus);
