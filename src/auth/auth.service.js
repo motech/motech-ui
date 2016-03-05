@@ -6,7 +6,7 @@
 
 	AuthService.$inject = ['$q', '$http'];
 	function AuthService ($q, $http) {
-		var loginUrl = motechServerURL + 'motech/j_spring_something';
+		var loginUrl = motechServerURL + 'module/server/motech/j_spring_security_check';
 
 		this.login = login;
 		this.check = checkAuth;
@@ -14,10 +14,17 @@
 		function login (username, password) {
 			var deferred = $q.defer();
 
-			$http.post(loginUrl, {
-				username:username,
-				password:password
-			}).then(function () {
+			$http({
+				method: 'POST',
+				url: loginUrl,
+				data: "j_username="+username+"&j_password="+password,
+				headers: {
+					'X-Requested-With': 'XMLHttpRequest',
+					'Content-Type':'application/x-www-form-urlencoded; charset=UTF-8'
+				},
+				withCredentials: true
+			})
+			.then(function () {
 				deferred.resolve(true);
 			}).catch(function () {
 				deferred.reject('server.auth.error');
