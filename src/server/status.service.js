@@ -15,6 +15,7 @@
 		this.startedBundles = [];
 
 		this.getStatus = getStatus;
+		this.hasErrors = hasErrors;
 
 		function getStatus() {
 			var deferred = $q.defer();
@@ -24,7 +25,6 @@
 			.then(function(response){
 				service.startedBundles = response.data.osgiStartedBundles;
 				if(response.data.startupProgressPercentage == 100) {
-					service.running = true;
 					deferred.resolve(true);
 				}
 				if(response.data.startupProgressPercentage < 100){
@@ -32,10 +32,15 @@
 					getStatus();
 				}
 			}).catch(function(){
+				service.errors.push("Could not reach MOTECH server");
 				deferred.reject(false);
 			});
 
-			deferred.promise.finally(
+			deferred.promise.then(function(){
+				service.running = true;
+			}).catch(function(){
+				service.running = false;
+			}).finally(
 				function(){
 					$rootScope.$broadcast('motech.statusCheck.stop');
 				},
@@ -45,6 +50,13 @@
 			);
 
 			return deferred.promise;
+		}
+
+		function hasErrors () {
+			if(service.errors.length > 0){
+				return true;
+			}
+			return false;
 		}
 	}
 
