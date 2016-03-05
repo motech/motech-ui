@@ -29,7 +29,7 @@
 				}
 				if(response.data.startupProgressPercentage < 100){
 					deferred.notify(response.data.startupProgressPercentage);
-					getStatus();
+					setTimeout(getStatus, 2000);
 				}
 			}).catch(function(){
 				service.errors.push("Could not reach MOTECH server");
