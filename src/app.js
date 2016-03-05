@@ -4,6 +4,7 @@
     /* MOTECH-DASHBOARD APP */
     angular
         .module('motech-dashboard', [
+            'motech-status',
             'motech-auth'
         ]);
 })();
