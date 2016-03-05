@@ -7,11 +7,17 @@
 
 	statusModalListeners.$inject = ['$rootScope', 'ServerStatusService', 'ServerStatusModal'];
 	function statusModalListeners($rootScope, ServerStatusService, ServerStatusModal) {
-		console.log('ServerStatusModalService: adding listeners');
-		$rootScope.$on('motech.statusCheck.update', function(){
-			ServerStatusModal.show();
+		var showTimeout;
+		$rootScope.$on('motech.statusCheck.start', function(){
+			showTimeout = setTimeout(function(){
+				ServerStatusModal.show();
+			}, 500);
 		});
 		$rootScope.$on('motech.statusCheck.stop', function(){
+			if(showTimeout){
+				clearTimeout(showTimeout);
+				showTimeout = undefined;
+			}
 			if(ServerStatusService.hasErrors()){
 				ServerStatusModal.show();
 			} else {

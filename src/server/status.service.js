@@ -36,18 +36,19 @@
 				deferred.reject(false);
 			});
 
-			deferred.promise.then(function(){
-				service.running = true;
-			}).catch(function(){
-				service.running = false;
-			}).finally(
-				function(){
-					$rootScope.$broadcast('motech.statusCheck.stop');
+			deferred.promise.then(
+				function(){ // Success
+					service.running = true;
 				},
-				function(){
+				function(){ // Error
+					service.running = false;
+				},
+				function(){ // Update
 					$rootScope.$broadcast('motech.statusCheck.update');
 				}
-			);
+			).finally(function(){
+				$rootScope.$broadcast('motech.statusCheck.stop');
+			});
 
 			return deferred.promise;
 		}
