@@ -3,6 +3,7 @@
 
     angular
         .module('motech-auth', [
-            'motech-common'
+            'motech-common',
+            'motech-server'
         ]);
 })();

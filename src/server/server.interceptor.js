@@ -1,7 +1,7 @@
 (function () {
     'use strict';
 
-    angular.module('motech-common')
+    angular.module('motech-server')
     	.factory('motechServerHTTPInterceptor', serverInterceptor)
     	.config(httpConfig);
 
