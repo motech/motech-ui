@@ -4,9 +4,9 @@ var path = require('path');
 
 gulp.task('partials', function () {
     gulp.src([
-            path.join(config.root.src,'**/*.html'),
-            '!' + path.join(config.root.src,'partials/*.html'),
-            '!' + path.join(config.root.src,'./*.html')
+            path.join(config.app.src,'**/*.html'),
+            '!' + path.join(config.app.src,'partials/*.html'),
+            '!' + path.join(config.app.src,'./*.html')
         ])
-        .pipe(gulp.dest(config.root.dest));
+        .pipe(gulp.dest(config.app.dest));
 });
