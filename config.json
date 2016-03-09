@@ -3,11 +3,15 @@
     "src": "./src",
     "dest": "./build"
   },
-  "assets": {
+  "app": {
     "src": "./src",
-    "dest": "./build/assets"
+    "dest": "./build/app"
+  },
+  "styleguide": {
+    "src": "./src",
+    "dest": "./build/styleguide"
   },
   "motechServerURL": "http://localhost:8080/motech/",
-  "staticPath": "/assets/",
+  "staticPath": "/",
   "styleguidePath": "/styleguide"
 }

@@ -6,38 +6,32 @@ var path = require('path');
 var gulpSequence = require('gulp-sequence');
 var s3 = require( "gulp-s3" );
 
-var paths = {
-    src: path.join(config.assets.src, '**/*.css'),
-    dest: path.join(config.assets.dest, 'css')
-};
-
-var outputPath = path.join(config.root.dest, config.styleguidePath);
+var styleguideSource = path.join(config.root.src, 'sass/**/*.scss');
+var styleguideAssets = path.join(config.root.dest, 'assets/css/motech.css');
 
 gulp.task('styleguide:generate', function() {
 
-  return gulp.src(path.join(config.assets.src, 'sass/**/*.scss'))
+  return gulp.src(styleguideSource)
     .pipe(styleguide.generate({
         title: 'MOTECH Styleguide',
-        appRoot: config.styleguidePath,
         overviewPath: path.join('README.md')
       }))
-    .pipe(gulp.dest(outputPath));
+    .pipe(gulp.dest(config.styleguide.dest));
 });
 
 gulp.task('styleguide:applystyles', function() {
-  return gulp.src(path.join(paths.dest, '*.css'))
+  return gulp.src(styleguideAssets)
     .pipe(sass({
       errLogToConsole: true
     }))
     .pipe(styleguide.applyStyles())
-    .pipe(gulp.dest(outputPath));
+    .pipe(gulp.dest(config.styleguide.dest));
 });
 
 gulp.task('styleguide:deploy', function() {
   config.styleguidePath = "";
   gulpSequence('styleguide:generate', 'styleguide:applystyles')(function(){
-    console.log(config.s3);
-    gulp.src(path.join(config.root.dest, 'styleguide', '**/*'))
+    gulp.src(path.join(config.styleguide.dest, '**/*'))
       .pipe(s3(config.s3))
   });
 })

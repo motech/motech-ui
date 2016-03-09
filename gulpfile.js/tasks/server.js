@@ -17,18 +17,25 @@ var settings = {
     }
 }
 
-var serverTask = function() {
+var startServer = function(root, port) {
     var url = 'http://localhost:' + settings.port
+
+    if(!root) root = settings.root;
+    if(!port) port = settings.port;
 
     express()
         .use(compress())
         .use(logger(settings.logLevel))
-        .use('/', express.static(settings.root, settings.staticOptions))
-        .listen(settings.port)
+        .use('/', express.static(root, settings.staticOptions))
+        .listen(port)
 
     gutil.log('production server started on ' + gutil.colors.green(url))
     open(url)
 }
 
-gulp.task('server', serverTask)
-module.exports = serverTask
+gulp.task('serve:app', function () {
+    startServer(config.app.dest);
+});
+gulp.task('serve:styleguide', function () {
+    startServer(config.styleguide.dest);
+});

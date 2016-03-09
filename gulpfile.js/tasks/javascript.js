@@ -20,9 +20,9 @@ var sourcePaths = [
 
 var paths = {
     src: sourcePaths.map(function(item){
-        return path.join(config.root.src, item);
+        return path.join(config.app.src, item);
     }),
-    dest: path.join(config.assets.dest, 'js')
+    dest: path.join(config.app.dest, 'js')
 }
 
 gulp.task('js', function () {

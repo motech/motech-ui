@@ -4,8 +4,8 @@ var path = require('path');
 var nunjucks = require('gulp-nunjucks');
 
 var paths = {
-    src: config.root.src,
-    dest: config.root.dest
+    src: config.app.src,
+    dest: config.app.dest
 }
 
 function writeIndexPage() {
