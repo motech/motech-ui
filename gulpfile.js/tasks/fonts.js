@@ -3,8 +3,8 @@ var gulp = require('gulp');
 var path = require('path');
 
 var paths = {
-    src: path.join(config.assets.src, 'fonts/*'),
-    dest: path.join(config.assets.dest, 'fonts')
+    src: path.join(config.app.src, 'fonts/*'),
+    dest: path.join(config.app.dest, 'fonts')
 }
 
 gulp.task('fonts', function () {
