@@ -23,6 +23,10 @@
 		this.isBundleStarted = isBundleStarted;
 		this.hasBundleError = hasBundleError;
 
+		$rootScope.$on('motech.checkStatus', function(){
+			getStatus();
+		});
+
 		function getStatus() {
 			var deferred = $q.defer();
 			console.log("ServerStatusService: get status");
@@ -47,6 +51,7 @@
 			deferred.promise.then(
 				function(){ // Success
 					service.started = true;
+					$rootScope.$broadcast('motechServer.loaded');
 				},
 				function(){ // Error
 					service.started = false;

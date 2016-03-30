@@ -22,9 +22,18 @@ gulp.task('css', function () {
 });
 
 gulp.task('sass', function () {
-    gulp.src(path.join(config.root.src,'sass/motech.scss'))
+    gulp.src([
+        '/motech.scss',
+        "/**/*.scss",
+        "!/**/_*.scss"
+        ], {
+            root: config.root.src
+        })
         .pipe(sass({
-            includePaths: bourbon.includePaths
+            includePaths: bourbon.includePaths.concat([
+                'bower_components/font-awesome/scss',
+                'bower_components/bootstrap-sass/assets/stylesheets'
+                ])
         }))
         .pipe(concat('motech.css'))
         .pipe(bless())

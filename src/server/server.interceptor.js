@@ -9,16 +9,15 @@
     function serverInterceptor (MOTECH_SERVER_URL) {
     	return {
     		request: function(config) {
-    			var isMOTECHServer = config.url.indexOf(MOTECH_SERVER_URL);
-    			if(isMOTECHServer){
+    			if(config.url.indexOf(MOTECH_SERVER_URL) == 0) {
     				config.withCredentials = true;
-    			}
-    			if (config.url.indexOf(MOTECH_SERVER_URL) == 0 && config.method == "POST"){
-    				config.headers = {
-						'X-Requested-With': 'XMLHttpRequest',
-						'Content-Type':'application/x-www-form-urlencoded; charset=UTF-8'
-					};
-					config.data = jQuery.param(config.data);
+                    config.headers['X-Requested-With'] = 'XMLHttpRequest';
+        			if (config.method == "POST"){
+        				config.headers['Content-Type'] = 'application/x-www-form-urlencoded; charset=UTF-8';
+                        if(config.data){
+                            config.data = jQuery.param(config.data);
+                        }
+                    }
     			}
     			return config;
     		}

@@ -4,8 +4,8 @@
 	angular.module('motech-auth')
 		.service('AuthService', AuthService);
 
-	AuthService.$inject = ['$q', '$http', 'MOTECH_SERVER_URL'];
-	function AuthService ($q, $http, MOTECH_SERVER_URL) {
+	AuthService.$inject = ['$q', '$http', 'authService', 'MOTECH_SERVER_URL'];
+	function AuthService ($q, $http, authService, MOTECH_SERVER_URL) {
 		var loginUrl = MOTECH_SERVER_URL + 'module/server/motech/j_spring_security_check';
 
 		this.login = login;
@@ -20,6 +20,7 @@
 			})
 			.then(function () {
 				deferred.resolve(true);
+				authService.loginConfirmed();
 			}).catch(function () {
 				deferred.reject('server.auth.error');
 			});
