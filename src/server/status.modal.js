@@ -10,7 +10,7 @@
 		var showTimeout;
 		$rootScope.$on('motech.statusCheck.start', function(){
 			showTimeout = setTimeout(function(){
-				ServerStatusModal.show();
+				ServerStatusModal.open();
 			}, 500);
 		});
 		$rootScope.$on('motech.statusCheck.stop', function(){
@@ -19,17 +19,15 @@
 				showTimeout = undefined;
 			}
 			if(ServerStatusService.hasErrors()){
-				ServerStatusModal.show();
+				ServerStatusModal.open();
 			} else {
-				ServerStatusModal.hide();
+				ServerStatusModal.close();
 			}
 		});
 	}
 
 	statusModal.$inject = ['$q', '$compile', '$rootScope', 'BootstrapDialog', 'ServerStatusService'];
 	function statusModal ($q, $compile, $rootScope, BootstrapDialog, ServerStatusService) {
-		console.log("Hello from ServerStatusModalService")
-
 		var modal = new BootstrapDialog({
 			title: 'MOTECH Server Status',
 			message: $compile('<motech-server-status />')($rootScope),
@@ -37,8 +35,8 @@
 			closable: false
 		});
 
-		this.show = showModal;
-		this.hide = hideModal;
+		this.open = showModal;
+		this.close = hideModal;
 
 		function showModal() {
 			modal.open();

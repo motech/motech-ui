@@ -4,6 +4,8 @@
     /* MOTECH-DASHBOARD APP */
     angular
         .module('motech-dashboard', [
-            'motech-auth'
+            'ui.router',
+            'motech-auth',
+            'motech-admin'
         ]);
 })();

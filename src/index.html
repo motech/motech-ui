@@ -12,10 +12,11 @@
             <p class="description">Mobile technology for community health</p>
         </div>
         <nav>
-            <div class="container"></div>
+            <div ui-view="mainNav" class="container"></div>
         </nav>
     </header>
-    <div ng-view></div>
+    <nav ui-view="secondaryNav" ></nav>
+    <div ui-view="appArea" class="app-main"></div>
     <script type="text/javascript">
         var MOTECH_SERVER_URL = "{{motechServerURL}}";
     </script>

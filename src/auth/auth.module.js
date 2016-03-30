@@ -3,12 +3,8 @@
 
     angular
         .module('motech-auth', [
+            'http-auth-interceptor',
             'motech-common',
             'motech-server'
-        ]).run(showLoginModal);
-
-    showLoginModal.$inject = ['LoginModal'];
-    function showLoginModal(LoginModal) {
-    	LoginModal.show();
-    }
+        ]);
 })();

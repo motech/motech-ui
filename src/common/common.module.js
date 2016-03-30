@@ -1,6 +1,8 @@
 (function () {
     'use strict';
 
-    angular.module('motech-common', []);
+    angular.module('motech-common', [
+    	'ui.router'
+    	]);
 
 })();
