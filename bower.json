@@ -18,7 +18,7 @@
   ],
   "dependencies": {
     "jquery": "1.11.3",
-    "angular": "~1.2.29",
+    "angular": "^1",
     "highlight": "~9.0.0",
     "jquery-cron": "~0.1.4",
     "moment": "~2.10.6",
@@ -55,12 +55,12 @@
     "jquery-ui": "~1.11.4",
     "bootstrap-multiselect": "~0.9.13",
     "angular-bootstrap": "0.6.0",
-    "bootstrap-sass": "^3.3.6"
+    "bootstrap-sass": "^3.3.6",
+    "angular-mocks": "^1.5.3"
   },
   "resolutions": {
     "jquery": "1.11.3",
-    "angular": "~1.2.29",
-    "angular-bootstrap": "0.6.0"
+    "angular": "^1"
   },
   "overrides": {
     "angular-bootstrap": {
@@ -75,6 +75,9 @@
         "./build/angular-ui-ieshiv.js",
         "./build/angular-ui.css"
       ]
+    },
+    "angular-mocks": {
+      "main": ""
     },
     "font-awesome": {
       "main": "./css/font-awesome.css"
