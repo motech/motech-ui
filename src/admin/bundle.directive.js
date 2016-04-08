@@ -23,7 +23,6 @@
 			controller: 'BundleController',
 			controllerAs: 'BundleCtrl',
 			link: function (scope, element, attrs){
-
 				scope.$watch('bundle', updatedBundle, true);
 				updatedBundle();
 

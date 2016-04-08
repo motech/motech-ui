@@ -16,6 +16,16 @@ Less markup on HTML elements makes it easier for the styles to be changed in one
 #### Graceful Degredation
 We support IE9 and up, meaning our interface must function in all browsers possible — but all experiences don't need to be exactly the same, just equally functional.
 
+##### Internet Explorer 9: issues
+To keep compatibility with IE9 it is best to follow these rules:
+
+- IE9 doesn't support CSS3 animations and transitions, so it is best to use *.gif files for animations;
+- IE9 filter supports only colours defined in 8 digit hexes (AARRGGBB). For more information see [Gradient Attributes and Properties](https://msdn.microsoft.com/en-us/library/ms532997(v=vs.85).aspx). Some frameworks don't use correctly defined colours for MS filter and it might lead to inconsistency between different browser UIs;
+```javascript
+filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFE8E8E8', endColorstr='#FFF2F2F1');
+```
+- IE9 can't interpret 3 digit hexes for background-colour so it is best not to use it at all for better code management and code consistency.
+
 #### Optimized for small screens and touchpads
 MOTECH is used by people to configure health workflows. Many of these people use laptops and don't have access to a mouse.
 
