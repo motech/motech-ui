@@ -6,8 +6,8 @@ var path = require('path');
 var gulpSequence = require('gulp-sequence');
 var s3 = require( "gulp-s3" );
 
-var styleguideSource = path.join(config.root.src, 'sass/**/*.scss');
-var styleguideAssets = path.join(config.root.dest, 'assets/css/motech.css');
+var styleguideSource = path.join(config.app.src, 'sass/**/*.scss');
+var styleguideAssets = path.join(config.app.dest, 'css/*.css');
 
 gulp.task('styleguide:generate', function() {
 

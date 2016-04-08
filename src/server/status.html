@@ -1,0 +1,7 @@
+<div ng-class="{error: hasErrors, running: running}">
+	<progress-bar />
+	<div ng-repeat="bundle in bundles">{{bundle.name}}</div>
+	<div ng-if="hasErrors">
+		
+	</div>
+</div>

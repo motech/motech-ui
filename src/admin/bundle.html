@@ -1,0 +1,10 @@
+<img class="icon bundle-icon" src="{{imgSrc}}" />
+<span class="title bundle-title">{{bundle.name}}</span>
+<a ng-click="BundleCtrl.showDetails()">Information</a>
+<nav class="actions">
+	<a class="start" ng-click="BundleCtrl.start()" ng-if="!active">Start</a>
+	<a class="stop" ng-click="BundleCtrl.stop()" ng-if="active">Stop</a>
+	<a class="restart" ng-click="BundleCtrl.restart()" ng-if="active">Restart</a>
+	<a class="settings" ng-click="BundleCtrl.editSettings()" ng-if="active">Settings</a>
+	<a class="remove" ng-click="BundleCtrl.remove()">Remove</a>
+</nav>
