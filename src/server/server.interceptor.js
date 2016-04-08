@@ -12,11 +12,8 @@
     			if(config.url.indexOf(MOTECH_SERVER_URL) == 0) {
     				config.withCredentials = true;
                     config.headers['X-Requested-With'] = 'XMLHttpRequest';
-        			if (config.method == "POST"){
-        				config.headers['Content-Type'] = 'application/x-www-form-urlencoded; charset=UTF-8';
-                        if(config.data){
-                            config.data = jQuery.param(config.data);
-                        }
+        			if (config.headers['Content-Type'] == 'application/x-www-form-urlencoded; charset=UTF-8' && config.data){
+                        config.data = jQuery.param(config.data);
                     }
     			}
     			return config;

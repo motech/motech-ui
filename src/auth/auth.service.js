@@ -14,9 +14,16 @@
 		function login (username, password) {
 			var deferred = $q.defer();
 
-			$http.post(loginUrl, {
-				j_username: username,
-				j_password: password,
+			$http({
+				url: loginUrl,
+				method: 'POST',
+				data: {
+					j_username: username,
+					j_password: password
+				},
+				headers: {
+					'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
+				}
 			})
 			.then(function () {
 				deferred.resolve(true);
