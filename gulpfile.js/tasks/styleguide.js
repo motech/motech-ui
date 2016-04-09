@@ -14,7 +14,7 @@ gulp.task('styleguide:generate', function() {
   return gulp.src(styleguideSource)
     .pipe(styleguide.generate({
         title: 'MOTECH Styleguide',
-        overviewPath: path.join('README.md')
+        overviewPath: path.join('OVERVIEW.md')
       }))
     .pipe(gulp.dest(config.styleguide.dest));
 });
