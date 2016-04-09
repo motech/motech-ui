@@ -1,0 +1,66 @@
+.app-header {
+	@extend .clearfix;
+	.logo {
+		display: block;
+		overflow: hidden;
+		width: 160px;
+		height: 50px;
+		background-size: 160px;
+		text-indent: -3000px;
+		margin: 0px 2em;
+	}
+	.description {
+		display:none;
+		text-transform:uppercase;
+		text-align: center;
+		font-size: $font-size-large;
+		line-height: 1.5em;
+		color: $brand-primary;
+		margin: 0px;
+	}
+	nav{
+		@extend .navbar;
+		@extend .navbar-brand;
+		font-size: 1em;
+		padding: 0px;
+		margin-top: 0.2em;
+		margin-bottom: 0px;
+		background-color: $brand-primary;
+		width:100%;
+	}
+	nav ul{
+		@extend .nav;
+		@extend .navbar-nav;
+		li{
+			@include navItem($white, $brand-accent);
+		}
+		li.active>a{
+			color: $brand-primary;
+			&:hover{
+				color: darken($brand-primary, 15);
+			}
+		}	
+	}
+}
+
+@media (min-width: $screen-md) {
+	.app-header{
+		padding-top: 50px;
+		position:relative;
+		.description{
+			display: block;
+			width: 100%;
+			position:absolute;
+			bottom: 50px;
+			left: 0px;
+		}
+		.logo{
+			position: absolute;
+			bottom: 50px;
+			left: 0px;
+			z-index: 10;
+			padding: 0em 2em;	
+		}
+	}
+
+}

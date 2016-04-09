@@ -3,20 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <title>MOTECH - Mobile Technology for Community Health</title>
-    {% include 'partials/header.html' %}
+
+    <link rel="stylesheet" type="text/css" href="{{staticPath}}css/motech.css">
+
 </head>
 <body ng-app="motech-dashboard">
-    <header class="header-main">
-        <div class="container">
-            <a href="/" class="logo">MOTECH</a>
-            <p class="description">Mobile technology for community health</p>
-        </div>
+    <header class="app-header">
+        <a href="/" class="logo">MOTECH</a>
+        <p class="description">Mobile technology for community health</p>
         <nav>
-            <div ui-view="mainNav" class="container"></div>
+            <button class="navigation icon">Show navigation</button>
+            <div ui-view="mainNav" class="collapse"></div>
         </nav>
     </header>
-    <nav ui-view="secondaryNav" ></nav>
-    <div ui-view="appArea" class="app-main"></div>
+    <div class="app">
+        <nav ui-view="secondaryNav" class="app-nav" ></nav>
+        <div ui-view="appArea" class="app-main"></div>
+    </div>
+    <footer>
+        <div class="container"></div>
+    </footer>
     <script type="text/javascript">
         var MOTECH_SERVER_URL = "{{motechServerURL}}";
     </script>

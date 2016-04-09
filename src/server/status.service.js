@@ -4,10 +4,9 @@
 	angular.module('motech-server')
 		.service('ServerStatusService', motechServerStatusService);
 
-	motechServerStatusService.$inject = ['$q', '$rootScope', '$http', 'MOTECH_SERVER_URL'];
-	function motechServerStatusService ($q, $rootScope, $http, MOTECH_SERVER_URL) {
+	motechServerStatusService.$inject = ['$q', '$rootScope', '$http', 'ServerService'];
+	function motechServerStatusService ($q, $rootScope, $http, ServerService) {
 		var service = this;
-		var statusURL = MOTECH_SERVER_URL + 'server/bootstrap/status';
 
 		this.running = false;
 		this.started = false;
@@ -29,9 +28,8 @@
 
 		function getStatus() {
 			var deferred = $q.defer();
-			console.log("ServerStatusService: get status");
 			$rootScope.$broadcast('motech.statusCheck.start');
-			$http.get(statusURL)
+			$http.get(ServerService.formatURL('server/bootstrap/status'))
 			.then(function(response){
 				service.running = true;
 				service.startedBundles = response.data.osgiStartedBundles;

@@ -4,18 +4,13 @@
 	angular.module('motech-auth')
 		.service('AuthService', AuthService);
 
-	AuthService.$inject = ['$q', '$http', 'authService', 'MOTECH_SERVER_URL'];
-	function AuthService ($q, $http, authService, MOTECH_SERVER_URL) {
-		var loginUrl = MOTECH_SERVER_URL + 'module/server/motech/j_spring_security_check';
-
+	AuthService.$inject = ['$q', '$http', 'authService', 'ServerService'];
+	function AuthService ($q, $http, authService, ServerService) {
 		this.login = login;
-		this.check = checkAuth;
 
 		function login (username, password) {
-			var deferred = $q.defer();
-
-			$http({
-				url: loginUrl,
+			var promise = $http({
+				url: ServerService.formatURL('module/server/motech/j_spring_security_check'),
 				method: 'POST',
 				data: {
 					j_username: username,
@@ -24,21 +19,13 @@
 				headers: {
 					'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
 				}
-			})
-			.then(function () {
-				deferred.resolve(true);
+			});
+			
+			promise.then(function () {
 				authService.loginConfirmed();
-			}).catch(function () {
-				deferred.reject('server.auth.error');
 			});
 
-			return deferred.promise;
-		}
-
-		function checkAuth () {
-			var deferred = $q.defer();
-			deferred.reject(); // TODO: Actually check the status
-			return deferred.promise;
+			return promise;
 		}
 	}
 

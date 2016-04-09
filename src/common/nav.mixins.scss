@@ -1,0 +1,16 @@
+@mixin navItem($color, $activeBackground) {
+	a{
+		display: block;
+		color: $color;
+		background-color:transparent;
+		padding: 1em 2em;
+	}
+	a:hover{
+		color: darken($color, 15);
+		text-decoration:none;
+		background-color: transparent;
+	}
+	&.active a{
+		background-color: $activeBackground;
+	}
+}

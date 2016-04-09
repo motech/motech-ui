@@ -1,0 +1,34 @@
+
+@mixin form-compact() {
+	.form-group {
+		label, legend,
+		input, ul, p,
+		.input-group,
+		.checkbox {
+			float: none;
+			width: 100%
+		}
+	}
+}
+
+@mixin form-normal() {
+	.form-group {
+		@extend .clearfix;
+		label,
+		legend {
+			display: block;
+			float: left;
+			width: 15%; // no magic numbers...
+		}
+		input, ul, p,
+		.input-group,
+		.checkbox {
+			float: right;
+			width: 85%;
+		}
+		.input-group label {
+			float: none;
+			width: 100%;
+		}
+	}
+}

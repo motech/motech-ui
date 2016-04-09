@@ -1,12 +1,34 @@
-@import 'motech/variables';
 
-@import "bourbon";
-@import 'font-awesome.scss';
+// COLORS
+$black: #000000;
+$gray: lighten($black, 40);
+$white: #FFFFFF;
+
+$dark-blue: #144573;
+$blue: lighten($dark-blue, 15);
+$powder-blue: #E4F1F9;
+$yellow: #FFB900;
+
+$brand-primary: $dark-blue;
+$brand-secondary: $yellow;
+$brand-accent: $powder-blue;
+
+$btn-default-bg: #eee;
+$btn-primary-bg: $blue;
+
+// LAYOUT
+$sidebarWidth: 180px;
+
+// BORDERS
+$border-radius-base:        0px;
+$border-radius-large:       0px;
+$border-radius-small:       0px;
+
+// MODALS
+$modal-md: 450px;
+$modal-sm: 230px;
+
+// External libraries
+@import 'bourbon';
+@import 'font-awesome';
 @import 'bootstrap';
-
-@import 'motech/base';
-@import 'motech/form';
-
-@import 'motech/modal';
-
-@import 'motech/header';

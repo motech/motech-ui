@@ -7,7 +7,7 @@ gulp.task('build', function () {
 });
 
 gulp.task('build:app', function () {
-    gulpSequence('assets', 'fonts', 'images', 'index', 'partials', 'sass', 'js:hint', 'js:build', 'js:uglify')();
+    gulpSequence('assets', 'fonts', 'images', 'partials', 'index', 'sass', 'js:hint', 'js:build', 'js:uglify')();
 });
 
 gulp.task('build:styleguide', function() {

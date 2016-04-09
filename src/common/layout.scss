@@ -1,0 +1,52 @@
+/*
+Layout
+
+This application uses a responsive layout.
+
+Styleguide 2.0
+*/
+
+header{
+	.logo{
+		display: block;
+	}
+	.description{
+		display: block;
+	}
+}
+
+.app-nav{
+	display: none;
+}
+
+@media (min-width: $screen-md) {
+
+	.app{
+		display:flex;
+		flex-direction: row;
+	}
+	.app-main{
+		flex: 1 0 auto;
+	}
+	.app-nav{
+		flex: 0 0 auto;
+		width: $sidebarWidth;
+		background-color: $brand-accent;
+		display: block;
+	}
+	// Faux-columns
+	body{
+		header{
+			background: $white;
+		}
+		@include linear-gradient(to right, $brand-accent $sidebarWidth, $white $sidebarWidth+1);
+	}
+	.app .container{
+		width: $container-md - $sidebarWidth;
+	}
+}
+@media (min-width: $screen-lg) {
+	.app .container{
+		width: $container-lg - $sidebarWidth;
+	}
+}

@@ -1,0 +1,26 @@
+
+
+nav {
+	@extend .nav-stacked;
+	ul{
+		@extend .list-unstyled;
+		margin: 1em 0em;
+	}
+	ul>li{
+		@include navItem($brand-primary, $white);
+	}
+}
+
+
+@media (min-width: $screen-md) {
+	button.navigation{
+		display: none;
+	}
+	nav{
+		.collapse,
+		&.collapse{
+			display:block;
+		}
+	}
+}
+

@@ -1,0 +1,57 @@
+/*
+Icon Buttons
+
+Some buttons will be inserted into small areas and won't have visible text, an example of this would be a close button. To meet accessibility standards, the button must actually contain text to be visible to a screen reader. Additionally, we recommend that title attributes are not used on these buttons because they don't add content to most screen readers. If additional text is needed to make the use of a tiny button clear, either make it a full sized button, or implement a bootstrap popover.
+
+markup:
+<!-- .close is the only implicitly icon class -->
+<button class="close">Close</button>
+<!-- Inherits styles from .button, below are variations -->
+<button class="icon add">Add</button>
+<button class="icon button-edit">Edit</button>
+<button class="button-icon delete">Delete</button>
+
+Styleguide 1.2.1
+*/
+
+button.icon,
+.button-icon {
+	display: inline-block;
+	overflow: hidden;
+	position: relative;
+	text-indent: -300em;
+	width: 2em;
+	height: 2em;
+	&:before {
+		position: absolute;
+		top: 0.5em;
+		left: 0px;
+		width: 100%;
+		text-align: center;
+		margin: 0px;
+		font-size: 1em;
+		text-indent: 0px;
+	}
+}
+
+.close {
+	font-size: $font-size-base;
+}
+
+// Much of this style overwrites Bootstrap's modal .close
+button.close,
+.button-close {
+	@extend .button-icon;
+	@include button($btn-danger-color, $btn-danger-bg, $btn-danger-border);
+	float: none;
+	opacity: 1;
+	&:hover {
+		opacity: 1;
+		background-color: darken($btn-danger-bg, 20%);
+	}
+	&:before {
+		@extend .fa-times;
+		color: $btn-danger-color;
+		text-shadow: 0px 0px #fff;
+	}
+}

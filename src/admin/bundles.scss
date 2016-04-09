@@ -1,27 +1,14 @@
-
-
-.bundle-list-item{
-	@extend .row;
-	.bundle-id{
-		@extend .col-md-1;
-	}
-	img.icon{
-		@extend .col-md-1;
-		height: 2em;
-		width:auto;
-	}
-	.bundle-title{
-		@extend .col-md-2;
-	}
-	.actions{
-		@extend .col-md-4;
-	}
-}
-
 ul.bundles{
 	@extend .list-unstyled;
+	padding: 1em 2em;
 }
 
 li.bundle{
-	@extend .bundle-list-item;
+	@include bundle();
+}
+
+@media (min-width: $screen-sm){
+	li.bundle{
+		@include bundle-row();
+	}	
 }

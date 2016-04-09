@@ -1,0 +1,38 @@
+/*
+Base
+
+This is a collection of the basic styles that are used through the MOTECH Platform.
+
+markup:
+<h1 class="logo">MOTECH</h1>
+<h2 class="title-block">Block style title</h2>
+<p>This is a sample paragraph</p>
+<ul>
+	<li>List item</li>
+	<li>Another list item</li>
+</ul>
+
+Styleguide 1.0
+*/
+
+*, // Used * to catch shadow-dom in styleguide
+body {
+	font-family: $font-family-base;
+	font-size: $font-size-base;
+	line-height: 1em;
+}
+
+.block-title {
+  background-color: $brand-primary;
+  color: $white;
+  font-weight: bold;
+  padding: 1em 2em;
+}
+
+.container {
+	position: relative;
+}
+
+.logo {
+	@include background-image(url("/motech/motech-logo.gif") center no-repeat);
+}
