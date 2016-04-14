@@ -6,7 +6,11 @@
 
 	sendEmailController.$inject = ['$scope', 'EmailSendService'];
 	function sendEmailController ($scope, EmailSendService) {
+        console.log("Hello from sendEmailController");
 		$scope.mail = {};
+        $scope.msg = function(str){
+            return str;
+        }
 
         $scope.sendEmail = function () {
             if ($scope.mail.subject === undefined || $scope.mail.subject.length < 1) {

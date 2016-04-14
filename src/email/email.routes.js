@@ -8,7 +8,6 @@
 	function emailRoutes ($stateProvider) {
 		$stateProvider
 		.state('email', {
-			abstract: true,
 			url: '/email',
 			views:{
 				mainNav: {
@@ -16,18 +15,16 @@
 				},
 				secondaryNav: {
 					templateUrl: '/common/nav-secondary.html'
+				},
+				appArea: {
+					template: '<ui-view />'
 				}
 			}
 		})
 		.state('email.send', {
-			parent: 'email',
 			url: '/send',
-			views: {
-				appArea: {
-					templateUrl: '/email/send.html',
-					controller: 'EmailSendCtrl'
-				}
-			}
+			templateUrl: '/email/send.html',
+			controller: 'EmailSendCtrl'
 		});
 	}
 

@@ -6,6 +6,7 @@
         .module('motech-dashboard', [
             'ui.router',
             'motech-auth',
+            'motech-email',
             'motech-admin'
         ]);
 })();
