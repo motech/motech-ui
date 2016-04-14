@@ -2,50 +2,50 @@
 	'use strict';
 
 	angular.module('motech-email')
-		.controller('EmailSendCtrl', sendEmailController);
+		.controller('EmailSendController', sendEmailController);
 
-	sendEmailController.$inject = ['$scope', 'EmailSendService'];
-	function sendEmailController ($scope, EmailSendService) {
+	sendEmailController.$inject = ['$scope', 'EmailSendService', 'BootstrapDialog'];
+	function sendEmailController ($scope, EmailSendService, BootstrapDialog) {
         console.log("Hello from sendEmailController");
 		$scope.mail = {};
         $scope.msg = function(str){
             return str;
         }
 
-        $scope.sendEmail = function () {
+        $scope.sendEmail = sendEmail;
+
+        function sendEmail () {
             if ($scope.mail.subject === undefined || $scope.mail.subject.length < 1) {
-                $('#sendEmailWarning').modal('show');
+                BootstrapDialog.confirm({
+                    message: $scope.msg('email.messageEmptySubject'),
+                    btnOKLabel: 'email.btn.sendWithoutSubject',
+                    btnOKClass: 'button-primary',
+                    callback: function(result){
+                        if(result){
+                            doSendEmail();
+                        }
+                    }});
             } else {
-                EmailSendService.save(
-                    {},
-                    $scope.mail,
-                    function () {
-                        motechAlert('email.header.success', 'email.sent');
-                    },
-                    function (response) {
-                        handleWithStackTrace('email.header.error', 'server.error', response);
-                    }
-                );
+                doSendEmail();
             }
         };
-
-        $scope.sendEmailWithoutSubject = function () {
-            $('#sendEmailWarning').modal('hide');
-            EmailSendService.save(
-                {},
-                $scope.mail,
-                function () {
-                    motechAlert('email.header.success', 'email.sent');
-                },
-                function (response) {
-                    handleWithStackTrace('email.header.error', 'server.error', response);
-                }
-            );
-        };
-
-        $scope.cancelSendingEmail = function () {
-            $('#sendEmailWarning').modal('hide');
-        };
+        function doSendEmail(){
+            EmailSendService.send($scope.mail)
+                .then(function () {
+                    $scope.mail = {};
+                    BootstrapDialog.alert({
+                        title: 'email.header.success',
+                        message: 'email.sent'
+                    });
+                })
+                .catch(function (response) {
+                    BootstrapDialog.alert({
+                        title: 'email.header.error',
+                        message: 'server.error'
+                    });
+                    //handleWithStackTrace('email.header.error', 'server.error', response);
+                });
+        }
 	}
 
 })();
