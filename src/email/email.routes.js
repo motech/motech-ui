@@ -24,7 +24,8 @@
 		.state('email.send', {
 			url: '/send',
 			templateUrl: '/email/send.html',
-			controller: 'EmailSendCtrl'
+			controller: 'EmailSendCtrl',
+			controllerAs: 'EmailSendCtrl'
 		});
 	}
 

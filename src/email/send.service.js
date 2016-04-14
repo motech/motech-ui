@@ -6,7 +6,8 @@
 
 	emailSendService.$inject = ['$resource', 'ServerService'];
 	function emailSendService ($resource, ServerService) {
-		return $resource(ServerService.formatURL('modules/email/send'));
+		return $resource(
+			ServerService.formatURL('modules/email/send'));
 	}
 	
-});
+})();
