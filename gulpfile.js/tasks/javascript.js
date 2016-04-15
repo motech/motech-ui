@@ -6,6 +6,7 @@ var jshint = require('gulp-jshint');
 var uglify = require('gulp-uglify');
 var concat = require('gulp-concat');
 var rename = require('gulp-rename');
+var replace = require('gulp-replace');
 var sourcemaps = require('gulp-sourcemaps');
 var gulpSequence = require('gulp-sequence');
 var path = require('path');
@@ -32,7 +33,10 @@ gulp.task('js', function () {
 // Static: Compress JS files into motech.js
 gulp.task('js:build', function () {
     var files = lib.ext('js').files; // libraries from bower
-    return gulp.src(files.concat(paths.src))
+    files = files.concat(paths.src);
+    files = files.concat(["!" + path.join(config.app.src, "**/*.spec.js")]);
+    return gulp.src(files)
+        .pipe(replace('@@MOTECH_SERVER_URL', config.motechServerURL))
         .pipe(sourcemaps.init())
           .pipe(concat('motech.js'))
         .pipe(sourcemaps.write())

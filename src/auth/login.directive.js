@@ -11,34 +11,25 @@
 			scope:{},
 			templateUrl: '/auth/login.html',
 			controller: LoginFormController,
+			controllerAs: 'LoginCtrl',
 			link: LoginFormDirective
 		}
 	}
 
-	LoginFormController.$inject = ['$q', '$scope', 'AuthService'];
-	function LoginFormController ($q, $scope, AuthService) {
-		$scope.login = login;
-		function login () {
-			var deferred = $q.defer();
-			AuthService.login($scope.username, $scope.password)
-			.then(function (value) {
-				deferred.resolve(value);
-			})
-			.catch(function(rejection){
-				$scope.error = rejection;
-				deferred.reject();
-			});
-
-			return deferred.promise;
+	LoginFormController.$inject = ['AuthService'];
+	function LoginFormController (AuthService) {
+		this.login = login;
+		function login (username, password) {
+			return AuthService.login(username, password);
 		}
 	}
 
 	function LoginFormDirective (scope, element, attrs) {
 		scope.doLogin = function () {
-			element.addClass('loading');
-			scope.login()
-			.finally(function(){
-				element.removeClass('loading');
+			delete scope.error;
+			scope.LoginCtrl.login(scope.username, scope.password)
+			.catch(function(message){
+				scope.error = message;
 			});
 		};
 	}
