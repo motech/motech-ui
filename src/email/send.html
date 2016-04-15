@@ -5,23 +5,23 @@
             <label for="fromAddress">{{msg('email.from.address')}}</label>
             <input type="email" ng-model="mail.fromAddress" id="fromAddress" name="fromAddress" aria-describedby="emailForm-fromAddress-errors" required />
             <ul id="emailForm-fromAddress-errors" class="form-hint">
-                <li ng-if="emailForm.fromAddress.$error.required ">{{msg('email.field.required', msg('email.from.address'))}}</li>
-                <li ng-if="emailForm.fromAddress.$error.email ">{{msg('email.field.notValid', msg('email.from.address'))}}</li>
+                <li ng-if="emailForm.$submitted && emailForm.fromAddress.$error.required ">{{msg('email.field.required', msg('email.from.address'))}}</li>
+                <li ng-if="emailForm.$submitted && emailForm.fromAddress.$error.email ">{{msg('email.field.notValid', msg('email.from.address'))}}</li>
             </ul>
         </div>
         <div class="form-group">
             <label for="toAddress">{{msg('email.to.address')}}</label>
             <input type="email" ng-model="mail.toAddress" id="toAddress" name="toAddress" aria-describedby="emailForm-toAddress-errors" required />
             <ul id="emailForm-toAddress-errors" class="form-hint">
-                <li ng-if="emailForm.toAddress.$error.required ">{{msg('email.field.required', msg('email.to.address'))}}</li>
-                <li ng-if="emailForm.toAddress.$error.email ">{{msg('email.field.notValid', msg('email.to.address'))}}</li>
+                <li ng-if="emailForm.$submitted && emailForm.toAddress.$error.required ">{{msg('email.field.required', msg('email.to.address'))}}</li>
+                <li ng-if="emailForm.$submitted && emailForm.toAddress.$error.email ">{{msg('email.field.notValid', msg('email.to.address'))}}</li>
             </ul>
         </div>
         <div class="form-group">
             <label for="subject">{{msg('email.subject')}}</label>
             <input type="text" ng-model="mail.subject" id="subject" aria-describedby="emailForm-subject-errors" name="subject"  ng-maxlength="255" >
             <ul id="emailForm-subject-errors" class="form-hint">
-                <li ng-if="emailForm.subject.$error.maxlength">{{msg('email.field.subjectTooLong')}}</li>
+                <li ng-if="emailForm.$submitted &&  emailForm.subject.$error.maxlength">{{msg('email.field.subjectTooLong')}}</li>
             </ul>
         </div>
 

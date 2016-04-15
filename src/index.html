@@ -17,8 +17,13 @@
         </nav>
     </header>
     <div class="app">
-        <nav ui-view="secondaryNav" class="app-nav" ></nav>
-        <div ui-view="appArea" class="app-main"></div>
+        <nav ui-view="secondaryNav" class="app-nav"></nav>
+        <div class="app-main">
+            <nav class="tertiary-nav">
+                <div ui-view="tertiaryNav" class="container"></div>
+            </nav>
+            <div ui-view="appArea" class="container"></div> 
+        </div>
     </div>
     <footer>
         <div class="container"></div>

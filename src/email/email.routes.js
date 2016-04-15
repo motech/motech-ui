@@ -16,6 +16,9 @@
 				secondaryNav: {
 					templateUrl: '/common/nav-secondary.html'
 				},
+				tertiaryNav: {
+					templateUrl: '/email/nav.html'
+				},
 				appArea: {
 					template: '<ui-view />'
 				}
