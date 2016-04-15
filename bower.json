@@ -48,7 +48,7 @@
     "angular-sanitize": "~1.2.29",
     "font-awesome": "~4.5.0",
     "jqGrid": "jqgrid#~5.0.1",
-    "textAngular": "1.2.0",
+    "textAngular": "^1.5.0",
     "jquery.browser": "https://gist.githubusercontent.com/adeelejaz/4714079/raw/0cecbaadc9d472aad97baa51b4df09fecd47203f/jquery.browser.js",
     "jquery.alerts-1.1": "http://labs.abeautifulsite.net/archived/jquery-alerts/jquery.alerts-1.1.zip",
     "jquery-ui": "~1.11.4",
@@ -62,8 +62,9 @@
   },
   "resolutions": {
     "jquery": "1.11.3",
-    "angular": "~1.2.29",
-    "angular-bootstrap": "0.6.0"
+    "angular": "~1.2.x",
+    "angular-bootstrap": "0.6.0",
+    "textAngular": "1.2.0"
   },
   "overrides": {
     "angular-bootstrap": {
