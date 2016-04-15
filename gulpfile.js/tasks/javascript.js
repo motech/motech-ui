@@ -36,7 +36,7 @@ gulp.task('js:build', function () {
     files = files.concat(paths.src);
     files = files.concat(["!" + path.join(config.app.src, "**/*.spec.js")]);
     return gulp.src(files)
-        .pipe(replace('@@MOTECH_SERVER_URL', config.motechServerUrl))
+        .pipe(replace('@@MOTECH_SERVER_URL', config.motechServerURL))
         .pipe(sourcemaps.init())
           .pipe(concat('motech.js'))
         .pipe(sourcemaps.write())
