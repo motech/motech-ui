@@ -28,6 +28,11 @@
 			url: '/send',
 			templateUrl: '/email/send.html',
 			controller: 'EmailSendController'
+		})
+		.state('email.settings', {
+			url: '/settings',
+			templateUrl: '/email/settings.html',
+			controller: 'EmailSettingsController as SettingsCtrl'
 		});
 	}
 
