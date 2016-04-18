@@ -2,7 +2,7 @@
 <form id="emailSettingsForm" name="emailSettingsForm">
     <fieldset>
         <div class="form-group">
-            <label for="settingsHost">{{'email.settings.host' | translate}}</label>
+            <label for="settingsHost">{{'email.settings.host' | translate }}</label>
             <input ng-model="settings.host" type="text" id="settingsHost" required/>
             <span ng-hide="settings.host" class="form-hint">{{ 'email.field.required' | translate }} {{ 'email.settings.host' | translate }}</span>
         </div>
@@ -10,7 +10,7 @@
             <label for="settingsPort">{{ 'email.settings.port' | translate }}</label>
             <input ng-model="settings.port" type="text" id="settingsPort" required/>
             <span ng-hide="settings.port" class="form-hint">{{ 'email.field.required' | translate }} {{ 'email.settings.port' | translate }}</span>
-            <span ng-hide="isNumeric('port')" class="form-hint">{{ 'email.field.numeric' | translate }} {{ 'email.settings.port' translate }}</span>
+            <span ng-hide="isNumeric('port')" class="form-hint">{{ 'email.field.numeric' | translate }} {{ 'email.settings.port' | translate }}</span>
         </div>
 
         <div class="form-group">
@@ -44,32 +44,7 @@
         </div>
     </fieldset>
 
-    <fieldset>
-        <legend>{{ 'email.settings.log.title3' | translate }}</legend>
-
-        <div ng-repeat="(key, value) in settings.additionalProperties">
-            <div class="form-group">
-                <label class="col-md-3 col-sm-4 control-label">{{key}}</label>
-
-                <div class="form-inline col-md-9 col-sm-8">
-                    <input class="form-control input-auto" ng-model="settings.additionalProperties[key]" type="text"/>
-                    <a class="btn btn-sm btn-default btn-danger-hover" ng-click="remove(key)">
-                        <i class="fa fa-lg fa-trash-o"></i>
-                    </a>
-                </div>
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="settingsUsername">{{'email.settings.key' | translate}}</label>
-            <input ng-model="property.name" type="text" id="settingsPropertyName" />
-        </div>
-
-        <div class="form-group">
-            <label for="settingsUsername">{{'email.settings.value' | translate}}</label>
-            <input ng-model="property.value" type="text" id="settingsPropertyValue" />
-            <input ng-disabled="emptyFields(property)" ng-click="add(property)" type="button" value="{{ 'email.settings.add' | translate }}" class="btn btn-default"/>
-        </div>
-    </fieldset>
+    <input-map title="{{ 'email.settings.log.title3' | translate }}" ng-model="settings.additionalProperties"></input-map>
 
     <fieldset>
         <legend>{{ 'email.settings.log.title2' | translate }}</legend>

@@ -4,52 +4,28 @@
 	angular.module('motech-email')
 	 	.controller('EmailSettingsController', emailSettingsCtrl);
 
-	emailSettingsCtrl.$inject = ['$scope', 'EmailSettingsFactory'];
-	function emailSettingsCtrl ($scope, EmailSettingsFactory) {
-        $scope.settings = SettingsService.get();
+	emailSettingsCtrl.$inject = ['$q', '$translate','$scope', 'motechAlert', 'EmailSettingsFactory'];
+	function emailSettingsCtrl ($q, $translate, $scope, motechAlert, EmailSettingsFactory) {
+        $scope.settings = EmailSettingsFactory.get();
 
-        $scope.add = function (property) {
-            if ($scope.settings.additionalProperties[property.name] === undefined) {
-                $scope.settings.additionalProperties[property.name] = property.value;
-                $scope.property = {};
-            } else {
-                motechAlert('email.header.error', 'email.settings.alreadyExist');
-            }
-        };
-
-        $scope.remove = function (name) {
-            delete $scope.settings.additionalProperties[name];
-        };
-
-        $scope.emptyFields = function (property) {
-            if (property === undefined) {
-                return true;
-            } else if (property.name === undefined || property.name === null || property.value === undefined || property.value === null) {
-                return true;
-            }
-            return false;
-        };
-
-        $scope.timeMultipliers = {
-            'hours': $scope.msg('email.settings.log.units.hours'),
-            'days': $scope.msg('email.settings.log.units.days'),
-            'weeks': $scope.msg('email.settings.log.units.weeks'),
-            'months': $scope.msg('email.settings.log.units.months'),
-            'years': $scope.msg('email.settings.log.units.years')
-        };
+        $q.all({
+            'hours': $translate('email.settings.log.units.hours'),
+            'days': $translate('email.settings.log.units.days'),
+            'weeks': $translate('email.settings.log.units.weeks'),
+            'months': $translate('email.settings.log.units.months'),
+            'years': $translate('email.settings.log.units.years')
+        }).then(function(dict){
+            $scope.timeMultipliers = dict;            
+        });
 
         $scope.submit = function () {
-            SettingsService.save(
-                {},
-                $scope.settings,
-                function () {
-                    motechAlert('email.header.success', 'email.settings.saved');
-                    $scope.settings = SettingsService.get();
-                },
-                function (response) {
-                    handleWithStackTrace('email.header.error', 'server.error', response);
-                }
-            );
+            $scope.settings.$save()
+            .then( function () {
+                motechAlert('email.header.success', 'email.settings.saved');
+            })
+            .catch( function (response) {
+                console.log("Error with stack trace....");
+            });
         };
 
         $scope.isNumeric = function (prop) {
