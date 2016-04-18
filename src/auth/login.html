@@ -1,22 +1,22 @@
 <form name="form" ng-submit="doLogin()">
-	<p ng-if="error" class="error">{{error}}</p>
+	<p ng-if="error" class="error">{{ error | translate }}</p>
 	<fieldset>
-		<legend>Enter your username and password to access MOTECH.</legend>
+		<legend>{{ 'security.signInWithId' | translate }} {{ 'security.motechId' | translate }}</legend>
 		<div class="form-group">
-			<label for="loginForm-Username">Username</label>
+			<label for="loginForm-Username">{{ 'security.userName' | translate }}</label>
 			<input id="loginForm-Username" aria-describedby="loginForm-Username-errors" ng-model="username" name="username" type="text" required />
 			<ul id="loginForm-Username-errors" class="form-alerts" >
 				<li ng-if="form.$submitted && form.username.$error.required" class="error">Username is a required field</li>
 			</ul>
 		</div>
 		<div class="form-group">
-			<label for="loginForm-Password">Password</label>
+			<label for="loginForm-Password">{{ 'security.password' | translate }}</label>
 			<input id="loginForm-Password" ng-model="password" name="password" type="password" required />
 			<ul id="loginForm-Password-errors"  class="form-alerts">
 				<li ng-if="form.$submitted && form.password.$error.required" class="error">Password is a required field</li>
 			</ul>
 		</div>
 	</fieldset>
-	<input type="submit" value="Login" />
-	<a href="#">Reset your password</a>
+	<input type="submit" value="{{ 'security.signin' | translate }}" />
+	<a href="#">{{ 'security.signInQuestions' | translate }}</a>
 </form>
