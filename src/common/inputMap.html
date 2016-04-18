@@ -1,0 +1,19 @@
+<fieldset>
+    <legend>{{title}}</legend>
+    <ul class="unstyled" ng-repeat="(key, value) in settings.additionalProperties">
+        <li class="form-group">
+            <label>{{key}}</label>
+            <input ng-model="settings.additionalProperties[key]" type="text"/>
+            <nav class="form-actions">
+                <button class="delete icon" ng-click="remove(key)">{{ 'Remove' | translate }} {{key}}</button>
+            </nav>
+        </li>
+    </ul>
+    <div class="form-group form-inline">
+        <label for="settingsUsername">{{'email.settings.key' | translate}}</label>
+        <input ng-model="property.name" type="text" id="settingsPropertyName" />
+        <label for="settingsUsername">{{'email.settings.value' | translate}}</label>
+        <input ng-model="property.value" type="text" id="settingsPropertyValue" />
+        <button ng-disabled="emptyFields(property)" ng-click="add(property)" class="add">{{ 'email.settings.add' | translate }}</button>
+    </div>
+</fieldset>
