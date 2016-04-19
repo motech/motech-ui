@@ -13,9 +13,6 @@
 			require: '?ngModel',
 			templateUrl: '/common/inputMap.html',
 			link: function (scope, element, attrs, ngModel) {
-				console.log("Map Input");
-
-				scope.title = "Map Input";
 				if(attrs.title){
 					scope.title = attrs.title;
 				}

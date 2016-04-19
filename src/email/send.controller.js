@@ -6,7 +6,6 @@
 
 	sendEmailController.$inject = ['$scope', 'EmailSendService', 'BootstrapDialog'];
 	function sendEmailController ($scope, EmailSendService, BootstrapDialog) {
-        console.log("Hello from sendEmailController");
 		$scope.mail = {};
         $scope.msg = function(str){
             return str;
