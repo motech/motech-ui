@@ -38,23 +38,7 @@
 			url: '/logs',
             templateUrl: '/email/logs.html',
             controller: 'EmailLogsController'
-        })
-        .state('email.logs.export', {
-        	url: '/export',
-        	onEnter: openExportModal
-        })
-        .state('email.logs.filter', {
-        	url: '/filters',
-        	controller: 'EmailLogsFilterController'
         });
-	}
-
-	openExportModal.$inject = ['$compile','BootstrapDialog'];
-	function openExportModal ($compile, BootstrapDialog) {
-		BootstrapDialog.show({
-			title: "Look ma!",
-			message: $compile('<email-export></email-export>')
-		});
 	}
 
 })();
