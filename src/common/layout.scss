@@ -15,11 +15,24 @@ header{
 	}
 }
 
-.app-nav{
+.app{
+	position: relative;
+}
+
+.app-nav,
+.app-sidebar {
 	display: none;
 }
 
+.app-sidebar .container{
+	width: auto !important;
+}
+
 @media (min-width: $screen-md) {
+	
+	.app-nav{
+		display:block;
+	}
 
 	.app{
 		display:flex;
@@ -28,25 +41,28 @@ header{
 	.app-main{
 		flex: 1 0 auto;
 	}
-	.app-nav{
+	.app-nav,
+	.app-sidebar{
 		flex: 0 0 auto;
-		width: $sidebarWidth;
+		width: $sidebar-width;
 		background-color: $brand-accent;
-		display: block;
 	}
-	// Faux-columns
 	body{
 		header{
 			background: $white;
 		}
-		@include linear-gradient(to right, $brand-accent $sidebarWidth, $white $sidebarWidth+1);
+		background-color: $white !important;
+		@include linear-gradient(to right, $brand-accent $sidebar-width, transparent $sidebar-width+1);
 	}
-	.app .container{
-		width: $container-md - $sidebarWidth;
+	.app-main .container{
+		width: $container-md - $sidebar-width;
 	}
 }
 @media (min-width: $screen-lg) {
-	.app .container{
-		width: $container-lg - $sidebarWidth;
+	.app-main .container{
+		width: $container-lg - $sidebar-width*2;
+	}
+	.app-sidebar{
+		display: block;
 	}
 }

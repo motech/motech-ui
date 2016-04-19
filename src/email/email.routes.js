@@ -9,36 +9,63 @@
 		$stateProvider
 		.state('email', {
 			url: '/email',
+			ncyBreadcrumb: {
+				label: 'Email'
+			},
 			views:{
-				mainNav: {
-					templateUrl: '/common/nav-main.html'
-				},
-				secondaryNav: {
-					templateUrl: '/common/nav-secondary.html'
-				},
 				tertiaryNav: {
 					templateUrl: '/email/nav.html'
-				},
-				appArea: {
-					template: '<ui-view />'
 				}
 			}
 		})
 		.state('email.send', {
 			url: '/send',
-			templateUrl: '/email/send.html',
-			controller: 'EmailSendController'
+			ncyBreadcrumb: {
+				label: 'Send Email'
+			},
+			views:{
+				'appArea@': {
+					templateUrl: '/email/send.html',
+					controller: 'EmailSendController'
+				}
+			}
 		})
 		.state('email.settings', {
 			url: '/settings',
-			templateUrl: '/email/settings.html',
-			controller: 'EmailSettingsController as SettingsCtrl'
+			ncyBreadcrumb: {
+				label: 'Settings'
+			},
+			views:{ 
+				'appArea@': {
+					templateUrl: '/email/settings.html',
+					controller: 'EmailSettingsController as SettingsCtrl',
+					resolve: {
+						'emailSettings': emailSettingsResolver
+					}
+				}
+			}
 		})
 		.state('email.logs', {
 			url: '/logs',
-            templateUrl: '/email/logs.html',
-            controller: 'EmailLogsController'
+			ncyBreadcrumb: {
+				label: 'Logs'
+			},
+			views:{
+				'appArea@': {
+					templateUrl: '/email/logs.html',
+					controller: 'EmailLogsController'
+				}
+			}
         });
+	}
+
+	emailSettingsResolver.$inject = ['$q', 'EmailSettingsFactory'];
+	function emailSettingsResolver ($q, EmailSettingsFactory){
+		var deferred = $q.defer();
+		EmailSettingsFactory.get(function(data){
+			deferred.resolve(data);
+		});
+		return deferred.promise;
 	}
 
 })();

@@ -10,7 +10,7 @@
             <label for="settingsPort">{{ 'email.settings.port' | translate }}</label>
             <input ng-model="settings.port" type="text" id="settingsPort" required/>
             <span ng-hide="settings.port" class="form-hint">{{ 'email.field.required' | translate }} {{ 'email.settings.port' | translate }}</span>
-            <span ng-hide="isNumeric('port')" class="form-hint">{{ 'email.field.numeric' | translate }} {{ 'email.settings.port' | translate }}</span>
+            <!-- <span class="form-hint">{{ 'email.field.numeric' | translate }} {{ 'email.settings.port' | translate }}</span> -->
         </div>
 
         <div class="form-group">
@@ -41,26 +41,26 @@
                        ng-true-value="true" ng-false-value="false" />
                 {{ 'email.settings.log.body' | translate }}
             </label>
+            <label class="checkbox">
+                <input ng-model="settings.logPurgeEnable" type="checkbox" id="settingsLogPurgeEnable" ng-true-value="'true'" ng-false-value="'false'" />
+                {{ 'Purge old records' | translate }}
+            </label>
         </div>
+        <fieldset ng-if="!purgeTimeControlsDisabled()" class="form-group form-inline">
+            <legend >{{ 'email.settings.log.purge' | translate }}</legend>
+                <div class="form-group">
+                    <label class="hidden" for="settingsLogPurgeTime">{{ '**Amonunt of time to purge**' | translate }}</label>
+                    <input email-purge-time ng-model="settings.logPurgeTime" type="text" id="settingsLogPurgeTime" />
+                </div>
+                <div class="form-group">
+                    <label class="hidden" for="settingsLogPurgeTimeUnit">{{ '**Unint of time to purge**' | translate }}</label>
+                    <select ng-model="settings.logPurgeTimeMultiplier" ng-options="k as v for (k , v) in timeMultipliers" id="settingsLogPurgeTimeUnit" ></select>
+                </div>
+            </div>            
+        </fieldset>
     </fieldset>
 
     <input-map title="{{ 'email.settings.log.title3' | translate }}" ng-model="settings.additionalProperties"></input-map>
-
-    <fieldset>
-        <legend>{{ 'email.settings.log.title2' | translate }}</legend>
-
-        <div class="form-group form-inline">
-            <label class="checkbox">
-                <input ng-model="settings.logPurgeEnable" type="checkbox" id="settingsLogPurgeEnable"
-                   ng-true-value="true" ng-false-value="false" />
-                {{ 'email.settings.log.purge' | translate }}
-            </label>
-            <div class="checkbox">
-                <input email-purge-time ng-disabled="purgeTimeControlsDisabled()" ng-model="settings.logPurgeTime" type="text" id="settingsLogPurgeTime" />
-                <select ng-disabled="purgeTimeControlsDisabled()"  ng-model="settings.logPurgeTimeMultiplier" ng-options="k as v for (k , v) in timeMultipliers" ></select>
-            </div>
-        </div>
-    </div>
 
     <input ng-disabled="emailSettingsForm.$invalid" ng-click="submit()" type="submit" value="{{ 'email.settings.submit' | translate }}" />
     </fieldset>

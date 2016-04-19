@@ -45,3 +45,42 @@ Styleguide 1.3
 .icon-navigation{
 	@include icon(bars);
 }
+.icon-page-first{
+	@include icon(angle-double-left);
+}
+.icon-page-last{
+	@include icon(angle-double-right);
+}
+.icon-page-next{
+	@include icon(angle-right);
+}
+.icon-page-previous{
+	@include icon(angle-left);
+}
+.icon-filter{
+	@include icon(filter);
+}
+.icon-export,
+.icon-download {
+	@include icon(download);
+}
+
+
+.icon-only {
+	display: inline-block;
+	overflow: hidden;
+	position: relative;
+	text-indent: -300em;
+	width: 2em;
+	height: 2em;
+	&:before {
+		position: absolute;
+		top: 0.5em;
+		left: 0px;
+		width: 100%;
+		text-align: center;
+		margin: 0px;
+		font-size: 1em;
+		text-indent: 0px;
+	}
+}

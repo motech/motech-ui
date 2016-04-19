@@ -7,10 +7,10 @@
 	}
 	a:hover{
 		color: darken($color, 15);
-		text-decoration:none;
-		background-color: transparent;
 	}
-	&.active a{
+	&.active a,
+	a:hover {
 		background-color: $activeBackground;
+		border-top: $blue 2px solid;
 	}
 }

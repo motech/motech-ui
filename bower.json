@@ -34,7 +34,10 @@
     "flexibility": "^1.0.6",
     "angular-mocks": "^1.5.3",
     "angular-ui-router": "^0.2.18",
-    "angular-translate": "^2.11.0"
+    "angular-translate": "^2.11.0",
+    "angular-bootstrap": "^1.3.2",
+    "checklist-model": "^0.9.0",
+    "angular-breadcrumb": "^0.4.1"
   },
   "overrides": {
     "angular-bootstrap": {
@@ -141,5 +144,8 @@
         "jquery-ui": "~1"
       }
     }
+  },
+  "resolutions": {
+    "angular-bootstrap": "^1.3.2"
   }
 }

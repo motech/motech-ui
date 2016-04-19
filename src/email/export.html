@@ -1,0 +1,26 @@
+
+<form id="exportEmailLogForm" name="exportEmailLogForm" ng-submit="export()" >
+    <div class="form-group">
+        <label>{{'email.logging.exportEmailsLog'|translate}}</label>
+        <div class="input-group">
+            <label class="radio">
+                <input type="radio" ng-model="range" value="all" />
+                {{'email.logging.all'|translate}}
+            </label>
+            <label class="radio">
+                <input type="radio" ng-model="range" value="table" />
+                {{'email.logging.table'|translate}}
+            </label>
+            <label class="radio">
+                <input type="radio" ng-model="range" value="month" />
+                {{'email.logging.month'|translate}}
+            </label>
+        </div>
+    </div>
+    <div ng-if="range=='month'" class="form-group" >
+        <label>{{'email.logging.pickMonth'|translate}}</label>
+        <input ng-model="month" email-export-date-picker required />
+    </div>
+    <input type="submit" value="Export" />
+    <button ng-click="close()" >{{'email.logging.close'|translate}}</button>
+</form>

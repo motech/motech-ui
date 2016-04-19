@@ -16,22 +16,7 @@ Styleguide 1.2.1
 
 button.icon,
 .button-icon {
-	display: inline-block;
-	overflow: hidden;
-	position: relative;
-	text-indent: -300em;
-	width: 2em;
-	height: 2em;
-	&:before {
-		position: absolute;
-		top: 0.5em;
-		left: 0px;
-		width: 100%;
-		text-align: center;
-		margin: 0px;
-		font-size: 1em;
-		text-indent: 0px;
-	}
+	@extend .icon-only;
 }
 
 .close {

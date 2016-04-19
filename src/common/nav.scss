@@ -1,4 +1,8 @@
+/*
+Navigation
 
+Styleguide 5.0
+*/
 
 nav {
 	@extend .nav-stacked;
@@ -8,6 +12,21 @@ nav {
 	}
 	ul>li{
 		@include navItem($brand-primary, $white);
+	}
+}
+
+nav.tertiary-nav{
+	@extend .nav-bar;
+	background-color: $brand-accent;
+	margin-bottom: 1em;
+	ul {
+		@extend .navbar-nav;
+	}
+	ul>li {
+		@include navItem($brand-primary, $white);
+		a{
+			padding: 0.5em 1em;
+		}
 	}
 }
 
@@ -21,6 +40,9 @@ nav {
 		&.collapse{
 			display:block;
 		}
+	}
+	nav.tertiary-nav{
+		margin: 0px 0.5em 0.5em;
 	}
 }
 

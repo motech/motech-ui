@@ -4,20 +4,17 @@
 	angular.module('motech-email')
 		.controller('EmailSendController', sendEmailController);
 
-	sendEmailController.$inject = ['$scope', 'EmailSendService', 'BootstrapDialog'];
-	function sendEmailController ($scope, EmailSendService, BootstrapDialog) {
+	sendEmailController.$inject = ['$scope', 'EmailSendService', 'BootstrapDialog', 'i18nService'];
+	function sendEmailController ($scope, EmailSendService, BootstrapDialog, i18nService) {
 		$scope.mail = {};
-        $scope.msg = function(str){
-            return str;
-        }
 
         $scope.sendEmail = sendEmail;
 
         function sendEmail () {
             if ($scope.mail.subject === undefined || $scope.mail.subject.length < 1) {
                 BootstrapDialog.confirm({
-                    message: $scope.msg('email.messageEmptySubject'),
-                    btnOKLabel: 'email.btn.sendWithoutSubject',
+                    message: i18nService.getMessage('email.messageEmptySubject'),
+                    btnOKLabel: i18nService.getMessage('email.btn.sendWithoutSubject'),
                     btnOKClass: 'button-primary',
                     callback: function(result){
                         if(result){

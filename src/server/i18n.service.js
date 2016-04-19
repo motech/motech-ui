@@ -9,7 +9,7 @@
 		this.getMessage = getMessage;
 
 		function getMessage(msg){
-			return msg;
+			return $translate.instant(msg);
 		}
 
 		return this;
