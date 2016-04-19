@@ -12,6 +12,7 @@ gulp.task('sass', function () {
     var includePaths = [
         config.root.src,
         'bower_components/font-awesome/scss',
+        'bower_components/textAngular/src',
         'bower_components/bootstrap-sass/assets/stylesheets'
     ];
     includePaths = includePaths.concat(bourbon.includePaths);
