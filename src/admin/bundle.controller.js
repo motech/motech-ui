@@ -12,8 +12,13 @@
 		this.stop = stopBundleModal;
 		this.restart = restartBundle;
 		this.uninstall = uninstallBundleModal;
+		this.getImgSrc = getImgSrc
 
 		this.showDetails = showDetails;
+
+		function getImgSrc(){
+			return ServerService.formatURL("module/server/module/icon?bundleId=" + $scope.bundle.bundleId);
+		}
 
 		function callbackSuccss(){
 			LoadingModal.close();

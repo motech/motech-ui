@@ -18,21 +18,34 @@
 		color: $brand-primary;
 		margin: 0px;
 	}
-	nav{
-		@extend .navbar;
-		@extend .navbar-brand;
+	.navbar{
 		font-size: 1em;
 		padding: 0px;
-		margin-top: 0.2em;
-		margin-bottom: 0px;
+		margin: 0em;
+		color: $white;
 		background-color: $brand-primary;
-		width:100%;
+		border-bottom: $brand-accent 1px solid;
+		height: 50px;
+		#{$navItemSelectors} {
+			color: $white;
+		}
+		a.is-active,
+		li.is-active a,
+		a.active,
+		li.active a{
+			background-color: $brand-accent;
+			color: $brand-primary;
+			border: 0px;
+		}
+		button{
+			margin:0px;
+			margin: 0.25em;
+			font-size: 1.2em;
+		}
 	}
 	nav ul{
-		@extend .nav;
-		@extend .navbar-nav;
 		li{
-			@include navItem($white, $brand-accent);
+			
 		}
 		li.active>a{
 			color: $brand-primary;

@@ -11,19 +11,19 @@
     <header class="app-header">
         <a href="/" class="logo">MOTECH</a>
         <p class="description">Mobile technology for community health</p>
-        <nav>
-            <button class="navigation icon">Show navigation</button>
-            <div ui-view="mainNav" class="collapse"></div>
-        </nav>
+        <div class="navbar">
+            <button class="navigation icon app-nav-button">Show navigation</button>
+            <nav class="collapsible" ng-include="'/common/nav-main.html'"></nav>
+        </div>
     </header>
     <div class="app">
-        <nav ui-view="secondaryNav" class="app-nav"></nav>
+        <nav class="app-nav">
+            <div class="container" ng-include="'/common/nav-secondary.html'"></div>
+        </nav>
         <div class="app-main">
-            <nav class="tertiary-nav">
-                <div ncy-breadcrumb class="container"></div>
-                <div ui-view="tertiaryNav" class="container"></div>
-            </nav>
-            <div ui-view="appArea" class="container"></div>
+            <div ncy-breadcrumb></div>
+            <div ui-view="secondaryNav" class="secondary-nav navbar"></div>
+            <div ui-view="appArea" class="app-area container"></div>
         </div>
     </div>
     <footer>

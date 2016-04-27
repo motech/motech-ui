@@ -1,0 +1,37 @@
+.app .secondary-nav{
+	background-color: $brand-accent;
+	&.navbar ul li{
+		padding-top: 0em;
+		a {
+			padding: 0.5em;
+		}
+	}
+}
+
+.app-nav{
+	padding-top: 1em;
+	#{$navItemSelectors} {
+		float:none;
+		padding: 1em;
+		border-bottom: $gray-light 1px solid;
+	}
+
+	.nav-section {
+		border-top: $gray-light 1px solid;
+		.title{
+			font-size: $font-size-small;
+			font-weight: bold;
+			background-color: $gray-light;
+			padding: 0.5em 1em;
+		}
+	}
+
+	a.is-active,
+	li.is-active a,
+	a.active,
+	li.active a {
+		background-color: $white;
+		color: $brand-primary;
+	}
+
+}

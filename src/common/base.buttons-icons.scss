@@ -35,8 +35,7 @@ button.close,
 		background-color: darken($btn-danger-bg, 20%);
 	}
 	&:before {
-		@extend .fa-times;
+		@include icon(times);
 		color: $btn-danger-color;
-		text-shadow: 0px 0px #fff;
 	}
 }

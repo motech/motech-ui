@@ -1,6 +1,5 @@
-<ul>
-	<li ui-sref-active="active"><a ui-sref="admin">Admin</a></li>
-	<li><a ui-sref="security">Security</a></li>
-	<li><a ui-sref="modules">Modules</a></li>
-	<li><a ui-sref="restAPI">Rest API</a></li>
+<ul ng-controller="NavSectionController as NavCtrl">
+	<li ng-repeat="section in NavCtrl.sections" ng-class="{'active':NavCtrl.isActive(section)}">
+		<a ng-click="NavCtrl.activate(section)" >{{section}}</a>
+	</li>
 </ul>

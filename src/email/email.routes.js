@@ -13,7 +13,7 @@
 				label: 'Email'
 			},
 			views:{
-				tertiaryNav: {
+				secondaryNav: {
 					templateUrl: '/email/nav.html'
 				}
 			}

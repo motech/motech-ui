@@ -6,6 +6,22 @@ This application uses a responsive layout.
 Styleguide 2.0
 */
 
+html{
+	height: 100%;
+}
+
+body{
+	display:flex;
+	flex-direction: column;
+	height: 100%;
+}
+header{
+	flex: 0 0 auto;
+}
+.app{
+	flex: 1 0 auto;
+}
+
 header{
 	.logo{
 		display: block;
@@ -16,44 +32,95 @@ header{
 }
 
 .app{
+	display:flex;
+	flex-direction: row;
+	overflow: hidden;
+}
+.app-main{
+	flex: 1 0 auto;
+}
+.app-nav,
+.app-sidebar{
 	position: relative;
+	flex: 0 0 auto;
+	width: $sidebar-width;
+	&:after{
+		content: "";
+		height: 100%;
+		width: 100%;
+		position: absolute;
+		top: 0px;
+		background-color: $brand-accent;
+		z-index: -1;
+	}
+	.container{
+		width: auto !important;
+	}
+}
+.app-nav{
+	margin-right: 1em;
+	.container{
+		padding: 0px;
+		margin: 0px;
+	}
+}
+.app-sidebar{
+	margin-left: 1em;
 }
 
 .app-nav,
-.app-sidebar {
+.app-sidebar{
 	display: none;
+	&.open,
+	&.is-open {
+		display: block;
+		position: fixed;
+		top: 0px;
+		z-index: 10;
+		height: 100%;
+	}
+}
+.app-nav.open,
+.app-nav.is-open {
+	left: 0px;
+	box-shadow: 1em 0em 2em $white;
+}
+.app-sidebar.open,
+.app-sidebar.is-open {
+	right: 0px;
+	box-shadow: -1em 0em 2em $white;
+}
+.app-nav-backdrop,
+.app-sidebar-backdrop{
+	display: block;
+	position:fixed;
+	top: 0px;
+	left: 0px;
+	z-index: 9;
+	width: 100%;
+	height: 100%;
+	background-color: $white;
+	opacity: 0.7;
 }
 
-.app-sidebar .container{
-	width: auto !important;
+.app-area{
+	margin-top: 1em;
 }
 
 @media (min-width: $screen-md) {
-	
 	.app-nav{
 		display:block;
+		&.is-open,
+		&.open{
+			position: relative;
+			box-shadow: none;
+			height: auto;
+		}
+	}
+	.app-nav-button, .app-nav-backdrop {
+		display:none !important;
 	}
 
-	.app{
-		display:flex;
-		flex-direction: row;
-	}
-	.app-main{
-		flex: 1 0 auto;
-	}
-	.app-nav,
-	.app-sidebar{
-		flex: 0 0 auto;
-		width: $sidebar-width;
-		background-color: $brand-accent;
-	}
-	body{
-		header{
-			background: $white;
-		}
-		background-color: $white !important;
-		@include linear-gradient(to right, $brand-accent $sidebar-width, transparent $sidebar-width+1);
-	}
 	.app-main .container{
 		width: $container-md - $sidebar-width;
 	}
@@ -64,5 +131,14 @@ header{
 	}
 	.app-sidebar{
 		display: block;
+		&.is-open,
+		&.open{
+			position: static;
+			box-shadow: none;
+		}
+	}
+	.motech-sidebar-button,
+	.app-sidebar-backdrop{
+		display:none !important;
 	}
 }

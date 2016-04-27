@@ -1,16 +1,1 @@
-@mixin navItem($color, $activeBackground) {
-	a{
-		display: block;
-		color: $color;
-		background-color:transparent;
-		padding: 1em 2em;
-	}
-	a:hover{
-		color: darken($color, 15);
-	}
-	&.active a,
-	a:hover {
-		background-color: $activeBackground;
-		border-top: $blue 2px solid;
-	}
-}
+$navItemSelectors: ">a, li>a, button, li>button";

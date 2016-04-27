@@ -1,48 +1,60 @@
 /*
 Navigation
 
+Navigation blocks in MOTECH should only contain actions that change the state of the UI, meaning they can open modals, but shouldn't directly cause an object to be maniuplated. Plain navigation blocks in MOTECH look and act like twitter's nav-pill framework. Navigation items can include lists of links, headings for desctiption of those lists, or just plain link items. Buttons can also be included in navs.
+
+markup:
+<nav>
+	<a>Nav Item</a>
+	<a class="active">Active Nav Item</a>
+	<ul>
+		<li><a>Nav Item</a></li>
+		<li class="active"><a>Active Nav Item</a></li>
+		<li><button>Nav Action</button></li>
+	</ul>
+	<button class="add">Nav Action Add</button>
+</nav>
+
 Styleguide 5.0
 */
 
 nav {
-	@extend .nav-stacked;
 	ul{
 		@extend .list-unstyled;
-		margin: 1em 0em;
 	}
-	ul>li{
-		@include navItem($brand-primary, $white);
+	#{$navItemSelectors}{
+		display: block;
+		padding: 1em 1em;
+		line-height: 1em;
+		border: 0px;
+	}
+	a.is-active,
+	li.is-active>a,
+	a.active,
+	li.active>a {
+		background-color: $brand-primary;
+		color: $white;
 	}
 }
 
-nav.tertiary-nav{
-	@extend .nav-bar;
-	background-color: $brand-accent;
-	margin-bottom: 1em;
-	ul {
-		@extend .navbar-nav;
-	}
-	ul>li {
-		@include navItem($brand-primary, $white);
-		a{
-			padding: 0.5em 1em;
+@media(min-width: $screen-sm){
+	nav {
+		#{$navItemSelectors}{
+			display: block;
+			float: left;
+		}
+		>.section{
+			padding: 0em 0.5em;
 		}
 	}
 }
 
 
-@media (min-width: $screen-md) {
-	button.navigation{
-		display: none;
-	}
-	nav{
-		.collapse,
-		&.collapse{
-			display:block;
-		}
-	}
-	nav.tertiary-nav{
-		margin: 0px 0.5em 0.5em;
+nav.collapsible{
+	display:none;
+}
+@media(min-width: $screen-md){
+	nav.collapsible{
+		display: block;
 	}
 }
-

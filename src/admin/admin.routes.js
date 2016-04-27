@@ -13,12 +13,6 @@
 				bundles: getBundlesList
 			},
 			views: {
-				mainNav: {
-					templateUrl: '/common/nav-main.html'
-				},
-				secondaryNav: {
-					templateUrl: '/admin/nav-secondary.admin.html',
-				},
 				appArea: {
 					templateUrl: '/admin/bundlesList.html',
 					controller: 'BundlesListController'

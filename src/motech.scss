@@ -1,7 +1,8 @@
 
 // COLORS
 $black: #000000;
-$gray: lighten($black, 40);
+$gray: lighten($black, 30);
+$gray-light: lighten($black, 80);
 $white: #FFFFFF;
 
 $dark-blue: #144573;
@@ -20,6 +21,7 @@ $btn-primary-bg: $blue;
 $sidebar-width: 180px;
 
 // BORDERS
+$border-color:				$gray-light;
 $border-radius-base:        0px;
 $border-radius-large:       0px;
 $border-radius-small:       0px;

@@ -1,5 +1,5 @@
 <button class="icon-export" ng-click="showExportModal()">{{ 'email.logging.export' | translate }}</button>
-<button motech-sidebar-button class="icon-filter">{{ 'email.logging.filters' | translate }}</button>
+<button class="icon-filter motech-sidebar-button">{{ 'email.logging.filters' | translate }}</button>
 
 <motech-data-grid service="emailLogsService" paginated>
     <motech-data-grid-item ng-repeat="log in logs">
