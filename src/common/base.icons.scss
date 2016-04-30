@@ -64,6 +64,9 @@ Styleguide 1.3
 .icon-download {
 	@include icon(download);
 }
+.icon-sort{
+	@include icon(sort);
+}
 
 
 .icon-only {

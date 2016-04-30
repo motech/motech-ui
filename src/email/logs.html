@@ -3,8 +3,8 @@
 
 <motech-data-grid service="emailLogsService" paginated>
     <motech-data-grid-item ng-repeat="log in logs">
-        <span motech-data-grid-column="id" title="" >{{log.id}}</span> 
-    	<span motech-data-grid-column="status" title="Status" sortable>{{log.deliveryStatus}}</span>
+        <span motech-data-grid-column="id" title="" fitted >{{log.id}}</span> 
+    	<span motech-data-grid-column="status" title="Status" fitted sortable>{{log.deliveryStatus}}</span>
     	<span motech-data-grid-column="toAddress" title="To" sortable>{{log.toAddress}}</span>
     	<span motech-data-grid-column="fromAddress" title="From" sortable>{{log.fromAddress}}</span>
     	<span motech-data-grid-column="subject" title="Subject" sortable>{{log.subject}}</span>

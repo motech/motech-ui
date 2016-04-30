@@ -20,7 +20,6 @@
 				scope.$watch(hasActiveElement, function(active){
 					if(active){
 						NavSectionService.activate(scope.name);
-						console.log("NavSection Active:" + scope.name);
 					}
 				});
 

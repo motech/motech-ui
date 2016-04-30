@@ -35,6 +35,17 @@
 					cssClasses: cssClasses
 				});
 			}
+			broadcastReady();
+		}
+
+		var readyTimeout;
+		function broadcastReady(){
+			if(readyTimeout){
+				clearTimeout(readyTimeout);
+			}
+			readyTimeout = setTimeout(function(){
+				$scope.$broadcast('datagrid.ready');
+			}, 10);
 		}
 
 	}

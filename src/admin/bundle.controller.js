@@ -8,13 +8,21 @@
 	function bundleController ($scope, $rootScope, BootstrapDialog, LoadingModal, ServerService) {
 		var bundle = $scope.bundle;
 
+		$scope.active = isActive();
+		$scope.imgSrc = getImgSrc();
+
 		this.start = startBundle;
 		this.stop = stopBundleModal;
 		this.restart = restartBundle;
 		this.uninstall = uninstallBundleModal;
-		this.getImgSrc = getImgSrc
+		this.getImgSrc = getImgSrc;
+		this.isActive = isActive;
 
 		this.showDetails = showDetails;
+
+		function isActive(){
+			return bundle.state === "ACTIVE";
+		}
 
 		function getImgSrc(){
 			return ServerService.formatURL("module/server/module/icon?bundleId=" + $scope.bundle.bundleId);
