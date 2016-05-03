@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>MOTECH</title>
+    <link rel="stylesheet" type="text/css" href="{{staticPath}}motech.css">
+</head>
+<body ng-app="motech-dashboard">
+    <header role="banner" class="app-header">
+        <a href="/" class="logo">MOTECH</a>
+        <div class="navbar">
+            <div class="container">
+                <button class="navigation icon app-nav-button">Show navigation</button>
+                <nav class="collapsible" ng-include="'/common/nav-main.html'"></nav>
+            </div>
+        </div>
+    </header>
+    <section class="app-container">
+        <nav class="app-nav">
+            <div class="container" ng-include="'/common/nav-secondary.html'"></div>
+        </nav>
+        <article class="app">
+            <header>
+                <div ncy-breadcrumb></div>
+                <div ui-view="secondaryNav" class="secondary-nav navbar"></div>
+            </header>
+            <div ui-view="appArea" class="container"></div>
+        </article>
+    </section>
+    <footer>
+        <div class="container"></div>
+    </footer>
+    <script type="text/javascript" src="{{staticPath}}motech.js"></script>
+</body>
+</html>

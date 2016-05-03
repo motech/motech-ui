@@ -6,10 +6,17 @@
 
     modalInterceptor.$inject = ['$rootScope', 'LoadingModal'];
     function modalInterceptor ($rootScope, LoadingModal) {
-    	$rootScope.$on('$stateChangeStart', function(){
-    		LoadingModal.open();
+    	var loadingModalTimeout;
+        $rootScope.$on('$stateChangeStart', function(){
+    		if(loadingModalTimeout){
+                clearTimeout(loadingModalTimeout);
+            }
+            loadingModalTimeout = setTimeout(function(){
+                LoadingModal.open();
+            }, 500);
     	});
     	function modalClose(){
+            clearTimeout(loadingModalTimeout);
     		LoadingModal.close();
     	}
     	$rootScope.$on('$stateNotFound',modalClose);

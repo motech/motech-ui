@@ -1,34 +1,55 @@
 
 @mixin form-compact() {
 	.form-group {
-		label, legend,
-		input, ul, p,
-		.input-group,
-		.checkbox {
-			float: none;
-			width: 100%
+		display: block;
+		>*, >label.checkbox, >label.radio{
+			width: 100%;
+		}
+		label, legend{
+			width: 100%;
+			text-align: left;
+		}
+		input{
+			width: 100%;
+		}
+	}
+	fieldset.form-group{
+		padding-left: 0px;
+		>legend{
+			position: static;
 		}
 	}
 }
 
-@mixin form-normal() {
+@mixin form-wide() {
 	.form-group {
 		@extend .clearfix;
-		label,
-		legend {
-			display: block;
-			float: left;
-			width: 15%; // no magic numbers...
+		display: flex;
+		flex-flow: row;
+		> *,
+		> label.checkbox, >label.radio {
+			flex: 1 0 auto;
+			width: auto;
+			text-align: left;
 		}
-		input, ul, p,
-		.input-group,
-		.checkbox {
-			float: right;
-			width: 85%;
+		>label,
+		>legend {
+			flex: 0 0 auto;
+			width: $sidebar-width;
+			text-align: right;
 		}
-		.input-group label {
-			float: none;
-			width: 100%;
+		input {
+			width: auto;
+		}
+	}
+	fieldset.form-group{
+		display: block;
+		padding-left: $sidebar-width;
+		position: relative;
+		>legend {
+			position: absolute;
+			top: 0px;
+			left: 0px;
 		}
 	}
 }

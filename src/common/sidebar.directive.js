@@ -15,10 +15,18 @@
 				title: "@?"
 			},
 			link: function(scope, element, attrs) {
-				element.appendTo('.app');
-				jQuery('body').on('click','.motech-sidebar-button', function(){
+				element.insertAfter('.app');
+				jQuery('body').on('click','.motech-sidebar-button', function(event){
 					event.preventDefault();
-					show();
+					if($(event.target).hasClass('active')){
+						hide();
+					} else {
+						show();
+					}
+				});
+				element.on('click', 'header .close', function(event){
+					event.preventDefault();
+					hide();
 				});
 				$rootScope.$on('$stateChangeStart', function(){
 					hide();
@@ -35,14 +43,16 @@
 				});
 
 				function show(){
+					var spacing = jQuery('.app').width() - jQuery('.app .container').width();
 					element.addClass('is-open');
 					jQuery('.motech-sidebar-button').addClass('active');
-					jQuery('body').append('<div class="app-sidebar-backdrop"></div>');
+					jQuery('.app-container').css('right', 180-spacing/2).addClass('sidebar-showing');
 				}
 				function hide(){
 					element.removeClass('is-open');
 					jQuery('.motech-sidebar-button').removeClass('active');
-					jQuery('.app-sidebar-backdrop').remove();
+					jQuery('.app-container').removeClass('sidebar-showing');
+					//jQuery('.app-sidebar-backdrop').remove();
 				}
 			}
 		}

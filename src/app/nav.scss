@@ -1,15 +1,5 @@
-.app .secondary-nav{
-	background-color: $brand-accent;
-	&.navbar ul li{
-		padding-top: 0em;
-		a {
-			padding: 0.5em;
-		}
-	}
-}
 
 .app-nav{
-	padding-top: 1em;
 	#{$navItemSelectors} {
 		float:none;
 		padding: 1em;
@@ -34,4 +24,18 @@
 		color: $brand-primary;
 	}
 
+	.container{
+		padding: 1em 0em;
+	}
+}
+
+@media(min-width: $screen-md){
+	.app .breadcrumb{
+		padding-left: 1.5em;
+	}	
+}
+
+.app>.container{
+	padding-top: 1em;
+	padding-bottom: 2em;
 }

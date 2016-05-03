@@ -1,0 +1,29 @@
+.form-inline {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	margin-top: 2em;
+	.form-group, button{
+		display: inline-block;
+		position: relative;
+		padding-right: $space-size;
+		flex: 1 0 auto;
+		&:last-child{
+			padding-right: 0px;
+		}
+		input[type=text], select{
+			width: 100%;
+		}
+	}
+	button.icon-only{
+		flex: 0 0 auto;
+		width: 2em;
+		height: 100%;
+	}
+	.form-group label{
+		position: absolute;
+		text-align: left;
+		top: -1.7em;
+		left: 0em;
+	}
+}

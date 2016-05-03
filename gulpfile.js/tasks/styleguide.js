@@ -25,7 +25,7 @@ gulp.task('styleguide:generate', function() {
 
 gulp.task('styleguide:applystyles', function() {
   return gulp.src([
-      path.join(config.app.dest, 'css/*.css')
+      path.join(config.app.dest, '*.css')
     ])
     .pipe(sass({
       errLogToConsole: true

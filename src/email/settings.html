@@ -23,41 +23,38 @@
             <input class="form-control input-auto" ng-model="settings.password" type="text" id="settingsPassword"/>
         </div>
     </fieldset>
-    <fieldset>
+    <fieldset class="form-group">
         <legend>{{ 'email.settings.log.title2' | translate }} </legend>
-        <div class="form-group">
-            <label class="checkbox">
-                <input ng-model="settings.logAddress" type="checkbox" id="settingsLogAddress"
-                       ng-true-value="true" ng-false-value="false" />
-                {{ 'email.settings.log.address' | translate }}
-            </label>
-            <label class="checkbox" for="settingsLogSubject">
-                <input ng-model="settings.logSubject" type="checkbox" id="settingsLogSubject"
-                       ng-true-value="true" ng-false-value="false" />
-                {{'email.settings.log.subject' | translate }}
-            </label>
-            <label class="checkbox" for="settingsLogBody">
-                <input ng-model="settings.logBody" type="checkbox" id="settingsLogBody"
-                       ng-true-value="true" ng-false-value="false" />
-                {{ 'email.settings.log.body' | translate }}
-            </label>
-            <label class="checkbox">
-                <input ng-model="settings.logPurgeEnable" type="checkbox" id="settingsLogPurgeEnable" ng-true-value="'true'" ng-false-value="'false'" />
-                {{ 'Purge old records' | translate }}
-            </label>
+        <label class="checkbox">
+            <input ng-model="settings.logAddress" type="checkbox" id="settingsLogAddress"
+                   ng-true-value="true" ng-false-value="false" />
+            {{ 'email.settings.log.address' | translate }}
+        </label>
+        <label class="checkbox" for="settingsLogSubject">
+            <input ng-model="settings.logSubject" type="checkbox" id="settingsLogSubject"
+                   ng-true-value="true" ng-false-value="false" />
+            {{'email.settings.log.subject' | translate }}
+        </label>
+        <label class="checkbox" for="settingsLogBody">
+            <input ng-model="settings.logBody" type="checkbox" id="settingsLogBody"
+                   ng-true-value="true" ng-false-value="false" />
+            {{ 'email.settings.log.body' | translate }}
+        </label>
+        <label class="checkbox">
+            <input ng-model="settings.logPurgeEnable" type="checkbox" id="settingsLogPurgeEnable" ng-true-value="'true'" ng-false-value="'false'" />
+            {{ 'Purge old records' | translate }}
+        </label>
+        <div ng-if="!purgeTimeControlsDisabled()" class="input-group">
+            <label >{{ 'email.settings.log.purge' | translate }}</label>
+            <div class="form-group">
+                <label for="settingsLogPurgeTime">{{ '**Amonunt of time to purge**' | translate }}</label>
+                <input email-purge-time ng-model="settings.logPurgeTime" type="text" id="settingsLogPurgeTime" />
+            </div>
+            <div class="form-group">
+                <label for="settingsLogPurgeTimeUnit">{{ '**Unint of time to purge**' | translate }}</label>
+                <select ng-model="settings.logPurgeTimeMultiplier" ng-options="k as v for (k , v) in timeMultipliers" id="settingsLogPurgeTimeUnit" ></select>
+            </div>
         </div>
-        <fieldset ng-if="!purgeTimeControlsDisabled()" class="form-group form-inline">
-            <legend >{{ 'email.settings.log.purge' | translate }}</legend>
-                <div class="form-group">
-                    <label class="hidden" for="settingsLogPurgeTime">{{ '**Amonunt of time to purge**' | translate }}</label>
-                    <input email-purge-time ng-model="settings.logPurgeTime" type="text" id="settingsLogPurgeTime" />
-                </div>
-                <div class="form-group">
-                    <label class="hidden" for="settingsLogPurgeTimeUnit">{{ '**Unint of time to purge**' | translate }}</label>
-                    <select ng-model="settings.logPurgeTimeMultiplier" ng-options="k as v for (k , v) in timeMultipliers" id="settingsLogPurgeTimeUnit" ></select>
-                </div>
-            </div>            
-        </fieldset>
     </fieldset>
 
     <input-map title="{{ 'email.settings.log.title3' | translate }}" ng-model="settings.additionalProperties"></input-map>

@@ -16,7 +16,8 @@
 				secondaryNav: {
 					templateUrl: '/email/nav.html'
 				}
-			}
+			},
+			redirectTo: 'email.send'
 		})
 		.state('email.send', {
 			url: '/send',

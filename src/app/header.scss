@@ -3,11 +3,13 @@
 	.logo {
 		display: block;
 		overflow: hidden;
+		margin: 0px auto;
 		width: 160px;
 		height: 50px;
 		background-size: 160px;
+		background-repeat: no-repeat;
 		text-indent: -3000px;
-		margin: 0px 2em;
+		@include background-image(url("/app/motech-logo.gif") center no-repeat);
 	}
 	.description {
 		display:none;
@@ -56,24 +58,21 @@
 	}
 }
 
+@media (min-width: $screen-sm) {
+	.app-header .logo{
+		width: $container-sm;
+	}
+
+}
 @media (min-width: $screen-md) {
-	.app-header{
-		padding-top: 50px;
-		position:relative;
-		.description{
-			display: block;
-			width: 100%;
-			position:absolute;
-			bottom: 50px;
-			left: 0px;
-		}
-		.logo{
-			position: absolute;
-			bottom: 50px;
-			left: 0px;
-			z-index: 10;
-			padding: 0em 2em;	
-		}
+	.app-header .logo{
+		width: $container-md;
+	}
+
+}
+@media (min-width: $screen-lg) {
+	.app-header .logo{
+		width: $container-lg;
 	}
 
 }

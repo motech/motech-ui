@@ -15,23 +15,22 @@ var sourcePaths = [
         '**/*.module.js', // modules initialized here
         '**/*.config.js',
         '**/*.routes.js',
-        '**/*.js',
-        '*.js' // app.js
+        '**/*.js'
     ];
 
 var paths = {
     src: sourcePaths.map(function(item){
         return path.join(config.app.src, item);
     }),
-    dest: path.join(config.app.dest, 'js')
+    dest: path.join(config.app.dest)
 }
 
-gulp.task('js', function () {
+gulp.task('motech.js', function () {
     gulpSequence('js:hint', 'js:build')();
 });
 
 // Static: Compress JS files into motech.js
-gulp.task('js:build', function () {
+gulp.task('motech.js:build', function () {
     var files = lib.ext('js').files; // libraries from bower
     files = files.concat(paths.src);
     files = files.concat(["!" + path.join(config.app.src, "**/*.spec.js")]);
@@ -43,7 +42,7 @@ gulp.task('js:build', function () {
         .pipe(gulp.dest(paths.dest))
 });
 
-gulp.task('js:hint', function(){
+gulp.task('motech.js:hint', function(){
     var stream = gulp.src(paths.src)
         .pipe(jshint())
         .pipe(jshint.reporter('default'));
@@ -53,9 +52,8 @@ gulp.task('js:hint', function(){
     }
 });
 
-gulp.task('js:uglify', function (){
+gulp.task('motech.js:uglify', function (){
     return gulp.src(path.join(paths.dest, 'motech.js'))
         .pipe(uglify())
-        .pipe(rename('motech.min.js'))
         .pipe(gulp.dest(paths.dest));
 });

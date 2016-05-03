@@ -3,6 +3,7 @@ $data-grid-border-color: $brand-accent;
 .data-grid{
 	border: $data-grid-border-color 1px solid;
 	border-bottom: 0px;
+	margin-bottom: $space-size;
 	.header li{
 		position: relative;
 		line-height: 1.25em;
@@ -47,6 +48,7 @@ $data-grid-border-color: $brand-accent;
 .data-grid>nav ul,
 .data-grid>ul{
 	@extend .list-unstyled;
+	margin: 0em;
 }
 
 .data-grid>nav{

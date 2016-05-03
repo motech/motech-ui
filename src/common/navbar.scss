@@ -28,9 +28,6 @@ nav.navbar,
 .navbar ul{
 	@extend .navbar-nav;
 	margin: 0em;
-	a:hover{
-		text-decoration: none;
-	}
 	#{$navItemSelectors} {
 		float: left;
 		margin-right: 0.2em;

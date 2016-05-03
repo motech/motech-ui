@@ -8,6 +8,7 @@
 	function dataGrid(){
 		return {
 			restrict: 'EA',
+			replace: true,
 			transclude: true,
 			templateUrl: '/common/dataGrid.html',
 			scope: {

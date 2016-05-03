@@ -53,6 +53,9 @@ fieldset {
 	legend {
 		font-size: 1em;
 		border-bottom: 0px;
+		margin: 0em;
+		padding-top: 0.5em;
+		padding-bottom: 0.25em;
 	}
 	&.form-group legend {
 		font-weight: bold;
@@ -68,6 +71,10 @@ fieldset {
 }
 form {
 	@extend .clearfix;
+	.alert{
+		margin: 0px;
+		padding: 1em;
+	}
 	.error{
 		@extend .alert;
 		@extend .alert-danger;
@@ -107,6 +114,16 @@ form {
 			margin-right: 0.5em !important;
 		}
 	}
+	.form-group{
+		margin-bottom: 1em;
+		>label, >legend{
+			padding: $space-size/2 $space-size;
+			margin: 0em;
+		}
+		ul{
+			margin: 0px;
+		}
+	}
 }
 
 
@@ -114,8 +131,11 @@ form {
 	@include form-compact();
 }
 
-@media (min-width: $screen-sm-min) {
+@media (min-width: $screen-sm) {
 	form {
-		@include form-normal();
+		@include form-wide();
+	}
+	form.form-compact{
+		@include form-compact();
 	}
 }

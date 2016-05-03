@@ -1,6 +1,9 @@
-<div class="app-sidebar" ng-class="{'is-open': visible}">
-	<h2 ng-if="title">{{title}}</h2>
+<aside class="app-sidebar" ng-class="{'is-open': visible}">
+	<header>
+		<h3>{{title}}</h3>
+		<button class="close icon-only">Close sidebar</button>
+	</header>
 	<div class="container">
 		<ng-transclude></ng-transclude>
 	</div>
-</div>
+</aside>

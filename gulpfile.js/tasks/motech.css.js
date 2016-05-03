@@ -6,9 +6,10 @@ var lib = require('bower-files')();
 var concat = require('gulp-concat');
 var bless = require('gulp-bless');
 var postcss = require('gulp-postcss');
+var sourcemaps = require('gulp-sourcemaps');
 var path = require('path');
 
-gulp.task('sass', function () {
+gulp.task('motech.css', function () {
     var includePaths = [
         config.root.src,
         'bower_components/font-awesome/scss',
@@ -19,23 +20,24 @@ gulp.task('sass', function () {
 
     gulp
     .src([
-        '/motech.scss',
+        "/**/*.variables.scss",
         "/**/*.mixins.scss",
         "/**/*.scss",
         "/**/*.css"
         ], {
             root: config.root.src
         })
+        .pipe(sourcemaps.init())
         .pipe(concat({
             path:'motech.scss'
         }))
         .pipe(sass({
             includePaths: includePaths
         }))
+        .pipe(sourcemaps.write())
         .pipe(postcss([ require('postcss-flexibility') ]))
         .pipe(concat('motech.css'))
-        .pipe(bless())
         .pipe(gulp.dest(
-            path.join(config.app.dest, 'css')
+            path.join(config.app.dest)
             ));
 });
