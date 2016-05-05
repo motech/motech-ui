@@ -1,7 +1,7 @@
 (function(){
 	'use strict';
 
-	angular.module('motech-common')
+	angular.module('motech-server')
 		.factory('PagiableServiceFactory', factory);
 
 	factory.$inject = ['$q', '$http'];
@@ -30,13 +30,19 @@
 			var deferred = $q.defer();
 			service.loaded = false;
 			searchData = angular.extend(searchData, params);
+			for(var key in searchData){
+				if(Array.isArray(searchData[key])){
+					searchData[key] = searchData[key].join(",");
+				}
+			}
 			$http({
 				method: 'GET',
 				url: url,
 				params: angular.extend({
 					rows: service.rowsPerPage,
 					page: 1
-				}, searchData)
+				}, searchData),
+				paramSerializer: jQuery.param
 			}).then(function(response){
 				service.totalPages = response.data.total;
 				service.totalRecords = response.data.records;

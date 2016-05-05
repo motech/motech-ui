@@ -8,6 +8,7 @@ var bless = require('gulp-bless');
 var postcss = require('gulp-postcss');
 var sourcemaps = require('gulp-sourcemaps');
 var path = require('path');
+var addsrc = require('gulp-add-src');
 
 gulp.task('motech.css', function () {
     var includePaths = [
@@ -17,7 +18,7 @@ gulp.task('motech.css', function () {
         'bower_components/bootstrap-sass/assets/stylesheets'
     ];
     includePaths = includePaths.concat(bourbon.includePaths);
-
+    var bowerFiles = lib.ext('css').files;
     gulp
     .src([
         "/**/*.variables.scss",
@@ -34,6 +35,7 @@ gulp.task('motech.css', function () {
         .pipe(sass({
             includePaths: includePaths
         }))
+        .pipe(addsrc(bowerFiles))
         .pipe(sourcemaps.write())
         .pipe(postcss([ require('postcss-flexibility') ]))
         .pipe(concat('motech.css'))
