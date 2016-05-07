@@ -1,0 +1,10 @@
+<form ng-submit="setLanguage(language)">
+	<fieldset class="form-group">
+		<legend>{{'i18n.pickLanguage' | translate}}</legend>
+		<label ng-repeat="lang in languages" class="radio">
+			<input type="radio" name="language" ng-model="$parent.language" ng-value="lang.key" />
+			{{lang.name}}
+		</label>
+	</fieldset>
+	<input type="submit" value="{{'i18n.updateLanguage' | translate}}" />
+</form>

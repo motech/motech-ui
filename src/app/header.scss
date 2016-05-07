@@ -28,6 +28,9 @@
 		background-color: $brand-primary;
 		border-bottom: $brand-accent 1px solid;
 		height: 50px;
+		a{
+			color: $white;
+		}
 		#{$navItemSelectors} {
 			color: $white;
 		}
@@ -42,7 +45,9 @@
 		button{
 			margin:0px;
 			margin: 0.25em;
-			font-size: 1.2em;
+			font-size: 1em;
+			color: $text-color;
+			height: 100%;
 		}
 	}
 	nav ul{
@@ -55,6 +60,9 @@
 				color: darken($brand-primary, 15);
 			}
 		}	
+	}
+	.motech-auth-menu{
+		float: right;
 	}
 }
 
