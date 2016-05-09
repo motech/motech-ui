@@ -5,3 +5,24 @@ Example of loading modal.
 
 Styleguide 4.1
 */
+
+.loading-modal {
+  width: 345px;
+  min-height: 20px;
+  border: 1px $brand-accent solid;
+  @include background-image(linear-gradient(to bottom, lighten($brand-accent, 30%), $brand-accent));
+
+}
+
+.loading-modal .loading-bar{
+	height: 2em;
+	display: block;
+	clear:both;
+	margin: 1em 0em;
+	overflow:hidden;
+	text-indent: -30000px;
+	background-image: url('/common/loadingbar.gif');
+	background-position: center center;
+	background-repeat: no-repeat;
+	background-color: $brand-accent;
+}

@@ -4,25 +4,61 @@
 	angular.module('motech-common')
 		.service('LoadingModal', loadingModal);
 
-	loadingModal.$inject = ['$q', 'BootstrapDialog'];
-	function loadingModal($q, BootstrapDialog){
-		var dialog = new BootstrapDialog({
-			title: 'Loading',
-			message: 'Loading',
-			closable: false
-		});
+	loadingModal.$inject = ['$rootScope', 'BootstrapDialog'];
+	function loadingModal ($rootScope, BootstrapDialog) {
+        var dialog, open = false;
 
-		this.open = showModal;
-		this.close = hideModal;
+        this.open = function () {
+            if (!open) {
+                dialog = new BootstrapDialog({
+                    message: function(dialogRef) {
+                        var $message = $('<div></div>'),
+                        pageToLoad = dialog.getData('pageToLoad');
+                        $message.load(pageToLoad);
 
-		function showModal(){
-			dialog.open();
-		}
-		function hideModal(){
-			dialog.close();
-		}
+                        return $message;
+                    },
+                    data: {
+                        'pageToLoad': '/common/loadingModal.html'
+                    },
+                    closable: false,
+                    draggable: false
+                });
 
-		return this;
-	}
+                dialog.realize();
+                dialog.getModalHeader().hide();
+                dialog.getModalFooter().hide();
+                dialog.getModalContent().addClass('loading-modal');
+                dialog.getModalContent().css('margin-top', '40%');
+                dialog.getModalBody().css('padding', '0');
+
+                dialog.open();
+                open = true;
+                $rootScope.$emit('loadingModalOpen');
+            }
+        };
+
+        this.close = function () {
+            if (open) {
+                dialog.close();
+                $rootScope.$emit('loadingModalClose');
+            }
+            open = false;
+        };
+
+        this.isOpen = function () {
+            return open;
+        };
+
+        this.openEvent = function (scope, callback) {
+            var handler = $rootScope.$on('loadingModalOpen', callback);
+            scope.$on('$destroy', handler);
+        };
+
+        this.closeEvent = function (scope, callback) {
+            var handler = $rootScope.$on('loadingModalClose', callback);
+            scope.$on('$destroy', handler);
+        };
+    }
 
 })();

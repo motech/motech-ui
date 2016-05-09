@@ -8,6 +8,7 @@
 		height: 50px;
 		background-size: 160px;
 		background-repeat: no-repeat;
+		background-position: top left;
 		text-indent: -3000px;
 		@include background-image(url("/app/motech-logo.gif") center no-repeat);
 	}
