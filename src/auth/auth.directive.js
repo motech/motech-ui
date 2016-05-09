@@ -4,19 +4,23 @@
 	angular.module('motech-auth')
 		.directive('motechAuth', directive);
 
-	controller.$inject = ['$scope', '$http', 'ServerService'];
-	function controller($scope, $http, ServerService){
+	controller.$inject = ['$scope', 'AuthService'];
+	function controller($scope, AuthService){
 		$scope.userName = false;
-		$scope.language = false;
 		$scope.logout = doLogout;
 
-		$http.get(ServerService.formatURL('/module/server/getUser'))
-		.then(function(response){
-			$scope.userName = response.data.userName;
+		$scope.$watch(function(){
+			return AuthService.user
+		}, function(user){
+			if(user){
+				$scope.userName = user;
+			} else {
+				$scope.userName = false;
+			}
 		});
 
 		function doLogout(){
-
+			AuthService.logout();
 		}
 	}
 

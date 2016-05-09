@@ -40,6 +40,9 @@
 		}
 
 		function whenReady() {
+			if(isReady()){
+				return $q.when(true);
+			}
 			var deferred = $q.defer();
 			checkReady(deferred);
 			return deferred.promise;

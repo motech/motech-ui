@@ -28,6 +28,11 @@
 		scope.doLogin = function () {
 			delete scope.error;
 			scope.LoginCtrl.login(scope.username, scope.password)
+			.then(function(){
+				scope.username = "";
+				scope.password = "";
+				scope.form.$setPristine();
+			})
 			.catch(function(message){
 				scope.error = message;
 			});

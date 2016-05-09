@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="motech-dashboard">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>MOTECH</title>
     <link rel="stylesheet" type="text/css" href="motech.css">
 </head>
-<body ng-app="motech-dashboard">
+<body motech-app-state ng-class="{'is-ready':appReady}">
     <header role="banner" class="app-header">
         <a href="/" class="logo">MOTECH</a>
         <div class="navbar">
