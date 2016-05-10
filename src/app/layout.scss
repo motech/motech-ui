@@ -15,8 +15,9 @@ html{
 body{
 	display:flex;
 	flex-direction: column;
-	height: 100%;
-	>header{
+	min-height: 100%;
+	>header,
+	>footer {
 		flex: 0 0 auto;
 	}
 	>.app-container{
@@ -24,13 +25,19 @@ body{
 	}
 }
 
+
+
 body>.app-container,
-body>header {
+body>header,
+body>footer {
 	display:none;
 }
 
-body.is-ready>header{
-	display:block;
+body.is-ready{
+	&>header,
+	&>footer{
+		display:block;
+	}
 }
 
 body.is-ready>.app-container{
@@ -207,5 +214,17 @@ body.is-ready>.app-container{
 @media (min-width: $screen-lg) {
 	.app .container{
 		width: $container-lg - $sidebar-width*2;
+	}
+}
+
+@media(min-width: $screen-sm){
+	body{
+		padding-bottom: 24px;
+	}
+	footer{
+		height: 24px;
+		position: fixed;
+		bottom: 0px;
+		width: 100%;
 	}
 }

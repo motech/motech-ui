@@ -7,7 +7,10 @@
 	motechServerService.$inject = ['$q', '$rootScope', 'MOTECH_SERVER_URL'];
 	function motechServerService ($q, $rootScope, MOTECH_SERVER_URL) {
 		var ready = false;
-		
+
+		var server = this;
+		this.information = {};
+
 		this.whenReady = whenReady;
 		this.isReady = isReady;
 
@@ -56,7 +59,6 @@
 				}, 500);
 			}
 		}
-
 
 		return this;
 	}

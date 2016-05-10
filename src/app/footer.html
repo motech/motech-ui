@@ -1,0 +1,18 @@
+<div motech-server-info class="container">
+    <dl ng-if="serverRunning">
+        <dt>{{'server.localTime'|translate}}</dt>
+        <dd>{{information.currentTime}}</dd>
+        <dt>{{'server.time'|translate}}</dt>
+        <dd>{{information.uptime}}</dd>
+        <dt>{{'server.projectVersion'|translate}}</dt>
+        <dd>{{'server.version'|translate}}</dd>
+        <dt>{{'server.node'|translate}}</dt>
+        <dd>{{information.node}}</dd>
+        <dt>{{'server.inboundEventChannel'|translate}}</dt>
+        <dd ng-if="information.eventChannel">OK</dd>
+        <dd ng-if="!information.eventChannel">Not OK</dd>
+    </dl>
+    <nav>
+        <a target="_blank" class="icon-documentation" href="http://docs.motechproject.org">{{'server.docsUrl'|translate}}</a>
+    </nav>
+</div>
