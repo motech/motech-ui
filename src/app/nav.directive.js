@@ -7,11 +7,16 @@
 	directive.$inject = ['$rootScope'];
 	function directive($rootScope){
 		return {
-			restrict: 'EAC',
+			restrict: 'A',
 			link: function(scope, element, attrs){
+				console.log("app navvv");
 				jQuery('.app-nav-button').on('click', function(event){
 					event.preventDefault();
-					show();
+					if(jQuery('.app').hasClass("has-nav")){
+						hide();
+					} else {
+						show();
+					}
 				});
 
 				jQuery('body').on('click', '.app-nav-backdrop', function(event){
@@ -22,14 +27,10 @@
 					hide();
 				});
 				function show(){
-					jQuery('.app-nav-button').addClass('active');
-					element.addClass('is-open');
-					jQuery('body').append('<div class="app-nav-backdrop"></div>');
+					jQuery('.app').addClass('has-nav');
 				}
 				function hide(){
-					element.removeClass('is-open');
-					jQuery('.app-nav-button.active').removeClass('active');
-					jQuery('.app-nav-backdrop').remove();
+					jQuery('.app').removeClass('has-nav');
 				}
 			}
 		}

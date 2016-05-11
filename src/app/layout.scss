@@ -6,28 +6,23 @@ This application uses a responsive layout.
 Styleguide 2.0
 */
 
-$appHeaderHeight: 73px;
-
 html{
 	height: 100%;
 }
-
 body{
 	display:flex;
 	flex-direction: column;
+	overflow-x: hidden;
 	min-height: 100%;
-	>header,
-	>footer {
+	>* {
 		flex: 0 0 auto;
 	}
-	>.app-container{
+	>.app{
 		flex: 1 0 auto;
 	}
 }
 
-
-
-body>.app-container,
+body>.app,
 body>header,
 body>footer {
 	display:none;
@@ -40,165 +35,106 @@ body.is-ready{
 	}
 }
 
-body.is-ready>.app-container{
+body.is-ready>.app{
+	@extend .container;
 	display:flex;
 	flex-direction: row;
 	flex-wrap: nowrap;
-	overflow: hidden;
+	padding-top: $appHeaderHeight + 20px !important;
 	>*{
-		flex: 1 0 auto;
+		flex: 0 0 auto;
 	}
-}
-
-.app-nav,
-.app-sidebar{
-	position: relative;
-	.container{
-		width: auto !important;
-	}
-}
-
-
-.app-nav{
-	display: none;
-	&.open,
-	&.is-open {
-		display: block;
-		position: fixed;
-		top: 0px;
-		z-index: 10;
-		height: 100%;
-		left: 0px;
-		box-shadow: 1em 0em 2em $white;
-	}
-	.container{
-		margin: 0px;
-	}
-	&:after{
-		content: "";
-		height: 100%;
-		width: 100%;
+	>header{
+		flex: 0 0 100%;
 		position: absolute;
 		top: 0px;
-		background-color: $brand-accent;
-		z-index: -1;
+		left: 0px;
+		height: $appHeaderHeight;
+		width: 100%;
 	}
-}
-.app-nav-backdrop{
-	display: block;
-	position:fixed;
-	top: 0px;
-	left: 0px;
-	z-index: 9;
-	width: 100%;
-	height: 100%;
-	background-color: $white;
-	opacity: 0.7;
-}
-@media(min-width: $screen-md) {
-	.app-nav{
-		display:block;
-		padding-top: $appHeaderHeight;
-		width: $sidebar-width;
-		margin-right: -1px;
-		&:after{
-			border-right: $gray-light 1px solid;
-		}
-		&.is-open,
-		&.open{
-			position: relative;
-			box-shadow: none;
-			height: auto;
-		}
-	}
-	.app-nav-button, .app-nav-backdrop {
-		display:none !important;
+	>article{
+		flex-grow: 1;
 	}
 }
 
-.app-sidebar{
+.app>nav,
+.app>aside{
 	display: none;
 	position: relative;
 	width: $sidebar-width;
-	margin-top: $appHeaderHeight;
-	header{
-		font-size:1em;
-		background-color:$white;
-		padding: 0.5em 1em;
-		position: absolute !important;
-		top: -2em;
-		left: 0px;
-		width:auto;
-		border: $gray-light 1px solid;
-		border-bottom: transparent;
-	}
-
-	.container{
-		padding: $space-size;
-	}
-	&:after{
-		content: "";
-		height: $appHeaderHeight;
-		width: 100%;
-		position: absolute;
-		top: -$appHeaderHeight;
-		z-index: -1;
-		background-color: $brand-accent;
-		border-bottom: $gray-light 1px solid;
-	}
-	.open, .is-open{
-		display: block;
+	form{
+		@include form-compact()
 	}
 }
-.app-container.sidebar-showing{
-	overflow: visible;
-	position: relative;
-	right: 70px;
-	.app-sidebar{
+.app>nav{
+	padding-right: 1em;
+}
+.app>aside{
+	padding-left: 1em;
+}
+
+.app>aside header{
+	position: absolute;
+	top: -50px;
+	height: 30px;
+}
+
+.app.has-sidebar{
+	right: $sidebar-width;
+	&>aside{
 		display:block;
+	}
+	.motech-sidebar-button{
+		@extend button.active;
+	}
+}
+.app.has-nav{
+	.app-nav-button{
+		@extend button.active;
+	}
+	&>nav{
+		display:block;
+	}
+	&>header{
+		padding-left: $sidebar-width !important;
+	}
+}
+.app.has-nav.has-sidebar{
+	right: $sidebar-width*2;
+}
+
+@media(min-width: $screen-md) {
+	.app>nav{
+		display:block;
+	}
+	.app-nav-button{
+		display:none !important;
+	}
+	.app > header{
+		padding-left: $sidebar-width !important;
 	}
 }
 @media(min-width: $screen-lg){
-	.app-sidebar{
+	.app>aside{
 		display: block;
-		.container {
-			width: $sidebar-width !important;
-			margin: 0px;
-		}
 	}
-	.app-sidebar>header .close{
+	.app>aside header .close{
 		display: none;
 	}
 	.motech-sidebar-button{
 		display:none !important;
 	}
-	.app-container.sidebar-showing{
-		position: static;
-		overflow: hidden;
-	}
 }
 
 .app{
 	position: relative;
-	&:after{
-		content: "";
-		position: absolute;
-		top:0px;
-		left: 0px;
-		z-index: -1;
-		width: 100%;
-		height: $appHeaderHeight;
-		background-color: $brand-accent;
-		border-bottom: $gray-light 1px solid;
-	}
 	>header{
 		@extend .container;
 		position: relative;
 		height: $appHeaderHeight;
 		.navbar{
 			border-bottom: transparent;
-			position: absolute;
-			bottom:0px;
+			float: left;
 		}
 	}
 }
@@ -217,11 +153,37 @@ body.is-ready>.app-container{
 	}
 }
 
+
+// Background brand accent
+body.is-ready{
+	position: relative;
+	&:before{
+		content: "";
+		position: absolute;
+		top:100px; // banner height
+		left: 0px;
+		z-index: -1;
+		width: 100%;
+		height: $appHeaderHeight;
+		background-color: $brand-accent;
+		border-bottom: $gray-light 1px solid;
+	}
+}
+
+
+
+body>footer,
+body.is-ready>footer {
+	display: none;
+	padding-top: 1em;
+}
 @media(min-width: $screen-sm){
 	body{
 		padding-bottom: 24px;
 	}
-	footer{
+	body>footer{
+		display: block;
+		padding-top:0em;
 		height: 24px;
 		position: fixed;
 		bottom: 0px;

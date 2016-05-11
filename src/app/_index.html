@@ -10,28 +10,24 @@
     <header role="banner" class="app-header">
         <a href="/" class="logo">MOTECH</a>
         <div class="navbar">
-            <div class="container">
-                <button class="navigation icon app-nav-button">Show navigation</button>
-                <nav class="collapsible" ng-include="'/common/nav-main.html'"></nav>
-                <nav motech-auth motech-i18n class="motech-auth-menu" >
-                    <a class="icon-user">{{userName}}</a>
-                    <button ng-click="changeLanguage()" class="icon-language">{{language.name}}</button>
-                    <button class="icon-sign-out icon-only" ng-click="logout()">Logout</button>
-                </nav>
-            </div>
+            <nav class="collapsible" ng-include="'/common/nav-main.html'"></nav>
+            <nav motech-auth motech-i18n class="motech-auth-menu" >
+                <a class="icon-user">{{userName}}</a>
+                <button ng-click="changeLanguage()" class="icon-language">{{language.name}}</button>
+                <button class="icon-sign-out icon-only" ng-click="logout()">Logout</button>
+            </nav>
         </div>
     </header>
-    <section class="app-container">
-        <nav class="app-nav">
-            <div class="container" ng-include="'/common/nav-secondary.html'"></div>
-        </nav>
-        <article class="app">
-            <header>
-                <div ncy-breadcrumb></div>
-                <div ui-view="secondaryNav" class="secondary-nav navbar"></div>
-            </header>
-            <div ui-view="appArea" class="container"></div>
-        </article>
+    <section class="app">
+        <header>
+            <div ncy-breadcrumb></div>
+            <div class="secondary-nav navbar">
+                <button class="navigation icon app-nav-button">Show navigation</button>
+                <div ui-view="secondaryNav"></div>
+            </div>
+        </header>
+        <nav app-nav ng-include="'/common/nav-secondary.html'"></nav>
+        <article ui-view="appArea"></article>
     </section>
     <footer ng-include="'/app/footer.html'"></footer>
     <script type="text/javascript" src="motech.js"></script>

@@ -15,10 +15,10 @@
 				title: "@?"
 			},
 			link: function(scope, element, attrs) {
-				element.insertAfter('.app');
+				element.appendTo('.app');
 				jQuery('body').on('click','.motech-sidebar-button', function(event){
 					event.preventDefault();
-					if($(event.target).hasClass('active')){
+					if(jQuery('.app').hasClass('has-sidebar')){
 						hide();
 					} else {
 						show();
@@ -43,16 +43,10 @@
 				});
 
 				function show(){
-					var spacing = jQuery('.app').width() - jQuery('.app .container').width();
-					element.addClass('is-open');
-					jQuery('.motech-sidebar-button').addClass('active');
-					jQuery('.app-container').css('right', 180-spacing/2).addClass('sidebar-showing');
+					jQuery('.app').addClass('has-sidebar');
 				}
 				function hide(){
-					element.removeClass('is-open');
-					jQuery('.motech-sidebar-button').removeClass('active');
-					jQuery('.app-container').removeClass('sidebar-showing');
-					//jQuery('.app-sidebar-backdrop').remove();
+					jQuery('.app').removeClass('has-sidebar');
 				}
 			}
 		}

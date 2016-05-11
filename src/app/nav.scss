@@ -1,31 +1,25 @@
 
-.app-nav{
+.app>nav{
 	#{$navItemSelectors} {
 		float:none;
 		padding: 1em;
-		border-bottom: $gray-light 1px solid;
-	}
-
-	.nav-section {
-		border-top: $gray-light 1px solid;
-		.title{
-			font-size: $font-size-small;
-			font-weight: bold;
-			background-color: $gray-light;
-			padding: 0.5em 1em;
-		}
 	}
 
 	a.is-active,
 	li.is-active a,
 	a.active,
 	li.active a {
-		background-color: $white;
+		background-color: $brand-accent;
 		color: $brand-primary;
+
 	}
 
-	.container{
-		padding: 1em 0em;
+	.nav-section {
+		.title{
+			font-size: $font-size-small;
+			font-weight: bold;
+			padding: 0.5em 1em;
+		}
 	}
 }
 

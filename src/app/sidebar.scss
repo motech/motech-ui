@@ -1,0 +1,29 @@
+.app>aside{
+	header{
+		font-size:1em;
+		background-color:$white;
+		padding: 0.5em 1em;
+		padding-right: 3em;
+		width:auto;
+		border: $gray-light 1px solid;
+		border-bottom: transparent;
+		.close{
+			position: absolute;
+			top: 0.5em;
+			right: 0.5em;
+			width: 1em;
+			height: 1em;
+			background: transparent;
+			&:before{
+				top: 0px;
+				color: $gray-light;
+			}
+			&:hover{
+				background: transparent;
+				&:before{
+					color: $gray;
+				}
+			}
+		}
+	}
+}
