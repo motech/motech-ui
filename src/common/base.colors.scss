@@ -1,0 +1,25 @@
+/*
+Colors
+
+$brand-primary - Primary brand color
+$brand-accent - Accent brand color used for backgrounds of special components
+$brand-secondary - Color used to juxopposed the primary color, should be used to pull attention and be used sparringly.
+
+markup:
+<div class="color-sample" style="background-color:{$modifiers};">
+    <p>{$modifiers}</p>
+</div>
+
+Styleguide 1.1
+*/
+
+.color-sample {
+    display:block;
+    width: 100%;
+    padding: 1em 3em;
+    p{
+        background-color: $white;
+        display: inline;
+        padding: 1em;
+    }
+}

@@ -1,0 +1,63 @@
+/*
+Navigation
+
+Navigation blocks in MOTECH should only contain actions that change the state of the UI, meaning they can open modals, but shouldn't directly cause an object to be maniuplated. Plain navigation blocks in MOTECH look and act like twitter's nav-pill framework. Navigation items can include lists of links, headings for desctiption of those lists, or just plain link items. Buttons can also be included in navs.
+
+markup:
+<nav>
+    <a>Nav Item</a>
+    <a class="active">Active Nav Item</a>
+    <ul>
+        <li><a>Nav Item</a></li>
+        <li class="active"><a>Active Nav Item</a></li>
+        <li><button>Nav Action</button></li>
+    </ul>
+    <button class="add">Nav Action Add</button>
+</nav>
+
+Styleguide 5.0
+*/
+
+nav {
+    ul{
+        @extend .list-unstyled;
+    }
+    #{$navItemSelectors}{
+        display: block;
+        padding: 1em 1em;
+        border: 0px;
+    }
+    a.is-active,
+    li.is-active>a,
+    a.active,
+    li.active>a {
+        background-color: $brand-primary;
+        color: $white;
+    }
+}
+
+@media(min-width: $screen-sm){
+    nav {
+        #{$navItemSelectors}{
+            display: block;
+            float: left;
+        }
+        >.section{
+            padding: 0em 0.5em;
+        }
+    }
+}
+
+
+nav.collapsible{
+    display:none;
+}
+@media(min-width: $screen-md){
+    nav.collapsible{
+        display: block;
+    }
+}
+
+.pagination{
+    margin: 0px;
+}

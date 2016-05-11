@@ -6,12 +6,16 @@ var path = require('path');
 var gulpSequence = require('gulp-sequence');
 var s3 = require( "gulp-s3" );
 
-var styleguideSource = path.join(config.app.src, 'sass/**/*.scss');
-var styleguideAssets = path.join(config.app.dest, 'css/*.css');
 
 gulp.task('styleguide:generate', function() {
 
-  return gulp.src(styleguideSource)
+  return gulp.src([
+      '/**/*.scss',
+      '/**/*.css'
+    ],{
+      root: config.app.src,
+      base: 'src'
+    })
     .pipe(styleguide.generate({
         title: 'MOTECH Styleguide',
         overviewPath: path.join('OVERVIEW.md')
@@ -20,7 +24,9 @@ gulp.task('styleguide:generate', function() {
 });
 
 gulp.task('styleguide:applystyles', function() {
-  return gulp.src(styleguideAssets)
+  return gulp.src([
+      path.join(config.app.dest, '*.css')
+    ])
     .pipe(sass({
       errLogToConsole: true
     }))

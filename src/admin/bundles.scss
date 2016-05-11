@@ -1,27 +1,14 @@
 
-
-.bundle-list-item{
-	@extend .row;
-	.bundle-id{
-		@extend .col-md-1;
-	}
-	img.icon{
-		@extend .col-md-1;
-		height: 2em;
-		width:auto;
-	}
-	.bundle-title{
-		@extend .col-md-2;
-	}
-	.actions{
-		@extend .col-md-4;
-	}
-}
-
-ul.bundles{
-	@extend .list-unstyled;
-}
-
-li.bundle{
-	@extend .bundle-list-item;
+.data-grid{
+    .bundle-actions{
+        width: 130px;
+        min-width: 130px;
+        max-width: 130px;
+    }
+    .bundle-icon{
+        img{
+            display: block;
+            width: 25px;
+        }
+    }    
 }

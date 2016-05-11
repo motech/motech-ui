@@ -1,0 +1,33 @@
+/*
+Button Groups
+
+There are two different categories for button groups, primary button groups and everything else. Primary button groups are used to submit forms or take an action on an item.
+
+markup:
+<div class="button-group-primary">
+    <button class="add">Add Sub-Item</button>
+    <button class="primary">Save</button>
+</div>
+<div class="button-group">
+    <button class="add">Add Item</button>
+    <button class="delete">Delete all items</button>
+</div>
+<div class="button-group">
+    <button>Filter</button>
+</div>
+
+Styleguide 1.2.2
+*/
+.button-group{
+    @extend .btn-group;
+    margin-bottom: 1em;
+}
+
+.button-group-primary,
+.button-group.primary {
+    @extend .btn-group;
+    float: right;
+    button.icon, button-icon {
+        height: 2.37em; //magic number...
+    }
+}

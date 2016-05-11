@@ -1,0 +1,59 @@
+$data-grid-border-color: $brand-accent;
+
+.data-grid{
+    border: $data-grid-border-color 1px solid;
+    border-bottom: 0px;
+    margin-bottom: $space-size;
+    .header li{
+        position: relative;
+        line-height: 1.25em;
+        a{
+            @extend .icon-only;
+            float: right;
+            margin-top: -0.25em;
+        }
+    }
+    .data-row {
+        display: flex;
+        flex-direction: row;
+        margin: 0px;
+        padding: 0px;
+    }
+    .data-cell {
+        display: table-cell;
+        white-space: nowrap;
+        padding: 0.25em;
+        overflow: hidden;
+        height: 2em;
+        flex: 1 0 0;
+        border-bottom: $data-grid-border-color 1px solid;
+        border-right: $data-grid-border-color 1px solid;
+        &.data-cell-fitted{
+            flex: 0 0 auto;
+        }
+    }
+    .data-row .data-cell:last-child {
+        border-right-width: 0px;
+    }
+}
+
+.data-grid nav ul,
+.data-grid ul.rows li{
+    @extend .data-row;
+    li, span{
+        @extend .data-cell
+    }
+}
+
+.data-grid>nav ul,
+.data-grid>ul{
+    @extend .list-unstyled;
+    margin: 0em;
+}
+
+.data-grid>nav{
+    @include background(linear-gradient(to bottom, $brand-accent 0%, darken($brand-accent, 10) 100%) center no-repeat);
+    text-align:center;
+    font-weight: bold;
+    color: $brand-primary;
+}

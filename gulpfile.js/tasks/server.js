@@ -6,10 +6,11 @@ var gutil    = require('gulp-util')
 var logger   = require('morgan')
 var open     = require('open')
 var path     = require('path')
+var argv = require('yargs').argv;
 
 var settings = {
     root: config.root.dest,
-    port: process.env.PORT || 5000,
+    port: argv.port || 5000,
     logLevel: process.env.NODE_ENV ? 'combined' : 'dev',
     staticOptions: {
         extensions: ['html'],

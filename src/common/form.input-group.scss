@@ -1,0 +1,19 @@
+.input-group,
+form .input-group{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    >*,
+    >.form-group{
+        display: block;
+        flex: 1 0 auto;
+        width: auto;
+    }
+    legend, label{
+        display: block;
+        width: 100%;
+    }
+    .form-group label{
+        @extend .hidden;
+    }
+}

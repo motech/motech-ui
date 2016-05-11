@@ -1,0 +1,56 @@
+/*
+Navbar
+
+Navigation bars are meant to be persistent link items that display the current state of the UI. For this reason they should always be towards the top of the screen, and should take up minimal vertical space. Navbars enclode nav elements.
+
+markup:
+<div class="navbar">
+    <nav>
+        <a>Navbar Item</a>
+        <a class="active">Navbar Item</a>
+        <a>Navbar Item</a>
+    </nav>
+</div>
+
+Styleguide 5.1
+*/
+
+.navbar{
+    margin-bottom: 0em;
+    min-height: auto;
+    height: auto;
+    border-bottom: $gray-light 1px solid;
+    padding: 0em 0.5em;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    >*{
+        flex: 0 0 auto;
+        margin-right: 1em;
+    }
+    >:last-child{
+        margin-right: 0em;
+    }
+}
+
+nav.navbar,
+.navbar nav,
+.navbar ul{
+    @extend .navbar-nav;
+    margin: 0em;
+    #{$navItemSelectors} {
+        float: left;
+        margin-right: 0.2em;
+        padding-top: 1em;
+        margin-bottom: -1px;
+    }
+    a.is-active,
+    li.is-active a,
+    a.active,
+    li.active a{
+        background-color: $white;
+        color: $brand-primary;
+        border: $gray-light 1px solid;
+        border-bottom-color: transparent;
+    }
+}

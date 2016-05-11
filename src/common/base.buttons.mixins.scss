@@ -1,0 +1,23 @@
+@mixin button($color, $background, $border) {
+    $background-dark: darken($background, 10%);
+    $background-light: lighten($background, 10%);
+
+    @include button-variant($color, $background, $border);
+    @include background(linear-gradient(to bottom, $background 60%, $background-dark 90%));
+    &:hover,
+    &.hover {
+        @include background(linear-gradient(to bottom, $background 30%, $background-dark 60%));
+    }
+    &:active,
+    &.active {
+        @include background($background-dark);
+    }
+    &:disabled,
+    &.disabled {
+        background: $background-light;
+    }
+
+    &:before {
+        color: $color;
+    }
+}

@@ -1,0 +1,31 @@
+<div class="data-grid" ng-class="{'is-loading': loading}">
+    <nav class="header">
+        <ul>
+            <li ng-repeat="column in columns" id="data-grid-column-{{column.id}}" class="{{column.cssClasses}}">
+                <a ng-if="column.sortable" ng-click="sortBy(column.id)" class="icon-sort">Sort by {{column.name}}</a>
+                <a ng-if="column.sortable && isSortedBy(column) && isSortedAsc()" ng-click="sortByDesc(column.id)" class="icon-sort">Reverse sort by {{column.name}}</a>
+                <a ng-if="column.sortable && isSortedBy(column) && isSortedDesc()" ng-click="sortByAsc(column.id)" class="icon-sort">Reverse sort by {{column.name}}</a>
+                <span id="data-grid-column-{{column.id}}-title" >{{column.name}}</span>
+            </li>
+        </ul>
+    </nav>
+    <ul ng-transclude class="rows"></ul>
+    <form ng-if="paginated">
+        <p>Viewing {{topRow}} to {{bottomRow}} of {{totalRows}}</p>
+        <div class="pagination button-group">
+            <button ng-click="goToFirstPage()" class="icon-page-first icon-only">Go to first page</button>
+            <button ng-click="goToPreviousPage()" class="icon-page-previous icon-only">Go to previous page</button>
+            <button ng-click="goToNextPage()" class="icon-page-next icon-only">Go to next page</button>
+            <button ng-click="goToLastPage()" class="icon-page-last icon-only">Go to last page</button>
+        </div>
+        <div class="form-group">
+            <label for="data-grid-rows-per-page">Rows per page</label>
+            <select id="data-grid-rows-per-page" ngModel="rowsPerPage">
+                <option>10</option>
+                <option>20</option>
+                <option>50</option>
+                <option>100</option>
+            </select>
+        </div>
+    </form>
+</div>

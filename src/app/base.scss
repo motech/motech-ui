@@ -1,0 +1,11 @@
+.logo {
+    display: block;
+    overflow: hidden;
+    margin: 0px auto;
+    width: 320px;
+    height: 100px;
+    background-repeat: no-repeat;
+    background-position: top center;
+    text-indent: -3000px;
+    @include background-image(url("/app/motech-logo.gif") center no-repeat);
+}

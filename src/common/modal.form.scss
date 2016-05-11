@@ -1,0 +1,38 @@
+/*
+Modal form
+
+Forms in modals look like compressed forms.
+
+markup:
+<div class="modal modal-static" tabindex="-1" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Login</h4>
+      </div>
+      <div class="modal-body">
+          <form>
+              <fieldset>
+                  <legend>Enter your username and password</legend>
+                  <div class="form-group">
+                      <label for="exampleUsername">Username</label>
+                      <input type="text" id="exampleUsername" />
+                  </div>
+                  <div class="form-group">
+                      <label for="examplePassword">Password</label>
+                      <input type="password" id="examplePassword" />
+                  </div>
+              </fieldset>
+              <input type="submit" value="Login" />
+          </form>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+Styleguide 4.2
+*/
+
+.modal form{
+    @include form-compact();
+}

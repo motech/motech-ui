@@ -1,0 +1,66 @@
+/*
+Buttons
+
+Buttons represent taking an action in MOTECH - juxoposed to a link which represents navigating through MOTECH. Most buttons should be the default color, with the exception of: a primary action button (which submits a form of changes a state), an add button which is creating new data in MOTECH (and should launch a modal window), or a delete button (which much launch a modal window to confirm the action).
+
+markup:
+<button >Button</button>
+<button class="active">Active Button</button>
+<button class="disabled">Disabled Button</button>
+<button class="button-primary">Primary Button</button>
+<!-- Used to add new content and should launch a modal window -->
+<button class="button-add">Add Button</button>
+<button class="button-edit">Edit Button</button>
+<!-- Used to delete content and must launch a modal window to confirm the action -->
+<button class="button-delete">Delete Button</button>
+
+Styleguide 1.2
+*/
+
+button,
+.button,
+.button-default {
+    @extend .btn;
+    @include button($btn-default-color, $btn-default-bg, $btn-default-border);
+}
+button.primary,
+.button-primary {
+    @include button($btn-primary-color, $btn-primary-bg, $btn-primary-border);
+}
+button.add,
+.button-add,
+button.create,
+.button-create {
+  @include button($btn-success-color, $btn-success-bg, $btn-success-border);
+  @extend .icon-add;
+}
+button.edit,
+.button-edit {
+  @extend .icon-edit
+}
+button.delete,
+.button-delete {
+  @include button($btn-danger-color, $btn-danger-bg, $btn-danger-border);
+  @extend .icon-delete;
+}
+
+button.start,
+.button-start {
+  @extend .icon-start;
+}
+button.stop,
+.button-stop {
+  @extend .icon-stop;
+}
+button.restart,
+.button-restart {
+  @extend .icon-refresh;
+}
+button.settings,
+.button-settings {
+  @extend .icon-settings
+}
+button.navigation,
+.button-navigation {
+  @extend .icon-navigation
+}
