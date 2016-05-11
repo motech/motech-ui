@@ -7,8 +7,8 @@ gulp.task('partials', function () {
             '/*/**/*.html',
             '!_*.html'
         ],{
-        	root: config.app.src,
-        	base: 'src'
+            root: config.app.src,
+            base: 'src'
         })
         .pipe(gulp.dest(config.app.dest));
 });

@@ -1,35 +1,35 @@
 
 .app>nav{
-	#{$navItemSelectors} {
-		float:none;
-		padding: 1em;
-	}
+    #{$navItemSelectors} {
+        float:none;
+        padding: 1em;
+    }
 
-	a.is-active,
-	li.is-active a,
-	a.active,
-	li.active a {
-		background-color: $brand-accent;
-		color: $brand-primary;
+    a.is-active,
+    li.is-active a,
+    a.active,
+    li.active a {
+        background-color: $brand-accent;
+        color: $brand-primary;
 
-	}
+    }
 
-	.nav-section {
-		.title{
-			font-size: $font-size-small;
-			font-weight: bold;
-			padding: 0.5em 1em;
-		}
-	}
+    .nav-section {
+        .title{
+            font-size: $font-size-small;
+            font-weight: bold;
+            padding: 0.5em 1em;
+        }
+    }
 }
 
 @media(min-width: $screen-md){
-	.app .breadcrumb{
-		padding-left: 1.5em;
-	}	
+    .app .breadcrumb{
+        padding-left: 1.5em;
+    }    
 }
 
 .app>.container{
-	padding-top: 1em;
-	padding-bottom: 2em;
+    padding-top: 1em;
+    padding-bottom: 2em;
 }

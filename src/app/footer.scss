@@ -1,38 +1,38 @@
 footer{
-	background-color: $brand-accent;
-	border-top: $gray-light 1px solid;
-	dt:after{
-		content: ":";
-	}
-	dd{
-		content: ";";
-	}
+    background-color: $brand-accent;
+    border-top: $gray-light 1px solid;
+    dt:after{
+        content: ":";
+    }
+    dd{
+        content: ";";
+    }
 }
 
 @media(min-width: $screen-sm){
-	footer{
-		font-size: $font-size-small;
-		height: 2em;
-		padding-top: 0.25em;
-		overflow: hidden;
-		white-space:nowrap;
-		.container{
-			display: flex;
-			flex-direction: row;
-			flex-wrap: nowrap;
-			>*{
-				flex: 1 1 auto;
-			}
-		}
-		nav	> a{
-			padding: 0em;
-		}
-		dd, dt, dl{
-			float: left;
-		}
-		dd{
-			margin-right: 0.5em;
-		}
-	}
+    footer{
+        font-size: $font-size-small;
+        height: 2em;
+        padding-top: 0.25em;
+        overflow: hidden;
+        white-space:nowrap;
+        .container{
+            display: flex;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            >*{
+                flex: 1 1 auto;
+            }
+        }
+        nav    > a{
+            padding: 0em;
+        }
+        dd, dt, dl{
+            float: left;
+        }
+        dd{
+            margin-right: 0.5em;
+        }
+    }
 }
 

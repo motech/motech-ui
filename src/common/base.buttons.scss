@@ -20,12 +20,12 @@ Styleguide 1.2
 button,
 .button,
 .button-default {
-	@extend .btn;
-	@include button($btn-default-color, $btn-default-bg, $btn-default-border);
+    @extend .btn;
+    @include button($btn-default-color, $btn-default-bg, $btn-default-border);
 }
 button.primary,
 .button-primary {
-	@include button($btn-primary-color, $btn-primary-bg, $btn-primary-border);
+    @include button($btn-primary-color, $btn-primary-bg, $btn-primary-border);
 }
 button.add,
 .button-add,

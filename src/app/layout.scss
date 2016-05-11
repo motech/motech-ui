@@ -7,186 +7,186 @@ Styleguide 2.0
 */
 
 html{
-	height: 100%;
+    height: 100%;
 }
 body{
-	display:flex;
-	flex-direction: column;
-	overflow-x: hidden;
-	min-height: 100%;
-	>* {
-		flex: 0 0 auto;
-	}
-	>.app{
-		flex: 1 0 auto;
-	}
+    display:flex;
+    flex-direction: column;
+    overflow-x: hidden;
+    min-height: 100%;
+    >* {
+        flex: 0 0 auto;
+    }
+    >.app{
+        flex: 1 0 auto;
+    }
 }
 
 body>.app,
 body>header,
 body>footer {
-	display:none;
+    display:none;
 }
 
 body.is-ready{
-	&>header,
-	&>footer{
-		display:block;
-	}
+    &>header,
+    &>footer{
+        display:block;
+    }
 }
 
 body.is-ready>.app{
-	@extend .container;
-	display:flex;
-	flex-direction: row;
-	flex-wrap: nowrap;
-	padding-top: $appHeaderHeight + 20px !important;
-	>*{
-		flex: 0 0 auto;
-	}
-	>header{
-		flex: 0 0 100%;
-		position: absolute;
-		top: 0px;
-		left: 0px;
-		height: $appHeaderHeight;
-		width: 100%;
-	}
-	>article{
-		flex-grow: 1;
-	}
+    @extend .container;
+    display:flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    padding-top: $appHeaderHeight + 20px !important;
+    >*{
+        flex: 0 0 auto;
+    }
+    >header{
+        flex: 0 0 100%;
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        height: $appHeaderHeight;
+        width: 100%;
+    }
+    >article{
+        flex-grow: 1;
+    }
 }
 
 .app>nav,
 .app>aside{
-	display: none;
-	position: relative;
-	width: $sidebar-width;
-	form{
-		@include form-compact()
-	}
+    display: none;
+    position: relative;
+    width: $sidebar-width;
+    form{
+        @include form-compact()
+    }
 }
 .app>nav{
-	padding-right: 1em;
+    padding-right: 1em;
 }
 .app>aside{
-	padding-left: 1em;
+    padding-left: 1em;
 }
 
 .app>aside header{
-	position: absolute;
-	top: -50px;
-	height: 30px;
+    position: absolute;
+    top: -50px;
+    height: 30px;
 }
 
 .app.has-sidebar{
-	right: $sidebar-width;
-	&>aside{
-		display:block;
-	}
-	.motech-sidebar-button{
-		@extend button.active;
-	}
+    right: $sidebar-width;
+    &>aside{
+        display:block;
+    }
+    .motech-sidebar-button{
+        @extend button.active;
+    }
 }
 .app.has-nav{
-	.app-nav-button{
-		@extend button.active;
-	}
-	&>nav{
-		display:block;
-	}
-	&>header{
-		padding-left: $sidebar-width !important;
-	}
+    .app-nav-button{
+        @extend button.active;
+    }
+    &>nav{
+        display:block;
+    }
+    &>header{
+        padding-left: $sidebar-width !important;
+    }
 }
 .app.has-nav.has-sidebar{
-	right: $sidebar-width*2;
+    right: $sidebar-width*2;
 }
 
 @media(min-width: $screen-md) {
-	.app>nav{
-		display:block;
-	}
-	.app-nav-button{
-		display:none !important;
-	}
-	.app > header{
-		padding-left: $sidebar-width !important;
-	}
+    .app>nav{
+        display:block;
+    }
+    .app-nav-button{
+        display:none !important;
+    }
+    .app > header{
+        padding-left: $sidebar-width !important;
+    }
 }
 @media(min-width: $screen-lg){
-	.app>aside{
-		display: block;
-	}
-	.app>aside header .close{
-		display: none;
-	}
-	.motech-sidebar-button{
-		display:none !important;
-	}
+    .app>aside{
+        display: block;
+    }
+    .app>aside header .close{
+        display: none;
+    }
+    .motech-sidebar-button{
+        display:none !important;
+    }
 }
 
 .app{
-	position: relative;
-	>header{
-		@extend .container;
-		position: relative;
-		height: $appHeaderHeight;
-		.navbar{
-			border-bottom: transparent;
-			float: left;
-		}
-	}
+    position: relative;
+    >header{
+        @extend .container;
+        position: relative;
+        height: $appHeaderHeight;
+        .navbar{
+            border-bottom: transparent;
+            float: left;
+        }
+    }
 }
 @media (min-width: $screen-md) {
-	.app {
-		flex-grow: 0;
-		.container{
-			width: $container-md - $sidebar-width;
-			margin: 0px;
-		}	
-	}
+    .app {
+        flex-grow: 0;
+        .container{
+            width: $container-md - $sidebar-width;
+            margin: 0px;
+        }    
+    }
 }
 @media (min-width: $screen-lg) {
-	.app .container{
-		width: $container-lg - $sidebar-width*2;
-	}
+    .app .container{
+        width: $container-lg - $sidebar-width*2;
+    }
 }
 
 
 // Background brand accent
 body.is-ready{
-	position: relative;
-	&:before{
-		content: "";
-		position: absolute;
-		top:100px; // banner height
-		left: 0px;
-		z-index: -1;
-		width: 100%;
-		height: $appHeaderHeight;
-		background-color: $brand-accent;
-		border-bottom: $gray-light 1px solid;
-	}
+    position: relative;
+    &:before{
+        content: "";
+        position: absolute;
+        top:100px; // banner height
+        left: 0px;
+        z-index: -1;
+        width: 100%;
+        height: $appHeaderHeight;
+        background-color: $brand-accent;
+        border-bottom: $gray-light 1px solid;
+    }
 }
 
 
 
 body>footer,
 body.is-ready>footer {
-	display: none;
-	padding-top: 1em;
+    display: none;
+    padding-top: 1em;
 }
 @media(min-width: $screen-sm){
-	body{
-		padding-bottom: 24px;
-	}
-	body>footer{
-		display: block;
-		padding-top:0em;
-		height: 24px;
-		position: fixed;
-		bottom: 0px;
-		width: 100%;
-	}
+    body{
+        padding-bottom: 24px;
+    }
+    body>footer{
+        display: block;
+        padding-top:0em;
+        height: 24px;
+        position: fixed;
+        bottom: 0px;
+        width: 100%;
+    }
 }

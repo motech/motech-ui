@@ -1,12 +1,12 @@
 (function(){
-	'use strict';
+    'use strict';
 
-	angular.module('motech-email')
-		.controller('EmailSendController', sendEmailController);
+    angular.module('motech-email')
+        .controller('EmailSendController', sendEmailController);
 
-	sendEmailController.$inject = ['$scope', 'EmailSendService', 'BootstrapDialog', 'i18nService'];
-	function sendEmailController ($scope, EmailSendService, BootstrapDialog, i18nService) {
-		$scope.mail = {};
+    sendEmailController.$inject = ['$scope', 'EmailSendService', 'BootstrapDialog', 'i18nService'];
+    function sendEmailController ($scope, EmailSendService, BootstrapDialog, i18nService) {
+        $scope.mail = {};
 
         $scope.sendEmail = sendEmail;
 
@@ -42,6 +42,6 @@
                     //handleWithStackTrace('email.header.error', 'server.error', response);
                 });
         }
-	}
+    }
 
 })();

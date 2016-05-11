@@ -1,53 +1,53 @@
 (function () {
-	'use strict';
+    'use strict';
 
-	angular.module('motech-common')
-		.controller('MotechDataGridController', dataGridController);
+    angular.module('motech-common')
+        .controller('MotechDataGridController', dataGridController);
 
-	dataGridController.$inject = ['$scope'];
-	function dataGridController($scope){
-		var columns = [];
+    dataGridController.$inject = ['$scope'];
+    function dataGridController($scope){
+        var columns = [];
 
-		$scope.columns = columns;
+        $scope.columns = columns;
 
-		function findColumnById(id){
-			var found = false;
-			columns.forEach(function(column){
-				if(column.id === id){
-					found = true;
-				}
-			});
-			return found;
-		}
+        function findColumnById(id){
+            var found = false;
+            columns.forEach(function(column){
+                if(column.id === id){
+                    found = true;
+                }
+            });
+            return found;
+        }
 
-		this.addColumn = function (id, title, sortable, cssClasses) {
-			if(sortable){
-				sortable = true;
-			} else {
-				sortable = false;
-			}
+        this.addColumn = function (id, title, sortable, cssClasses) {
+            if(sortable){
+                sortable = true;
+            } else {
+                sortable = false;
+            }
 
-			if(!findColumnById(id)){
-				columns.push({
-					id: id,
-					name: title,
-					sortable: sortable,
-					cssClasses: cssClasses
-				});
-			}
-			broadcastReady();
-		}
+            if(!findColumnById(id)){
+                columns.push({
+                    id: id,
+                    name: title,
+                    sortable: sortable,
+                    cssClasses: cssClasses
+                });
+            }
+            broadcastReady();
+        }
 
-		var readyTimeout;
-		function broadcastReady(){
-			if(readyTimeout){
-				clearTimeout(readyTimeout);
-			}
-			readyTimeout = setTimeout(function(){
-				$scope.$broadcast('datagrid.ready');
-			}, 10);
-		}
+        var readyTimeout;
+        function broadcastReady(){
+            if(readyTimeout){
+                clearTimeout(readyTimeout);
+            }
+            readyTimeout = setTimeout(function(){
+                $scope.$broadcast('datagrid.ready');
+            }, 10);
+        }
 
-	}
+    }
 
 })();

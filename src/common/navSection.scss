@@ -1,13 +1,13 @@
 
 
 @media (min-width: $screen-md) {
-	.nav-section-title{
-		display:none;
-	}
-	.nav-section{
-		display:none;
-		&.active{
-			display: block;
-		}
-	}
+    .nav-section-title{
+        display:none;
+    }
+    .nav-section{
+        display:none;
+        &.active{
+            display: block;
+        }
+    }
 }

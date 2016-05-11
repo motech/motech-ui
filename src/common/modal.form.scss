@@ -11,20 +11,20 @@ markup:
         <h4 class="modal-title">Login</h4>
       </div>
       <div class="modal-body">
-      	<form>
-      		<fieldset>
-      			<legend>Enter your username and password</legend>
-	      		<div class="form-group">
-	      			<label for="exampleUsername">Username</label>
-	      			<input type="text" id="exampleUsername" />
-	      		</div>
-	      		<div class="form-group">
-	      			<label for="examplePassword">Password</label>
-	      			<input type="password" id="examplePassword" />
-	      		</div>
-	      	</fieldset>
-      		<input type="submit" value="Login" />
-      	</form>
+          <form>
+              <fieldset>
+                  <legend>Enter your username and password</legend>
+                  <div class="form-group">
+                      <label for="exampleUsername">Username</label>
+                      <input type="text" id="exampleUsername" />
+                  </div>
+                  <div class="form-group">
+                      <label for="examplePassword">Password</label>
+                      <input type="password" id="examplePassword" />
+                  </div>
+              </fieldset>
+              <input type="submit" value="Login" />
+          </form>
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
@@ -34,5 +34,5 @@ Styleguide 4.2
 */
 
 .modal form{
-	@include form-compact();
+    @include form-compact();
 }

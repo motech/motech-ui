@@ -16,26 +16,26 @@ Styleguide 1.2.1
 
 button.icon,
 .button-icon {
-	@extend .icon-only;
+    @extend .icon-only;
 }
 
 .close {
-	font-size: $font-size-base;
+    font-size: $font-size-base;
 }
 
 // Much of this style overwrites Bootstrap's modal .close
 button.close,
 .button-close {
-	@extend .button-icon;
-	@include button($btn-danger-color, $btn-danger-bg, $btn-danger-border);
-	float: none;
-	opacity: 1;
-	&:hover {
-		opacity: 1;
-		background-color: darken($btn-danger-bg, 20%);
-	}
-	&:before {
-		@include icon(times);
-		color: $btn-danger-color;
-	}
+    @extend .button-icon;
+    @include button($btn-danger-color, $btn-danger-bg, $btn-danger-border);
+    float: none;
+    opacity: 1;
+    &:hover {
+        opacity: 1;
+        background-color: darken($btn-danger-bg, 20%);
+    }
+    &:before {
+        @include icon(times);
+        color: $btn-danger-color;
+    }
 }

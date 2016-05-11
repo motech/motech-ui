@@ -1,12 +1,12 @@
 (function () {
-	'use strict';
+    'use strict';
 
-	angular.module('motech-dashboard')
-		.config(dashboardRoutes);
+    angular.module('motech-dashboard')
+        .config(dashboardRoutes);
 
-	dashboardRoutes.$inject = ['$urlRouterProvider'];
-	function dashboardRoutes($urlRouterProvider) {
-		$urlRouterProvider.otherwise("/bundles");
-	}
+    dashboardRoutes.$inject = ['$urlRouterProvider'];
+    function dashboardRoutes($urlRouterProvider) {
+        $urlRouterProvider.otherwise("/bundles");
+    }
 
 })();

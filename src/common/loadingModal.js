@@ -1,11 +1,11 @@
 (function(){
-	'use strict';
+    'use strict';
 
-	angular.module('motech-common')
-		.service('LoadingModal', loadingModal);
+    angular.module('motech-common')
+        .service('LoadingModal', loadingModal);
 
-	loadingModal.$inject = ['$rootScope', 'BootstrapDialog'];
-	function loadingModal ($rootScope, BootstrapDialog) {
+    loadingModal.$inject = ['$rootScope', 'BootstrapDialog'];
+    function loadingModal ($rootScope, BootstrapDialog) {
         var dialog, open = false;
 
         this.open = function () {

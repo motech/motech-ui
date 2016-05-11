@@ -1,104 +1,104 @@
 .app-header {
-	@extend .clearfix;
-	position: relative;
-	&:after{
-		height: 50px;
-		width: 100%;
-		background-color: $brand-primary;
-		position: absolute;
-		top: 50px;
-		left: 0px;
-		z-index: -1;
-	}
-	.logo {
-		display: block;
-		overflow: hidden;
-		width: 160px;
-		height: 50px;
-		margin: 0px 1em;
-		background-size: 160px;
-		background-repeat: no-repeat;
-		background-position: top left;
-		text-indent: -3000px;
-		@include background-image(url("/app/motech-logo.gif"));
-	}
-	.description {
-		display:none;
-		text-transform:uppercase;
-		text-align: center;
-		font-size: $font-size-large;
-		line-height: 1.5em;
-		color: $brand-primary;
-		margin: 0px;
-	}
-	.navbar{
-		@extend .container;
-		font-size: 1em;
-		padding: 0px;
-		color: $white;
-		height: 50px;
-		border-bottom: transparent;
-		justify-content: flex-end;
-		>*{
-			flex-grow: 1;
-		}
-		.motech-auth-menu{
-			flex-grow: 0;
-			order: 0;
-		}
-		a{
-			color: $white;
-		}
-		#{$navItemSelectors} {
-			color: $white;
-		}
-		a.is-active,
-		li.is-active a,
-		a.active,
-		li.active a{
-			background-color: $brand-accent;
-			color: $brand-primary;
-			border: 0px;
-		}
-		button{
-			@include button($white, $brand-primary, $black);
-			border-width: 1px;
-			border-style: solid;
-			margin:0px;
-			margin: 0.25em;
-			font-size: 1em;
-			padding: 0.5em 1em;
-			height: auto;
-		}
-	}
-	nav ul{
-		li{
-			
-		}
-		li.active>a{
-			color: $brand-primary;
-			&:hover{
-				color: darken($brand-primary, 15);
-			}
-		}	
-	}
+    @extend .clearfix;
+    position: relative;
+    &:after{
+        height: 50px;
+        width: 100%;
+        background-color: $brand-primary;
+        position: absolute;
+        top: 50px;
+        left: 0px;
+        z-index: -1;
+    }
+    .logo {
+        display: block;
+        overflow: hidden;
+        width: 160px;
+        height: 50px;
+        margin: 0px 1em;
+        background-size: 160px;
+        background-repeat: no-repeat;
+        background-position: top left;
+        text-indent: -3000px;
+        @include background-image(url("/app/motech-logo.gif"));
+    }
+    .description {
+        display:none;
+        text-transform:uppercase;
+        text-align: center;
+        font-size: $font-size-large;
+        line-height: 1.5em;
+        color: $brand-primary;
+        margin: 0px;
+    }
+    .navbar{
+        @extend .container;
+        font-size: 1em;
+        padding: 0px;
+        color: $white;
+        height: 50px;
+        border-bottom: transparent;
+        justify-content: flex-end;
+        >*{
+            flex-grow: 1;
+        }
+        .motech-auth-menu{
+            flex-grow: 0;
+            order: 0;
+        }
+        a{
+            color: $white;
+        }
+        #{$navItemSelectors} {
+            color: $white;
+        }
+        a.is-active,
+        li.is-active a,
+        a.active,
+        li.active a{
+            background-color: $brand-accent;
+            color: $brand-primary;
+            border: 0px;
+        }
+        button{
+            @include button($white, $brand-primary, $black);
+            border-width: 1px;
+            border-style: solid;
+            margin:0px;
+            margin: 0.25em;
+            font-size: 1em;
+            padding: 0.5em 1em;
+            height: auto;
+        }
+    }
+    nav ul{
+        li{
+            
+        }
+        li.active>a{
+            color: $brand-primary;
+            &:hover{
+                color: darken($brand-primary, 15);
+            }
+        }    
+    }
 }
 
 @media (min-width: $screen-sm) {
-	.app-header .logo{
-		width: $container-sm;
-	}
+    .app-header .logo{
+        width: $container-sm;
+    }
 
 }
 @media (min-width: $screen-md) {
-	.app-header .logo{
-		width: $container-md;
-	}
+    .app-header .logo{
+        width: $container-md;
+    }
 
 }
 @media (min-width: $screen-lg) {
-	.app-header .logo{
-		width: $container-lg;
-	}
+    .app-header .logo{
+        width: $container-lg;
+    }
 
 }

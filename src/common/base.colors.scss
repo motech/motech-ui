@@ -7,19 +7,19 @@ $brand-secondary - Color used to juxopposed the primary color, should be used to
 
 markup:
 <div class="color-sample" style="background-color:{$modifiers};">
-	<p>{$modifiers}</p>
+    <p>{$modifiers}</p>
 </div>
 
 Styleguide 1.1
 */
 
 .color-sample {
-	display:block;
-	width: 100%;
-	padding: 1em 3em;
-	p{
-		background-color: $white;
-		display: inline;
-		padding: 1em;
-	}
+    display:block;
+    width: 100%;
+    padding: 1em 3em;
+    p{
+        background-color: $white;
+        display: inline;
+        padding: 1em;
+    }
 }

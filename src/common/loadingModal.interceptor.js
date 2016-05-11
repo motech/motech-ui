@@ -1,27 +1,27 @@
 (function(){
-	'use strict';
+    'use strict';
 
-	angular.module('motech-common')
-		.run(modalInterceptor)
+    angular.module('motech-common')
+        .run(modalInterceptor)
 
     modalInterceptor.$inject = ['$rootScope', 'LoadingModal'];
     function modalInterceptor ($rootScope, LoadingModal) {
-    	var loadingModalTimeout;
+        var loadingModalTimeout;
         $rootScope.$on('$stateChangeStart', function(){
-    		if(loadingModalTimeout){
+            if(loadingModalTimeout){
                 clearTimeout(loadingModalTimeout);
             }
             loadingModalTimeout = setTimeout(function(){
                 LoadingModal.open();
             }, 500);
-    	});
-    	function modalClose(){
+        });
+        function modalClose(){
             clearTimeout(loadingModalTimeout);
-    		LoadingModal.close();
-    	}
-    	$rootScope.$on('$stateNotFound',modalClose);
-    	$rootScope.$on('$stateChangeSuccess',modalClose);
-    	$rootScope.$on('$stateChangeError',modalClose);
+            LoadingModal.close();
+        }
+        $rootScope.$on('$stateNotFound',modalClose);
+        $rootScope.$on('$stateChangeSuccess',modalClose);
+        $rootScope.$on('$stateChangeError',modalClose);
     }
 
 })();

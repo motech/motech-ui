@@ -1,11 +1,11 @@
 (function(){
-	'use strict';
+    'use strict';
 
-	angular.module('motech-email')
-	 	.controller('EmailSettingsController', emailSettingsCtrl);
+    angular.module('motech-email')
+         .controller('EmailSettingsController', emailSettingsCtrl);
 
-	emailSettingsCtrl.$inject = ['$q', 'i18nService','$scope', 'motechAlert', 'emailSettings'];
-	function emailSettingsCtrl ($q, i18nService, $scope, motechAlert, emailSettings) {
+    emailSettingsCtrl.$inject = ['$q', 'i18nService','$scope', 'motechAlert', 'emailSettings'];
+    function emailSettingsCtrl ($q, i18nService, $scope, motechAlert, emailSettings) {
         $scope.settings = emailSettings;
 
         $scope.timeMultipliers = {

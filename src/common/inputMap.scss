@@ -1,26 +1,26 @@
 .input-map .input-map-pairs{
-	@extend .list-unstyled;
-	>*{
-		margin-bottom: $space-size;
-		display: flex;
-		flex-flow: row nowrap;
-		>*{
-			flex: 1 0 auto;
-			margin: $space-size/4 0px;
-			margin-right: $space-size;
-			&:last-child{
-				margin-right: 0em;
-			}
-		}
-		>nav{
-			flex: 0 0 auto;
-			margin: 0px;
-		}
-		button{
-			height: 100%;
-		}
-	}
-	>*:nth-child(2n+1){
-		background-color: $gray-lighter;
-	}
+    @extend .list-unstyled;
+    >*{
+        margin-bottom: $space-size;
+        display: flex;
+        flex-flow: row nowrap;
+        >*{
+            flex: 1 0 auto;
+            margin: $space-size/4 0px;
+            margin-right: $space-size;
+            &:last-child{
+                margin-right: 0em;
+            }
+        }
+        >nav{
+            flex: 0 0 auto;
+            margin: 0px;
+        }
+        button{
+            height: 100%;
+        }
+    }
+    >*:nth-child(2n+1){
+        background-color: $gray-lighter;
+    }
 }

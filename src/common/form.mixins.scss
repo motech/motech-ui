@@ -1,55 +1,55 @@
 
 @mixin form-compact() {
-	.form-group {
-		display: block;
-		>*, >label.checkbox, >label.radio{
-			width: 100%;
-		}
-		label, legend{
-			width: 100%;
-			text-align: left;
-		}
-		input{
-			width: 100%;
-		}
-	}
-	fieldset.form-group{
-		padding-left: 0px;
-		>legend{
-			position: static;
-		}
-	}
+    .form-group {
+        display: block;
+        >*, >label.checkbox, >label.radio{
+            width: 100%;
+        }
+        label, legend{
+            width: 100%;
+            text-align: left;
+        }
+        input{
+            width: 100%;
+        }
+    }
+    fieldset.form-group{
+        padding-left: 0px;
+        >legend{
+            position: static;
+        }
+    }
 }
 
 @mixin form-wide() {
-	.form-group {
-		@extend .clearfix;
-		display: flex;
-		flex-flow: row;
-		> *,
-		> label.checkbox, >label.radio {
-			flex: 1 0 auto;
-			width: auto;
-			text-align: left;
-		}
-		>label,
-		>legend {
-			flex: 0 0 auto;
-			width: $sidebar-width;
-			text-align: right;
-		}
-		input {
-			width: auto;
-		}
-	}
-	fieldset.form-group{
-		display: block;
-		padding-left: $sidebar-width;
-		position: relative;
-		>legend {
-			position: absolute;
-			top: 0px;
-			left: 0px;
-		}
-	}
+    .form-group {
+        @extend .clearfix;
+        display: flex;
+        flex-flow: row;
+        > *,
+        > label.checkbox, >label.radio {
+            flex: 1 0 auto;
+            width: auto;
+            text-align: left;
+        }
+        >label,
+        >legend {
+            flex: 0 0 auto;
+            width: $sidebar-width;
+            text-align: right;
+        }
+        input {
+            width: auto;
+        }
+    }
+    fieldset.form-group{
+        display: block;
+        padding-left: $sidebar-width;
+        position: relative;
+        >legend {
+            position: absolute;
+            top: 0px;
+            left: 0px;
+        }
+    }
 }

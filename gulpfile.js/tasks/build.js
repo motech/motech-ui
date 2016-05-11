@@ -3,7 +3,7 @@ var gulp = require('gulp');
 var gulpSequence = require('gulp-sequence');
 
 gulp.task('build', function () {
-	gulpSequence('build:app', 'build:styleguide')();
+    gulpSequence('build:app', 'build:styleguide')();
 });
 
 gulp.task('build:app', function () {
@@ -11,5 +11,5 @@ gulp.task('build:app', function () {
 });
 
 gulp.task('build:styleguide', function() {
-	gulpSequence('styleguide:generate', 'styleguide:applystyles')();
+    gulpSequence('styleguide:generate', 'styleguide:applystyles')();
 });

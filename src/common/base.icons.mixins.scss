@@ -1,7 +1,7 @@
 @mixin icon($name) {
-	&:before{
-		@extend .fa;
-		@extend .fa-#{$name};
-		margin-right: 0.5em;
-	}
+    &:before{
+        @extend .fa;
+        @extend .fa-#{$name};
+        margin-right: 0.5em;
+    }
 }

@@ -1,11 +1,11 @@
 (function(){
-	'use strict';
+    'use strict';
 
-	angular.module('motech-email', [
-		'ngResource',
-		'textAngular',
-		'motech-common',
-		'motech-server'
-		]);
-	
+    angular.module('motech-email', [
+        'ngResource',
+        'textAngular',
+        'motech-common',
+        'motech-server'
+        ]);
+    
 })();

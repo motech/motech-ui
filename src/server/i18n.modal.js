@@ -1,28 +1,28 @@
 (function(){
-	'use strict'
+    'use strict'
 
-	angular.module('motech-server')
-		.factory('i18nModal', modal);
+    angular.module('motech-server')
+        .factory('i18nModal', modal);
 
-	modal.$inject = ['$rootScope', '$compile', 'i18nService', 'BootstrapDialog'];
-	function modal($rootScope, $compile, i18nService, BootstrapDialog){
-		var modal = new BootstrapDialog({
-			message: $compile('<motech-i18n-form></motech-i18n-form>')($rootScope.$new())
-		});
+    modal.$inject = ['$rootScope', '$compile', 'i18nService', 'BootstrapDialog'];
+    function modal($rootScope, $compile, i18nService, BootstrapDialog){
+        var modal = new BootstrapDialog({
+            message: $compile('<motech-i18n-form></motech-i18n-form>')($rootScope.$new())
+        });
 
-		$rootScope.$on('motech.refresh', closeModal);
+        $rootScope.$on('motech.refresh', closeModal);
 
-		function openModal (){
-			modal.open();
-		}
-		function closeModal (){
-			modal.close();
-		}
+        function openModal (){
+            modal.open();
+        }
+        function closeModal (){
+            modal.close();
+        }
 
-		return {
-			open: openModal,
-			close: closeModal
-		};
-	}
+        return {
+            open: openModal,
+            close: closeModal
+        };
+    }
 
 })();

@@ -1,8 +1,8 @@
 (function () {
-	'use strict';
+    'use strict';
 
-	   angular.module('motech-email')
-	   	.directive('emailLoggingGrid', function($http) {
+       angular.module('motech-email')
+           .directive('emailLoggingGrid', function($http) {
         return {
             restrict: 'A',
             link: function(scope, element, attrs) {

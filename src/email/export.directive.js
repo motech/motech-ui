@@ -1,10 +1,10 @@
 (function(){
-	'use strict';
+    'use strict';
 
-	angular.module('motech-email')
-		.directive('emailExport', emailExport);
+    angular.module('motech-email')
+        .directive('emailExport', emailExport);
 
-	function emailExport () {
+    function emailExport () {
         return {
             restrict: 'EA',
             scope: {
