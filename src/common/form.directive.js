@@ -12,7 +12,7 @@
                 // https://developer.mozilla.org/en/docs/Web/HTML/Element/form#attr-novalidate
                 element.attr('novalidate', '');
             }
-        }
+        };
     }
 
 })();

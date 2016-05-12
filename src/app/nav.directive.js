@@ -33,7 +33,7 @@
                     jQuery('.app').removeClass('has-nav');
                 }
             }
-        }
+        };
     }
 
 })();

@@ -58,9 +58,9 @@
                     return ServerStatusService.running;
                 }, function (value) {
                     scope.running = value;
-                })
+                });
             }
-        }
+        };
     }
 
 })();

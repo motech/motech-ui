@@ -1,5 +1,5 @@
 (function(){
-    'use strict'
+    'use strict';
 
     angular.module('motech-dashboard')
         .directive('motechAppState', directive);
@@ -21,7 +21,7 @@
             restrict: 'A',
             controller: controller,
             controllerAs: 'AppStateCtrl'
-        }
+        };
     }
 
 })();

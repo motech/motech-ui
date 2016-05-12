@@ -20,7 +20,7 @@
                 }]
             });
             return deferred.promise;
-        }
+        };
     }
 
 })();

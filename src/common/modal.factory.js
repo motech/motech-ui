@@ -1,10 +1,10 @@
 (function(){
-    'use strict'
+    'use strict';
 
     angular.module('motech-common')
         .factory('ModalFactory', factory);
 
-    factory.$inject = ['BootstrapDialogManager']
+    factory.$inject = ['BootstrapDialogManager'];
     function factory (BootstrapDialogManager) {
 
         var modalFactory = {},

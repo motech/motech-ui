@@ -16,7 +16,7 @@
                     var url = "/module/email/emails/export?range="+$scope.range+"&month="+$scope.month;
                     window.location.replace(ServerService.formatURL(url));
                     $scope.close();
-                }
+                };
             }]
         };
     }

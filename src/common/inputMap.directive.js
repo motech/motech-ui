@@ -23,7 +23,7 @@
                     } else {
                         scope.properties = {};
                     }
-                }
+                };
 
                 scope.$watch('properties', function(value){
                     ngModel.$setViewValue(value);

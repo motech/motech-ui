@@ -16,7 +16,7 @@
     function i18nSetMsg($rootScope, i18nService){
         $rootScope.msg = function(msg){
             return i18nService.getMessage(msg);
-        }
+        };
     }
 
 })();

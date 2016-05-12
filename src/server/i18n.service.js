@@ -35,7 +35,7 @@
                         key: key,
                         name: langObj[key],
                         current: key == current
-                    }
+                    };
                     languages.push(lang);
                     if(lang.current){
                         currentLanguage = lang;
@@ -63,8 +63,8 @@
                     .then(function(){
                         deferred.resolve();
                     });
-                })
-            })
+                });
+            });
             return deferred.promise;
         }
 

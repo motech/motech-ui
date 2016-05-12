@@ -24,7 +24,7 @@
                     scope.error = ServerStatusService.hasBundleError(scope.id);
                 }
             }
-        }
+        };
     }
 
 })();

@@ -75,7 +75,7 @@
                         dialogRef.close();
                     }
                 }]
-            })
+            });
         }
         function uninstallBundleConfigModal(){
             BootstrapDialog.show({
@@ -86,17 +86,17 @@
                     action: function(dialogRef) {
                         dialogRef.close();
                         LoadingModal.open();
-                        bundle.$uninstallWithConfig(callbackSuccess)
+                        bundle.$uninstallWithConfig(callbackSuccess);
                     }
                 }, {
                     label: 'admin.bundles.stop',
                     action: function(dialogRef) {
                         dialogRef.close();
                         LoadingModal.open();
-                        bundle.$uninstall(callbackSuccess)
+                        bundle.$uninstall(callbackSuccess);
                     }    
                 }]
-            })
+            });
         }
 
         function showDetails(){

@@ -8,6 +8,6 @@
                 replace: true,
                 transclude: true,
                 template: '<li ng-transclude></li>'
-            }
+            };
         });
 })();

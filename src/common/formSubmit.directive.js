@@ -8,7 +8,6 @@
                 priority: 10,
                 link: {
                     pre: function(scope, element, attrs, formCtrl){
-                        var scope = scope;
                         element.on('submit', function(event){
                             if(formCtrl && formCtrl.$invalid){
                                 event.stopImmediatePropagation();
@@ -23,7 +22,7 @@
                         });
                     }
                 }
-            }
+            };
         });
 
 })();

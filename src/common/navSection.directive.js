@@ -31,7 +31,7 @@
                     } else {
                         element.removeClass("active");
                     }
-                })
+                });
 
                 function hasActiveElement(){
                     var classes = [];
@@ -50,7 +50,7 @@
                     return active;
                 }
             }
-        }
+        };
     }
 
 })();
