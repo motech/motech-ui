@@ -25,7 +25,12 @@
             if(uri.indexOf('/') == 0){
                 return formatUrl(uri.substring(1));
             }
-            return MOTECH_SERVER_URL + uri;
+            if(MOTECH_SERVER_URL.substr(-1) == "/"){
+                return MOTECH_SERVER_URL + uri;    
+            } else {
+                return MOTECH_SERVER_URL + "/" + uri;
+            }
+            
         }
 
         function checkServerUrl(url) {

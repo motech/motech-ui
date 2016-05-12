@@ -20,4 +20,8 @@ if (argv.dest) {
     config.root.dest = argv.dest;
 }
 
+if (argv.motechServerURL){
+	config.motechServerURL = argv.motechServerURL;
+}
+
 module.exports = config;
