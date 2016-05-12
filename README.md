@@ -9,23 +9,41 @@ Installation
 To use this UI package a working MOTECH Server is required. It is possible to run and work on this package without a MOTECH Server, but only the styleguide will fully work.
 
 ### Linux Installation
-Stub
+Install NodeJS, NPM, Bower, and Gulp
+
+````bash
+sudo apt-get install curl npm
+curl -sL https://deb.nodesource.com/setup_5.x | sudo -E bash -
+sudo apt-get install -y nodejs
+sudo npm install -g bower gulp
+````
 
 ### Windows Installation
 Stub
 
 ### OSX Installation
-Stub
+Install [HomeBrew,](http://brew.sh/) then install NodeJS, NPM, Bower, and Gulp.
+
+````bash
+brew install node
+npm install -g bower gulp
+````
 
 ### Building and running
-To build and run the MOTECH-UI package:
+To build and run the MOTECH-UI package, first make sure you have MOTECH 0.29 or greater built and running.
 
-```javascript
+```bash
+npm install
+bower install
+
 gulp build
-gulp server
+# if your MOTECH is located at anything other than http://localhost:8080/motech-platform-server/
+gulp build --motechServerURL=http://whereMOTECH.is/located
+
+gulp serve:app
 ```
 
-Then visit http://localhost:5000/styleguide/ and you should see this page (assuming nothing went wrong).
+The app should be running at http://localhost:5000
 
 
 Gulp Commands
