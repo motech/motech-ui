@@ -1,4 +1,5 @@
 (function(){
+    'use strict';
 
     angular.module('motech-common')
         .directive('motechDataGridColumn', columnDirective);
@@ -17,8 +18,8 @@
                 if('fitted' in attrs){
                     element.addClass('data-cell-fitted');
                 }
-                DataGridCtrl.addColumn(attrs['motechDataGridColumn'], attrs['title'], sortable, element.attr('class'));
+                DataGridCtrl.addColumn(attrs.motechDataGridColumn, attrs.title, sortable, element.attr('class'));
             }
-        }
+        };
     }
 })();

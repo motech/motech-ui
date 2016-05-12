@@ -23,12 +23,13 @@
             changeMonth: true,
             changeYear: true,
             beforeShow: function() {
+                var parts = [];
                 if (scope.min) {
-                    var parts = scope.min.split(' ');
+                    parts = scope.min.split(' ');
                     element.datetimepicker('option', 'minDate', parts[0]);
                 }
                 if (scope.max) {
-                    var parts = scope.max.split(' ');
+                    parts = scope.max.split(' ');
                     element.datetimepicker('option', 'maxDate', parts[0]);
                 }
             },

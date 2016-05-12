@@ -10,7 +10,7 @@
         $scope.logout = doLogout;
 
         $scope.$watch(function(){
-            return AuthService.user
+            return AuthService.user;
         }, function(user){
             if(user){
                 $scope.userName = user;
@@ -30,7 +30,7 @@
             restrict: 'A',
             controller: controller,
             controllerAs: "AuthCtrl"
-        }
+        };
     }
 
 })();

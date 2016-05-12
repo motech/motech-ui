@@ -27,7 +27,7 @@
                 LoadingModal.close();
                 $scope.$emit('motech.refresh');
             });
-        }
+        };
     }
 
     directive.$inject = [];
@@ -38,7 +38,7 @@
             templateUrl: '/server/i18n.form.html',
             controller: controller,
             controllerAs: 'i18nFormCtrl'
-        }
+        };
     }
 
 })();

@@ -44,7 +44,9 @@ gulp.task('motech.js:build', function () {
 
 gulp.task('motech.js:hint', function(){
     var stream = gulp.src(paths.src)
-        .pipe(jshint())
+        .pipe(jshint({
+            validthis: true
+        }))
         .pipe(jshint.reporter('default'));
 
     if(argv.production){

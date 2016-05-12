@@ -36,7 +36,7 @@
                 });
             }
             broadcastReady();
-        }
+        };
 
         var readyTimeout;
         function broadcastReady(){

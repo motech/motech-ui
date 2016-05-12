@@ -10,7 +10,7 @@
             link: function(scope, element, attr){
                 element.addClass('form-control');
             }
-        }
+        };
     }
 
 })();

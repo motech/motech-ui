@@ -2,7 +2,7 @@
     'use strict';
 
     angular.module('motech-common')
-        .run(modalInterceptor)
+        .run(modalInterceptor);
 
     modalInterceptor.$inject = ['$rootScope', 'LoadingModal'];
     function modalInterceptor ($rootScope, LoadingModal) {

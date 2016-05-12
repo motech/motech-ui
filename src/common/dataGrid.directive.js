@@ -20,7 +20,7 @@
             controller: 'MotechDataGridController',
             controllerAs: 'DataGridCtrl',
             link: dataGridDirective
-        }
+        };
     }
 
     function dataGridDirective(scope, element, attrs, ctrl){
@@ -37,7 +37,7 @@
                 });
                 jQuery('[motech-data-grid-column='+column.id+'], #data-grid-column-'+column.id, element).width(widest);
 
-            })
+            });
         }
     }
 

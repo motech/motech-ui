@@ -10,9 +10,9 @@
         return {
             request: function(config) {
                 var deferred = $q.defer();
-                if(ServerService.isURL(config.url) 
-                    && config.url != ServerService.formatURL('server/bootstrap/status') // check status URL
-                    && !ServerService.isReady()){
+                if(ServerService.isURL(config.url) && 
+                    config.url != ServerService.formatURL('server/bootstrap/status') &&
+                    !ServerService.isReady()){
                         $rootScope.$broadcast('motech.checkStatus');
                         ServerService.whenReady().then(function(){
                             deferred.resolve(config);
@@ -22,7 +22,7 @@
                 }
                 return deferred.promise;
             }
-        }
+        };
     }
 
     httpConfig.$inject = ['$httpProvider'];

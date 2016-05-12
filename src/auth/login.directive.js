@@ -13,7 +13,7 @@
             controller: LoginFormController,
             controllerAs: 'LoginCtrl',
             link: LoginFormDirective
-        }
+        };
     }
 
     LoginFormController.$inject = ['AuthService'];

@@ -22,7 +22,7 @@
         });
 
         function formatUrl (uri) {
-            if(uri.indexOf('/') == 0){
+            if(uri.indexOf('/') === 0){
                 return formatUrl(uri.substring(1));
             }
             if(MOTECH_SERVER_URL.substr(-1) == "/"){
@@ -34,7 +34,7 @@
         }
 
         function checkServerUrl(url) {
-            if(url.indexOf(MOTECH_SERVER_URL) == 0){
+            if(url.indexOf(MOTECH_SERVER_URL) === 0){
                 return true;
             }
             return false;

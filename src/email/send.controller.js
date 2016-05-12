@@ -24,7 +24,7 @@
             } else {
                 doSendEmail();
             }
-        };
+        }
         function doSendEmail(){
             EmailSendService.send($scope.mail)
                 .then(function () {

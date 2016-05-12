@@ -14,7 +14,7 @@
                     $rootScope.$broadcast('$stateChangeSuccess');
                 }, 500);
             } else {
-                $state.go(to.redirectTo, params, {location:"replace"})
+                $state.go(to.redirectTo, params, {location:"replace"});
             }
           }
         });

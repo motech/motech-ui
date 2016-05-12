@@ -15,13 +15,13 @@
         return {
             open: function () {
                 var deferred = $q.defer();
-                modal.open()
+                modal.open();
                 return deferred.promise;
             },
             close: function(){
                 modal.close();
             }
-        }
+        };
     }
 
 })();

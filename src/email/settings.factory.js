@@ -7,6 +7,6 @@
     emailSettingsFactory.$inject = ['$resource', 'ServerService'];
     function emailSettingsFactory ($resource, ServerService) {
         return $resource(ServerService.formatURL('module/email/settings'));
-    };
+    }
 
 })();

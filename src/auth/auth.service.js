@@ -40,7 +40,7 @@
                 } else {
                     deferred.reject();
                 }
-            })
+            });
 
             return deferred.promise;
         }

@@ -49,7 +49,7 @@
                     jQuery('.app').removeClass('has-sidebar');
                 }
             }
-        }
+        };
     }
 
 })();

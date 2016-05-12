@@ -15,13 +15,12 @@
         });
     }
 
-    directive.$inject = ['i18nService', 'i18nModal']
+    directive.$inject = ['i18nService', 'i18nModal'];
     function directive (i18nService, i18nModal){
-
         return {
             restrict: 'EA',
             controller: i18nController
-        }
+        };
     }
 
 })();
