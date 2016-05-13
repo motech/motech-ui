@@ -11,7 +11,7 @@
             element: 'EA',
             replace: true,
             require: '?ngModel',
-            templateUrl: '/common/inputMap.html',
+            templateUrl: '/common/input-map/input-map.html',
             link: function (scope, element, attrs, ngModel) {
                 if(attrs.title){
                     scope.title = attrs.title;

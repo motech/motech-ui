@@ -10,7 +10,7 @@
             restrict: 'EA',
             replace: true,
             transclude: true,
-            templateUrl: '/common/dataGrid.html',
+            templateUrl: '/common/motech-list/dataGrid.html',
             scope: {
                 loading: '=',
                 sortIndex: '=',

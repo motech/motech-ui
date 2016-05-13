@@ -9,7 +9,7 @@
         return {
             restrict: 'EA',
             transclude: true,
-            templateUrl: '/common/sidebar.html',
+            templateUrl: '/common/sidebar/sidebar.html',
             replace: true,
             scope: {
                 title: "@?"
@@ -32,14 +32,9 @@
                     hide();
                     element.remove();
                 });
-                jQuery('body').on('click', '.app-sidebar-backdrop', function(event){
-                    event.preventDefault();
-                    hide();
-                });
 
                 scope.$on('$destroy', function(){
                     jQuery('body').off('click','.motech-sidebar-button');
-                    jQuery('body').off('click', '.app-sidebar-backdrop');
                 });
 
                 function show(){

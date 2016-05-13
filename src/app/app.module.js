@@ -8,6 +8,7 @@
             'ncy-angular-breadcrumb',
             'motech-auth',
             'motech-email',
+            'motech-i18n',
             'motech-admin'
         ]);
 })();
