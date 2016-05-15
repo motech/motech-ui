@@ -28,7 +28,7 @@
             return ServerService.formatURL("module/server/module/icon?bundleId=" + $scope.bundle.bundleId);
         }
 
-        function callbackSuccss(){
+        function callbackSuccess(){
             LoadingModal.close();
             $rootScope.$broadcast('motech.refresh');
         }
@@ -38,23 +38,23 @@
             bundle.$start(callbackSuccss);
         }
         function stopBundleModal(){
-            MotechConfirm(i18nService.getMessage('admin.confirm'))
+            MotechConfirm(i18nService.getMessage('admin.bundles.stateChangeWarning')) //'admin.bundles.stop' (stop button text)
             .then(function(){
                 LoadingModal.open();
-                bundle.$stop(callbackSuccss);
+                bundle.$stop(callbackSuccess);
             });
         }
         function restartBundle(){
             LoadingModal.open();
-            bundle.$restart(callbackSuccss);
+            bundle.$restart(callbackSuccess);
         }
         
         function uninstallBundleModal(){
-            MotechConfirm(i18nService.getMessage('admin.confirm'))
+            MotechConfirm(i18nService.getMessage('admin.bundles.stateChangeWarning')) // 'admin.remove' (remove button text)
             .then(uninstallBundleConfigModal);
         }
         function uninstallBundleConfigModal(){
-            MotechConfirm(i18nService.getMessage('admin.confirm'))
+            MotechConfirm(i18nService.getMessage('admin.bundles.remove.config')) // 'admin.remove.config' (remove with config button text)
             .then(function(){
                 LoadingModal.open();
                 bundle.$uninstallWithConfig(callbackSuccess);
