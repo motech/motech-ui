@@ -14,7 +14,7 @@
             <nav motech-auth motech-i18n class="motech-auth-menu" >
                 <a class="icon-user">{{userName}}</a>
                 <button ng-click="changeLanguage()" class="icon-language">{{language.name}}</button>
-                <button class="icon-sign-out icon-only" ng-click="logout()">Logout</button>
+                <button class="icon-sign-out icon-only" ng-click="logout()">{{'server.signOut' | translate}}</button>
             </nav>
         </div>
     </header>
@@ -22,7 +22,7 @@
         <header>
             <div ncy-breadcrumb></div>
             <div class="secondary-nav navbar">
-                <button class="navigation icon app-nav-button">Show navigation</button>
+                <button class="navigation icon app-nav-button">{{'navigation.open'|translate}}</button>
                 <div ui-view="secondaryNav"></div>
             </div>
         </header>

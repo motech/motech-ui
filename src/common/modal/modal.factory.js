@@ -4,8 +4,8 @@
     angular.module('motech-common')
         .factory('ModalFactory', factory);
 
-    factory.$inject = ['BootstrapDialogManager'];
-    function factory (BootstrapDialogManager) {
+    factory.$inject = ['BootstrapDialogManager', '$translate'];
+    function factory (BootstrapDialogManager, $translate) {
 
         var modalFactory = {},
 
@@ -20,7 +20,7 @@
             buttonLabel: BootstrapDialog.DEFAULT_TEXTS.OK,
             btnCancelLabel: BootstrapDialog.DEFAULT_TEXTS.CANCEL,
             btnOKLabel: BootstrapDialog.DEFAULT_TEXTS.OK,
-            btnOKClass: null,
+            btnOKClass: 'primary',
             callback: null
         },
 
@@ -109,8 +109,8 @@
                 return makeConfirm(msg);
             } else {
                 return makeConfirm({
-                    message: jQuery.i18n.prop(msg),
-                    title: title && title !== undefined ? jQuery.i18n.prop(title) : jQuery.i18n.prop('server.bootstrapDialog.confirm'),
+                    message: $translate.instant(msg),
+                    title: title && title !== undefined ? $translate.instant(title) : $translate.instant('server.bootstrapDialog.confirm'),
                     callback: callback && callback !== undefined ? callback : null
                 });
             }
@@ -121,8 +121,8 @@
                 return makeAlert(msg);
             } else {
                 return makeAlert({
-                    message: jQuery.i18n.prop(msg),
-                    title: title && title !== undefined ? jQuery.i18n.prop(title) : jQuery.i18n.prop('server.bootstrapDialog.alert'),
+                    message: $translate.instant(msg),
+                    title: title && title !== undefined ? $translate.instant(title) : $translate.instant('server.bootstrapDialog.alert'),
                     callback: callback && callback !== undefined ? callback : null
                 });
             }
@@ -131,8 +131,8 @@
         modalFactory.showSuccessAlert = function (msg, title, callback) {
             return makeAlert({
                 type: 'type-success',
-                title: title && title !== undefined ? jQuery.i18n.prop(title) : jQuery.i18n.prop('server.success'),
-                message: jQuery.i18n.prop(msg),
+                title: title && title !== undefined ? $translate.instant(title) : $translate.instant('server.success'),
+                message: $translate.instant(msg),
                 callback: callback && callback !== undefined ? callback : null
             });
         };
@@ -143,8 +143,8 @@
             }
             return makeAlert({
                 type: 'type-danger', //Error type
-                title: title && title !== undefined ? jQuery.i18n.prop(title) : jQuery.i18n.prop('server.error'),
-                message: msg && msg !== undefined ? jQuery.i18n.prop(msg) : rawMsg
+                title: title && title !== undefined ? $translate.instant(title) : $translate.instant('server.error'),
+                message: msg && msg !== undefined ? $translate.instant(msg) : rawMsg
             });
         };
 
@@ -159,14 +159,14 @@
             } else if (msg.literal) {
                 return makeAlert({
                     type: 'type-danger',
-                    title: title && title !== undefined ? jQuery.i18n.prop(title) : jQuery.i18n.prop('server.error'),
+                    title: title && title !== undefined ? $translate.instant(title) : $translate.instant('server.error'),
                     message: msg.value,
                     callback: callback
                 });
             } else {
                 return makeAlert({
                     type: 'type-danger', //Error type
-                    title: title && title !== undefined ? jQuery.i18n.prop(title) : jQuery.i18n.prop('server.error'),
+                    title: title && title !== undefined ? $translate.instant(title) : $translate.instant('server.error'),
                     message: jQuery.i18n.prop.apply(null, [msg.value].concat(msg.params))
                 });
             }
@@ -187,8 +187,8 @@
             return makeAlert({
                 type: 'type-danger', //Error type
                 size: 'size-wide',
-                title: title && title !== undefined ? jQuery.i18n.prop(title) : jQuery.i18n.prop('server.error'),
-                message: jQuery.i18n.prop(msg).bold() + ": \n" + response
+                title: title && title !== undefined ? $translate.instant(title) : $translate.instant('server.error'),
+                message: $translate.instant(msg).bold() + ": \n" + response
             });
         };
 

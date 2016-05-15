@@ -2,22 +2,14 @@
     'use strict';
 
     angular.module('motech-common')
-        .factory('motechAlert', alert);
+        .factory('MotechAlert', alert);
     
-    alert.$inject = ['$q', 'BootstrapDialog'];
-    function alert($q, BootstrapDialog) {
+    alert.$inject = ['$q', 'ModalFactory'];
+    function alert($q, ModalFactory) {
         return function(message, title){
             var deferred = $q.defer();
-            BootstrapDialog.show({
-                message: message,
-                title: title,
-                buttons: [{
-                    label: 'OK',
-                    action: function(dialog) {
-                        dialog.close();
-                        deferred.resolve();
-                    }
-                }]
+            ModalFactory.showAlert(message, title, function(){
+                deferred.resolve();
             });
             return deferred.promise;
         };

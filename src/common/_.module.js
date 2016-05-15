@@ -4,7 +4,8 @@
     angular.module('motech-common', [
         'ui.router',
         'ui.bootstrap',
-        'checklist-model'
+        'checklist-model',
+        'pascalprecht.translate'
         ]);
 
 })();

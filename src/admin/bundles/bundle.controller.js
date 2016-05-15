@@ -4,8 +4,8 @@
     angular.module('motech-admin')
         .controller('BundleController', bundleController);
 
-    bundleController.$inject = ['$scope', '$rootScope', 'BootstrapDialog', 'LoadingModal', 'ServerService'];
-    function bundleController ($scope, $rootScope, BootstrapDialog, LoadingModal, ServerService) {
+    bundleController.$inject = ['$scope', '$rootScope', 'i18nService', 'MotechConfirm', 'ModalWindow', 'LoadingModal', 'ServerService'];
+    function bundleController ($scope, $rootScope, i18nService, MotechConfirm, ModalWindow, LoadingModal, ServerService) {
         var bundle = $scope.bundle;
 
         $scope.active = isActive();
@@ -38,73 +38,36 @@
             bundle.$start(callbackSuccss);
         }
         function stopBundleModal(){
-            BootstrapDialog.show({
-            message: 'admin.confirm',
-            buttons: [{
-                label: 'admin.bundles.stop',
-                cssClass: 'btn-primary',
-                action: function(dialogRef){
-                    dialogRef.close();
-                    LoadingModal.open();
-                    bundle.$stop(callbackSuccss);
-                }
-            }, {
-                label: 'admin.cancel',
-                action: function(dialogRef){
-                    dialogRef.close();
-                }
-            }]});
+            MotechConfirm(i18nService.getMessage('admin.confirm'))
+            .then(function(){
+                LoadingModal.open();
+                bundle.$stop(callbackSuccss);
+            });
         }
         function restartBundle(){
             LoadingModal.open();
             bundle.$restart(callbackSuccss);
         }
+        
         function uninstallBundleModal(){
-            BootstrapDialog.show({
-                message: 'admin.confirm',
-                buttons: [{
-                    label: 'admin.bundles.stop',
-                    cssClass: 'btn-primary',
-                    action: function(dialogRef) {
-                        dialogRef.close();
-                        uninstallBundleConfigModal();
-                    }
-                }, {
-                    label: 'admin.cancel',
-                    action: function(dialogRef){
-                        dialogRef.close();
-                    }
-                }]
-            });
+            MotechConfirm(i18nService.getMessage('admin.confirm'))
+            .then(uninstallBundleConfigModal);
         }
         function uninstallBundleConfigModal(){
-            BootstrapDialog.show({
-                message: 'admin.confirm',
-                buttons: [{
-                    label: 'admin.bundles.stop',
-                    cssClass: 'btn-primary',
-                    action: function(dialogRef) {
-                        dialogRef.close();
-                        LoadingModal.open();
-                        bundle.$uninstallWithConfig(callbackSuccess);
-                    }
-                }, {
-                    label: 'admin.bundles.stop',
-                    action: function(dialogRef) {
-                        dialogRef.close();
-                        LoadingModal.open();
-                        bundle.$uninstall(callbackSuccess);
-                    }    
-                }]
+            MotechConfirm(i18nService.getMessage('admin.confirm'))
+            .then(function(){
+                LoadingModal.open();
+                bundle.$uninstallWithConfig(callbackSuccess);
+            }).catch(function(){
+                LoadingModal.open();
+                bundle.$uninstall(callbackSuccess);
             });
         }
 
         function showDetails(){
             bundle.$details(function(data){
-                BootstrapDialog.show({
-                    title: bundle.name,
-                    message: angular.toJson(data)
-                });
+                ModalWindow(angular.toJson(data), bundle.name)
+                .open();
             });
         }
 

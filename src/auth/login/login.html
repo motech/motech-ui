@@ -5,14 +5,14 @@
         <label for="loginForm-Username">{{ 'security.userName' | translate }}</label>
         <input id="loginForm-Username" aria-describedby="loginForm-Username-errors" ng-model="username" name="username" type="text" required />
         <ul id="loginForm-Username-errors" class="form-alerts" >
-            <li ng-if="form.$submitted && form.username.$error.required" class="error">Username is a required field</li>
+            <li ng-if="form.$submitted && form.username.$error.required" class="error">{{'security.userName.required'|translate}}</li>
         </ul>
     </div>
     <div class="form-group">
         <label for="loginForm-Password">{{ 'security.password' | translate }}</label>
         <input id="loginForm-Password" ng-model="password" name="password" type="password" required />
         <ul id="loginForm-Password-errors"  class="form-alerts">
-            <li ng-if="form.$submitted && form.password.$error.required" class="error">Password is a required field</li>
+            <li ng-if="form.$submitted && form.password.$error.required" class="error">{{'security.password.required'|translate}}</li>
         </ul>
     </div>
     <input type="submit" value="{{ 'security.signin' | translate }}" />

@@ -17,7 +17,6 @@
                                 scope.$apply();
                                 
                                 event.target.focus();
-                                BootstrapDialog.alert('This form is invlaid, please fix errors and try again');
                             }
                         });
                     }
