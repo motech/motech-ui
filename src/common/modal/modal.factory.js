@@ -4,8 +4,8 @@
     angular.module('motech-common')
         .factory('ModalFactory', factory);
 
-    factory.$inject = ['BootstrapDialogManager', '$translate'];
-    function factory (BootstrapDialogManager, $translate) {
+    factory.$inject = ['BootstrapDialog', 'BootstrapDialogManager', '$translate'];
+    function factory (BootstrapDialog, BootstrapDialogManager, $translate) {
 
         var modalFactory = {},
 

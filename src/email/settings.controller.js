@@ -4,8 +4,8 @@
     angular.module('motech-email')
          .controller('EmailSettingsController', emailSettingsCtrl);
 
-    emailSettingsCtrl.$inject = ['$q', 'i18nService','$scope', 'motechAlert', 'emailSettings'];
-    function emailSettingsCtrl ($q, i18nService, $scope, motechAlert, emailSettings) {
+    emailSettingsCtrl.$inject = ['$q', 'i18nService','$scope', 'ModalFactory', 'emailSettings'];
+    function emailSettingsCtrl ($q, i18nService, $scope, ModalFactory, emailSettings) {
         $scope.settings = emailSettings;
 
         $scope.timeMultipliers = {
@@ -19,13 +19,13 @@
         $scope.submit = function () {
             $scope.settings.$save()
             .then( function () {
-                motechAlert(
+                ModalFactory.showAlert(
                     i18nService.getMessage('email.header.success'),
                     i18nService.getMessage('email.settings.saved')
                 );
             })
             .catch( function (response) {
-                console.log("Error with stack trace....");
+                ModalFactory.showErrorWithStackTrace('email.header.error', false, response);
             });
         };
 

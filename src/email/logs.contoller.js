@@ -4,12 +4,10 @@
     angular.module('motech-email')
         .controller('EmailLogsController', emailLogsController);
 
-    emailLogsController.$inject = ['$compile', '$scope', 'ServerService', 'PagiableServiceFactory', 'BootstrapDialog'];
-    function emailLogsController ($compile, $scope, ServerService, PagiableServiceFactory, BootstrapDialog) {
-        var emailUrl = ServerService.formatURL('module/email/emails');
-        var emailLogsService = PagiableServiceFactory(emailUrl);
-
-        emailLogsService.get().then(updateRows);
+    emailLogsController.$inject = ['$compile', '$scope', 'EmailLogsService', 'ModalWindow'];
+    function emailLogsController ($compile, $scope, EmailLogsService, ModalWindow) {
+        
+        EmailLogsService.get().then(updateRows);
 
         $scope.search = {};
         $scope.$watch('search', updateSearch, true);
@@ -20,14 +18,14 @@
         $scope.hideExportModal = hideExportModal;
 
         function changePage(){
-            emailLogsService.getPage($scope.currentPage)
+            EmailLogsService.getPage($scope.currentPage)
             .then(updateRows);
         }
 
         function updateRows(rows){
             $scope.logs = rows;
-            $scope.totalItems = emailLogsService.totalRecords;
-            $scope.currentPage = emailLogsService.currentPage;
+            $scope.totalItems = EmailLogsService.totalRecords;
+            $scope.currentPage = EmailLogsService.currentPage;
         }
 
         var searchUpdateTimeout;
@@ -37,15 +35,14 @@
                 searchUpdateTimeout=null;
             }
             searchUpdateTimeout = setTimeout(function() {
-                emailLogsService.get(searchData)
+                EmailLogsService.get(searchData)
                 .then(updateRows);
             }, 1000);
         }
 
-        var exporModal = new BootstrapDialog({
-            title: 'Export (Translate ME)',
-            message: $compile('<email-export close="hideExportModal()"></email-export>')($scope)
-        });
+        var exporModal = ModalWindow(
+            $compile('<email-export close="hideExportModal()"></email-export>')($scope),
+            'Export (Translate ME)');
         function showExportModal(){
             exporModal.open();
         }
