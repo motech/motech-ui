@@ -40,7 +40,7 @@
             restrict: 'EA',
             replace: true,
             scope:{},
-            templateUrl: '/server/status.html',
+            templateUrl: '/server/status/status.html',
             link: function (scope, element, attrs) {
                 scope.bundles = TRACKED_BUNDLES;
                 scope.$watchCollection(function(){

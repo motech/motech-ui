@@ -14,11 +14,11 @@
             },
             views: {
                 'appArea@': {
-                    templateUrl: '/admin/bundlesList.html',
+                    templateUrl: '/admin/bundles/bundles-list.html',
                     controller: 'BundlesListController'
                 },
                 'secondaryNav@': {
-                    templateUrl: '/admin/bundles.nav.html'
+                    templateUrl: '/admin/bundles/nav.html'
                 }
             }
         });

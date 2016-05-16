@@ -5,13 +5,13 @@
     angular.module('motech-common')
         .directive('inputMap', mapInputDirective);
 
-    mapInputDirective.$inject = ['motechAlert'];
-    function mapInputDirective (motechAlert) {
+    mapInputDirective.$inject = ['MotechAlert'];
+    function mapInputDirective (MotechAlert) {
         return {
             element: 'EA',
             replace: true,
             require: '?ngModel',
-            templateUrl: '/common/inputMap.html',
+            templateUrl: '/common/input-map/input-map.html',
             link: function (scope, element, attrs, ngModel) {
                 if(attrs.title){
                     scope.title = attrs.title;
@@ -34,7 +34,7 @@
                         scope.properties[property.name] = property.value;
                         scope.property = {};
                     } else {
-                        motechAlert('email.header.error', 'email.settings.alreadyExist');
+                        MotechAlert('email.header.error', 'email.settings.alreadyExist');
                     }
                 };
                 scope.remove = function (name) {

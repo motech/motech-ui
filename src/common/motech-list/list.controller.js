@@ -2,10 +2,10 @@
     'use strict';
 
     angular.module('motech-common')
-        .controller('MotechDataGridController', dataGridController);
+        .controller('MotechListController', controller);
 
-    dataGridController.$inject = ['$scope'];
-    function dataGridController($scope){
+    controller.$inject = ['$scope'];
+    function controller($scope){
         var columns = [];
 
         $scope.columns = columns;

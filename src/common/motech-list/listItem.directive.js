@@ -2,7 +2,7 @@
     'use strict';
 
     angular.module('motech-common')
-        .directive('motechDataGridItem', function(){
+        .directive('motechListItem', function(){
             return {
                 restrict: 'EA',
                 replace: true,

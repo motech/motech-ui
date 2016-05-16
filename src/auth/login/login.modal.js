@@ -4,14 +4,12 @@
     angular.module('motech-auth')
         .service('LoginModal', LoginModal);
 
-    LoginModal.$inject = ['$q', '$compile', '$rootScope', 'BootstrapDialog'];
-    function LoginModal ($q, $compile, $rootScope, BootstrapDialog) {
-        var modal = new BootstrapDialog({
-            title: 'Login',
-            message: $compile('<motech-login />')($rootScope),
-            buttons: [],
-            closable: false            
-        });
+    LoginModal.$inject = ['$q', '$compile', '$rootScope', 'i18nService', 'ModalWindow'];
+    function LoginModal ($q, $compile, $rootScope, i18nService, ModalWindow) {
+        var modal = ModalWindow(
+                $compile('<motech-login />')($rootScope),
+                i18nService.getMessage('security.signInUser'),
+                false);
         return {
             open: function () {
                 var deferred = $q.defer();

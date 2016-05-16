@@ -10,11 +10,11 @@
     <header role="banner" class="app-header">
         <a href="/" class="logo">MOTECH</a>
         <div class="navbar">
-            <nav class="collapsible" ng-include="'/common/nav-main.html'"></nav>
+            <nav class="collapsible" ng-include="'/app/nav-main.html'"></nav>
             <nav motech-auth motech-i18n class="motech-auth-menu" >
                 <a class="icon-user">{{userName}}</a>
                 <button ng-click="changeLanguage()" class="icon-language">{{language.name}}</button>
-                <button class="icon-sign-out icon-only" ng-click="logout()">Logout</button>
+                <button class="icon-sign-out icon-only" ng-click="logout()">{{'server.signOut' | translate}}</button>
             </nav>
         </div>
     </header>
@@ -22,11 +22,11 @@
         <header>
             <div ncy-breadcrumb></div>
             <div class="secondary-nav navbar">
-                <button class="navigation icon app-nav-button">Show navigation</button>
+                <button class="navigation icon app-nav-button">{{'navigation.open'|translate}}</button>
                 <div ui-view="secondaryNav"></div>
             </div>
         </header>
-        <nav app-nav ng-include="'/common/nav-secondary.html'"></nav>
+        <nav app-nav ng-include="'/app/nav-secondary.html'"></nav>
         <article ui-view="appArea"></article>
     </section>
     <footer ng-include="'/app/footer.html'"></footer>

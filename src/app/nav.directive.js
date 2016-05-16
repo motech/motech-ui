@@ -9,7 +9,6 @@
         return {
             restrict: 'A',
             link: function(scope, element, attrs){
-                console.log("app navvv");
                 jQuery('.app-nav-button').on('click', function(event){
                     event.preventDefault();
                     if(jQuery('.app').hasClass("has-nav")){

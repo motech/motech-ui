@@ -19,7 +19,7 @@
                         return $message;
                     },
                     data: {
-                        'pageToLoad': '/common/loadingModal.html'
+                        'pageToLoad': '/common/modal-loading/loadingModal.html'
                     },
                     closable: false,
                     draggable: false

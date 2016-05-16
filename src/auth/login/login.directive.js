@@ -9,7 +9,7 @@
             restrict: 'EA',
             replace: true,
             scope:{},
-            templateUrl: '/auth/login.html',
+            templateUrl: '/auth/login/login.html',
             controller: LoginFormController,
             controllerAs: 'LoginCtrl',
             link: LoginFormDirective

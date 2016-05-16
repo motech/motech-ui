@@ -2,23 +2,23 @@
     'use strict';
 
     angular.module('motech-common')
-        .directive('motechDataGrid', dataGrid);
+        .directive('motechList', list);
 
-    dataGrid.$inject = [];
-    function dataGrid(){
+    list.$inject = [];
+    function list(){
         return {
             restrict: 'EA',
             replace: true,
             transclude: true,
-            templateUrl: '/common/dataGrid.html',
+            templateUrl: '/common/motech-list/list.html',
             scope: {
                 loading: '=',
                 sortIndex: '=',
                 sortDesc: '=',
                 changeSort: '&'
             },
-            controller: 'MotechDataGridController',
-            controllerAs: 'DataGridCtrl',
+            controller: 'MotechListController',
+            controllerAs: 'MotechListCtrl',
             link: dataGridDirective
         };
     }

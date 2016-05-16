@@ -4,9 +4,10 @@
     angular.module('motech-email')
         .service('EmailLogsService', logsService);
 
-    logsService.$inject = ['$resource', 'ServerService'];
-    function logsService ($resource, ServerService) {
-        return $resource('/module/email/emails');
+    logsService.$inject = ['ServerService', 'PagiableServiceFactory'];
+    function logsService (ServerService, PagiableServiceFactory) {
+        var emailUrl = ServerService.formatURL('module/email/emails');
+        return PagiableServiceFactory(emailUrl);
     }
 
 })();

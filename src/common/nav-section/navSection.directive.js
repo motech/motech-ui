@@ -10,7 +10,7 @@
             restrict: 'EA',
             replace: true,
             transclude: true,
-            templateUrl: '/common/navSection.html',
+            templateUrl: '/common/nav-section/navSection.html',
             scope:{
                 activeClass: '@',
                 name: '@'

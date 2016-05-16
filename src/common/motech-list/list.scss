@@ -1,6 +1,6 @@
 $data-grid-border-color: $brand-accent;
 
-.data-grid{
+.motech-list{
     border: $data-grid-border-color 1px solid;
     border-bottom: 0px;
     margin-bottom: $space-size;
@@ -37,21 +37,21 @@ $data-grid-border-color: $brand-accent;
     }
 }
 
-.data-grid nav ul,
-.data-grid ul.rows li{
+.motech-list nav ul,
+.motech-list ul.rows li{
     @extend .data-row;
     li, span{
         @extend .data-cell
     }
 }
 
-.data-grid>nav ul,
-.data-grid>ul{
+.motech-list>nav ul,
+.motech-list>ul{
     @extend .list-unstyled;
     margin: 0em;
 }
 
-.data-grid>nav{
+.motech-list>nav{
     @include background(linear-gradient(to bottom, $brand-accent 0%, darken($brand-accent, 10) 100%) center no-repeat);
     text-align:center;
     font-weight: bold;
