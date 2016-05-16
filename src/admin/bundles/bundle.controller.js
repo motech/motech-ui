@@ -35,7 +35,7 @@
 
         function startBundle(){
             LoadingModal.open();
-            bundle.$start(callbackSuccss);
+            bundle.$start(callbackSuccess);
         }
         function stopBundleModal(){
             MotechConfirm(i18nService.getMessage('admin.bundles.stateChangeWarning')) //'admin.bundles.stop' (stop button text)

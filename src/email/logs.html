@@ -4,12 +4,16 @@
 </div>
 <motech-list service="emailLogsService" paginated>
     <motech-list-item ng-repeat="log in logs">
-        <span motech-list-column="id" title="" fitted >{{log.id}}</span> 
-        <span motech-list-column="status" title="Status" fitted sortable>{{log.deliveryStatus}}</span>
-        <span motech-list-column="toAddress" title="To" sortable>{{log.toAddress}}</span>
-        <span motech-list-column="fromAddress" title="From" sortable>{{log.fromAddress}}</span>
-        <span motech-list-column="subject" title="Subject" sortable>{{log.subject}}</span>
-        <span motech-list-column="deliveryTime" title="Delivery Time" sortable>{{log.deliveryTime}}</span>
+        <motech-list-column column-title="ID" >{{log.id}}</motech-list-column> 
+        <motech-list-column column-title="Status" >{{log.deliveryStatus}}</motech-list-column>
+        <motech-list-column column-title="To" sortable>{{log.toAddress}}</motech-list-column>
+        <motech-list-column column-title="From" sortable>{{log.fromAddress}}</motech-list-column>
+        <motech-list-column column-title="Subject" sortable>{{log.subject}}</motech-list-column>
+        <motech-list-column column-title="Delivery Time" sortable>{{log.deliveryTime}}</motech-list-column>
+        <motech-list-collapsible>
+            <div ng-if="log.message" ng-bind-html="log.message"></div>
+            <p class="alert alert-warning" ng-if="!log.message">No message</p>
+        </motech-list-collapsible>
     </motech-list-item>
 </motech-list>
 <uib-pagination total-items="totalItems" ng-model="currentPage" ng-change="pageChanged()"></uib-pagination>

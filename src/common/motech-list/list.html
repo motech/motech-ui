@@ -1,13 +1,13 @@
 <div class="motech-list" ng-class="{'is-loading': loading}">
     <nav class="header">
-        <ul>
-            <li ng-repeat="column in columns" id="data-grid-column-{{column.id}}" class="{{column.cssClasses}}">
+        <ul class="motech-list-column-headers" ng-class="{'with-collapsible':MotechListCtrl.hasCollapsibleColumn}">
+            <li ng-repeat="column in MotechListCtrl.columns" motech-list-column-id="{{column.id}}" class="{{column.cssClasses}}">
                 <a ng-if="column.sortable" ng-click="sortBy(column.id)" class="icon-sort">Sort by {{column.name}}</a>
                 <a ng-if="column.sortable && isSortedBy(column) && isSortedAsc()" ng-click="sortByDesc(column.id)" class="icon-sort">Reverse sort by {{column.name}}</a>
                 <a ng-if="column.sortable && isSortedBy(column) && isSortedDesc()" ng-click="sortByAsc(column.id)" class="icon-sort">Reverse sort by {{column.name}}</a>
-                <span id="data-grid-column-{{column.id}}-title" >{{column.name}}</span>
+                <span id="data-list-{{column.id}}-title" >{{column.name}}</span>
             </li>
         </ul>
     </nav>
-    <ul ng-transclude class="rows"></ul>
+    <ul ng-transclude class="motech-list-rows"></ul>
 </div>
