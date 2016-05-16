@@ -2,16 +2,16 @@
     <button class="icon-export" ng-click="showExportModal()">{{ 'email.logging.export' | translate }}</button>
     <button class="icon-filter motech-sidebar-button">{{ 'email.logging.filters' | translate }}</button>
 </div>
-<motech-data-grid service="emailLogsService" paginated>
-    <motech-data-grid-item ng-repeat="log in logs">
-        <span motech-data-grid-column="id" title="" fitted >{{log.id}}</span> 
-        <span motech-data-grid-column="status" title="Status" fitted sortable>{{log.deliveryStatus}}</span>
-        <span motech-data-grid-column="toAddress" title="To" sortable>{{log.toAddress}}</span>
-        <span motech-data-grid-column="fromAddress" title="From" sortable>{{log.fromAddress}}</span>
-        <span motech-data-grid-column="subject" title="Subject" sortable>{{log.subject}}</span>
-        <span motech-data-grid-column="deliveryTime" title="Delivery Time" sortable>{{log.deliveryTime}}</span>
-    </motech-data-grid-item>
-</motech-data-grid>
+<motech-list service="emailLogsService" paginated>
+    <motech-list-item ng-repeat="log in logs">
+        <span motech-list-column="id" title="" fitted >{{log.id}}</span> 
+        <span motech-list-column="status" title="Status" fitted sortable>{{log.deliveryStatus}}</span>
+        <span motech-list-column="toAddress" title="To" sortable>{{log.toAddress}}</span>
+        <span motech-list-column="fromAddress" title="From" sortable>{{log.fromAddress}}</span>
+        <span motech-list-column="subject" title="Subject" sortable>{{log.subject}}</span>
+        <span motech-list-column="deliveryTime" title="Delivery Time" sortable>{{log.deliveryTime}}</span>
+    </motech-list-item>
+</motech-list>
 <uib-pagination total-items="totalItems" ng-model="currentPage" ng-change="pageChanged()"></uib-pagination>
 <motech-sidebar title="{{ 'email.logging.filters' | translate }}">
     <form>
