@@ -35,7 +35,7 @@
         return {
             restrict: 'EA',
             replace: true,
-            templateUrl: '/server/i18n.form.html',
+            templateUrl: '/i18n/i18n.form.html',
             controller: controller,
             controllerAs: 'i18nFormCtrl'
         };

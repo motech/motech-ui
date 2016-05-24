@@ -19,10 +19,10 @@
 
         function updateInformation(){
             $q.all({
-                time: $http.post(ServerService.formatURL('module/server/gettime'), {}),
-                uptime: $http.post(ServerService.formatURL('module/server/getUptime'), {}),
-                node: $http.post(ServerService.formatURL('module/server/getNodeName'), {}),
-                eventChannel: $http.post(ServerService.formatURL('module/server/isInboundChannelActive'), {})
+                time: $http.get(ServerService.formatURL('module/server/gettime'), {}),
+                uptime: $http.get(ServerService.formatURL('module/server/getUptime'), {}),
+                node: $http.get(ServerService.formatURL('module/server/getNodeName'), {}),
+                eventChannel: $http.get(ServerService.formatURL('module/server/isInboundChannelActive'), {})
             }).then(function(responses){
                 var information = {};
 
