@@ -1,11 +1,11 @@
 <fieldset class="form-group input-map">
     <legend>{{title}}</legend>
     <ul class="input-map-pairs">
-        <li class="form-group" ng-repeat="(key, value) in settings.additionalProperties">
+        <li class="form-group" ng-repeat="(key, value) in InputMapCtrl.properties">
             <label>{{key}}</label>
-            <input ng-model="settings.additionalProperties[key]" type="text"/>
+            <input ng-model="InputMapCtrl.properties[key]" type="text"/>
             <nav class="form-actions">
-                <button class="delete icon" ng-click="remove(key)">{{ 'Remove' | translate }} {{key}}</button>
+                <button class="delete icon" ng-click="InputMapCtrl.remove(key)">{{ 'Remove' | translate }} {{key}}</button>
             </nav>
         </li>
     </ul>
@@ -18,6 +18,6 @@
             <label for="settingsUsername">{{'email.settings.value' | translate}}</label>
             <input ng-model="property.value" type="text" id="settingsPropertyValue" />
         </div>
-        <button ng-disabled="emptyFields(property)" ng-click="add(property)" class="add icon-only">{{ 'email.settings.add' | translate }}</button>
+        <button ng-disabled="emptyFields(property)" ng-click="InputMapCtrl.add(property.name, property.value)" class="add icon-only">{{ 'email.settings.add' | translate }}</button>
     </div>
 </fieldset>
