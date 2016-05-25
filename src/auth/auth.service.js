@@ -50,7 +50,7 @@
                 return $q.when(service.user);
             }
             var deferred = $q.defer();
-            $http.post(ServerService.formatURL('/module/server/getUser'),{})
+            $http.get(ServerService.formatURL('/module/server/getUser'),{})
             .then(function(response){
                 service.user = response.data.userName;
                 deferred.resolve(service.user);
