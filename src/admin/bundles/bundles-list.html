@@ -1,22 +1,23 @@
 <motech-list>
     <motech-list-item ng-repeat="bundle in bundles" >
-        <div ng-controller="BundleController as BundleCtrl">
-        <span motech-list-column="id" title="ID" sortable fitted>{{bundle.bundleId}}</span>
-        <span motech-list-column="icon" title="Icon" class="bundle-icon" fitted><img ng-src="{{imgSrc}}" /></span>
-        <span motech-list-column="name" title="Name" sortable>
-            <a ng-click="BundleCtrl.showDetails()">{{bundle.name}}</a>
-        </span>
-        <span motech-list-column="version" title="Version" sortable fitted>{{bundle.version.major}}.{{bundle.version.minor}}.{{bundle.version.micro}}-{{bundle.version.qualifier}}</span>
-        <span motech-list-column="state" title="State" sortable fitted>{{bundle.state}}</span>
-        <span motech-list-column="actions" title="Actions" class="bundle-actions">
-            <div class="button-group">
+        <div column-title="Name" ng-controller="BundleController as BundleCtrl" class="bundle-main">
+            <a ng-click="BundleCtrl.showDetails()">
+                <img class="bundle-icon" alt="" ng-src="{{imgSrc}}" />
+                <h4 >{{bundle.name}}</h4>
+            </a>
+            <a class="icon-documentation icon-only" href="{{bundle.docURL}}">Documentation</a>
+        </div>
+        <motech-list-column column-title="ID" sortable>{{bundle.bundleId}}</motech-list-column>
+        <motech-list-column column-title="Version" sortable>{{bundle.version.major}}.{{bundle.version.minor}}.{{bundle.version.micro}}-{{bundle.version.qualifier}}</motech-list-column>
+        <motech-list-column column-title="State" sortable>{{bundle.state}}</motech-list-column>
+        <nav column-title="Actions">
+            <div ng-controller="BundleController as BundleCtrl" class="button-group">
                 <button class="icon start" ng-click="BundleCtrl.start()" ng-if="!active">{{msg('admin.bundles.start')}}</button>
                 <button class="icon stop" ng-click="BundleCtrl.stop()" ng-if="active">{{msg('admin.bundles.stop')}}</button>
                 <button class="icon restart" ng-click="BundleCtrl.restart()" ng-if="active">{{msg('admin.bundles.restart')}}</button>
                 <button class="icon settings" ng-click="BundleCtrl.editSettings()" ng-if="active">{{msg('admin.settings')}}</button>
                 <button class="icon delete" ng-click="BundleCtrl.uninstall()">{{msg('admin.bundles.uninstall')}}</button>
             </div>
-        </span>
-        </div>
+        </nav>
     </motech-list-item>
 </motech-list>

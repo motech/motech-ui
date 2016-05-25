@@ -6,13 +6,13 @@
 
     controller.$inject = ['$scope'];
     function controller($scope){
-        var columns = [];
-
-        $scope.columns = columns;
+        var ctrl = this;
+        ctrl.columns = [];
+        ctrl.hasCollapsibleColumn = false;
 
         function findColumnById(id){
             var found = false;
-            columns.forEach(function(column){
+            ctrl.columns.forEach(function(column){
                 if(column.id === id){
                     found = true;
                 }
@@ -20,7 +20,12 @@
             return found;
         }
 
-        this.addColumn = function (id, title, sortable, cssClasses) {
+        
+        this.addCollapsibleColumn = function(){
+            ctrl.hasCollapsibleColumn = true;
+        };
+
+        this.addColumn = function (id, title, sortable) {
             if(sortable){
                 sortable = true;
             } else {
@@ -28,11 +33,10 @@
             }
 
             if(!findColumnById(id)){
-                columns.push({
+                ctrl.columns.push({
                     id: id,
                     name: title,
-                    sortable: sortable,
-                    cssClasses: cssClasses
+                    sortable: sortable
                 });
             }
             broadcastReady();
@@ -44,7 +48,7 @@
                 clearTimeout(readyTimeout);
             }
             readyTimeout = setTimeout(function(){
-                $scope.$broadcast('datagrid.ready');
+                $scope.$broadcast('motech-list.ready');
             }, 10);
         }
 

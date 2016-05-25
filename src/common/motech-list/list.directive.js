@@ -24,21 +24,28 @@
     }
 
     function dataGridDirective(scope, element, attrs, ctrl){
-        jQuery(window).resize(resize);
-        scope.$on('datagrid.ready', resize);
+        jQuery(window).resize(resizeGrid);
+        scope.$on('motech-list.ready', resizeGrid);
+        function resizeGrid(){
+            element.width(element.parent().width());
+            ctrl.columns.forEach(setColumnWidth);
+        }
 
-        function resize(){
-            scope.columns.forEach(function(column){
-                var widest = 0;
-                jQuery('[motech-data-grid-column='+column.id+'], #data-grid-column-'+column.id, element).each(function(){
-                    if($(this).width() > widest){
-                        widest = $(this).width();
-                    }
-                });
-                jQuery('[motech-data-grid-column='+column.id+'], #data-grid-column-'+column.id, element).width(widest);
-
+        function setColumnWidth(col){
+            var widest = 0;
+            if(jQuery('.motech-list-rows [motech-list-column-id="'+col.id+'"]', element).parent().hasClass('list-item-main')){
+                return false;
+            }
+            jQuery('.motech-list-rows [motech-list-column-id="'+col.id+'"]', element).each(function(){
+                var cell = jQuery(this);
+                if(cell.width() > widest){
+                    widest = cell.width() + 1;
+                }
             });
+            jQuery('[motech-list-column-id="'+col.id+'"]', element)
+            .width(widest)
+            .css('display', 'inline-block');
         }
     }
-
+    
 })();

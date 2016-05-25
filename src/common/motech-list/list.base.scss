@@ -1,0 +1,55 @@
+
+.motech-list {
+    display: block;
+    width: 100%;
+    .header>ul,
+    >ul{
+        @extend .list-unstyled;
+        margin: 0em;
+    }
+    .motech-list-column-headers>li{
+        position: relative;
+        line-height: 1.25em;
+        >a{
+            @extend .icon-only;
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            width: 100%;
+            height: 100%;
+            &:before{
+                text-align:right;
+                padding-right:0.5em;
+            }
+        }
+    }
+    .list-item-collapsible-toggle{
+        @extend .icon-arrow-right;
+        @extend .icon-only;
+        height: auto;
+        &.is-active{
+            @extend .icon-arrow-down;
+            background-color: $list-color;
+        }
+    }
+
+    .motech-list-rows>li>.motech-list-collapsible{
+        display: none;
+        position: relative;
+        padding: 2em;
+        padding-left: 45px;
+        &.is-active{
+            display: block;
+        }
+        &:before{
+            content:"";
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            width: 31px;
+            height: 100%;
+            background-color: $list-color;
+        }
+    }
+}
+

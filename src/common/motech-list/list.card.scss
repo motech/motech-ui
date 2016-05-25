@@ -1,0 +1,41 @@
+@media(max-width: $screen-sm){
+	.motech-list-column-headers{
+		display: none;
+	}
+	.motech-list-rows>li{
+		margin: 1em 0em;
+		border: $list-color 1px solid;
+		display: flex;
+		flex-direction: column;
+		flex-wrap: nowrap;
+		>*{
+			flex: 0 0 auto;
+			padding: 0.5em 1em;
+		}
+		dl{
+			order: 2;
+			margin: 0px;
+			dt{
+				float:left;
+				margin-right: 0.5em;
+			}
+		}
+		.list-item-collapsible-toggle{
+			order: 3;
+			width: 100%;
+			background-color: $list-color;
+			&:before{
+				text-align: left;
+				left: 1em;
+			}
+		}
+		.motech-list-collapsible{
+			order: 4;
+		}
+		nav{
+			order: 10;
+			margin: 0px;
+			background-color: $list-color;
+		}
+	}
+}
