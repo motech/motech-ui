@@ -1,18 +1,27 @@
 .app>aside{
+    padding-left: $space-size;
     header{
+        position: absolute;
+        top: 0px - 30px - $space-size;
+        height: 30px;
         font-size:1em;
         background-color:$white;
-        padding: 0.5em 1em;
+        padding: $space-size/2 $space-size;
         padding-right: 3em;
         width:auto;
         border: $gray-light 1px solid;
         border-bottom: transparent;
+        h3{
+            font-size: 1em;
+            padding: 0px;
+            margin: 0px;
+        }
         .close{
             position: absolute;
-            top: 0.5em;
-            right: 0.5em;
-            width: 1em;
-            height: 1em;
+            top: $space-size/2;
+            right: $space-size/2;
+            width: $space-size;
+            height: $space-size;
             background: transparent;
             &:before{
                 top: 0px;

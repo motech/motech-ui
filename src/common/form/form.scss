@@ -63,6 +63,7 @@ fieldset {
     }
 }
 .form-group {
+    @extend .clearfix;
     input {
         @extend .form-control;
     }
@@ -113,6 +114,9 @@ form {
             height: auto !important;
             margin: 0px !important;
             margin-right: 0.5em !important;
+            border-width: 0px;
+            box-shadow: 0px 0px 0px $white;
+            padding: 0px;
         }
     }
     .form-group{

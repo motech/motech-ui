@@ -5,7 +5,6 @@ var bourbon = require('node-bourbon');
 var lib = require('bower-files')();
 var concat = require('gulp-concat');
 var bless = require('gulp-bless');
-var postcss = require('gulp-postcss');
 var sourcemaps = require('gulp-sourcemaps');
 var path = require('path');
 var addsrc = require('gulp-add-src');
@@ -37,8 +36,8 @@ gulp.task('motech.css', function () {
         }))
         .pipe(addsrc(bowerFiles))
         .pipe(sourcemaps.write())
-        .pipe(postcss([ require('postcss-flexibility') ]))
         .pipe(concat('motech.css'))
+        .pipe(bless())
         .pipe(gulp.dest(
             path.join(config.app.dest)
             ));

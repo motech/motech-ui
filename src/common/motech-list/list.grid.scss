@@ -4,14 +4,15 @@
         border: $list-color 1px solid;
         border-bottom: 0px;
         margin-bottom: $space-size;
-        .motech-list-rows>li{
+        .motech-list-rows>li,
+        .motech-list-column-headers {
             border-bottom: $list-color 1px solid;
         }
         .motech-list-rows>li>*,
         .motech-list-rows>li>dl>dd,
         .motech-list-column-headers>*{
-            border-left: $list-color 1px solid;
             padding: $space-size/2;
+            border-left: $list-color 1px solid;
             &.list-item-main,
             &.motech-list-collapsible,
             &.list-item-collapsible-toggle {
@@ -26,10 +27,13 @@
             padding: 0px;
         }
         .motech-list-column-headers{
+            background-color: $brand-accent;
             @include background(linear-gradient(to bottom, $brand-accent 0%, $list-color 100%) center no-repeat);
-            text-align:center;
             font-weight: bold;
             color: $brand-primary;
+            >li{
+                text-align: center;
+            }
         }
         .motech-list-rows>li:nth-child(even){
             background-color:$gray-lighter;
@@ -38,76 +42,40 @@
 
     .motech-list .motech-list-rows>li,
     .motech-list-column-headers{
-        display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
-        align-items: stretch;
+        display: block;
         >*{
-            display: block;
-            flex: 1 1 auto;
+            display: inline-block;
             white-space: nowrap;
         }
         >dl{
-            display: flex;
-            flex-direction: row;
-            flex-wrap: nowrap;
-            margin: 0px;
+            margin-bottom: 0px;
             >dd{
-                flex: 1 1 auto;
+                display: inline-block;
             }
             >dt{
                 display: none;
             }
         }
         .motech-list-collapsible{
+            display: none;
             width: 100%;
-            flex-basis: 100%;
-            flex-grow: 0;
-            flex-shrink: 1;
         }
     }
-
-    .motech-list-rows>li{
-        .list-item-collapsible-toggle{
-            order: -1;
+    .motech-list.has-collapsible-content{
+        .header > .motech-list-column-headers{
+            padding-left: 30px;
         }
-        dl{
-            order: 1;
-        }
-        nav{
-            order: 2;
-        }
-        .motech-list-collapsible{
-            order: 10;
-        }
-    }
-
-    .motech-list.has-main-content{
-        .motech-list-rows>li,
-        .motech-list-column-headers {
-            >*,
-            dl>dd {
-                flex: 0 0 auto;
+        .motech-list-rows>li{
+            position: relative;
+            padding-left: 30px;
+            >a.list-item-collapsible-toggle{
+                width: 30px;
+                height: 100%;
+                position: absolute;
+                top: 0px;
+                left: 0px;
             }
-            >*:first-child{
-                flex: 1 1 auto;
-            }
+
         }
-    }
-
-    .motech-list>.motech-list-rows{
-        display: block;
-        width: 100%;
-    }
-
-    .motech-list .header > .motech-list-column-headers.with-collapsible{
-        padding-left: 30px;
-    }
-    .motech-list .motech-list-rows>li>a.list-item-collapsible-toggle{
-        width: 30px;
-        flex: 0 0 auto;
-        max-width: 30px;
-        min-width: 30px;
-        overflow: hidden;
     }
 }

@@ -11,25 +11,20 @@
             link: function(scope, element, attrs){
                 jQuery('.app-nav-button').on('click', function(event){
                     event.preventDefault();
-                    if(jQuery('.app').hasClass("has-nav")){
+                    if(jQuery('.app').hasClass("has-open-nav")){
                         hide();
                     } else {
                         show();
                     }
                 });
-
-                jQuery('body').on('click', '.app-nav-backdrop', function(event){
-                    event.preventDefault();
-                    hide();
-                });
                 $rootScope.$on('$stateChangeStart', function(){
                     hide();
                 });
                 function show(){
-                    jQuery('.app').addClass('has-nav');
+                    jQuery('.app').addClass('has-open-nav');
                 }
                 function hide(){
-                    jQuery('.app').removeClass('has-nav');
+                    jQuery('.app').removeClass('has-open-nav');
                 }
             }
         };

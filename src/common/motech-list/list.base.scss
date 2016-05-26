@@ -37,18 +37,8 @@
         display: none;
         position: relative;
         padding: 2em;
-        padding-left: 45px;
         &.is-active{
             display: block;
-        }
-        &:before{
-            content:"";
-            position: absolute;
-            top: 0px;
-            left: 0px;
-            width: 31px;
-            height: 100%;
-            background-color: $list-color;
         }
     }
 }

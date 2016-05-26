@@ -1,4 +1,7 @@
 <div motech-server-info class="container">
+    <nav>
+        <a target="_blank" class="icon-documentation" href="http://docs.motechproject.org">{{'server.docsUrl'|translate}}</a>
+    </nav>
     <dl ng-if="serverRunning">
         <dt>{{'server.localTime'|translate}}</dt>
         <dd>{{information.currentTime}}</dd>
@@ -12,7 +15,4 @@
         <dd ng-if="information.eventChannel">OK</dd>
         <dd ng-if="!information.eventChannel">Not OK</dd>
     </dl>
-    <nav>
-        <a target="_blank" class="icon-documentation" href="http://docs.motechproject.org">{{'server.docsUrl'|translate}}</a>
-    </nav>
 </div>

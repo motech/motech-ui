@@ -2,7 +2,7 @@
 .app>nav{
     #{$navItemSelectors} {
         float:none;
-        padding: 1em;
+        margin: 1em;
     }
 
     a.is-active,
@@ -18,14 +18,14 @@
         .title{
             font-size: $font-size-small;
             font-weight: bold;
-            padding: 0.5em 1em;
+            margin: 0.5em 1em;
         }
     }
 }
 
 @media(min-width: $screen-md){
     .app .breadcrumb{
-        padding-left: 1.5em;
+        margin-left: 1.5em;
     }    
 }
 
