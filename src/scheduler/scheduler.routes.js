@@ -14,8 +14,20 @@
             },
             views:{
                 'appArea@': {
-                    templateUrl: '/scheduler.html',
+                    templateUrl: 'scheduler/scheduler.html',
                     controller: 'SchedulerController'
+                }
+            }
+        })
+        .state('scheduler.create-or-update-job', {
+            url: "/createOrUpdateJob?action",
+            ncyBreadcrumb: {
+                label: 'ScheduleJob'
+            },
+            views: {
+                'appArea@': {
+                    templateUrl: '../scheduler/create-or-update-job.html',
+                    controller: 'CreateOrUpdateJobController'
                 }
             }
         });
