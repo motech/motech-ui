@@ -9,7 +9,10 @@
         return {
             restrict: 'EA',
             replace: true,
-            transclude: true,
+            transclude: {
+                'header': '?motechListHeader',
+                'footer': '?motechListFooter'
+            },
             templateUrl: '/common/motech-list/list.html',
             scope: {
                 loading: '=',
