@@ -1,13 +1,9 @@
 .form-inline {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    margin-top: 2em;
-    .form-group, button{
+    display: block;
+    >*{
         display: inline-block;
         position: relative;
         padding-right: $space-size;
-        flex: 1 0 auto;
         &:last-child{
             padding-right: 0px;
         }
@@ -15,10 +11,8 @@
             width: 100%;
         }
     }
-    button.icon-only{
-        flex: 0 0 auto;
-        width: 2em;
-        height: 100%;
+    .form-group{
+        padding-left: 0px; // form-wide sets this to 180px
     }
     .form-group label{
         position: absolute;

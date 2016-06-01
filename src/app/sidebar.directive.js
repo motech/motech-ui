@@ -9,16 +9,18 @@
         return {
             restrict: 'EA',
             transclude: true,
-            templateUrl: '/common/sidebar/sidebar.html',
+            templateUrl: '/app/sidebar.html',
             replace: true,
             scope: {
                 title: "@?"
             },
             link: function(scope, element, attrs) {
                 element.appendTo('.app');
+                jQuery('.app').addClass('has-sidebar');
+
                 jQuery('body').on('click','.motech-sidebar-button', function(event){
                     event.preventDefault();
-                    if(jQuery('.app').hasClass('has-sidebar')){
+                    if(jQuery('.app').hasClass('has-open-sidebar')){
                         hide();
                     } else {
                         show();
@@ -30,6 +32,7 @@
                 });
                 $rootScope.$on('$stateChangeStart', function(){
                     hide();
+                    jQuery('.app').removeClass('has-sidebar');
                     element.remove();
                 });
 
@@ -38,10 +41,10 @@
                 });
 
                 function show(){
-                    jQuery('.app').addClass('has-sidebar');
+                    jQuery('.app').addClass('has-open-sidebar');
                 }
                 function hide(){
-                    jQuery('.app').removeClass('has-sidebar');
+                    jQuery('.app').removeClass('has-open-sidebar');
                 }
             }
         };

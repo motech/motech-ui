@@ -1,13 +1,11 @@
 .input-group,
 form .input-group{
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
+    display: block;
     >*,
     >.form-group{
-        display: block;
-        flex: 1 0 auto;
+        display: inline-block;
         width: auto;
+        padding-left: 0px;
     }
     legend, label{
         display: block;
