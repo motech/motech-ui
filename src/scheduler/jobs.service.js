@@ -3,7 +3,8 @@
 
     /* Services */
 
-    angular.module('scheduler.services', ['ngResource']).factory('JobsService', function($resource) {
+    angular.module('motech-scheduler')
+        .factory('JobsService', function($resource) {
         var listener = {},
             currentJob = {},
             jobs = {},

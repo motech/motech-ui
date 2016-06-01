@@ -16,10 +16,13 @@
                 'appArea@': {
                     templateUrl: 'scheduler/scheduler.html',
                     controller: 'SchedulerController'
+                },
+                secondaryNav: {
+                    templateUrl: '/scheduler/nav.html'
                 }
             }
         })
-        .state('scheduler.create-or-update-job', {
+        .state('scheduler.createOrUpdateJob', {
             url: "/createOrUpdateJob?action",
             ncyBreadcrumb: {
                 label: 'ScheduleJob'

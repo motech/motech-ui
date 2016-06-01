@@ -5,15 +5,15 @@
     angular.module('motech-scheduler')
             .controller('CreateOrUpdateJobController', createOrUpdateJobController);
 
-    createOrUpdateJobController.$inject = ['$scope', '$stateParams', 'JobsService', 'ModalFactory', 'i18nService'];
-    function createOrUpdateJobController ($scope,  $stateParams, JobsService, ModalFactory, i18nService) {
+    createOrUpdateJobController.$inject = ['$scope', '$timeout', '$stateParams', 'JobsService', 'ModalFactory', 'LoadingModal', 'i18nService'];
+    function createOrUpdateJobController ($scope, $timeout, $stateParams, JobsService, ModalFactory, LoadingModal, i18nService) {
 
-    //controllers.controller('SchedulerCreateJobCtrl', function($scope, $timeout, $stateParams, JobsService, ModalFactory, LoadingModal) {
-
+        /*
         innerLayout({}, {
             show: false,
             button: '#scheduler-filters'
         });
+        */
 
         $scope.job = {};
         $scope.job.motechEvent = {};

@@ -5,15 +5,12 @@
     angular.module('motech-scheduler')
             .controller('SchedulerController', schedulerController);
 
-    schedulerController.$inject = ['$scope', 'JobsService', 'ModalFactory', 'i18nService'];
-    function schedulerController ($scope, JobsService, ModalFactory, i18nService) {
-
-    //var controllers = angular.module('scheduler.controllers', []);
-
-    //controllers.controller('SchedulerCtrl', function($scope, $timeout, JobsService, ModalFactory, LoadingModal) {
+    schedulerController.$inject = ['$scope', '$timeout', 'JobsService', 'ModalFactory', 'LoadingModal', 'i18nService'];
+    function schedulerController ($scope, $timeout, JobsService, ModalFactory, LoadingModal, i18nService) {
 
         $scope.jobDetails = {};
 
+        /*
         innerLayout({
             spacing_closed: 30,
             east__minSize: 200,
@@ -22,6 +19,7 @@
             show: true,
             button: '#scheduler-filters'
         });
+        */
 
         $scope.$on('jobsFetched', function() {
             $scope.jobs = JobsService.get();
