@@ -26,7 +26,7 @@ var paths = {
 }
 
 gulp.task('motech.js', function () {
-    gulpSequence('js:hint', 'js:build')();
+    gulpSequence('motech.js:hint', 'motech.js:build')();
 });
 
 // Static: Compress JS files into motech.js

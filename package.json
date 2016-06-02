@@ -42,6 +42,7 @@
     "phantomjs-prebuilt": "^2.1.7",
     "postcss": "^5.0.19",
     "postcss-flexibility": "^1.0.3",
+    "q": "^1.4.1",
     "require-dir": "~0.3.0",
     "sc5-styleguide": "^0.3.41",
     "yargs": "~3.31.0"
@@ -49,6 +50,8 @@
   "devDependencies": {
     "bower-files": "~3.11.3",
     "gulp-jshint": "^2.0.0",
+    "gulp-jsoncombine": "^1.0.3",
+    "gulp-props": "^1.2.0",
     "gulp-s3": "^0.3.0",
     "gulp-s3-deploy": "^1.0.1",
     "jshint": "^2.9.1"

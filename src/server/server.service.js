@@ -13,6 +13,7 @@
 
         this.whenReady = whenReady;
         this.isReady = isReady;
+        this.setReady = setReady;
 
         this.formatURL = formatUrl;
         this.isURL = checkServerUrl;
@@ -45,6 +46,10 @@
                 return true;
             }
             return false;
+        }
+
+        function setReady(_ready){
+            ready = _ready;
         }
 
         function whenReady() {

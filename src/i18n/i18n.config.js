@@ -7,7 +7,7 @@
 
     i18nSetLoader.$inject = ['$translateProvider'];
     function i18nSetLoader ($translateProvider){
-        $translateProvider.useSanitizeValueStrategy('sanitize');
+        $translateProvider.useSanitizeValueStrategy('sanitizeParameters');
         $translateProvider.preferredLanguage('en');
         $translateProvider.useLoader('i18nLoader');
     }
