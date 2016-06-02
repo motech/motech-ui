@@ -2,44 +2,43 @@
 @mixin form-compact() {
     .form-group {
         display: block;
-        >*, >label.checkbox, >label.radio{
+        padding-left: 0px;
+        >*{
             width: 100%;
         }
         label, legend{
             width: 100%;
             text-align: left;
-        }
-        input{
+            position: static;
             width: 100%;
         }
     }
     fieldset.form-group{
         padding-left: 0px;
-        >legend{
+        position: relative;
+        >legend, label{
+            text-align: left;
             position: static;
+            width: 100%;
         }
     }
 }
 
 @mixin form-wide() {
     .form-group {
-        @extend .clearfix;
-        display: flex;
-        flex-flow: row;
-        > *,
-        > label.checkbox, >label.radio {
-            flex: 1 0 auto;
-            width: auto;
-            text-align: left;
-        }
+        position: relative;
+        padding-left: $sidebar-width;
         >label,
         >legend {
-            flex: 0 0 auto;
+            position: absolute;
+            top: 0px;
+            left: 0px;
             width: $sidebar-width;
             text-align: right;
         }
-        input {
-            width: auto;
+        >label.checkbox,
+        >label.radio{
+            text-align: left;
         }
     }
     fieldset.form-group{

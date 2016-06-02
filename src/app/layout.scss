@@ -10,16 +10,8 @@ html{
     height: 100%;
 }
 body{
-    display:flex;
-    flex-direction: column;
     overflow-x: hidden;
     min-height: 100%;
-    >* {
-        flex: 0 0 auto;
-    }
-    >.app{
-        flex: 1 0 auto;
-    }
 }
 
 body>.app,
@@ -29,12 +21,12 @@ body>footer {
 }
 
 body.is-ready{
+    &>.app,
     &>header,
     &>footer{
         display:block;
     }
 }
-
 .app{
     @extend .container;
     margin-left: 0px;
@@ -47,16 +39,16 @@ body.is-ready{
     }
 }
 
-body.is-ready>.app{
-    display:flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    padding-top: $appHeaderHeight + 20px !important;
+.app{
+    @extend .clearfix;
+    position: relative;
+    padding-top: $appHeaderHeight + $space-size !important;
+    white-space: nowrap;
     >*{
-        flex: 0 0 auto;
+        display: inline-block;
+        vertical-align: top;
     }
     >header{
-        flex: 0 0 100%;
         position: absolute;
         top: 0px;
         left: 0px;
@@ -64,59 +56,47 @@ body.is-ready>.app{
         width: 100%;
     }
     >article{
-        flex-grow: 1;
+        width: 100%;
+    }
+    >nav,
+    >aside{
+        display: none;
+        position: relative;
+        width: $sidebar-width;
+        form{
+            @include form-compact()
+        }
+    }
+    &.has-open-sidebar{
+        right: $sidebar-width;
+        &>aside{
+            display:inline-block;
+        }
+        .motech-sidebar-button{
+            @extend button.active;
+        }
+    }
+    &.has-open-nav{
+        .app-nav-button{
+            @extend button.active;
+        }
+        &>nav{
+            display:inline-block;
+        }
+        &>header{
+            left: $sidebar-width !important;
+        }
+    }
+    &.has-open-nav.has-open-sidebar{
+        right: $sidebar-width*2;
     }
 }
-
-.app>nav,
-.app>aside{
-    display: none;
-    position: relative;
-    width: $sidebar-width;
-    form{
-        @include form-compact()
-    }
-}
-.app>nav{
-    padding-right: 1em;
-}
-.app>aside{
-    padding-left: 1em;
-}
-
-.app>aside header{
-    position: absolute;
-    top: -50px;
-    height: 30px;
-}
-
-.app.has-sidebar{
-    right: $sidebar-width;
-    &>aside{
-        display:block;
-    }
-    .motech-sidebar-button{
-        @extend button.active;
-    }
-}
-.app.has-nav{
-    .app-nav-button{
-        @extend button.active;
-    }
-    &>nav{
-        display:block;
-    }
-    &>header{
-        padding-left: $sidebar-width !important;
-    }
-}
-.app.has-nav.has-sidebar{
-    right: $sidebar-width*2;
-}
-
 @media(min-width: $screen-md) {
+    .app>article{
+        width: $container-md - $sidebar-width - $space-size*2;
+    }
     .app>nav{
-        display:block;
+        display:inline-block;
     }
     .app-nav-button{
         display:none !important;
@@ -126,8 +106,14 @@ body.is-ready>.app{
     }
 }
 @media(min-width: $screen-lg){
+    .app>article{
+        width: $container-lg - $sidebar-width;
+    }
+    .app.has-sidebar>article{
+        width: $container-lg - $sidebar-width*2 - $space-size*2;
+    }
     .app>aside{
-        display: block;
+        display: inline-block;
     }
     .app>aside header .close{
         display: none;
@@ -137,33 +123,12 @@ body.is-ready>.app{
     }
 }
 
-.app{
-    position: relative;
-    >header{
-        @extend .container;
-        position: relative;
-        height: $appHeaderHeight;
-        .navbar{
-            border-bottom: transparent;
-            float: left;
-        }
+.app>header{
+    .navbar{
+        border-bottom: transparent;
+        float: left;
     }
 }
-@media (min-width: $screen-md) {
-    .app {
-        flex-grow: 0;
-        .container{
-            width: $container-md - $sidebar-width;
-            margin: 0px;
-        }    
-    }
-}
-@media (min-width: $screen-lg) {
-    .app .container{
-        width: $container-lg - $sidebar-width*2;
-    }
-}
-
 
 // Background brand accent
 body.is-ready{
@@ -183,10 +148,8 @@ body.is-ready{
 
 
 
-body>footer,
-body.is-ready>footer {
+body>footer {
     display: none;
-    padding-top: 1em;
 }
 @media(min-width: $screen-sm){
     body{

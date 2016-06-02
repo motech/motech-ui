@@ -1,6 +1,7 @@
-<div class="motech-list" ng-class="{'is-loading': loading}">
-    <nav class="header">
-        <ul class="motech-list-column-headers" ng-class="{'with-collapsible':MotechListCtrl.hasCollapsibleColumn}">
+<section class="motech-list" ng-class="{'is-loading': loading}">
+    <header ng-transclude="header"></header>
+    <nav>
+        <ul class="motech-list-column-headers">
             <li ng-repeat="column in MotechListCtrl.columns" motech-list-column-id="{{column.id}}" class="{{column.cssClasses}}">
                 <a ng-if="column.sortable" ng-click="sortBy(column.id)" class="icon-sort">Sort by {{column.name}}</a>
                 <a ng-if="column.sortable && isSortedBy(column) && isSortedAsc()" ng-click="sortByDesc(column.id)" class="icon-sort">Reverse sort by {{column.name}}</a>
@@ -10,4 +11,5 @@
         </ul>
     </nav>
     <ul ng-transclude class="motech-list-rows"></ul>
-</div>
+    <footer ng-transclude="footer">{{footer}}</footer>
+</section>

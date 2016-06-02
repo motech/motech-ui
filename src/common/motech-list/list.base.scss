@@ -3,7 +3,7 @@
     display: block;
     width: 100%;
     .header>ul,
-    >ul{
+    >ul, .motech-list-column-headers{
         @extend .list-unstyled;
         margin: 0em;
     }
@@ -37,18 +37,16 @@
         display: none;
         position: relative;
         padding: 2em;
-        padding-left: 45px;
         &.is-active{
             display: block;
         }
-        &:before{
-            content:"";
-            position: absolute;
-            top: 0px;
-            left: 0px;
-            width: 31px;
-            height: 100%;
-            background-color: $list-color;
+    }
+    >header, >footer{
+        @extend .clearfix;
+        background-color: $brand-accent;
+        padding: $space-size;
+        .pagination{
+            @extend .button-group-primary;
         }
     }
 }

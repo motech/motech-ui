@@ -3,7 +3,7 @@ var gulp = require('gulp');
 var gulpSequence = require('gulp-sequence');
 
 gulp.task('build', function () {
-    gulpSequence('build:app', 'build:styleguide')();
+    gulpSequence('build:app')();
 });
 
 gulp.task('build:app', function () {
