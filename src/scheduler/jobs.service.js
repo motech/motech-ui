@@ -1,10 +1,11 @@
 (function () {
     'use strict';
 
-    /* Services */
-
     angular.module('motech-scheduler')
-        .factory('JobsService', function($resource) {
+        .factory('JobsService', jobsService);
+
+    jobsService.$inject = ['$resource', 'ServerService'];
+    function jobsService($resource, ServerService) {
         var listener = {},
             currentJob = {},
             jobs = {},
@@ -19,39 +20,39 @@
                 timeFrom: "",
                 timeTo: ""
             },
-            source = $resource('../scheduler/api/jobs', {}, {
+            source = $resource(ServerService.formatURL('module/scheduler/api/jobs'), {}, {
             "get": {
                 method: "GET"
             },
             "createJob": {
-                url: "../scheduler/api/jobs/new",
+                url: ServerService.formatURL('module/scheduler/api/jobs/new'),
                 method: "POST"
             },
             "updateJob": {
-                url: "../scheduler/api/jobs/edit",
+                url: ServerService.formatURL('module/scheduler/api/jobs/edit'),
                 method: "POST"
             },
             "getDetails": {
-                url: '../scheduler/api/job/details',
+                url: ServerService.formatURL('module/scheduler/api/job/details'),
                 method: "POST",
                 params: {}
             },
             "getJob": {
-                url: '../scheduler/api/job',
+                url: ServerService.formatURL('module/scheduler/api/job'),
                 method: "POST"
             },
             "pauseJob": {
-                url: '../scheduler/api/job/pause',
+                url: ServerService.formatURL('module/scheduler/api/jobs/pause'),
                 method: "POST",
                 params: {}
             },
             "resumeJob": {
-                url: '../scheduler/api/job/resume',
+                url: ServerService.formatURL('module/scheduler/api/jobs/resume'),
                 method: "POST",
                 params: {}
             },
             "deleteJob": {
-                url: '../scheduler/api/job/delete',
+                url: ServerService.formatURL('module/scheduler/api/jobs/delete'),
                 method: "POST",
                 params: {}
             }
@@ -97,5 +98,5 @@
                 });
             }
         };
-    });
+    }
 }());
