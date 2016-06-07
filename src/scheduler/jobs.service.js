@@ -42,17 +42,17 @@
                 method: "POST"
             },
             "pauseJob": {
-                url: ServerService.formatURL('module/scheduler/api/jobs/pause'),
+                url: ServerService.formatURL('module/scheduler/api/job/pause'),
                 method: "POST",
                 params: {}
             },
             "resumeJob": {
-                url: ServerService.formatURL('module/scheduler/api/jobs/resume'),
+                url: ServerService.formatURL('module/scheduler/api/job/resume'),
                 method: "POST",
                 params: {}
             },
             "deleteJob": {
-                url: ServerService.formatURL('module/scheduler/api/jobs/delete'),
+                url: ServerService.formatURL('module/scheduler/api/job/delete'),
                 method: "POST",
                 params: {}
             }

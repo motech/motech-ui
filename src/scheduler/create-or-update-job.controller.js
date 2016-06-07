@@ -126,7 +126,7 @@
             job.uiDefined = true;
 
             function success() {
-                window.location.href="#/scheduler/dashboard";
+                window.location.href="#/scheduler";
                 LoadingModal.close();
             }
 
