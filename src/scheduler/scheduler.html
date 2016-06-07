@@ -36,26 +36,26 @@
             <span ng-if="!job.uiDefined">
                 <div class="row inside">
                     <div class="row">
-                        <div class="col-md-2">{{msg('scheduler.startDate')}}</div>
+                        <div class="col-md-2">{{'scheduler.startDate' | translate}}</div>
                         <div class="col-md-10">{{job.startDate}}</div>
                     </div>
                     <div class="row">
-                        <div class="col-md-2">{{msg('scheduler.endDate')}}</div>
+                        <div class="col-md-2">{{'scheduler.endDate' | translate}}</div>
                         <div class="col-md-10">{{job.endDate}}</div>
                     </div>
                     <div class="row">
-                        <div class="col-md-2">{{msg('scheduler.jobType')}}</div>
+                        <div class="col-md-2">{{'scheduler.jobType' | translate}}</div>
                         <div class="col-md-10">{{job.jobType}}</div>
                     </div>
                     <div class="row">
-                        <div class="col-md-2">{{msg('scheduler.info')}}</div>
+                        <div class="col-md-2">{{'scheduler.info' | translate}}</div>
                         <div class="col-md-10">{{job.info}}</div>
                     </div>
                 </div>
                 <div class="row inside">
                     <a class="collapser: '#job' + $index + '-details';">
                         <i class="fa fa-fw fa-lg fa-caret-right i-name"></i>
-                        {{msg('scheduler.viewJobDetails')}}
+                        {{'scheduler.viewJobDetails' | translate}}
                     </a>
                     <div id="job{{$index}}-details" class="collapse">
                         <div class="row inside" ng-repeat="items in jobDetails[job.name].eventInfoList">
