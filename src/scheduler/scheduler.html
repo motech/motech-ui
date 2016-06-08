@@ -7,6 +7,7 @@
         <button class="btn btn-default" id="scheduler-filters" type="button"><i class="fa fa-filter"></i>&nbsp;{{'scheduler.filters' | translate}}</button>
     </div>
 </div>
+<!--
 <div class="clearfix">
     <div ng-repeat="job in jobs.rows" class="inbox-header">
         <div class="row">
@@ -95,3 +96,70 @@
         </ul>
     </div>
 </div>
+-->
+<motech-list>
+    <motech-list-item ng-repeat="job in jobs.rows">
+        <motech-list-column column-title="Name">{{job.name}}</motech-list-column>
+        <motech-list-column column-title="Status"><span class="label label-primary" bs-popover="Status: {{job.status}}" data-toggle="popover" data-placement="left" data-trigger="hover">Status: <i class="fa fa-lg fa-{{getStatusIcon(job.status)}}"></i></span></motech-list-column>
+        <motech-list-column column-title="Activity"><span class="label label-primary" bs-popover="Activity: {{job.activity}}" data-toggle="popover" data-placement="left" data-trigger="hover">Activity: <i class="fa fa-lg fa-{{getActivityIcon(job.activity)}}"></i></span></motech-list-column>
+        <motech-list-collapsible ng-click="getDetails(job)">
+            <div ng-if="job.uiDefined">
+                <div class="btn-group">
+                    <button ng-if="job.status === 'OK'" ng-click="pauseJob(job)" type="button" class="btn btn-sm btn-default"><i class="fa fa-1 fa-pause"></i> Pause</button>
+                    <button ng-if="job.status === 'PAUSED'" ng-click="resumeJob(job)" type="button" class="btn btn-sm btn-default"><i class="fa fa-1 fa-play"></i> Resume</button>
+                    <button class="btn btn-sm btn-default" type="button" ng-click="editJob(job)" ui-sref="scheduler.createOrUpdateJob({ action: 'edit' })"><i class="fa fa-1 fa-edit"></i> Edit</button>
+                    <button ng-click="deleteJob(job)" class="btn btn-sm btn-danger"><i class="fa fa-1 fa-trash"></i> Delete</button>
+                </div>
+            </div>
+            <div ng-if="!job.uiDefined">
+                <div class="row inside">
+                    <div class="row">
+                        <div class="col-md-2">{{'scheduler.startDate' | translate}}</div>
+                        <div class="col-md-10">{{job.startDate}}</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-2">{{'scheduler.endDate' | translate}}</div>
+                        <div class="col-md-10">{{job.endDate}}</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-2">{{'scheduler.jobType' | translate}}</div>
+                        <div class="col-md-10">{{job.jobType}}</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-2">{{'scheduler.info' | translate}}</div>
+                        <div class="col-md-10">{{job.info}}</div>
+                    </div>
+                </div>
+                <div class="row inside" ng-repeat="items in jobDetails[job.name].eventInfoList">
+                    <div class="clearfix col subject auto-wrap">
+                        Subject: {{items.subject}}
+                    </div>
+                    <div class="col auto-wrap">
+                        <div>Key</div>
+                        <div ng-repeat="(key, value) in items.parameters">
+                            {{key}}
+                        </div>
+                    </div>
+                    <div class="divider"></div>
+                    <div class="col auto-wrap">
+                        <div>Value</div>
+                        <div ng-repeat="(key, value) in items.parameters">
+                            {{value}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- </div>
+                <div class="row inside">
+                    <a class="collapser">
+                        <i class="fa fa-fw fa-lg fa-caret-right i-name"></i>
+                        {{'scheduler.viewJobDetails' | translate}}
+                    </a>
+                    <div class="collapse">
+
+                    </div>
+                </div>
+            </div> -->
+        </motech-list-collapsible>
+    </motech-list-item>
+</motech-list>
