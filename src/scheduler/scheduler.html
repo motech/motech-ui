@@ -104,11 +104,13 @@
         <motech-list-column column-title="Activity"><span class="label label-primary" bs-popover="Activity: {{job.activity}}" data-toggle="popover" data-placement="left" data-trigger="hover">Activity: <i class="fa fa-lg fa-{{getActivityIcon(job.activity)}}"></i></span></motech-list-column>
         <motech-list-collapsible ng-click="getDetails(job)">
             <div ng-if="job.uiDefined">
+                <div class="btn-group pull-right">
+                    <button class="btn btn-sm btn-default" type="button" ng-click="editJob(job)" ui-sref="scheduler.createOrUpdateJob({ action: 'edit' })"><i class="fa fa-1 fa-edit"></i> Edit</button>
+                    <button ng-click="deleteJob(job)" class="btn btn-sm btn-danger"><i class="fa fa-1 fa-trash"></i> Delete</button>
+                </div>
                 <div class="btn-group">
                     <button ng-if="job.status === 'OK'" ng-click="pauseJob(job)" type="button" class="btn btn-sm btn-default"><i class="fa fa-1 fa-pause"></i> Pause</button>
                     <button ng-if="job.status === 'PAUSED'" ng-click="resumeJob(job)" type="button" class="btn btn-sm btn-default"><i class="fa fa-1 fa-play"></i> Resume</button>
-                    <button class="btn btn-sm btn-default" type="button" ng-click="editJob(job)" ui-sref="scheduler.createOrUpdateJob({ action: 'edit' })"><i class="fa fa-1 fa-edit"></i> Edit</button>
-                    <button ng-click="deleteJob(job)" class="btn btn-sm btn-danger"><i class="fa fa-1 fa-trash"></i> Delete</button>
                 </div>
             </div>
             <div ng-if="!job.uiDefined">
@@ -163,3 +165,114 @@
         </motech-list-collapsible>
     </motech-list-item>
 </motech-list>
+<motech-sidebar title="{{ 'scheduler.filters' | translate }}">
+    <form>
+        <!--
+        <fieldset class="inside">
+            <legend>{{ 'scheduler.name' | translate }}</legend>
+            <div class="form-group">
+                <input type="text" class="form-control input-sm search-query" placeholder="{{ 'scheduler.search' | translate }}" data-event-type="keyup" data-search-field="name"
+                       scheduler-filter="schedulerTable">
+            </div>
+        </fieldset>
+        <fieldset class="inside">
+            <legend>{{ 'scheduler.running' | translate }}</legend>
+            <div class="form-group">
+                <input id="dateTimeFrom" ng-model="dateTimeFrom" max="dateTimeTo" date-picker type="datetime" class="form-control input-sm search-query" placeholder="{{ 'scheduler.from' | translate }}" data-event-type="change"
+                       data-search-field="timeFrom" scheduler-filter="schedulerTable">
+            </div>
+            <div class="form-group">
+                <input id="dateTimeTo" ng-model="dateTimeTo" min="dateTimeFrom" date-picker type="datetime" class="form-control input-sm search-query" placeholder="{{ 'scheduler.to' | translate }}"
+                       data-event-type="change" data-search-field="timeTo" scheduler-filter="schedulerTable">
+            </div>
+        </fieldset>
+        <fieldset class="inside">
+            <legend>{{ 'scheduler.activity' | translate }}</legend>
+            <div class="form-group btn-group-vertical">
+                <button id="ACTIVE" class="btn btn-info btn-sm active" type="button" data-field-type="array" data-search-field="activity" data-search-value="ACTIVE"
+                        scheduler-filter="schedulerTable"><i class="fa fa-fw fa-check-square-o"></i> {{msg('scheduler.active')}}
+                </button>
+                <button id="FINISHED" class="btn btn-info btn-sm active" type="button" data-field-type="array" data-search-field="activity" data-search-value="FINISHED"
+                        scheduler-filter="schedulerTable"><i class="fa fa-fw fa-check-square-o"></i> {{msg('scheduler.finished')}}
+                </button>
+                <button id="NOTSTARTED" class="btn btn-info btn-sm active" type="button" data-field-type="array" data-search-field="activity" data-search-value="NOTSTARTED"
+                        scheduler-filter="schedulerTable"><i class="fa fa-fw fa-check-square-o"></i> {{msg('scheduler.notstarted')}}
+                </button>
+            </div>
+        </fieldset>
+        <fieldset class="inside">
+            <legend>{{ 'scheduler.status' | translate }}</legend>
+            <div class="form-group btn-group-vertical">
+                <button id="OK" class="btn btn-info btn-sm active" type="button" data-field-type="array" data-search-field="status" data-search-value="OK" scheduler-filter="schedulerTable"><i
+                        class="fa fa-fw fa-check-square-o"></i> {{msg('scheduler.ok')}}
+                </button>
+                <button id="PAUSED" class="btn btn-info btn-sm active" type="button" data-field-type="array" data-search-field="status" data-search-value="PAUSED"
+                        scheduler-filter="schedulerTable"><i class="fa fa-fw fa-check-square-o"></i> {{msg('scheduler.paused')}}
+                </button>
+                <button id="BLOCKED" class="btn btn-info btn-sm active" type="button" data-field-type="array" data-search-field="status" data-search-value="BLOCKED"
+                        scheduler-filter="schedulerTable"><i class="fa fa-fw fa-check-square-o"></i> {{msg('scheduler.blocked')}}
+                </button>
+                <button id="ERROR" class="btn btn-info btn-sm active" type="button" data-field-type="array" data-search-field="status" data-search-value="ERROR"
+                        scheduler-filter="schedulerTable"><i class="fa fa-fw fa-check-square-o"></i> {{msg('scheduler.error')}}
+                </button>
+            </div>
+        </fieldset>
+        -->
+        <fieldset>
+            <legend>{{ 'scheduler.name' | translate }}</legend>
+            <div class="form-group">
+                <!-- <label for="jobsName" class="placeholder">{{'scheduler.search' | translate }}</label> -->
+                <input id="jobsName" type="text" ng-model="search.name" placeholder="{{'scheduler.search' | translate }}"/>
+            </div>
+        </fieldset>
+        <fieldset>
+            <legend>{{ 'scheduler.running' | translate }}</legend>
+            <div class="form-group">
+                <!-- <label for="timeFrom" class="placeholder">{{'scheduler.from' | translate}}</label> -->
+                <input id="timeFrom" date-picker ng-model="search.timeFrom" max="timeTo" type="datetime" placeholder="{{'scheduler.from' | translate }}"/>
+            </div>
+            <div class="form-group">
+                <!-- <label for="timeTo" class="placeholder">{{'scheduler.to' | translate}}</label> -->
+                <input id="timeTo" date-picker ng-model="search.timeTo" min="timeFrom" type="datetime" placeholder="{{'scheduler.to' | translate }}"/>
+            </div>
+        </fieldset>
+        <fieldset>
+            <legend>{{'scheduler.activity' | translate }}</legend>
+            <div class="input-group">
+                <label class="checkbox">
+                    <input type="checkbox" checklist-model="search.activity" checklist-value="'ACTIVE'" />
+                    {{'scheduler.active' | translate}}
+                </label>
+                <label class="checkbox">
+                    <input type="checkbox" checklist-model="search.activity" checklist-value="'FINISHED'" />
+                    {{'scheduler.finished' | translate}}
+                </label>
+                <label class="checkbox">
+                    <input type="checkbox" checklist-model="search.activity" checklist-value="'NOTSTARTED'" />
+                    {{'scheduler.notstarted' | translate}}
+                </label>
+            </div>
+        </fieldset>
+        <fieldset>
+            <legend>{{'scheduler.status' | translate }}</legend>
+            <div class="input-group">
+                <label class="checkbox">
+                    <input type="checkbox" checklist-model="search.status" checklist-value="'OK'" />
+                    {{'scheduler.ok' | translate}}
+                </label>
+                <label class="checkbox">
+                    <input type="checkbox" checklist-model="search.status" checklist-value="'PAUSED'" />
+                    {{'scheduler.paused' | translate}}
+                </label>
+                <label class="checkbox">
+                    <input type="checkbox" checklist-model="search.status" checklist-value="'BLOCKED'" />
+                    {{'scheduler.blocked' | translate}}
+                </label>
+                <label class="checkbox">
+                    <input type="checkbox" checklist-model="search.status" checklist-value="'ERROR'" />
+                    {{'scheduler.error' | translate}}
+                </label>
+            </div>
+        </fieldset>
+    </form>
+</motech-sidebar>
