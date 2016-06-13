@@ -8,3 +8,10 @@ gulp.task('test', function(done) {
         singleRun: true
     }, done).start()
 });
+
+
+gulp.task('tdd', function (done) {
+  new Server({
+    configFile: '../../../karma.conf.js'
+  }, done).start();
+});
