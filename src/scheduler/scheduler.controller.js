@@ -10,16 +10,8 @@
 
         $scope.jobDetails = {};
 
-        /*
-        innerLayout({
-            spacing_closed: 30,
-            east__minSize: 200,
-            east__maxSize: 350
-        }, {
-            show: true,
-            button: '#scheduler-filters'
-        });
-        */
+        $scope.search = {};
+        $scope.$watch('search', updateSearch, true);
 
         $scope.$on('jobsFetched', function() {
             $scope.jobs = JobsService.get();
@@ -28,6 +20,23 @@
 
         JobsService.setListener($scope);
         JobsService.fetchJobs({});
+
+        var searchUpdateTimeout;
+        function updateSearch(searchData){
+
+            if(searchUpdateTimeout){
+                clearTimeout(searchUpdateTimeout);
+                searchUpdateTimeout=null;
+            }
+            searchUpdateTimeout = setTimeout(function() {
+                JobsService.setParam("name", searchData.name);
+                JobsService.setParam("activity", searchData.activity);
+                JobsService.setParam("status", searchData.status);
+                JobsService.setParam("timeFrom", searchData.timeFrom);
+                JobsService.setParam("timeTo", searchData.timeTo);
+                JobsService.fetchJobs();
+            }, 1000);
+        }
 
         $scope.reload = function(page, params) {
             if (page >= 1 && page <= $scope.jobs.total) {
