@@ -6,16 +6,20 @@
 
     LoginModal.$inject = ['$compile', '$rootScope', 'ModalWindow'];
     function LoginModal ($compile, $rootScope, ModalWindow) {
-        var modal = ModalWindow(
-            $compile('<motech-login />')($rootScope),
-            $compile('<span>{{ "security.signInUser" | translate}}</span>')($rootScope),
-            false);
+        var modal;
         return {
             open: function () {
+                modal = ModalWindow(
+                    $compile('<motech-login />')($rootScope),
+                    $compile('<span>{{ "security.signInUser" | translate}}</span>')($rootScope),
+                    false);
                 modal.open();                    
             },
             close: function(){
-                modal.close();
+                if(modal){
+                    modal.close();
+                    modal = false;
+                }
             }
         };
     }
