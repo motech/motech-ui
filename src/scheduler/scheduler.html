@@ -1,116 +1,25 @@
 <h4 class="frame-title">{{'scheduler' | translate}}</h4>
-<div id="operations-scheduler" class="toolbox">
-    <div class="btn-group pull-right">
-        <button class="btn btn-success" ng-click="newJob()" ui-sref="scheduler.createOrUpdateJob({ action: 'new' })" type="button"><i class="fa fa-plus"></i>&nbsp;{{'scheduler.scheduleJob' | translate}}</button>
-    </div>
-    <div class="btn-group">
-        <button class="btn btn-default" id="scheduler-filters" type="button"><i class="fa fa-filter"></i>&nbsp;{{'scheduler.filters' | translate}}</button>
-    </div>
-</div>
-<!--
-<div class="clearfix">
-    <div ng-repeat="job in jobs.rows" class="inbox-header">
-        <div class="row">
-            <div class="col-sm-4 col-md-6 col-lg-8">
-                <a class="auto-wrap header collapser: '#job' + $index;" ng-click="getDetails(job)">
-                    <i class="fa fa-fw fa-lg fa-caret-right header-caret"></i>
-                    {{job.name}}
-                </a>
-            </div>
-            <div class="col-sm-8 col-md-6 col-lg-4 align-right">
-                <span class="label label-primary" bs-popover="Status: {{job.status}}" data-toggle="popover" data-placement="left" data-trigger="hover">Status: <i class="fa fa-lg fa-{{getStatusIcon(job.status)}}"></i></span>
-                <span class="label label-primary" bs-popover="Activity: {{job.activity}}" data-toggle="popover" data-placement="left" data-trigger="hover">Activity: <i class="fa fa-lg fa-{{getActivityIcon(job.activity)}}"></i></span>
-            </div>
-        </div>
-        <div id="job{{$index}}" class="collapse">
-            <hr/>
-            <span ng-if="job.uiDefined">
-                <div class="btn-group">
-                    <button ng-if="job.status === 'OK'" ng-click="pauseJob(job)" type="button" class="btn btn-sm btn-default"><i class="fa fa-1 fa-pause"></i> Pause</button>
-                    <button ng-if="job.status === 'PAUSED'" ng-click="resumeJob(job)" type="button" class="btn btn-sm btn-default"><i class="fa fa-1 fa-play"></i> Resume</button>
-                </div>
-                <div class="btn-group pull-right">
-                    <button class="btn btn-sm btn-default" type="button" ng-click="editJob(job)" ui-sref="scheduler.createOrUpdateJob({ action: 'edit' })"><i class="fa fa-1 fa-edit"></i> Edit</button>
-                    <button ng-click="deleteJob(job)" class="btn btn-sm btn-danger"><i class="fa fa-1 fa-trash"></i> Delete</button>
-                </div>
-            </span>
-            <span ng-if="!job.uiDefined">
-                <div class="row inside">
-                    <div class="row">
-                        <div class="col-md-2">{{'scheduler.startDate' | translate}}</div>
-                        <div class="col-md-10">{{job.startDate}}</div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-2">{{'scheduler.endDate' | translate}}</div>
-                        <div class="col-md-10">{{job.endDate}}</div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-2">{{'scheduler.jobType' | translate}}</div>
-                        <div class="col-md-10">{{job.jobType}}</div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-2">{{'scheduler.info' | translate}}</div>
-                        <div class="col-md-10">{{job.info}}</div>
-                    </div>
-                </div>
-                <div class="row inside">
-                    <a class="collapser: '#job' + $index + '-details';">
-                        <i class="fa fa-fw fa-lg fa-caret-right i-name"></i>
-                        {{'scheduler.viewJobDetails' | translate}}
-                    </a>
-                    <div id="job{{$index}}-details" class="collapse">
-                        <div class="row inside" ng-repeat="items in jobDetails[job.name].eventInfoList">
-                            <div class="clearfix col subject auto-wrap">
-                                Subject: {{items.subject}}
-                            </div>
-                            <div class="col auto-wrap">
-                                <div>Key</div>
-                                <div ng-repeat="(key, value) in items.parameters">
-                                    {{key}}
-                                </div>
-                            </div>
-                            <div class="divider"></div>
-                            <div class="col auto-wrap">
-                                <div>Value</div>
-                                <div ng-repeat="(key, value) in items.parameters">
-                                    {{value}}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </span>
-        </div>
-    </div>
-
-    <div class="pagination-centered" ng-show="jobs.total &gt; 1">
-        <ul class="pagination pagination-sm lightblue">
-            <li ng-class="{disabled: jobs.page == 1}"><a ng-click="reload(1)">{{'server.pagination.first' | translate}}</a></li>
-            <li ng-class="{disabled: jobs.page == 1}"><a ng-click="reload(jobs.page - 1)">{{'server.pagination.prev' | translate}}</a></li>
-            <li ng-repeat="number in range(1, jobs.total)"
-                ng-class="{active: number == jobs.page}"
-                ng-click="reload(number)">
-            </li>
-            <li ng-class="{disabled: jobs.page == jobs.total}"><a ng-click="reload(jobs.page + 1)">{{'server.pagination.next' | translate}}</a></li>
-            <li ng-class="{disabled: jobs.page == jobs.total}"><a ng-click="reload(jobs.total)">{{'server.pagination.last' | translate}}</a></li>
-        </ul>
-    </div>
-</div>
--->
 <motech-list>
+    <motech-list-header>
+        <div class="button-group">
+            <button class="button-add" ng-click="newJob()" ui-sref="scheduler.createOrUpdateJob({ action: 'new' })" type="button">{{'scheduler.scheduleJob' | translate}}</button>
+        </div>
+    </motech-list-header>
     <motech-list-item ng-repeat="job in jobs.rows">
-        <motech-list-column column-title="Name">{{job.name}}</motech-list-column>
+        <div column-title="Name">
+            <h4>{{job.name}}</h4>
+        </div>
         <motech-list-column column-title="Status"><span class="label label-primary" bs-popover="Status: {{job.status}}" data-toggle="popover" data-placement="left" data-trigger="hover">Status: <i class="fa fa-lg fa-{{getStatusIcon(job.status)}}"></i></span></motech-list-column>
         <motech-list-column column-title="Activity"><span class="label label-primary" bs-popover="Activity: {{job.activity}}" data-toggle="popover" data-placement="left" data-trigger="hover">Activity: <i class="fa fa-lg fa-{{getActivityIcon(job.activity)}}"></i></span></motech-list-column>
         <motech-list-collapsible ng-click="getDetails(job)">
             <div ng-if="job.uiDefined">
-                <div class="btn-group pull-right">
-                    <button class="btn btn-sm btn-default" type="button" ng-click="editJob(job)" ui-sref="scheduler.createOrUpdateJob({ action: 'edit' })"><i class="fa fa-1 fa-edit"></i> Edit</button>
-                    <button ng-click="deleteJob(job)" class="btn btn-sm btn-danger"><i class="fa fa-1 fa-trash"></i> Delete</button>
+                <div class="button-group-primary">
+                    <button class="button-edit" type="button" ng-click="editJob(job)" ui-sref="scheduler.createOrUpdateJob({ action: 'edit' })">Edit</button>
+                    <button ng-click="deleteJob(job)" class="button-delete">Delete</button>
                 </div>
-                <div class="btn-group">
-                    <button ng-if="job.status === 'OK'" ng-click="pauseJob(job)" type="button" class="btn btn-sm btn-default"><i class="fa fa-1 fa-pause"></i> Pause</button>
-                    <button ng-if="job.status === 'PAUSED'" ng-click="resumeJob(job)" type="button" class="btn btn-sm btn-default"><i class="fa fa-1 fa-play"></i> Resume</button>
+                <div class="button-group">
+                    <button ng-if="job.status === 'OK'" ng-click="pauseJob(job)" type="button" class="button"><i class="fa fa-1 fa-pause"></i> Pause</button>
+                    <button ng-if="job.status === 'PAUSED'" ng-click="resumeJob(job)" type="button" class="button"><i class="fa fa-1 fa-play"></i> Resume</button>
                 </div>
             </div>
             <div ng-if="!job.uiDefined">
@@ -133,38 +42,34 @@
                     </div>
                 </div>
                 <div class="row inside" ng-repeat="items in jobDetails[job.name].eventInfoList">
-                    <div class="clearfix col subject auto-wrap">
-                        Subject: {{items.subject}}
+                    <div class="row">
+                        <div class="col-md-2">Subject: {{items.subject}}</div>
                     </div>
-                    <div class="col auto-wrap">
-                        <div>Key</div>
-                        <div ng-repeat="(key, value) in items.parameters">
-                            {{key}}
-                        </div>
+                    <div class="row">
+                        <div class="col-md-2" ng-repeat="(key, value) in items.parameters">Key: {{key}}</div>
                     </div>
-                    <div class="divider"></div>
-                    <div class="col auto-wrap">
-                        <div>Value</div>
-                        <div ng-repeat="(key, value) in items.parameters">
-                            {{value}}
-                        </div>
+                    <div class="row">
+                        <div class="col-md-2" ng-repeat="(key, value) in items.parameters">Value: {{value}}</div>
                     </div>
                 </div>
             </div>
-            <!-- </div>
-                <div class="row inside">
-                    <a class="collapser">
-                        <i class="fa fa-fw fa-lg fa-caret-right i-name"></i>
-                        {{'scheduler.viewJobDetails' | translate}}
-                    </a>
-                    <div class="collapse">
-
-                    </div>
-                </div>
-            </div> -->
         </motech-list-collapsible>
     </motech-list-item>
 </motech-list>
+<!--
+    <div class="pagination-centered" ng-show="jobs.total &gt; 1">
+        <ul class="pagination pagination-sm lightblue">
+            <li ng-class="{disabled: jobs.page == 1}"><a ng-click="reload(1)">{{'server.pagination.first' | translate}}</a></li>
+            <li ng-class="{disabled: jobs.page == 1}"><a ng-click="reload(jobs.page - 1)">{{'server.pagination.prev' | translate}}</a></li>
+            <li ng-repeat="number in range(1, jobs.total)"
+                ng-class="{active: number == jobs.page}"
+                ng-click="reload(number)">
+            </li>
+            <li ng-class="{disabled: jobs.page == jobs.total}"><a ng-click="reload(jobs.page + 1)">{{'server.pagination.next' | translate}}</a></li>
+            <li ng-class="{disabled: jobs.page == jobs.total}"><a ng-click="reload(jobs.total)">{{'server.pagination.last' | translate}}</a></li>
+        </ul>
+    </div>
+-->
 <motech-sidebar title="{{ 'scheduler.filters' | translate }}">
     <form>
         <!--

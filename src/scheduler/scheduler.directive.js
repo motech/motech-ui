@@ -94,11 +94,11 @@
                             value = elem.data('search-value'),
                             type = elem.data('field-type') || 'string',
                             array = [],
-                            values = {},
+                            values = {
+                            'activity': 'ACTIVE,FINISHED,NOTSTARTED',
+                            'status': 'OK,PAUSED,BLOCKED,ERROR'
+                            },
                             prop;
-
-                        values['activity'] = 'ACTIVE,FINISHED,NOTSTARTED';
-                        values['status'] = 'OK,PAUSED,BLOCKED,ERROR';
 
                         if (type === 'array') {
                             if (elem.children().hasClass("fa-check-square-o")) {

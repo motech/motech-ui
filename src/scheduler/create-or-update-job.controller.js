@@ -8,16 +8,9 @@
     createOrUpdateJobController.$inject = ['$scope', '$timeout', '$stateParams', 'JobsService', 'ModalFactory', 'LoadingModal', 'i18nService'];
     function createOrUpdateJobController ($scope, $timeout, $stateParams, JobsService, ModalFactory, LoadingModal, i18nService) {
 
-        /*
-        innerLayout({}, {
-            show: false,
-            button: '#scheduler-filters'
-        });
-        */
-
         $scope.job = {};
         $scope.job.motechEvent = {};
-        $scope.motechEventParameters = [];
+        $scope.motechEventParameters = {};
         $scope.action = $stateParams.action;
         $scope.dates = {};
 
@@ -27,56 +20,12 @@
             { displayName: "Day of Week", name: "DAY_OF_WEEK" }
         ];
 
-        function containsKey(map, key) {
-            var result = false;
-            angular.forEach($scope.motechEventParameters, function(element) {
-                if (element.key === key) {
-                    result = true;
-                }
-            });
-            return result;
-        }
-
-        $scope.addToMap = function(key, value) {
-            if (containsKey($scope.motechEventParameters, key)) {
-                ModalFactory.showAlert("scheduler.keyAlreadyExists", "schedulerKeyAlreadyExists");
-            } else {
-                $scope.motechEventParameters.push({
-                    "key": key,
-                    "value": value
-                });
-            }
-            $timeout(function() {
-                $scope.key = "";
-                $scope.value = "";
-            });
-
-        };
-
         $scope.resetMap = function() {
             ModalFactory.showConfirm("scheduler.confirm.resetMap", "scheduler.confirm", function(response) {
                 if (response) {
                     $timeout(function() {
-                        $scope.motechEventParameters = [];
+                        $scope.motechEventParameters = {};
                     });
-                }
-            });
-        };
-
-        $scope.removeFromMap = function(key) {
-            ModalFactory.showConfirm("scheduler.confirm.removeItem", "scheduler.confirm", function(response) {
-                if (response) {
-                    var id;
-                    for (var i = 0; i < $scope.motechEventParameters.length; i += 1) {
-                        if ($scope.motechEventParameters[i].key === key) {
-                            id = i;
-                        }
-                    }
-                    if (id > -1) {
-                        $timeout(function () {
-                            $scope.motechEventParameters.splice(id, 1);
-                        });
-                    }
                 }
             });
         };
@@ -177,16 +126,15 @@
                 }
 
                 if (job.days) {
-
-                    var days = {};
-
-                    days["Monday"] = "0";
-                    days["Tuesday"] = "1";
-                    days["Wednesday"] = "2";
-                    days["Thursday"] = "3";
-                    days["Friday"] = "4";
-                    days["Saturday"] = "5";
-                    days["Sunday"] = "6";
+                    var days = {
+                    'Monday': '0',
+                    'Tuesday': '1',
+                    'Wednesday': '2',
+                    'Thursday': '3',
+                    'Friday': '4',
+                    'Saturday': '5',
+                    'Sunday': '6'
+                    };
 
                     for (var i = 0; i < job.days.length; i += 1) {
                         job.days[i] = days[job.days[i]];
@@ -201,7 +149,7 @@
                 }
 
                 for (var key in data.motechEvent.parameters) {
-                    $scope.addToMap(key, data.motechEvent.parameters[key]);
+                    $scope.motechEventParameters = data.motechEvent.parameters;
                 }
 
                 $scope.job = job;
