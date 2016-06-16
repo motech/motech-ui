@@ -57,13 +57,9 @@
             $http.post(ServerService.formatURL('/module/server/userlang'),{
                 language: language
             }).then(function(){
-                $translate.use(language)
-                .then(function(){
-                    getLanguages() // update current state from server...
-                    .then(function(){
-                        deferred.resolve();
-                    });
-                });
+                return $translate.use(language); // triggers i18n.loader
+            }).then(function(){
+                deferred.resolve();
             });
             return deferred.promise;
         }

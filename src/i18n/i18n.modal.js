@@ -6,17 +6,20 @@
 
     modal.$inject = ['$rootScope', '$compile', 'i18nService', 'BootstrapDialog'];
     function modal($rootScope, $compile, i18nService, BootstrapDialog){
-        var modal = new BootstrapDialog({
-            message: $compile('<motech-i18n-form></motech-i18n-form>')($rootScope.$new())
-        });
+        var modal = false;
 
         $rootScope.$on('motech.refresh', closeModal);
 
         function openModal (){
+            modal = new BootstrapDialog({
+                message: $compile('<motech-i18n-form></motech-i18n-form>')($rootScope.$new())
+            });
             modal.open();
         }
         function closeModal (){
-            modal.close();
+            if(modal){
+                modal.close();
+            }
         }
 
         return {
