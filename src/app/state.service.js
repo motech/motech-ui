@@ -6,17 +6,31 @@
 
     stateService.$inject = ['$q', '$rootScope', 'AuthService', 'ServerService', 'i18nService'];
     function stateService ($q, $rootScope, AuthService, ServerService, i18nService) {
-        $rootScope.$on('motech.refresh', refreshReady);
+        var service = this;
 
-        function refreshReady(){
-            $q.all({
-                authenticated: AuthService.getCurrentUser(),
-                server: ServerService.whenReady(),
-                i18n: i18nService.getLanguages()
+        service.ready = false;
+        service.check = checkAppReady;
+
+        $rootScope.$on('motech.refresh', checkAppReady);
+
+        function checkAppReady(){
+            var deferred = $q.defer();
+            service.ready = false;
+
+            ServerService.whenReady()
+            .then(function(){
+                return $q.all([
+                    i18nService.getLanguages(),
+                    AuthService.getCurrentUser()
+                    ]);
             })
             .then(function(){
+                service.ready = true;
                 $rootScope.$broadcast('motech.app.ready');
+                deferred.resolve();
             });
+
+            return deferred.promise;
         }
     }
 
