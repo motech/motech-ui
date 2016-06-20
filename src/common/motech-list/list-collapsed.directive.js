@@ -1,6 +1,16 @@
 (function(){
     'use strict';
 
+    /**
+     * @memberOf  motech-common
+     * @ngdoc directive
+     * @name motechListCollapsible
+     *
+     * @description
+     * Marks an area within a motech-list-item as collapsible, meaning that the item is hidden, but when displayed runs across width of motechListItem.
+     * 
+     */
+
     angular.module('motech-common')
         .directive('motechListCollapsible', directive);
 
@@ -15,6 +25,13 @@
             link: linkFunction
         };
     }
+
+    /**
+     * Creates and places additional markup needed to control the collapsible element.
+     *
+     * @memberOf motechListCollapsible
+     *
+     */
 
     function linkFunction(scope, element, attrs, MotechListCtrl){
         MotechListCtrl.addCollapsibleColumn();
