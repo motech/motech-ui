@@ -1,5 +1,5 @@
 <h4 class="frame-title">{{'scheduler' | translate}}</h4>
-<motech-list>
+<motech-list paginated>
     <motech-list-header>
         <div class="button-group">
             <button class="button-add" ng-click="newJob()" ui-sref="scheduler.createOrUpdateJob({ action: 'new' })" type="button">{{'scheduler.scheduleJob' | translate}}</button>
@@ -11,7 +11,7 @@
         </div>
         <motech-list-column column-title="Status"><span class="label label-primary" bs-popover="Status: {{job.status}}" data-toggle="popover" data-placement="left" data-trigger="hover">Status: <i class="fa fa-lg fa-{{getStatusIcon(job.status)}}"></i></span></motech-list-column>
         <motech-list-column column-title="Activity"><span class="label label-primary" bs-popover="Activity: {{job.activity}}" data-toggle="popover" data-placement="left" data-trigger="hover">Activity: <i class="fa fa-lg fa-{{getActivityIcon(job.activity)}}"></i></span></motech-list-column>
-        <motech-list-collapsible ng-click="getDetails(job)">
+        <motech-list-collapsible ng-init="getDetails(job)">
             <div ng-if="job.uiDefined">
                 <div class="button-group-primary">
                     <button class="button-edit" type="button" ng-click="editJob(job)" ui-sref="scheduler.createOrUpdateJob({ action: 'edit' })">Edit</button>
@@ -45,31 +45,17 @@
                     <div class="row">
                         <div class="col-md-2">Subject: {{items.subject}}</div>
                     </div>
-                    <div class="row">
-                        <div class="col-md-2" ng-repeat="(key, value) in items.parameters">Key: {{key}}</div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-2" ng-repeat="(key, value) in items.parameters">Value: {{value}}</div>
+                    <div class="row" ng-repeat="(key, value) in items.parameters">
+                        <div class="col-md-2" >Key: {{key}}, Value: {{value}}</div>
                     </div>
                 </div>
             </div>
         </motech-list-collapsible>
     </motech-list-item>
+    <motech-list-footer>
+        <uib-pagination total-items="totalItems" ng-model="currentPage" ng-change="changePageTo(currentPage)"></uib-pagination>
+    </motech-list-footer>
 </motech-list>
-<!--
-    <div class="pagination-centered" ng-show="jobs.total &gt; 1">
-        <ul class="pagination pagination-sm lightblue">
-            <li ng-class="{disabled: jobs.page == 1}"><a ng-click="reload(1)">{{'server.pagination.first' | translate}}</a></li>
-            <li ng-class="{disabled: jobs.page == 1}"><a ng-click="reload(jobs.page - 1)">{{'server.pagination.prev' | translate}}</a></li>
-            <li ng-repeat="number in range(1, jobs.total)"
-                ng-class="{active: number == jobs.page}"
-                ng-click="reload(number)">
-            </li>
-            <li ng-class="{disabled: jobs.page == jobs.total}"><a ng-click="reload(jobs.page + 1)">{{'server.pagination.next' | translate}}</a></li>
-            <li ng-class="{disabled: jobs.page == jobs.total}"><a ng-click="reload(jobs.total)">{{'server.pagination.last' | translate}}</a></li>
-        </ul>
-    </div>
--->
 <motech-sidebar title="{{ 'scheduler.filters' | translate }}">
     <form>
         <!--

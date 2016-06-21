@@ -15,11 +15,21 @@
 
         $scope.$on('jobsFetched', function() {
             $scope.jobs = JobsService.get();
+            $scope.totalItems = $scope.jobs.records;
+            $scope.currentPage = $scope.jobs.page;
+            $scope.totalPages = $scope.jobs.total;
             LoadingModal.close();
         });
 
         JobsService.setListener($scope);
         JobsService.fetchJobs({});
+
+        $scope.changePageTo = changePageTo;
+
+        function changePageTo(page){
+            JobsService.setParam("page", page);
+            JobsService.fetchJobs();
+        }
 
         var searchUpdateTimeout;
         function updateSearch(searchData){
@@ -37,13 +47,6 @@
                 JobsService.fetchJobs();
             }, 1000);
         }
-
-        $scope.reload = function(page, params) {
-            if (page >= 1 && page <= $scope.jobs.total) {
-                JobsService.setParam("page", page);
-                JobsService.fetchJobs();
-            }
-        };
 
         $scope.getDetails = function(job) {
             if ($scope.jobDetails[job.name] !== undefined) {
