@@ -5,8 +5,8 @@
     angular.module('motech-scheduler')
             .controller('CreateOrUpdateJobController', createOrUpdateJobController);
 
-    createOrUpdateJobController.$inject = ['$scope', '$timeout', '$stateParams', 'JobsService', 'ModalFactory', 'LoadingModal', 'i18nService'];
-    function createOrUpdateJobController ($scope, $timeout, $stateParams, JobsService, ModalFactory, LoadingModal, i18nService) {
+    createOrUpdateJobController.$inject = ['$scope', '$timeout', '$state', '$stateParams', 'JobsService', 'ModalFactory', 'LoadingModal', 'i18nService'];
+    function createOrUpdateJobController ($scope, $timeout, $state, $stateParams, JobsService, ModalFactory, LoadingModal, i18nService) {
 
         $scope.job = {};
         $scope.job.motechEvent = {};
@@ -15,8 +15,10 @@
         $scope.dates = {};
 
         $scope.jobTypes = [
-            { displayName: "Cron", name: "CRON" }, { displayName: "Repeating", name: "REPEATING" },
-            { displayName: "Repeating Period", name: "REPEATING_PERIOD"}, { displayName: "Run Once", name: "RUN_ONCE" },
+            { displayName: "Cron", name: "CRON" },
+            { displayName: "Repeating", name: "REPEATING" },
+            { displayName: "Repeating Period", name: "REPEATING_PERIOD"},
+            { displayName: "Run Once", name: "RUN_ONCE" },
             { displayName: "Day of Week", name: "DAY_OF_WEEK" }
         ];
 
@@ -57,7 +59,7 @@
                 if ($scope.dates.startDate >= $scope.dates.endDate) {
                     ModalFactory.showAlert({
                         title: $scope.msg("scheduler.error"),
-                        message: jQuery.i18n.prop.apply(null, ["scheduler.error.endDateBeforeStartDate"].concat([$scope.dates.startDate, $scope.dates.endDate]))
+                        message: i18nService.prop.apply(null, ["scheduler.error.endDateBeforeStartDate"].concat([$scope.dates.startDate, $scope.dates.endDate]))
                     });
                     return;
                 }
@@ -75,14 +77,14 @@
             job.uiDefined = true;
 
             function success() {
-                window.location.href="#/scheduler";
+                $state.go('scheduler');
                 LoadingModal.close();
             }
 
             function failure(response) {
                 ModalFactory.showAlert({
                     title: $scope.msg("scheduler.error"),
-                    message: jQuery.i18n.prop.apply(null, [response.data.key].concat(response.data.params))
+                    message: i18nService.prop.apply(null, [response.data.key].concat(response.data.params))
                 });
                 LoadingModal.close();
             }

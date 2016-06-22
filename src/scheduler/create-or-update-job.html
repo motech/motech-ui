@@ -1,7 +1,5 @@
-<div class="row">
-    <legend ng-if="action === 'new'">{{'scheduler.scheduleJob' | translate}}</legend>
-    <legend ng-if="action === 'edit'">{{'scheduler.updateJob' | translate}}</legend>
-</div>
+<legend ng-if="action === 'new'">{{'scheduler.scheduleJob' | translate}}</legend>
+<legend ng-if="action === 'edit'">{{'scheduler.updateJob' | translate}}</legend>
 <form class="form-horizontal" name="JobForm" role="form">
     <div class="form-group">
         <label for="type" class="control-label" mt-invalid="'JobForm.type.$invalid'">{{'scheduler.jobType' | translate}}</label>
