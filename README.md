@@ -50,26 +50,36 @@ Gulp Commands
 -------------
 
 ### Build
-Builds the main `index.html` and asset files for the MOTECH-UI, and places them in the `/build` directory.
+Builds the main `index.html` and asset files for the MOTECH-UI, and places them in the `build/app/` directory. The build command will also build 
 
 The directory where files are built can be changed by passing the `--dest` option.
 
 ```javascript
+gulp build
+// build to different directory
 gulp build --dest=./build
 // Build only the app
 gulp build:app
-// Build only the style guide
-gulp build:styleguide
+// Build the documentation
+gulp build:docs
 ```
 
 ### Watch
-Watches the `/src` directory and runs build if any changes are made. Add the `--styleguide` option if you want the styleguilde to be regenerated when changes are made.
+Watches the `/src` directory and runs build if any changes are made. This will build both the app and docs directories.
 
 ```javascript
 gulp watch
 ```
-
 ### Development Server
-```javascript
-gulp server
+Creates a local web server on port 5000, and serves either the app or docs directory. To change the port that the development server is served on, pass add the flag --port=`<port number>`
+
+This serve doesn't need to be restarted when the app or documentation is rebuilt. 
+
+```bash
+// serve the applicaiton
+gulp serve:app
+// serve the documentation
+gulp serve:docs
+// serve the documentation on port 4999
+gulp serve:docs --port=4999
 ```
