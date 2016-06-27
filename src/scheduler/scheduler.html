@@ -1,16 +1,19 @@
 <h4 class="frame-title">{{'scheduler' | translate}}</h4>
 <motech-list paginated>
     <motech-list-header>
-        <div class="button-group">
+        <div class="button-group-primary">
             <button class="button-add" ng-click="newJob()" ui-sref="scheduler.createOrUpdateJob({ action: 'new' })" type="button">{{'scheduler.scheduleJob' | translate}}</button>
+        </div>
+        <div class="button-group">
+            <button class="button-filter" type="button" uib-btn-checkbox ng-model="viewFilters">{{'scheduler.filters' | translate}}</button>
         </div>
     </motech-list-header>
     <motech-list-item ng-repeat="job in jobs.rows">
         <div column-title="Name">
             <h4>{{job.name}}</h4>
         </div>
-        <motech-list-column column-title="Status"><span class="label label-primary" uib-popover="Status: {{job.status}}" popover-trigger="mouseenter" popover-placement="left">Status: <i class="fa fa-lg fa-{{getStatusIcon(job.status)}}"></i></span></motech-list-column>
-        <motech-list-column column-title="Activity"><span class="label label-primary" uib-popover="Activity: {{job.activity}}" popover-trigger="mouseenter" popover-placement="left">Activity: <i class="fa fa-lg fa-{{getActivityIcon(job.activity)}}"></i></span></motech-list-column>
+        <motech-list-column column-title="Status"><span class="label label-primary"><i class="fa fa-lg fa-{{getStatusIcon(job.status)}}"> {{job.status | translate}}</i></span></motech-list-column>
+        <motech-list-column column-title="Activity"><span class="label label-primary"><i class="fa fa-lg fa-{{getActivityIcon(job.activity)}}"> {{job.activity | translate}}</i></span></motech-list-column>
         <motech-list-collapsible ng-init="getDetails(job)">
             <div ng-if="job.uiDefined">
                 <div class="button-group-primary">
@@ -23,25 +26,24 @@
                 </div>
             </div>
             <div ng-if="!job.uiDefined">
-                <div class="job-info">
-                    <div class="key">{{'scheduler.startDate' | translate}}</div>
-                    <div class="value">{{job.startDate}}</div>
-                    <div class="key">{{'scheduler.endDate' | translate}}</div>
-                    <div class="value">{{job.endDate}}</div>
-                    <div class="key">{{'scheduler.jobType' | translate}}</div>
-                    <div class="value">{{job.jobType}}</div>
-                    <div class="key">{{'scheduler.info' | translate}}</div>
-                    <div class="value">{{job.info}}</div>
-                </div>
-                <div ng-repeat="items in jobDetails[job.name].eventInfoList">
-                    <div>Subject: {{items.subject}}</div>
-                    <div>Key:</div>
-                    <div>Value:</div>
-                    <div ng-repeat="(key, value) in items.parameters">
-                        <div>{{key}}</div>
-                        <div>{{value}}</div>
-                    </div>
-                </div>
+                <dl>
+                    <dt>{{'scheduler.startDate' | translate}}</dt>
+                    <dd>{{job.startDate}}</dd>
+                    <dt>{{'scheduler.endDate' | translate}}</dt>
+                    <dd>{{job.endDate}}</dd>
+                    <dt>{{'scheduler.jobType' | translate}}</dt>
+                    <dd>{{job.jobType}}</dd>
+                    <dt>{{'scheduler.info' | translate}}</dt>
+                    <dd>{{job.info}}</dd>
+                    <dl ng-repeat="items in jobDetails[job.name].eventInfoList">
+                        <dt>{{'scheduler.subject' | translate}}</dt>
+                        <dd>{{items.subject}}</dd>
+                        <dl ng-repeat="(key, value) in items.parameters">
+                            <dt>{{key}}</dt>
+                            <dd>{{value}}</dd>
+                        </dl>
+                    </dl>
+                </dl>
             </div>
         </motech-list-collapsible>
     </motech-list-item>
@@ -49,7 +51,7 @@
         <uib-pagination total-items="totalItems" ng-model="currentPage" ng-change="changePageTo(currentPage)"></uib-pagination>
     </motech-list-footer>
 </motech-list>
-<motech-sidebar title="{{ 'scheduler.filters' | translate }}">
+<motech-sidebar ng-if="viewFilters" title="{{ 'scheduler.filters' | translate }}">
     <form>
         <fieldset>
             <legend>{{ 'scheduler.name' | translate }}</legend>

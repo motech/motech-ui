@@ -7,6 +7,7 @@
 
     schedulerController.$inject = ['$scope', '$timeout', 'JobsService', 'ModalFactory', 'LoadingModal', 'i18nService'];
     function schedulerController ($scope, $timeout, JobsService, ModalFactory, LoadingModal, i18nService) {
+        $scope.viewFilters = false;
 
         $scope.jobDetails = {};
 

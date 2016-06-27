@@ -13,7 +13,8 @@ markup:
 <button class="button-edit">Edit Button</button>
 <!-- Used to delete content and must launch a modal window to confirm the action -->
 <button class="button-delete">Delete Button</button>
-
+<!-- Used to enable or disable filters sidebar -->
+<button class="button-filter">Filters Button</button>
 Styleguide 1.2
 */
 
@@ -42,6 +43,10 @@ button.delete,
 .button-delete {
   @include button($btn-danger-color, $btn-danger-bg, $btn-danger-border);
   @extend .icon-delete;
+}
+button.filter,
+.button-filter {
+  @extend .icon-filter
 }
 
 button.start,
