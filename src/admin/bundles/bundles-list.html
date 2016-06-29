@@ -1,4 +1,17 @@
 <motech-list>
+    <motech-list-header>
+        <h3>{{msg('admin.bundles.statistics')}}</h3>
+        <dl>
+            <dt>{{msg('admin.bundles.statistics.total')}}</dt>
+            <dd>{{allBundlesCount()}}</dd>
+            <dt>{{msg('admin.bundles.statistics.active')}}</dt>
+            <dd>{{activeBundlesCount()}}</dd>
+            <dt>{{msg('admin.bundles.statistics.installed')}}</dt>
+            <dd>{{installedBundlesCount()}}</dd>
+            <dt>{{msg('admin.bundles.statistics.resolved')}}</dt>
+            <dd>{{resolvedBundlesCount()}}</dd>
+        </dl>
+    </motech-list-header>
     <motech-list-item ng-repeat="bundle in bundles" >
         <div column-title="Name" class="bundle-main">
             <a ui-sref="bundles.bundle({bundleId:bundle.bundleId})">

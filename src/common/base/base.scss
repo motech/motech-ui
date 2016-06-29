@@ -50,3 +50,9 @@ h3, h4{
     position: relative;
     padding: 0em 1em;
 }
+
+dl{
+  dt, dd{
+    line-height: 1em;
+  }
+}

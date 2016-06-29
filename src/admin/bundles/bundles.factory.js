@@ -29,6 +29,13 @@
             return this.state === "ACTIVE";
         };
 
+        Bundle.prototype.isInstalled = function () {
+            return this.state === 'INSTALLED';
+        };
+
+        Bundle.prototype.isResolved = function () {
+            return this.state === 'RESOLVED';
+        };
 
         function callbackSuccess(){
             LoadingModal.close();
@@ -74,6 +81,8 @@
                 bundle.$uninstall(callbackSuccess);
             });
         };
+
+
 
         return Bundle;
     }
