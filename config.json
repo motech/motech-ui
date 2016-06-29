@@ -11,7 +11,7 @@
     "src": "./docs",
     "dest": "./build/docs"
   },
-  "motechServerURL": "http://localhost:8080/motech/",
+  "motechServerURL": "http://localhost:8080/motech-platform-server/",
   "staticPath": "/",
   "styleguidePath": "/styleguide"
 }

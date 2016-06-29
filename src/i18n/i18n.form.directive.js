@@ -4,8 +4,8 @@
     angular.module('motech-server')
         .directive('motechI18nForm', directive);
 
-    controller.$inject = ['$scope', 'i18nService', 'LoadingModal'];
-    function controller($scope, i18nService, LoadingModal){
+    controller.$inject = ['$scope', '$state', 'i18nService', 'LoadingModal'];
+    function controller($scope, $state, i18nService, LoadingModal){
         $scope.languages = i18nService.languages;
 
         LoadingModal.open();

@@ -29,7 +29,7 @@
         <nav app-nav ng-include="'/app/nav-secondary.html'"></nav>
         <article ui-view="appArea"></article>
     </section>
-    <footer ng-include="'/app/footer.html'"></footer>
+    <footer ng-if="appReady" ng-include="'/app/footer.html'"></footer>
     <script type="text/javascript" src="motech.js"></script>
 </body>
 </html>

@@ -4,27 +4,29 @@ body>footer{
     dt:after{
         content: ":";
     }
-    dd{
+    dd:after{
         content: ";";
     }
 }
 
 body>footer{
-    font-size: $font-size-small;
-    height: 2em;
+    height: $space-size*2;
     padding-top: 0.25em;
     overflow: hidden;
-    white-space:nowrap;
     .container{
-        >*{
-            display: inline-block;
+        overflow: hidden;
+        padding-right: $sidebar-width;
+        &>nav{
+            position: absolute;
+            top: 0px;
+            right: 0px;
+            text-align: right;
+            height: 100%;
         }
     }
-    nav{
-        float: right;
-    }
-    nav    > a{
+    nav > a{
         padding: 0em;
+        padding: 0.25em;
     }
     dd, dt, dl{
         display: inline-block;

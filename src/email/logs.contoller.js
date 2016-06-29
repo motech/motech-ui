@@ -12,13 +12,13 @@
         $scope.search = {};
         $scope.$watch('search', updateSearch, true);
 
-        $scope.pageChanged = changePage;
+        $scope.changePageTo = changePageTo;
         
         $scope.showExportModal = showExportModal;
         $scope.hideExportModal = hideExportModal;
 
-        function changePage(){
-            EmailLogsService.getPage($scope.currentPage)
+        function changePageTo(page){
+            EmailLogsService.getPage(page)
             .then(updateRows);
         }
 
