@@ -36,14 +36,19 @@
         }
 
         Bundle.prototype.start = function(){
-            LoadingModal.open();
-            this.$start(callbackSuccess);
+            var bundle = this;
+            MotechConfirm(i18nService.getMessage('admin.bundles.stateChangeWarning')) //'admin.bundles.start' (start button text)
+            .then(function(){
+                LoadingModal.open();
+                bundle.$start(callbackSuccess);
+            });
         };
         Bundle.prototype.stop = function(){
+            var bundle = this;
             MotechConfirm(i18nService.getMessage('admin.bundles.stateChangeWarning')) //'admin.bundles.stop' (stop button text)
             .then(function(){
                 LoadingModal.open();
-                this.$stop(callbackSuccess);
+                bundle.$stop(callbackSuccess);
             });
         };
         Bundle.prototype.restart = function(){
@@ -51,18 +56,22 @@
             this.$restart(callbackSuccess);
         };
         
-        Bundle.prototype.uninstallBundle = function(){
+        Bundle.prototype.uninstall = function(){
+            var bundle = this;
             MotechConfirm(i18nService.getMessage('admin.bundles.stateChangeWarning')) // 'admin.remove' (remove button text)
-            .then(uninstallBundleConfigModal);
+            .then(function(){
+                bundle.uninstallWithConfig();
+            });
         };
-        Bundle.prototype.uninstallConfig = function(){
+        Bundle.prototype.uninstallWithConfig = function(){
+            var bundle = this;
             MotechConfirm(i18nService.getMessage('admin.bundles.remove.config')) // 'admin.remove.config' (remove with config button text)
             .then(function(){
                 LoadingModal.open();
-                this.$uninstallWithConfig(callbackSuccess);
+                bundle.$uninstallWithConfig(callbackSuccess);
             }).catch(function(){
                 LoadingModal.open();
-                this.$uninstall(callbackSuccess);
+                bundle.$uninstall(callbackSuccess);
             });
         };
 
