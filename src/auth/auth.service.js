@@ -17,7 +17,7 @@
             var deferred = $q.defer();
 
             var promise = $http({
-                url: ServerService.formatURL('module/server/motech/j_spring_security_check'),
+                url: ServerService.formatURL('module/server/motech-platform-server/j_spring_security_check'),
                 method: 'POST',
                 data: {
                     j_username: username,

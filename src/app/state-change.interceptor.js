@@ -22,6 +22,8 @@
         $rootScope.$on('$stateNotFound',modalClose);
         $rootScope.$on('$stateChangeSuccess',modalClose);
         $rootScope.$on('$stateChangeError',modalClose);
+        
+        $rootScope.$on('event:auth-loginRequired', modalClose);
     }
 
 })();

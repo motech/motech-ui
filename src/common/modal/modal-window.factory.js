@@ -6,17 +6,17 @@
 
     factory.$inject = ['BootstrapDialog', 'BootstrapDialogManager'];
     function factory(BootstrapDialog, BootstrapDialogManager) {
-        function ModalWindow(content, title, closeable){
-            if(!closeable){
-                closeable = false;
+        function ModalWindow(content, title, closable){
+            if(!closable){
+                closable = false;
             } else {
-                closeable = true;
+                closable = true;
             }
 
             var dialog = new BootstrapDialog({
                 title: title,
                 message: content,
-                closeable: closeable
+                closable: closable
             });
             
             function openWindow(){
