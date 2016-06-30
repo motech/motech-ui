@@ -5,7 +5,7 @@
             <button class="button-add" ng-click="newJob()" ui-sref="scheduler.createOrUpdateJob({ action: 'new' })" type="button">{{'scheduler.scheduleJob' | translate}}</button>
         </div>
         <div class="button-group">
-            <button class="button-filter" type="button" uib-btn-checkbox ng-model="viewFilters">{{'scheduler.filters' | translate}}</button>
+            <button class="button-filter" type="button" uib-btn-checkbox ng-model="viewFilters" ng-click="showFilters()">{{'scheduler.filters' | translate}}</button>
         </div>
     </motech-list-header>
     <motech-list-item ng-repeat="job in jobs.rows">
@@ -38,10 +38,10 @@
                     <dl ng-repeat="items in jobDetails[job.name].eventInfoList">
                         <dt>{{'scheduler.subject' | translate}}</dt>
                         <dd>{{items.subject}}</dd>
-                        <dl ng-repeat="(key, value) in items.parameters">
+                        <div ng-repeat="(key, value) in items.parameters">
                             <dt>{{key}}</dt>
                             <dd>{{value}}</dd>
-                        </dl>
+                        </div>
                     </dl>
                 </dl>
             </div>

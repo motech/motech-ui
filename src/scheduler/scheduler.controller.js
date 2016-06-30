@@ -7,7 +7,7 @@
 
     schedulerController.$inject = ['$scope', '$timeout', 'JobsService', 'ModalFactory', 'LoadingModal', 'i18nService'];
     function schedulerController ($scope, $timeout, JobsService, ModalFactory, LoadingModal, i18nService) {
-        $scope.viewFilters = false;
+        $scope.viewFilters = true;
 
         $scope.jobDetails = {};
 
@@ -119,6 +119,10 @@
                     });
                 }
             });
+        };
+
+        $scope.showFilters = function() {
+            $scope.viewFilters = !$scope.viewFilters;
         };
 
         $scope.getStatusIcon = function(status) {
