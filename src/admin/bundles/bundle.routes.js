@@ -9,9 +9,6 @@
         $stateProvider
         .state('bundles', {
             url: '/bundles',
-            resolve: {
-                bundles: getBundlesList
-            },
             views: {
                 'appArea@': {
                     templateUrl: '/admin/bundles/bundles-list.html',
@@ -21,17 +18,33 @@
                     templateUrl: '/admin/bundles/nav.html'
                 }
             }
+        })
+        .state('bundles.bundle', {
+            url: '/:bundleId',
+            resolve: {
+                bundle: getBundle
+            },
+            views: {
+                'appArea@': {
+                    templateUrl: '/admin/bundles/bundle.html',
+                    controller: 'BundleController'
+                }
+            }
         });
     }
 
-    getBundlesList.$inject = ['$q', 'BundlesFactory'];
-    function getBundlesList ($q, BundlesFactory) {
+    getBundle.$inject = ['$q', '$state', '$stateParams', 'BundlesFactory'];
+    function getBundle ($q, $state, $stateParams, BundlesFactory) {
         var deferred = $q.defer();
-        BundlesFactory.query(function (data) {
+        BundlesFactory.details({
+            bundleId: $stateParams.bundleId
+        },function (data) {
             deferred.resolve(data);
         }, function(){
-            deferred.reject([]);
+            deferred.reject();
+            $state.go('bundles');
         });
         return deferred.promise;
     }
+
 })();
