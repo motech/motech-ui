@@ -1,0 +1,47 @@
+<h2>
+    <img ng-src="{{module.getIconURL()}}" alt="" class="icon"/>
+    {{module.name}}
+</h2>
+<dl>
+    <dt>{{msg('admin.bundles.symbolicName')}}</dt>
+    <dd>{{module.symbolicName}}</dd>
+    <dt>{{msg('admin.bundles.version')}}</dt>
+    <dd>{{module.getVersion()}}</dd>
+    <dt>{{msg('admin.bundles.state')}}</dt>
+    <dd>{{msg('admin.bundle.state.' + module.state.toLowerCase())}}</dd>
+    <dt>{{msg('admin.bundles.location')}}</dt>
+    <dd>{{module.location}}</dd>
+    <dt>{{msg('admin.bundles.builtBy')}}</dt>
+    <dd>{{module.builtBy}}</dd>
+    <dt>{{msg('admin.bundles.tool')}}</dt>
+    <dd>{{module.tool}}</dd>
+    <dt>{{msg('admin.bundles.createdBy')}}</dt>
+    <dd>{{module.createdBy}}</dd>
+    <dt>{{msg('admin.bundles.vendor')}}</dt>
+    <dd>{{module.vendor}}</dd>
+    <dt>{{msg('admin.bundles.buildJDK')}}</dt>
+    <dd>{{module.buildJDK}}</dd>
+    <dt>{{msg('admin.bundles.lastModified')}}</dt>
+    <dd>{{printDate(module.lastModified) | date:'medium'}}</dd>
+    <dt>{{msg('admin.bundles.bundleActivator')}}</dt>
+    <dd>{{module.bundleActivator}}</dd>
+    <dt>{{msg('admin.bundles.description')}}</dt>
+    <dd>{{module.description}}</dd>
+    <dt>{{msg('admin.bundles.docURL')}}</dt>
+    <dd><a ng-href="{{module.docURL}}">{{module.docURL}}</a></dd>
+    <dt>{{msg('admin.bundles.wiredExports')}}</dt>
+    <dd ng-repeat="export in module.bundleExports">export {{export.name}} {{export.version}}</dd>
+    <dt>{{msg('admin.bundles.exportPackageHeader')}}</dt>
+    <dd>{{module.exportPackageHeader}}</dd>
+    <dt>{{msg('admin.bundles.wiredImports')}}</dt>
+    <dd ng-repeat="import in module.bundleImports">{{import.name}},{{msg('admin.package.version')}}={{import.version}} {{msg('admin.import.from')}} {{import.from}}</dd>
+    <dt>{{msg('admin.bundles.importPackageHeader')}}</dt>
+    <dd>{{module.importPackageHeader}}</dd>
+    <dt>{{msg('admin.bundles.registeredServices')}}</dt>
+    <dd ng-repeat="service in module.registeredServices">{{service}}</dd>
+    <dt>{{msg('admin.bundles.servicesInUse')}}</dt>
+    <dd ng-repeat="service in module.servicesInUse track by $index">{{service}}</dd>
+</dl>
+
+
+
