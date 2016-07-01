@@ -6,6 +6,6 @@ var gulpSequence = require('gulp-sequence');
 
 gulp.task('watch', function(){
     watch(path.join(config.root.src,'**/*'), function(){
-        gulpSequence('build:app', 'build:styleguide')();
+        gulpSequence('build')();
     });
 });
