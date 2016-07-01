@@ -1,7 +1,22 @@
 (function(){
-
     'use strict';
-
+    /**
+     * @memberOf motech-common
+     * @ngdoc directive
+     * @name  InputMap
+     * @scope true
+     *
+     * @param { } ng-model Takes variable that contains an object
+     *
+     * @description
+     * Creates an input that is able to recieve key-value pairs.
+     *
+     * This directive expects ng-model to be a dictionary of key-value paris.
+     *
+     * @example
+     * <input-map ng-modal="variable"></input-map>
+     * 
+     */
     angular.module('motech-common')
         .directive('inputMap', mapInputDirective);
 

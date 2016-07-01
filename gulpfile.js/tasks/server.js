@@ -37,6 +37,6 @@ var startServer = function(root, port) {
 gulp.task('serve:app', function () {
     startServer(config.app.dest);
 });
-gulp.task('serve:styleguide', function () {
-    startServer(config.styleguide.dest);
+gulp.task('serve:docs', function () {
+    startServer(config.docs.dest);
 });
