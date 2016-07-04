@@ -5,8 +5,8 @@
     angular.module('motech-scheduler')
             .controller('CreateOrUpdateJobController', createOrUpdateJobController);
 
-    createOrUpdateJobController.$inject = ['$scope', '$timeout', '$state', '$stateParams', 'JobsService', 'ModalFactory', 'LoadingModal', 'i18nService'];
-    function createOrUpdateJobController ($scope, $timeout, $state, $stateParams, JobsService, ModalFactory, LoadingModal, i18nService) {
+    createOrUpdateJobController.$inject = ['$scope', '$timeout', '$state', '$stateParams', 'JobsService', 'ModalFactory', 'LoadingModal', 'i18nService', 'MotechAlert'];
+    function createOrUpdateJobController ($scope, $timeout, $state, $stateParams, JobsService, ModalFactory, LoadingModal, i18nService, MotechAlert) {
 
         $scope.job = {};
         $scope.job.motechEvent = {};
@@ -57,10 +57,11 @@
 
             if ($scope.dates.startDate && $scope.dates.endDate) {
                 if ($scope.dates.startDate >= $scope.dates.endDate) {
-                    ModalFactory.showAlert({
-                        title: $scope.msg("scheduler.error"),
-                        message: i18nService.prop.apply(null, ["scheduler.error.endDateBeforeStartDate"].concat([$scope.dates.startDate, $scope.dates.endDate]))
-                    });
+                    //ModalFactory.showAlert({
+                    //   title: $scope.msg("scheduler.error"),
+                    //    message: jQuery.i18n.prop.apply(null, ["scheduler.error.endDateBeforeStartDate"].concat([$scope.dates.startDate, $scope.dates.endDate]))
+                    //});
+                    MotechAlert("End date must be after start date.", "scheduler.error");
                     return;
                 }
             }
@@ -82,10 +83,11 @@
             }
 
             function failure(response) {
-                ModalFactory.showAlert({
-                    title: $scope.msg("scheduler.error"),
-                    message: i18nService.prop.apply(null, [response.data.key].concat(response.data.params))
-                });
+                //ModalFactory.showAlert({
+                //    title: $scope.msg("scheduler.error"),
+                //    message: jQuery.i18n.prop.apply(null, [response.data.key].concat(response.data.params))
+                //});
+                MotechAlert("Invalid cron expression.","scheduler.error");
                 LoadingModal.close();
             }
 
