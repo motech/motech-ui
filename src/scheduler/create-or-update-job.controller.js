@@ -22,6 +22,16 @@
             { displayName: "Day of Week", name: "DAY_OF_WEEK" }
         ];
 
+        $scope.days = [
+            { label: "Monday", value: "0" },
+            { label: "Tuesday", value: "1" },
+            { label: "Wednesday", value: "2" },
+            { label: "Thursday", value: "3" },
+            { label: "Friday", value: "4" },
+            { label: "Saturday", value: "5" },
+            { label: "Sunday", value: "6" }
+        ];
+
         $scope.resetMap = function() {
             ModalFactory.showConfirm("scheduler.confirm.resetMap", "scheduler.confirm", function(response) {
                 if (response) {
@@ -71,7 +81,7 @@
                     if (day === 0) {
                         job.days = [];
                     }
-                    job.days[day] = parseInt($scope.job.days[day]);
+                    job.days[day] = parseInt($scope.job.days[day].value);
                 }
             }
 
@@ -87,7 +97,7 @@
                 //    title: $scope.msg("scheduler.error"),
                 //    message: jQuery.i18n.prop.apply(null, [response.data.key].concat(response.data.params))
                 //});
-                MotechAlert("Invalid cron expression.","scheduler.error");
+                MotechAlert(response.data.params+"{{'"+response.data.key+"' | translate}}", "scheduler.error");
                 LoadingModal.close();
             }
 
@@ -141,7 +151,7 @@
                     };
 
                     for (var i = 0; i < job.days.length; i += 1) {
-                        job.days[i] = days[job.days[i]];
+                        job.days[i] = $scope.days[days[job.days[i]]];
                     }
                 }
 
