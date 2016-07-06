@@ -17,7 +17,29 @@
         this.setLanguage = setLanguage;
 
         function getMessage(msg){
-            return $translate.instant(msg);
+            var parameters = {};
+            if(arguments.length > 1){
+                var args = Array.prototype.slice.call(arguments);
+                args.shift();
+                var indexedParameters = [];
+                args.forEach(function(value){
+                    if(Array.isArray(value)){
+                        value.forEach(function(value){
+                            indexedParameters.push(value);
+                        });
+                    } else if(typeof(value) == 'object'){
+                        Object.keys(value).forEach(function(key){
+                            parameters[key] = value[key];
+                        });
+                    } else {
+                        indexedParameters.push(value);
+                    }
+                });
+                indexedParameters.forEach(function(value, index){
+                    parameters[index] = value;
+                });
+            }
+            return $translate.instant(msg, parameters);
         }
 
         function getLanguages(){
