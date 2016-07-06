@@ -97,13 +97,8 @@
             });
         };
 
-        $scope.newJob = function() {
-            LoadingModal.open();
-        };
-
         $scope.editJob = function(job) {
             JobsService.setCurrentJob(job);
-            LoadingModal.open();
         };
 
         $scope.deleteJob = function(job) {
@@ -127,24 +122,48 @@
 
         $scope.getStatusIcon = function(status) {
             if (status === "OK") {
-                return "play";
+                return "icon-start";
             } else if (status === "PAUSED") {
-                return "pause";
+                return "icon-pause";
             } else if (status === "BLOCKED") {
-                return "ban";
+                return "icon-ban";
             } else if (status === "ERROR") {
-                return "exclamation-triangle";
+                return "icon-error";
+            }
+            return undefined;
+        };
+
+        $scope.getStatus = function(status) {
+            if (status === "OK") {
+                return "scheduler.ok";
+            } else if (status === "PAUSED") {
+                return "scheduler.paused";
+            } else if (status === "BLOCKED") {
+                return "scheduler.blocked";
+            } else if (status === "ERROR") {
+                return "scheduler.error";
             }
             return undefined;
         };
 
         $scope.getActivityIcon = function(activity) {
             if (activity === "NOTSTARTED") {
-                return "clock-o";
+                return "icon-clock";
             } else if (activity === "ACTIVE") {
-                return "play";
+                return "icon-start";
             } else if (activity === "FINISHED") {
-                return "check";
+                return "icon-check";
+            }
+            return undefined;
+        };
+
+        $scope.getActivity = function(activity) {
+            if (activity === "NOTSTARTED") {
+                return "scheduler.notstarted";
+            } else if (activity === "ACTIVE") {
+                return "scheduler.active";
+            } else if (activity === "FINISHED") {
+                return "scheduler.finished";
             }
             return undefined;
         };

@@ -2,7 +2,7 @@
 <motech-list paginated>
     <motech-list-header>
         <div class="button-group-primary">
-            <button class="button-add" ng-click="newJob()" ui-sref="scheduler.createOrUpdateJob({ action: 'new' })" type="button">{{'scheduler.scheduleJob' | translate}}</button>
+            <button class="button-add" ui-sref="scheduler.createOrUpdateJob({ action: 'new' })" type="button">{{'scheduler.scheduleJob' | translate}}</button>
         </div>
         <div class="button-group">
             <button class="button-filter" type="button" uib-btn-checkbox ng-model="viewFilters" ng-click="showFilters()">{{'scheduler.filters' | translate}}</button>
@@ -12,8 +12,8 @@
         <div column-title="Name">
             <h4>{{job.name}}</h4>
         </div>
-        <motech-list-column column-title="Status"><span class="label label-primary"><i class="fa fa-lg fa-{{getStatusIcon(job.status)}}"> {{job.status | translate}}</i></span></motech-list-column>
-        <motech-list-column column-title="Activity"><span class="label label-primary"><i class="fa fa-lg fa-{{getActivityIcon(job.activity)}}"> {{job.activity | translate}}</i></span></motech-list-column>
+        <motech-list-column column-title="Status"><span class="label label-primary"><i class="{{getStatusIcon(job.status)}}">{{getStatus(job.status) | translate}}</i></span></motech-list-column>
+        <motech-list-column column-title="Activity"><span class="label label-primary"><i class="{{getActivityIcon(job.activity)}}">{{getActivity(job.activity) | translate}}</i></span></motech-list-column>
         <motech-list-collapsible ng-init="getDetails(job)">
             <div ng-if="job.uiDefined">
                 <div class="button-group-primary">
@@ -21,8 +21,8 @@
                     <button ng-click="deleteJob(job)" class="button-delete">Delete</button>
                 </div>
                 <div class="button-group">
-                    <button ng-if="job.status === 'OK'" ng-click="pauseJob(job)" type="button" class="button"><i class="fa fa-1 fa-pause"></i> Pause</button>
-                    <button ng-if="job.status === 'PAUSED'" ng-click="resumeJob(job)" type="button" class="button"><i class="fa fa-1 fa-play"></i> Resume</button>
+                    <button ng-if="job.status === 'OK'" ng-click="pauseJob(job)" type="button" class="button"><i class="icon-pause"></i>Pause</button>
+                    <button ng-if="job.status === 'PAUSED'" ng-click="resumeJob(job)" type="button" class="button"><i class="icon-start"></i>Resume</button>
                 </div>
             </div>
             <div ng-if="!job.uiDefined">

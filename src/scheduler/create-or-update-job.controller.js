@@ -8,6 +8,8 @@
     createOrUpdateJobController.$inject = ['$scope', '$timeout', '$state', '$stateParams', 'JobsService', 'ModalFactory', 'LoadingModal', 'i18nService', 'MotechAlert'];
     function createOrUpdateJobController ($scope, $timeout, $state, $stateParams, JobsService, ModalFactory, LoadingModal, i18nService, MotechAlert) {
 
+        LoadingModal.open();
+
         $scope.job = {};
         $scope.job.motechEvent = {};
         $scope.motechEventParameters = {};
