@@ -69,11 +69,7 @@
 
             if ($scope.dates.startDate && $scope.dates.endDate) {
                 if ($scope.dates.startDate >= $scope.dates.endDate) {
-                    //ModalFactory.showAlert({
-                    //   title: $scope.msg("scheduler.error"),
-                    //    message: jQuery.i18n.prop.apply(null, ["scheduler.error.endDateBeforeStartDate"].concat([$scope.dates.startDate, $scope.dates.endDate]))
-                    //});
-                    MotechAlert("End date must be after start date.", "scheduler.error");
+                    MotechAlert(i18nService.getMessage("scheduler.error.endDateBeforeStartDate", [$scope.dates.startDate, $scope.dates.endDate]), "scheduler.error");
                     return;
                 }
             }
@@ -95,11 +91,7 @@
             }
 
             function failure(response) {
-                //ModalFactory.showAlert({
-                //    title: $scope.msg("scheduler.error"),
-                //    message: jQuery.i18n.prop.apply(null, [response.data.key].concat(response.data.params))
-                //});
-                MotechAlert(response.data.params+"{{'"+response.data.key+"' | translate}}", "scheduler.error");
+                MotechAlert(i18nService.getMessage(response.data.key, response.data.params), "scheduler.error");
                 LoadingModal.close();
             }
 
