@@ -1,6 +1,6 @@
 <legend ng-if="action === 'new'">{{'scheduler.scheduleJob' | translate}}</legend>
 <legend ng-if="action === 'edit'">{{'scheduler.updateJob' | translate}}</legend>
-<form class="form-horizontal" name="JobForm" role="form">
+<form name="JobForm">
     <fieldset>
         <div class="form-group">
             <label for="type" class="control-label" mt-invalid="'JobForm.type.$invalid'">{{'scheduler.jobType' | translate}}</label>
@@ -78,11 +78,7 @@
         </label>
     </fieldset>
 
-    <fieldset class="form-group">
-        <div class="button-group-primary">
-            <button ng-if="action === 'new'" ng-disabled="!JobForm.$valid" class="button-primary" ng-click="createOrUpdateJob(action)">{{'scheduler.scheduleJob' | translate}}</button>
-            <button ng-if="action === 'edit'" ng-disabled="!JobForm.$valid" class="button-primary" ng-click="createOrUpdateJob(action)">{{'scheduler.updateJob' | translate}}</button>
-        </div>
-    </fieldset>
+    <input ng-if="action === 'new'" ng-disabled="!JobForm.$valid" type="submit" ng-click="createOrUpdateJob(action)" value="{{'scheduler.scheduleJob' | translate}}"  />
+    <input ng-if="action === 'edit'" ng-disabled="!JobForm.$valid" type="submit" ng-click="createOrUpdateJob(action)" value="{{'scheduler.updateJob' | translate}}" />
 </form>
 <period-modal></period-modal>
