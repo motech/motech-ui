@@ -31,7 +31,7 @@
                 var elem = angular.element(element),
                     elementId = attrs.gotoAnchor;
 
-                elem.on('click', function() {console.log('click', elementId);
+                elem.on('click', function() {
                     jQuery('html, body').animate({scrollTop: (jQuery('#' + elementId).offset().top - 100)}, 500);
                 });
             }
