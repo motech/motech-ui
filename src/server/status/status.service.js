@@ -52,7 +52,7 @@
                     $rootScope.$broadcast('motechServer.loaded');
                 },
                 function(){ // Error
-                    service.started = false;console.log('service.started - Error');
+                    service.started = false;
                 },
                 function(){ // Update
                     $rootScope.$broadcast('motech.statusCheck.update');
