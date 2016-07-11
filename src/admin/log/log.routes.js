@@ -22,7 +22,7 @@
             .state('log.file', {
                 url: '/log-file',
                 ncyBreadcrumb: {
-                    label: 'Log File'
+                    label: 'admin.log.file'
                 },
                 views: {
                     'appArea@': {
@@ -34,7 +34,7 @@
             .state('log.options', {
                 url: '/log-options',
                 ncyBreadcrumb: {
-                    label: 'Log Options'
+                    label: 'admin.log.options'
                 },
                 views: {
                     'appArea@': {
