@@ -10,7 +10,7 @@
         .state('email', {
             url: '/email',
             ncyBreadcrumb: {
-                label: 'Email'
+                label: 'email'
             },
             views:{
                 secondaryNav: {
@@ -22,7 +22,7 @@
         .state('email.send', {
             url: '/send',
             ncyBreadcrumb: {
-                label: 'Send Email'
+                label: 'email.send'
             },
             views:{
                 'appArea@': {
@@ -34,7 +34,7 @@
         .state('email.settings', {
             url: '/settings',
             ncyBreadcrumb: {
-                label: 'Settings'
+                label: 'email.settings'
             },
             views:{ 
                 'appArea@': {
@@ -49,7 +49,7 @@
         .state('email.logs', {
             url: '/logs',
             ncyBreadcrumb: {
-                label: 'Logs'
+                label: 'email.logging'
             },
             views:{
                 'appArea@': {
