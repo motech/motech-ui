@@ -1,126 +1,83 @@
-<div ng-if="!platformSettings.readOnly" class="form-group settings-box-medium">
-    <div class="settings-box-content">
-        <legend class="frame-title settings-box-header">{{'admin.settings.upload' | translate}}</legend>
-        <div class="settings-form">
-            <legend>{{'admin.platform.settings' | translate}}</legend>
-            <form class="form-inline inside" id="settingsFileForm" action="module/admin/api/settings/platform/upload" method="post" enctype="multipart/form-data">
-                <fieldset>
-                    <label class="control-label input-label">{{'admin.settings.fileChosen' | translate}}</label>
-                    <div class="btn-group">
-                        <span class="btn btn-default">
-                            <span>{{'server.button.selectFile' | translate}}</span>
-                            <input type="file" id="fileInput" name="file"/>
-                        </span>
-                    </div>
-                    <span class="btn btn-primary" ng-click="uploadSettings()">{{'admin.submit' | translate}}</span>
-                </fieldset>
-            </form>
+<h3>{{'admin.platform.settings' | translate}}</h3>
+<form id="settingsFileForm" action="module/admin/api/settings/platform/upload" method="post" enctype="multipart/form-data">
+    <fieldset>
+        <h4>{{'admin.settings.upload' | translate}}</h4>
+        <div class="form-group">
+            <label for="fileInput">{{'admin.settings.fileChosen' | translate}}</label>
+            <input type="file" id="fileInput" name="file" value="{{'server.button.selectFile' | translate}}"/>
         </div>
-    </div>
-</div>
-<div ng-if="!platformSettings.readOnly" class="form-group settings-box-small">
-    <div class="settings-box-content">
-        <legend class="frame-title settings-box-header">{{'admin.settings.location' | translate}}</legend>
-        <form class="form-inline inside" id="settingsLocationForm" method="post" ng-submit="uploadFileLocation()">
-            <fieldset class="form-content">
-                <label class="control-label input-label">{{'admin.settings.location.new' | translate}}</label>
-                <input class="form-control" type="text" id="settingsLocation" name="settingsLocation" ng-model="location"/>
-                <input type="submit" value="{{'admin.submit' | translate}}" class="btn btn-primary"/>
-            </fieldset>
-        </form>
-    </div>
-</div>
-<div class="form-group settings-box-small">
-    <div class="settings-box-content">
-        <legend class="frame-title settings-box-header">{{'admin.settings.importexport.header' | translate}}</legend>
-        <form class="form-inline inside">
-            <fieldset class="form-content">
-                <label class="control-label input-label">{{'admin.settings.importexport.export' | translate}}</label>
-                <input type="button" ng-click="exportConfig()" value="{{'admin.settings.importexport.exportButton' | translate}}" class="btn btn-default"/>
-            </fieldset>
-        </form>
-    </div>
-</div>
-<div class="clearfix"></div>
-<div class="form-group">
-    <div class="settings-box-content" ng-show="platformSettings.settingsList.length > 0">
-        <legend class="frame-title settings-box-header">{{'admin.settings.platform' | translate}}</legend>
-        <div class="settings-form" ng-repeat="pSettings in platformSettings.settingsList">
-            <legend>{{'admin.settings.section.'+ pSettings.section | translate}}</legend>
-            <form id="platformSettingsForm" class="inside form-horizontal">
-                <fieldset>
-                    <div ng-repeat="option in pSettings.settings" class="form-group">
-                        <label class="desc-label control-label" for="{{option.key}}">
-                            {{'admin.settings.' + option.key | translate}}
-                            <span class="icon-documentation" title="{{'admin.settings.tooltip.' + option.key | translate}}" />
-                        </label>
-                        <div class="settings-input">
-                            <input ng-if="isTextOrNumber(option)" class="form-control input-large" ng-disabled="platformSettings.readOnly" type="text" id="{{option.key}}" name="{{option.key | translate}}" ng-model="option.value" />
-                            <input ng-if="isBool(option)" class="input-checkbox" ng-disabled="platformSettings.readOnly" type="checkbox" id="{{option.key}}" name="{{option.key}}" ng-model="option.value" />
-                            <div ng-if="isCombobox(option)" ng-init="addValue(option.key, option.value)">
-                                <select class="form-control input-large" ng-model="option.value" ng-disabled="platformSettings.readOnly"
-                                    ng-options="value for value in getComboboxValues(option.key)">
-                                    <option ng-if="!option.value" value="">{{'mds.form.label.select' | translate}}</option>
-                                </select>
-                                <input class="input-medium form-control" ng-disabled="platformSettings.readOnly" type="text" ng-model="userValidator" />
-                                <a class="btn btn-success" ng-disabled="!userValidator" ng-click="addValue(option.key, userValidator)">
-                                    <span class="fa fa-fw fa-plus"></span>Add option</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="btn-save">
-                            <input ng-if="!platformSettings.readOnly" type="submit" ng-click="saveSettings(pSettings)" value="{{'admin.save' | translate}}" class="btn btn-primary" />
-                        </div>
-                    </div>
-                </fieldset>
-            </form>
-            <form class="inside" ng-if="$last">
-                <div class="form-group">
-                    <fieldset class="settings-input" style="padding: inherit;">
-                        <input ng-if="!platformSettings.readOnly" type="submit" ng-click="saveAll()" value="{{'admin.saveAll' | translate}}" class="btn btn-primary input-large"/>
-                    </fieldset>
+    </fieldset>
+    <input ng-click="uploadSettings()" type="submit" value="{{'admin.submit' | translate}}" />
+</form>
+<form id="settingsLocationForm" method="post" ng-submit="uploadFileLocation()">
+    <fieldset>
+        <h4>{{'admin.settings.location' | translate}}</h4>
+        <div class="form-group">
+            <label for="settingsLocation">{{'admin.settings.location.new' | translate}}</label>
+            <input type="text" id="settingsLocation" name="settingsLocation" ng-model="location"/>
+        </div>
+    </fieldset>
+    <input type="submit" value="{{'admin.submit' | translate}}"/>
+</form>
+<form>
+    <fieldset>
+        <h4>{{'admin.settings.importexport.header' | translate}}</h4>
+        <div class="form-group">
+            <label for="exportConfig">{{'admin.settings.importexport.export' | translate}}</label>
+            <input class="input-small" type="button" id="exportConfig" name="exportConfig" ng-click="exportConfig()" value="{{'admin.settings.importexport.exportButton' | translate}}" class="btn btn-default"/>
+        </div>
+    </fieldset>
+</form>
+
+<h3>{{'admin.settings.platform' | translate}}</h3>
+<div ng-repeat="pSettings in platformSettings.settingsList">
+    <form id="platformSettingsForm">
+        <h4>{{'admin.settings.section.'+ pSettings.section | translate}}</h4>
+        <fieldset ng-repeat="option in pSettings.settings">
+            <div class="form-group">
+                <label for="{{option.key}}">
+                    {{'admin.settings.' + option.key | translate}}
+                    <span class="icon-documentation" data-trigger="hover" data-placement="left" bs-popover="{{'admin.settings.tooltip.' + option.key | translate}}" />
+                </label>
+                <input ng-if="isTextOrNumber(option)"ng-disabled="platformSettings.readOnly" type="text" id="{{option.key}}" name="{{option.key | translate}}" ng-model="option.value" />
+                <input class="input-small" ng-if="isBool(option)" ng-disabled="platformSettings.readOnly" type="checkbox" id="{{option.key}}" name="{{option.key}}" ng-model="option.value" />
+                <div ng-if="isCombobox(option)" ng-init="addValue(option.key, option.value)">
+                    <select ng-model="option.value" ng-disabled="platformSettings.readOnly" ng-options="value for value in getComboboxValues(option.key)">
+                        <option ng-if="!option.value" value="">{{'mds.form.label.select' | translate}}</option>
+                    </select>
+                    <input ng-disabled="platformSettings.readOnly" type="text" ng-model="userValidator" />
+                    <a class="btn btn-success" ng-disabled="!userValidator" ng-click="addValue(option.key, userValidator)">
+                        <span class="fa fa-fw fa-plus"></span>Add option</a>
                 </div>
-            </form>
-        </div>
-    </div>
-    <div class="settings-box-content" ng-show="platformSettings.settingsList.length <= 0">
-        <legend class="frame-title settings-box-header">{{'admin.settings.noSettings' | translate}}</legend>
-        <div class="settings-form">
-            <legend>{{'admin.settings.noSettingsMsg' | translate}}</legend>
-            <form id="noSettingsForm" class="inside form-horizontal">
-                <fieldset>
-                    <div class="form-group">
-                        <label class="desc-label control-label" for="new.db.host">{{'admin.label.db.host' | translate}}</label>
-                        <div class="settings-input">
-                            <input class="form-control input-large" id="new.db.host" type="text" name="db.host"/>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="desc-label control-label" for="new.db.port">{{'admin.label.db.port' | translate}}</label>
-                        <div class="settings-input">
-                            <input class="form-control input-large" id="new.db.port" type="text" name="db.port"/>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="desc-label control-label" for="new.db.user">{{'admin.label.db.username' | translate}}</label>
-                        <div class="settings-input">
-                            <input class="form-control input-large" id="new.db.user" type="text" name="db.username"/>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="desc-label control-label" for="new.db.password">{{'admin.label.db.password' | translate}}</label>
-                        <div class="settings-input">
-                            <input class="form-control input-large" id="new.db.password" type="text" name="db.host"/>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="btn-save">
-                            <input type="submit" ng-click="saveNewSettings()" value="{{'admin.submit' | translate}}" class="btn btn-primary" />
-                        </div>
-                    </div>
-                </fieldset>
-            </form>
-        </div>
-    </div>
+            </div>
+        </fieldset>
+        <input ng-if="!platformSettings.readOnly" type="submit" ng-click="saveSettings(pSettings)" value="{{'admin.save' | translate}}" />
+    </form>
+    <form id="saveAllSettingsForm" ng-if="$last && !platformSettings.readOnly">
+        <input type="submit" ng-click="saveAll()" value="{{'admin.saveAll' | translate}}" />
+    </form>
+</div>
+<div ng-show="platformSettings.settingsList.length <= 0">
+    <h4>{{'admin.settings.noSettings' | translate}}</h4>
+    <form id="noSettingsForm">
+        <fieldset>
+            <div class="form-group">
+                <label for="new.db.host">{{'admin.label.db.host' | translate}}</label>
+                <input class="form-control input-large" id="new.db.host" type="text" name="db.host"/>
+            </div>
+            <div class="form-group">
+                <label for="new.db.port">{{'admin.label.db.port' | translate}}</label>
+                <input id="new.db.port" type="text" name="db.port"/>
+            </div>
+            <div class="form-group">
+                <label for="new.db.user">{{'admin.label.db.username' | translate}}</label>
+                <input class="form-control input-large" id="new.db.user" type="text" name="db.username"/>
+            </div>
+            <div class="form-group">
+                <label for="new.db.password">{{'admin.label.db.password' | translate}}</label>
+                <input class="form-control input-large" id="new.db.password" type="text" name="db.host"/>
+            </div>
+        </fieldset>
+        <input type="submit" ng-click="saveNewSettings()" value="{{'admin.submit' | translate}}" class="btn btn-primary" />
+    </form>
 </div>

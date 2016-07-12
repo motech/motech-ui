@@ -4,8 +4,8 @@
     angular.module('motech-admin')
         .controller('SettingsController', settingsController);
 
-    settingsController.$inject = ['$scope', 'PlatformSettingsFactory', 'i18nService', '$http', 'ModalWindow', 'LoadingModal', 'ServerService'];
-    function settingsController ($scope, PlatformSettingsFactory, i18nService, $http, ModalWindow, LoadingModal, ServerService) {
+    settingsController.$inject = ['$scope', 'PlatformSettingsFactory', 'i18nService', '$http', 'ModalFactory', 'LoadingModal', 'ServerService'];
+    function settingsController ($scope, PlatformSettingsFactory, i18nService, $http, ModalFactory, LoadingModal, ServerService) {
         $scope.comboboxValues = { "security.password.validator" : ["none", "lower_upper", "lower_upper_digit", "lower_upper_digit_special"],
                                           "system.language" : ["en", "pl"] };
         $scope.platformSettings = PlatformSettingsFactory.get();
@@ -19,13 +19,11 @@
             $http.post(ServerService.formatURL('module/admin/api/settings/platform'), settings)
                 .success( function() {
                     LoadingModal.close();
-                    ModalWindow(angular.toJson(i18nService.getMessage('admin.settings.saved')),
-                        i18nService.getMessage('admin.success')).open();
+                    ModalFactory.showSuccessAlert('admin.settings.saved');
                 })
                 .error( function() {
                     LoadingModal.close();
-                    ModalWindow(angular.toJson(i18nService.getMessage('admin.settings.error.location')),
-                        i18nService.getMessage('admin.settings.error')).open();
+                    ModalFactory.showErrorAlert('admin.settings.error.location');
                 });
         };
 
@@ -34,14 +32,12 @@
             $('#noSettingsForm').ajaxSubmit({
                 success: function () {
                     LoadingModal.close();
-                    ModalWindow(angular.toJson(i18nService.getMessage('admin.settings.saved')),
-                        i18nService.getMessage('admin.success')).open();
+                    ModalFactory.showSuccessAlert('admin.settings.saved');
                     $scope.platformSettings = PlatformSettingsFactory.get();
                 },
                 error: function (response) {
                     LoadingModal.close();
-                    ModalWindow(angular.toJson(response.status + ": " + response.statusText),
-                        i18nService.getMessage('admin.settings.error')).open();
+                    ModalFactory.showErrorAlert('admin.settings.error');
                 }
             });
         };
@@ -50,14 +46,12 @@
             $("#settingsFileForm").ajaxSubmit({
                 success: function () {
                     LoadingModal.close();
-                    ModalWindow(angular.toJson(i18nService.getMessage('admin.settings.saved')),
-                        i18nService.getMessage('admin.success')).open();
+                    ModalFactory.showSuccessAlert('admin.settings.saved');
                     $scope.platformSettings = PlatformSettingsFactory.get();
                 },
                 error: function (response) {
                     LoadingModal.close();
-                    ModalWindow(angular.toJson(response.status + ": " + response.statusText),
-                        i18nService.getMessage('admin.settings.error')).open();
+                    ModalFactory.showErrorAlert('admin.settings.error');
                 }
             });
         };
@@ -66,12 +60,11 @@
             $http({method:'POST', url: ServerService.formatURL('module/admin/api/settings/platform/location'), params: {location: this.location}})
                 .success( function () {
                     LoadingModal.close();
-                    ModalWindow(angular.toJson(i18nService.getMessage('admin.settings.saved')), i18nService.getMessage('admin.success')).open();
+                    ModalFactory.showSuccessAlert('admin.settings.saved');
                 })
                 .error( function () {
                    LoadingModal.close();
-                   ModalWindow(angular.toJson(i18nService.getMessage('admin.settings.error.location')),
-                       i18nService.getMessage('admin.settings.error')).open();
+                   ModalFactory.showErrorAlert('admin.settings.error.location');
                 });
         };
 
@@ -80,12 +73,11 @@
             $http.post(ServerService.formatURL('module/admin/api/settings/platform/list'), $scope.platformSettings.settingsList)
                 .success( function () {
                     LoadingModal.close();
-                    ModalWindow(angular.toJson(i18nService.getMessage('admin.settings.saved')), i18nService.getMessage('admin.success')).open();
+                    ModalFactory.showSuccessAlert('admin.settings.saved');
                 })
                 .error( function () {
                     LoadingModal.close();
-                    ModalWindow(angular.toJson(i18nService.getMessage('admin.settings.error.location')),
-                        i18nService.getMessage('admin.settings.error')).open();
+                    ModalFactory.showErrorAlert('admin.settings.error.location');
                 });
         };
 
@@ -96,8 +88,7 @@
             })
             .error( function () {
                 LoadingModal.close();
-                ModalWindow(angular.toJson(i18nService.getMessage('admin.settings.error.export')),
-                    i18nService.getMessage('admin.settings.error')).open();
+                ModalFactory.showErrorAlert('admin.settings.error.export');
             });
         };
 
