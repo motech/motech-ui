@@ -5,8 +5,8 @@
     angular.module('motech-scheduler')
             .controller('CreateOrUpdateJobController', createOrUpdateJobController);
 
-    createOrUpdateJobController.$inject = ['$scope', '$timeout', '$state', '$stateParams', 'JobsService', 'ModalFactory', 'LoadingModal', 'i18nService', 'MotechAlert'];
-    function createOrUpdateJobController ($scope, $timeout, $state, $stateParams, JobsService, ModalFactory, LoadingModal, i18nService, MotechAlert) {
+    createOrUpdateJobController.$inject = ['$scope', '$timeout', '$compile', '$state', '$stateParams', 'JobsService', 'ModalFactory', 'LoadingModal', 'i18nService', 'MotechAlert', 'ModalWindow'];
+    function createOrUpdateJobController ($scope, $timeout, $compile, $state, $stateParams, JobsService, ModalFactory, LoadingModal, i18nService, MotechAlert, ModalWindow) {
 
         LoadingModal.open();
 
@@ -63,8 +63,8 @@
 
             job.motechEvent.parameters = {};
 
-            angular.forEach($scope.motechEventParameters, function(parameter) {
-                job.motechEvent.parameters[parameter.key] = parameter.value;
+            angular.forEach($scope.motechEventParameters, function(property, parameter) {
+                job.motechEvent.parameters[parameter] = property;
             });
 
             if ($scope.dates.startDate && $scope.dates.endDate) {

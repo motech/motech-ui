@@ -3,12 +3,10 @@
     'use strict';
 
     angular.module('motech-scheduler')
-            .controller('SchedulerController', schedulerController);
+            .controller('JobListController', jobListController);
 
-    schedulerController.$inject = ['$scope', '$timeout', 'JobsService', 'ModalFactory', 'LoadingModal', 'i18nService'];
-    function schedulerController ($scope, $timeout, JobsService, ModalFactory, LoadingModal, i18nService) {
-        $scope.viewFilters = true;
-
+    jobListController.$inject = ['$scope', '$timeout', 'JobsService', 'ModalFactory', 'LoadingModal', 'i18nService'];
+    function jobListController ($scope, $timeout, JobsService, ModalFactory, LoadingModal, i18nService) {
         $scope.jobDetails = {};
 
         $scope.search = {};
@@ -23,18 +21,18 @@
         });
 
         JobsService.setListener($scope);
-        JobsService.fetchJobs({});
 
         $scope.changePageTo = changePageTo;
 
         function changePageTo(page){
+            LoadingModal.open();
             JobsService.setParam("page", page);
             JobsService.fetchJobs();
         }
 
         var searchUpdateTimeout;
         function updateSearch(searchData){
-
+            LoadingModal.open();
             if(searchUpdateTimeout){
                 clearTimeout(searchUpdateTimeout);
                 searchUpdateTimeout=null;
@@ -114,10 +112,6 @@
                     });
                 }
             });
-        };
-
-        $scope.showFilters = function() {
-            $scope.viewFilters = !$scope.viewFilters;
         };
 
         $scope.getStatusIcon = function(status) {

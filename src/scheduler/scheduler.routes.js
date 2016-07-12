@@ -10,12 +10,12 @@
         .state('scheduler', {
             url: '/scheduler',
             ncyBreadcrumb: {
-                label: 'Scheduler'
+                label: 'scheduler'
             },
             views:{
                 'appArea@': {
-                    templateUrl: 'scheduler/scheduler.html',
-                    controller: 'SchedulerController'
+                    templateUrl: 'scheduler/job-list.html',
+                    controller: 'JobListController'
                 },
                 secondaryNav: {
                     templateUrl: '/scheduler/nav.html'
@@ -25,7 +25,7 @@
         .state('scheduler.createOrUpdateJob', {
             url: "/createOrUpdateJob?action",
             ncyBreadcrumb: {
-                label: 'ScheduleJob'
+                label: 'scheduler.scheduleJob'
             },
             views: {
                 'appArea@': {

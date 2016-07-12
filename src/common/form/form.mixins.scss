@@ -27,7 +27,7 @@
 @mixin form-wide() {
     .form-group {
         position: relative;
-        padding-left: $sidebar-width*1.1;
+        padding-left: $sidebar-width+$space-size*2;
         >label,
         >legend {
             position: absolute;
@@ -43,7 +43,7 @@
     }
     fieldset.form-group{
         display: block;
-        padding-left: $sidebar-width*1.1;
+        padding-left: $sidebar-width+$space-size*2;
         position: relative;
         >legend {
             position: absolute;
