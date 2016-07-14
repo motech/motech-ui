@@ -52,7 +52,7 @@
             }).catch(function(){
                 deferred.reject([]);
             }).finally(function(){
-                loaded = true;
+                service.loaded = true;
             });
 
             return deferred.promise;
