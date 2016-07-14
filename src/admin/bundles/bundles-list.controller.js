@@ -7,6 +7,7 @@
     bundlesListController.$inject = ['$scope', '$rootScope', 'BundlesFactory'];
     function bundlesListController ($scope, $rootScope, BundlesFactory) {
         $scope.bundles = [];
+        $scope.search = {};
         BundlesFactory.query(function(bundles){
             $scope.bundles = bundles;
         });

@@ -1,5 +1,11 @@
 <motech-list>
     <motech-list-header>
+        <form class="form-inline ">
+            <div class="form-group">
+                <label for="admin.bundles.list.filter">{{msg('admin.filter')}}</label>
+                <input id="admin.bundles.list.filter" type="text" ng-model="search.$"/>
+            </div>
+        </form>
         <h3>{{msg('admin.bundles.statistics')}}</h3>
         <dl>
             <dt>{{msg('admin.bundles.statistics.total')}}</dt>
@@ -12,7 +18,7 @@
             <dd>{{resolvedBundlesCount()}}</dd>
         </dl>
     </motech-list-header>
-    <motech-list-item ng-repeat="bundle in bundles" >
+    <motech-list-item ng-repeat="bundle in bundles | filter:search" >
         <div column-title="Name" class="bundle-main">
             <a ui-sref="bundles.bundle({bundleId:bundle.bundleId})">
                 <img class="bundle-icon" alt="" ng-src="{{bundle.getIconURL()}}" />
