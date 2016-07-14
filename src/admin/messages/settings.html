@@ -1,0 +1,48 @@
+<motech-list controller="MessagesController">
+    <motech-list-header>
+        <h5 class="text-plain inside">{{'admin.messages.notifications.header' | translate}}</h5>
+    </motech-list-header>
+    <motech-list-item ng-repeat="rule in notificationRuleDto.notificationRules">
+        <motech-list-column> {{'admin.messages.notifications.notificationType' | translate}}
+            <select ng-model="rule.actionType">
+                <option ng-repeat="available in ['SMS', 'EMAIL']" ng-click="changeRuleActionType(rule, available)" value="{{available}}">
+                    {{'admin.messages.notifications.' + available | translate}}
+                </option>
+            </select>
+        </motech-list-column>
+        <motech-list-column> {{'admin.messages.notifications.level' | translate}}
+            <select ng-model="rule.level">
+                <option ng-repeat="available in ['CRITICAL', 'ERROR', 'WARN', 'INFO', 'DEBUG']" ng-click="changeRuleLevel(rule, available)" value="{{available}}">
+                    {{'admin.messages.' + available | translate}}
+                </option>
+            </select>
+        </motech-list-column>
+        <motech-list-column> {{'admin.messages.moduleName' | translate}}
+            <select ng-model="rule.moduleName">
+                <option>
+                    {{'admin.messages.all' | translate}}
+                </option>
+                <option ng-repeat="bundle in bundles" ng-click="changeRuleModuleName(rule, bundle)" value="{{bundle.name}}">
+                    {{bundle.name}}
+                </option>
+            </select>
+        </motech-list-column>
+        <motech-list-column> {{'admin.messages.notifications.recipient' | translate}}
+            <span class="" ng-class="{'has-error': !rule.recipient}">
+                <input class="input-auto input-large-fluid" ng-model="rule.recipient" type="text" value="" />
+            </span>
+        </motech-list-column>
+        <motech-list-column>
+        <a ng-click="removeRule(rule)" class="btn btn-danger"><i class="fa fa-trash-o"></i></a>
+        </motech-list-column>
+    </motech-list-item>
+    <motech-list-footer>
+        <div class="btn-group">
+            <button class="btn btn-success" ng-click="newRule()"><i class="fa fa-plus"></i>&nbsp;{{'admin.messages.notifications.newRecipient' | translate}}</button>
+        </div>
+        <div class="btn-group">
+            <button class="btn btn-primary" type="button" ng-click="save()">{{'admin.save' | translate}}</button>
+            <a href="#/admin/messages" class="btn btn-default">{{'admin.cancel' | translate}}</a>
+        </div>
+    </motech-list-footer>
+</motech-list>

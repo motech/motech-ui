@@ -1,0 +1,73 @@
+<motech-list controller="MessagesController" paginated>
+    <motech-list-header>
+        <div class="btn-group pull-right">
+            <a href="#" class="btn btn-default" ng-click="refresh()"><i class="fa fa-refresh"></i>&nbsp;{{'admin.refresh' | translate}}</a>
+        </div>
+    </motech-list-header>
+    <motech-list-body>
+        <div class="alert alert-info" ng-show="messages.length < 1">
+            <span><p>{{'admin.messages.empty' | translate}}</p></span>
+        </div>
+    </motech-list-body>
+    <motech-list-item ng-repeat="message in pagedItems[currentPage]">
+        <div class="status-message">
+            <ul class="message-list">
+                <li>
+                    <span class="msg-date">{{printDate(message.date) | date:'yyyy-MM-dd HH:mm:ss'}}</span>&nbsp;
+                    <a ng-href="?moduleName={{message.moduleName}}"><span class="msg-level">[{{message.moduleName}}]</span></a>
+                </li>
+                <li><span class="msg-level badge " ng-class="getCssClass(message)">{{message.level}}</span>&nbsp;<span> {{printText(message.text)}}</span></li>
+            </ul>
+            <a ng-click="remove(message)" class="margin-before05 btn btn-danger btn-sm pull-right"><i class="fa fa-trash-o"></i></a>
+        </div>
+    </motech-list-item>
+    <motech-list-footer>
+        <uib-pagination total-items="totalItems" ng-model="currentPage" ng-change="changePageTo(currentPage)" ng-if="totalItems > 0"></uib-pagination>
+    </motech-list-footer>
+</motech-list>
+<motech-sidebar title="{{ 'admin.messages.filters' | translate }}">
+    <form>
+        <fieldset>
+            <legend>{{ 'admin.messages.search' | translate }}</legend>
+            <div class="form-group">
+                <label class="placeholder">{{'admin.messages.search' | translate }}</label>
+                <input type="text" ng-model="query" />
+            </div>
+        </fieldset>
+        <fieldset>
+            <legend>{{ 'admin.messages.date' | translate }}</legend>
+            <div class="form-group">
+                <label for="messagesDateTimeFrom" class="placeholder">{{'admin.messages.from' | translate}}</label>
+                <input id="messagesDateTimeFrom" date-picker ng-model="dataTimeFrom" type="datetime" />
+            </div>
+            <div class="form-group">
+                <label for="messagesDateTimeTo" class="placeholder">{{'admin.messages.to' | translate}}</label>
+                <input id="messagesDateTimeTo" date-picker ng-model="dataTimeTo" type="datetime"  />
+            </div>
+        </fieldset>
+        <fieldset>
+            <legend>{{ 'admin.messages.moduleName' | translate }}</legend>
+            <div class="form-group input-auto">
+                <select ng-model="filterModule">
+                    <option value="" ng-if="!filterModule">
+                        {{'admin.messages.select' | translate  | uppercase}}
+                    </option>
+                    <option>
+                        {{'admin.messages.all' | translate | uppercase}}
+                    </option>
+                    <option ng-repeat="value in modules" ng-click="setFilterModule(value)">
+                        {{value | uppercase}}
+                    </option>
+                </select>
+            </div>
+        </fieldset>
+        <fieldset>
+            <legend>{{'admin.messages.level' | translate }}</legend>
+            <div class="input-group" ng-repeat="level in ['ERROR', 'CRITICAL', 'WARN', 'INFO', 'DEBUG']">
+                <label class="checkbox">
+                    <input type="checkbox" />&nbsp;{{msg('admin.messages.' + level) | uppercase}}
+                </label>
+            </div>
+        </fieldset>
+    </form>
+</motech-sidebar>
