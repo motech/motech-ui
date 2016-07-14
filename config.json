@@ -7,9 +7,9 @@
     "src": "./src",
     "dest": "./build/app"
   },
-  "styleguide": {
-    "src": "./src",
-    "dest": "./build/styleguide"
+  "docs": {
+    "src": "./docs",
+    "dest": "./build/docs"
   },
   "motechServerURL": "http://localhost:8080/motech-platform-server/",
   "staticPath": "/",
