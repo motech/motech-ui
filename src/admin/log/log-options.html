@@ -1,0 +1,71 @@
+<div ng-controller="LogOptionsController as LogCtrl" id="log-options">
+    <form class="change-log-levels form-vertical" name="logForm">
+        <div class="form-group list-item change-all">
+            <div class="form-inline">
+                <span class="label-log-all">{{ msg('admin.log.setForAll') }}</span>
+                <div id="log-change-for-all" class="btn-group change-for-all" data-toggle="buttons">
+                    <label class="btn" ng-class="LogCtrl.levelsCss(level)" ng-click="LogCtrl.forAll(level)" ng-repeat="level in LogCtrl.availableLevels">
+                        <input type="radio" name="{{msg('admin.log.level.' + level) | uppercase }}">
+                        {{msg('admin.log.level.' + level) | uppercase }}
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="form-group list-item">
+            <div class="form-inline">
+                <a class="btn btn-hidden"><i class="fa fa-minus"></i></a>
+                <div class="btn-group" uib-dropdown>
+                    <a id="rootLevel" class="btn btn-log" ng-class="LogCtrl.levelsCss(LogCtrl.config.root.logLevel)" uib-dropdown-toggle ng-disabled="disabled">
+                        {{ LogCtrl.config.root.logLevel | uppercase }}
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu" uib-dropdown-menu>
+                        <li ng-repeat="level in LogCtrl.availableLevels" ng-click="LogCtrl.changeRoot(level)"><a>{{ msg('admin.log.level.' + level) | uppercase }}</a></li>
+                    </ul>
+                </div>
+                <label class="control-label">{{LogCtrl.config.root.logName}}</label>
+            </div>
+        </div>
+        <div class="form-group list-item" ng-repeat="logger in LogCtrl.config.loggers">
+            <div class="form-inline">
+                <a ng-click="LogCtrl.remove(logger)" class="btn btn-danger"><i class="fa fa-trash-o"></i></a>
+                <div class="btn-group" uib-dropdown>
+                    <a class="btn btn-log" ng-class="LogCtrl.levelsCss(logger.logLevel)" uib-dropdown-toggle ng-disabled="disabled">
+                        {{ logger.logLevel | uppercase }}
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu" uib-dropdown-menu>
+                        <li ng-repeat="level in LogCtrl.availableLevels" ng-click="LogCtrl.change(logger, level)"><a>{{ msg('admin.log.level.' + level) | uppercase }}</a></li>
+                    </ul>
+                </div>
+                <label class="control-label">{{logger.logName}}</label>
+            </div>
+        </div>
+        <div class="form-group list-item" ng-repeat="log in LogCtrl.logs track by $index">
+            <div class="form-inline">
+                <a ng-click="LogCtrl.removeNew(log)" class="btn btn-danger"><i class="fa fa-trash-o"></i></a>
+                <div class="btn-group" uib-dropdown>
+                    <a class="btn btn-log" ng-class="LogCtrl.levelsCss(log.level)" uib-dropdown-toggle ng-disabled="disabled">
+                        {{ log.level | uppercase }}
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu" uib-dropdown-menu>
+                        <li ng-repeat="level in LogCtrl.availableLevels" ng-click="LogCtrl.changeNew(log, level)"><a>{{ msg('admin.log.level.' + level) | uppercase }}</a></li>
+                    </ul>
+                </div>
+                <input type="text" name="logName{{$index}}" title="logName{{$index}}" class="form-control" ng-model="log.name" ng-pattern="LogCtrl.logNameValidPattern">
+            </div>
+        </div>
+        <div class="form-group list-item">
+            <div class="form-inline">
+                <div class="btn-group">
+                    <button ng-click="LogCtrl.add()" class="btn btn-success"><i class="fa fa-plus"></i> {{ msg('admin.log.add.addAnotherLog') }}</button>
+                </div>
+                <div class="btn-group">
+                    <button ng-disabled="logForm.$invalid" type="button" class="btn btn-primary" ng-click="LogCtrl.save()">{{msg('admin.save')}}</button>
+                    <a class="btn btn-default" ui-sref="log.file">{{msg('admin.cancel')}}</a>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
