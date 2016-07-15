@@ -54,10 +54,11 @@
         $scope.save = function () {
             $scope.notificationRuleDto.$save(function () {
                 ModalFactory.showSuccessAlert('admin.messages.notifications.saved');
-                $location.path('/admin/messages');
+                $location.path('/messages/settings');
             }, function () {
                 ModalFactory.showErrorAlert('admin.messages.notifications.errorSave');
             });
         };
     }
+
 })();

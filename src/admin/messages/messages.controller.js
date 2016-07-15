@@ -4,113 +4,60 @@
     angular.module('motech-admin')
         .controller('MessagesController', messagesController);
 
-    messagesController.$inject = ['$scope', '$rootScope', '$timeout', 'MessagesFactory', 'i18nService',
+    messagesController.$inject = ['$scope', '$rootScope', '$timeout', '$location', 'MessagesFactory', 'i18nService',
                                     '$cookieStore', '$filter', 'ModalFactory', 'LoadingModal'];
-    function messagesController ($scope, $rootScope, $timeout, MessagesFactory, i18nService,
+    function messagesController ($scope, $rootScope, $timeout, $location, MessagesFactory, i18nService,
                                     $cookieStore, $filter, ModalFactory, LoadingModal) {
          var UPDATE_INTERVAL = 1000 * 30, searchQuery = '',
          IGNORED_MSGS = 'ignoredMsgs',
          checkLevel = function (messageLevel, filterLevel) {
              var result;
              jQuery.each(filterLevel, function (i, val) {
-                 if (val === messageLevel.toLowerCase()){
-                     result = true;
-                 } else {
-                     result = false;
-                 }
+                 result = (val === messageLevel.toLowerCase());
                  return (!result);
              });
              return result;
          },
          checkDateTime = function (mDateTime, fDateTimeFrom, fDateTimeTo) {
-             var result;
              var messageDateTime = parseInt(mDateTime, 10);
              var filterDateTimeFrom = parseInt(fDateTimeFrom, 10);
              var filterDateTimeTo = parseInt(fDateTimeTo, 10);
-             if (!filterDateTimeFrom) {
-                 if (!filterDateTimeTo) {
-                     result = true;
-                 } else {
-                     if (messageDateTime && filterDateTimeTo > messageDateTime) {
-                         result = true;
-                     } else {
-                         result = false;
-                     }
-                 }
-             } else {
-                 if (messageDateTime && messageDateTime > filterDateTimeFrom) {
-                     if (!filterDateTimeTo) {
-                         result = true;
-                     } else {
-                         if (messageDateTime < filterDateTimeTo) {
-                             result = true;
-                         } else {
-                             result = false;
-                         }
-                     }
-                 } else {
-                     result = false;
-                 }
+
+             if (!(filterDateTimeFrom && filterDateTimeTo) ||
+                (messageDateTime && ((messageDateTime < filterDateTimeTo) || (!filterDateTimeTo && filterDateTimeFrom)))) {
+                 return true;
              }
-             return result;
+
+             return false;
          },
          searchMatch = function (message, searchQuery) {
              var result;
-             if (!searchQuery) {
-                 if (checkDateTime(message.date, $rootScope.filterDateTimeFrom, $rootScope.filterDateTimeTo)) {
-                     if ($rootScope.filterModule === '') {
-                         if($rootScope.filterLevel && $rootScope.filterLevel.length === 0) {
-                             result = true;
-                         } else if (checkLevel(message.level, $rootScope.filterLevel)) {
-                             result = true;
-                         } else {
-                             result = false;
-                             }
-                     } else if (message.moduleName === $rootScope.filterModule) {
-                         if($rootScope.filterLevel && $rootScope.filterLevel.length === 0) {
-                             result = true;
-                         } else if (checkLevel(message.level, $rootScope.filterLevel)) {
-                             result = true;
-                         } else {
-                             result = false;
-                         }
-                     }
-                 } else {
-                     result = false;
+             if ((!searchQuery) && (checkDateTime(message.date, $rootScope.filterDateTimeFrom, $rootScope.filterDateTimeTo))) {
+                 if (($rootScope.filterModule === '') || (message.moduleName === $rootScope.filterModule)) {
+                     result = (($rootScope.filterLevel && $rootScope.filterLevel.length === 0) || (checkLevel(message.level, $rootScope.filterLevel)));
+                     return result;
                  }
-             } else if (searchQuery && message.text.toLowerCase().indexOf(searchQuery.toLowerCase()) !== -1) {
-                 if (checkDateTime(message.date, $rootScope.filterDateTimeFrom, $rootScope.filterDateTimeTo)) {
-                     if ($rootScope.filterModule === '') {
-                         if($rootScope.filterLevel && $rootScope.filterLevel.length === 0) {
-                             result = true;
-                         } else if (checkLevel(message.level, $rootScope.filterLevel)) {
-                             result = true;
-                         } else {
-                             result = false;
-                             }
-                     } else if (message.moduleName === $rootScope.filterModule) {
-                         if($rootScope.filterLevel && $rootScope.filterLevel.length === 0) {
-                             result = true;
-                         } else if (checkLevel(message.level, $rootScope.filterLevel)) {
-                             result = true;
-                         } else {
-                             result = false;
-                         }
-                     }
-                 } else {
-                     result = false;
+             } else if ((searchQuery && message.text.toLowerCase().indexOf(searchQuery.toLowerCase()) !== -1) &&
+                       (checkDateTime(message.date, $rootScope.filterDateTimeFrom, $rootScope.filterDateTimeTo))) {
+                 if ($rootScope.filterModule === '') {
+                     result = (($rootScope.filterLevel && $rootScope.filterLevel.length === 0) ||
+                              (checkLevel(message.level, $rootScope.filterLevel)));
+                     return result;
+                 } else if (message.moduleName === $rootScope.filterModule) {
+                     result = (($rootScope.filterLevel && $rootScope.filterLevel.length === 0) ||
+                              (checkLevel(message.level, $rootScope.filterLevel)));
+                     return result;
                  }
-             } else {
-                 result = false;
              }
-             return result;
+
+             return false;
          },
          messageFilter = function (data) {
              var msgs = jQuery.grep(data, function (message, index) {
                  return jQuery.inArray(message.id, $scope.ignoredMessages) === -1; // not in ignored list
              });
              $scope.messages = msgs;
-             $scope.search();
+             $rootScope.search();
          },
          update = function () {
              var i;
@@ -119,16 +66,13 @@
                      if (arg1.length !== arg2.length) {
                          return false;
                      }
-
                      for (i = arg1.length - 1; i >= 0; i-=1) {
                          if (arg1[i].id !== arg2[i].id) {
                              return false;
                          }
                      }
-
                      return true;
                  }
-
                  if (!messagesEqual(newMessages, $scope.messages)) {
                      messageFilter(newMessages);
                  }
@@ -169,18 +113,25 @@
 
          $scope.getCssClass = function (msg) {
              var cssClass = 'msg';
-             if (msg.level === 'ERROR') {
+             switch (msg.level) {
+             case 'ERROR':
                  cssClass += ' badge-important';
-             } else if (msg.level === 'OK') {
+                 break;
+             case 'OK':
                  cssClass += ' badge-info';
-             } else if (msg.level === 'CRITICAL') {
+                 break;
+             case 'CRITICAL':
                  cssClass += ' badge-important';
-             } else if (msg.level === 'WARN') {
+                 break;
+             case 'WARN':
                  cssClass += ' badge-warning';
-             } else if (msg.level === 'DEBUG') {
+                 break;
+             case 'DEBUG':
                  cssClass += ' badge-success';
-             } else if (msg.level === 'INFO') {
+                 break;
+             case 'INFO':
                  cssClass += ' badge-info';
+                 break;
              }
              return cssClass;
          };
@@ -196,6 +147,7 @@
          $scope.refresh = function () {
              LoadingModal.open();
              MessagesFactory.query(function (data) {
+                 $location.path('/messages');
                  messageFilter(data);
              });
          };
