@@ -32,12 +32,12 @@
 
         var searchUpdateTimeout;
         function updateSearch(searchData){
-            LoadingModal.open();
             if(searchUpdateTimeout){
                 clearTimeout(searchUpdateTimeout);
                 searchUpdateTimeout=null;
             }
             searchUpdateTimeout = setTimeout(function() {
+                LoadingModal.open();
                 JobsService.setParam("name", searchData.name);
                 JobsService.setParam("activity", searchData.activity);
                 JobsService.setParam("status", searchData.status);
