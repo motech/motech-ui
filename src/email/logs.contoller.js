@@ -10,6 +10,8 @@
         EmailLogsService.get().then(updateRows);
 
         $scope.search = {};
+        $scope.initialSearch = {"deliveryStatus":["ERROR","SENT","RECEIVED"]};
+        $scope.search = $scope.initialSearch;
         $scope.$watch('search', updateSearch, true);
 
         $scope.changePageTo = changePageTo;

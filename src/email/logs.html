@@ -21,6 +21,9 @@
         <uib-pagination total-items="totalItems" ng-model="currentPage" ng-change="changePageTo(currentPage)"></uib-pagination>
     </motech-list-footer>
 </motech-list>
+{{search}}
+<br>
+search.deliveryStatus length: {{search.deliveryStatus.length}}
 <motech-sidebar title="{{ 'email.logging.filters' | translate }}">
     <form>
         <fieldset>
@@ -44,19 +47,23 @@
         <fieldset>
             <legend>{{'email.logging.disposition' | translate }}</legend>
             <div class="input-group">
-                <label class="checkbox">
+                <input-filter ng-model="search.deliveryStatus" label="{{'email.logging.error' | translate}}" value="'ERROR'"></input-filter>
+                <input-filter ng-model="search.deliveryStatus" label="{{'email.logging.sent' | translate}}" value="'SENT'"></input-filter>
+                <input-filter ng-model="search.deliveryStatus" label="{{'email.logging.received' | translate}}" value="'RECEIVED'"></input-filter>
+                <!--<label class="checkbox">
                     <input type="checkbox" checklist-model="search.deliveryStatus" checklist-value="'ERROR'" />
                     {{'email.logging.error' | translate}}
                 </label>
                 <label class="checkbox">
                     <input type="checkbox" checklist-model="search.deliveryStatus" checklist-value="'SENT'" />
                     {{'email.logging.sent' | translate}}
-                </label>            
+                </label>
                 <label class="checkbox">
                     <input type="checkbox" checklist-model="search.deliveryStatus" checklist-value="'RECEIVED'" />
                     {{'email.logging.received' | translate}}
-                </label>
+                </label>-->
             </div>
+            <!--<input-filter-group initialValues="initial"></input-filter-group>-->
         </fieldset>
     </form>
 </motech-sidebar>
