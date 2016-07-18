@@ -18,7 +18,9 @@ describe('i18n Service', function() {
     httpBackend.when('GET', 'i18n-messages/motech-messages.en.json')
     .respond({
       'sample.message': 'Foo',
-      'sample.other': 'Bar'
+      'sample.other': 'Bar',
+      'sample.greeting': 'Hello {name}',
+      'sample.interoperate': 'The {0} does {1}'
     });
 
     httpBackend.when('GET', serverService.formatURL('/module/server/lang/locate'))
@@ -109,6 +111,16 @@ describe('i18n Service', function() {
 
     expect(i18nService.getMessage("sample.message")).not.toEqual("sample.message");
     expect(i18nService.getMessage("sample.message")).toEqual("Message");
+  });
+
+  it('Can interoperate paramerters into a message', function(){
+    i18nService.setLanguage('en');
+    httpBackend.flush();
+    rootScope.$apply();
+
+    expect(i18nService.getMessage("sample.greeting", {'name': "World"})).toEqual('Hello World');
+    expect(i18nService.getMessage("sample.interoperate", "Foo", "Bar")).toEqual('The Foo does Bar');
+    expect(i18nService.getMessage("sample.interoperate", ["Jack", "Rabbit"])).toEqual('The Jack does Rabbit');
   });
 
 });

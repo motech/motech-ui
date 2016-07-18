@@ -4,12 +4,12 @@
         <div class="form-group">
             <label for="settingsHost">{{'email.settings.host' | translate }}</label>
             <input ng-model="settings.host" type="text" id="settingsHost" required/>
-            <span ng-hide="settings.host" class="form-hint">{{ 'email.field.required' | translate }} {{ 'email.settings.host' | translate }}</span>
+            <span ng-hide="settings.host" class="form-hint">{{msg('email.field.required', msg('email.settings.host'))}}</span>
         </div>
         <div class="form-group">
             <label for="settingsPort">{{ 'email.settings.port' | translate }}</label>
             <input ng-model="settings.port" type="text" id="settingsPort" required/>
-            <span ng-hide="settings.port" class="form-hint">{{ 'email.field.required' | translate }} {{ 'email.settings.port' | translate }}</span>
+            <span ng-hide="settings.port" class="form-hint">{{msg('email.field.required', msg('email.settings.port'))}}</span>
             <!-- <span class="form-hint">{{ 'email.field.numeric' | translate }} {{ 'email.settings.port' | translate }}</span> -->
         </div>
 
