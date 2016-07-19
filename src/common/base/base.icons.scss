@@ -110,3 +110,19 @@ Styleguide 1.3
 .icon-arrow-down{
     @include icon(caret-down);
 }
+
+.icon-pause{
+    @include icon(pause);
+}
+.icon-ban{
+    @include icon(ban);
+}
+.icon-error{
+    @include icon(exclamation-triangle);
+}
+.icon-clock{
+    @include icon(clock-o);
+}
+.icon-check{
+    @include icon(check);
+}
