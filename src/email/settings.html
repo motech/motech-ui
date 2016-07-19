@@ -1,64 +1,64 @@
 <h4>{{ 'email.settings.title' | translate }}</h4>
-<form id="emailSettingsForm" name="emailSettingsForm">
+<form id="email.settings.form" name="emailSettingsForm">
     <fieldset>
         <div class="form-group">
-            <label for="settingsHost">{{'email.settings.host' | translate }}</label>
-            <input ng-model="settings.host" type="text" id="settingsHost" required/>
-            <span ng-hide="settings.host" class="form-hint">{{msg('email.field.required', msg('email.settings.host'))}}</span>
+            <label for="email.settings.host">{{'email.settings.host' | translate }}</label>
+            <input id="email.settings.host" ng-model="settings.host" type="text" required/>
+            <span ng-hide="settings.host" class="form-hint">{{ 'email.field.required' | translate }} {{ 'email.settings.host' | translate }}</span>
         </div>
         <div class="form-group">
-            <label for="settingsPort">{{ 'email.settings.port' | translate }}</label>
-            <input ng-model="settings.port" type="text" id="settingsPort" required/>
-            <span ng-hide="settings.port" class="form-hint">{{msg('email.field.required', msg('email.settings.port'))}}</span>
+            <label for="email.settings.port">{{ 'email.settings.port' | translate }}</label>
+            <input id="email.settings.port" ng-model="settings.port" type="text" required/>
+            <span ng-hide="settings.port" class="form-hint">{{ 'email.field.required' | translate }} {{ 'email.settings.port' | translate }}</span>
             <!-- <span class="form-hint">{{ 'email.field.numeric' | translate }} {{ 'email.settings.port' | translate }}</span> -->
         </div>
 
         <div class="form-group">
-            <label for="settingsUsername">{{ 'email.settings.username' | translate }}</label>
-            <input ng-model="settings.username" type="text" id="settingsUsername"/>
+            <label for="email.settings.user-name">{{ 'email.settings.username' | translate }}</label>
+            <input id="email.settings.user-name" ng-model="settings.username" type="text" />
         </div>
 
         <div class="form-group">
-            <label for="settingsPassword">{{ 'email.settings.password' | translate }}</label>
-            <input class="form-control input-auto" ng-model="settings.password" type="text" id="settingsPassword"/>
+            <label for="email.settings.password">{{ 'email.settings.password' | translate }}</label>
+            <input id="email.settings.password" class="form-control input-auto" ng-model="settings.password" type="text"/>
         </div>
     </fieldset>
     <fieldset class="form-group">
         <legend>{{ 'email.settings.log.title2' | translate }} </legend>
         <label class="checkbox">
-            <input ng-model="settings.logAddress" type="checkbox" id="settingsLogAddress"
+            <input id="email.settings.log-address" ng-model="settings.logAddress" type="checkbox"
                    ng-true-value="true" ng-false-value="false" />
             {{ 'email.settings.log.address' | translate }}
         </label>
-        <label class="checkbox" for="settingsLogSubject">
-            <input ng-model="settings.logSubject" type="checkbox" id="settingsLogSubject"
+        <label class="checkbox" for="email.settings.log-subject">
+            <input id="email.settings.log-subject" ng-model="settings.logSubject" type="checkbox"
                    ng-true-value="true" ng-false-value="false" />
             {{'email.settings.log.subject' | translate }}
         </label>
-        <label class="checkbox" for="settingsLogBody">
-            <input ng-model="settings.logBody" type="checkbox" id="settingsLogBody"
+        <label class="checkbox" for="email.settings.log-body">
+        <input id="email.settings.log-body" ng-model="settings.logBody" type="checkbox" 
                    ng-true-value="true" ng-false-value="false" />
             {{ 'email.settings.log.body' | translate }}
         </label>
         <label class="checkbox">
-            <input ng-model="settings.logPurgeEnable" type="checkbox" id="settingsLogPurgeEnable" ng-true-value="'true'" ng-false-value="'false'" />
+            <input id="email.settings.log-purge-enable" ng-model="settings.logPurgeEnable" type="checkbox" ng-true-value="'true'" ng-false-value="'false'" />
             {{ 'Purge old records' | translate }}
         </label>
         <div ng-if="!purgeTimeControlsDisabled()" class="input-group">
             <label >{{ 'email.settings.log.purge' | translate }}</label>
             <div class="form-group">
-                <label for="settingsLogPurgeTime">{{ '**Amonunt of time to purge**' | translate }}</label>
-                <input email-purge-time ng-model="settings.logPurgeTime" type="text" id="settingsLogPurgeTime" />
+                <label for="email.settings.log-purge-time">{{ '**Amonunt of time to purge**' | translate }}</label>
+                <input id="email.settings.log-purge-time" email-purge-time ng-model="settings.logPurgeTime" type="text" />
             </div>
             <div class="form-group">
-                <label for="settingsLogPurgeTimeUnit">{{ '**Unint of time to purge**' | translate }}</label>
-                <select ng-model="settings.logPurgeTimeMultiplier" ng-options="k as v for (k , v) in timeMultipliers" id="settingsLogPurgeTimeUnit" ></select>
+                <label for="email.settings.log-purge-time-unit">{{ '**Unint of time to purge**' | translate }}</label>
+                <select id="email.settings.log-purge-time-unit" ng-model="settings.logPurgeTimeMultiplier" ng-options="k as v for (k , v) in timeMultipliers" ></select>
             </div>
         </div>
     </fieldset>
 
     <input-map title="{{ 'email.settings.log.title3' | translate }}" ng-model="settings.additionalProperties"></input-map>
 
-    <input ng-disabled="emailSettingsForm.$invalid" ng-click="submit()" type="submit" value="{{ 'email.settings.submit' | translate }}" />
+    <input id="email.settings.submit" ng-disabled="emailSettingsForm.$invalid" ng-click="submit()" type="submit" value="{{ 'email.settings.submit' | translate }}" />
     </fieldset>
 </form>
