@@ -79,7 +79,7 @@
                     if (day === 0) {
                         job.days = [];
                     }
-                    job.days[day] = parseInt($scope.job.days[day].value);
+                    job.days[day] = parseInt($scope.job.days[day]);
                 }
             }
 
@@ -145,7 +145,7 @@
                     };
 
                     for (var i = 0; i < job.days.length; i += 1) {
-                        job.days[i] = $scope.days[days[job.days[i]]];
+                        job.days[i] = days[job.days[i]];
                     }
                 }
 

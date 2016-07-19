@@ -16,7 +16,7 @@
 
     <!-- Motech Event Parameters -->
     <input-map ng-disabled="action === 'edit'" title="{{ 'scheduler.motechEventParameters' | translate }}" ng-model="motechEventParameters"></input-map>
-    <fieldset>
+    <fieldset class="bottom-padded-block">
         <div class="button-group-primary" ng-if="action !== 'edit'">
             <button class="button-delete" type="button" ng-click="resetMap()">{{'scheduler.resetMap' | translate}}</button>
         </div>
@@ -48,8 +48,13 @@
         </div>
         <div ng-if="job['@jobType'] === 'DAY_OF_WEEK'">
             <div class="form-group">
-                <label for="days" class="control-label" mt-invalid="'JobForm.days.$invalid'">{{'scheduler.days' | translate}}</label>
-                <select multiple id="days" ng-model="job.days" ng-options="day.label for day in days" data-ng-attr-size="{{days.length}}"></select>
+                <label class="control-label" mt-invalid="'JobForm.days.$invalid'">{{'scheduler.days' | translate}}</label>
+                <div ng-repeat="day in days">
+                    <label class="checkbox">
+                        <input type="checkbox" checklist-model="job.days" checklist-value="day.value" />
+                        {{ day.label | translate }}
+                    </label>
+                </div>
             </div>
             <div class="form-group">
                 <label for="time" class="control-label" mt-invalid="'JobForm.time.$invalid'">{{'scheduler.time' | translate}}</label>
@@ -59,8 +64,10 @@
         <div class="form-group" ng-if="job['@jobType'] === 'REPEATING_PERIOD'">
             <label for="repeatPeriod" class="control-label" mt-invalid="'JobForm.repeatPeriod.$invalid'">{{'scheduler.repeatPeriod' | translate}}</label>
             <input type="text" id="repeatPeriod" class="form-control" name="repeatPeriod" required placeholder="{{'scheduler.enterRepeatPeriod' | translate}}" period-amount period-validity ng-model="job.repeatPeriod">
-            <div class="button-group-primary">
-                <button class="period-modal-opener" type="button" data-toggle="modal" data-backdrop="static">{{'mds.form.changePeriod' | translate}}</button>
+            <div class="top-padded-block">
+                <div class="button-group-primary">
+                    <button class="period-modal-opener" type="button" data-toggle="modal" data-backdrop="static">{{'mds.form.changePeriod' | translate}}</button>
+                </div>
             </div>
         </div>
     </fieldset>

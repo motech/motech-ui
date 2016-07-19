@@ -13,6 +13,7 @@
         $scope.$watch('search', updateSearch, true);
 
         $scope.$on('jobsFetched', function() {
+            LoadingModal.open();
             $scope.jobs = JobsService.get();
             $scope.totalItems = $scope.jobs.records;
             $scope.currentPage = $scope.jobs.page;
@@ -25,7 +26,6 @@
         $scope.changePageTo = changePageTo;
 
         function changePageTo(page){
-            LoadingModal.open();
             JobsService.setParam("page", page);
             JobsService.fetchJobs();
         }
@@ -37,7 +37,6 @@
                 searchUpdateTimeout=null;
             }
             searchUpdateTimeout = setTimeout(function() {
-                LoadingModal.open();
                 JobsService.setParam("name", searchData.name);
                 JobsService.setParam("activity", searchData.activity);
                 JobsService.setParam("status", searchData.status);
