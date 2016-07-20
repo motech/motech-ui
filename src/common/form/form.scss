@@ -49,6 +49,9 @@ form, input, button, select, textarea {
     font-family: $font-family-base;
     color: $text-color;
 }
+select[multiple] {
+    overflow-y: auto;
+}
 
 fieldset {
     legend {

@@ -1,35 +1,35 @@
-<form ng-submit="sendEmail()" name="emailForm" >
+<form id="email.send.form" ng-submit="sendEmail()" name="emailForm">
     <legend class="frame-title">{{'email.compose.title' | translate}}</legend>
     <fieldset>
         <div class="form-group">
-            <label for="fromAddress">{{'email.from.address' | translate}}</label>
-            <input type="email" ng-model="mail.fromAddress" id="fromAddress" name="fromAddress" aria-describedby="emailForm-fromAddress-errors" required />
-            <ul id="emailForm-fromAddress-errors" class="form-hint">
-                <li ng-if="emailForm.$submitted && emailForm.fromAddress.$error.required ">{{'email.field.required' | translate }} {{'email.from.address' | translate}}</li>
-                <li ng-if="emailForm.$submitted && emailForm.fromAddress.$error.email ">{{'email.field.notValid' | translate}} {{'email.from.address' | translate}}</li>
+            <label for="email.send.from-address">{{'email.from.address' | translate}}</label>
+            <input id="email.send.from-address" type="email" ng-model="mail.fromAddress" name="fromAddress" aria-describedby="email.send.from-addres-errors" required />
+            <ul id="email.send.from-address-errors" class="form-hint">
+                <li id="email.send.from-address.errors.required" ng-if="emailForm.$submitted && emailForm.fromAddress.$error.required ">{{'email.field.required' | translate }} {{'email.from.address' | translate}}</li>
+                <li id="email.send.from-address.errors.email" ng-if="emailForm.$submitted && emailForm.fromAddress.$error.email ">{{'email.field.notValid' | translate}} {{'email.from.address' | translate}}</li>
             </ul>
         </div>
         <div class="form-group">
-            <label for="toAddress">{{'email.to.address' | translate}}</label>
-            <input type="email" ng-model="mail.toAddress" id="toAddress" name="toAddress" aria-describedby="emailForm-toAddress-errors" required />
-            <ul id="emailForm-toAddress-errors" class="form-hint">
-                <li ng-if="emailForm.$submitted && emailForm.toAddress.$error.required ">{{'email.field.required'|translate}} {{'email.to.address' | translate}}</li>
-                <li ng-if="emailForm.$submitted && emailForm.toAddress.$error.email ">{{'email.field.notValid'|translate}} {{'email.to.address' | translate}}</li>
+            <label for="email.send.to-address">{{'email.to.address' | translate}}</label>
+            <input id="email.send.to-address" type="email" ng-model="mail.toAddress" name="toAddress" aria-describedby="email.send.to-address-errors" required />
+            <ul id="email.send.to-address-errors" class="form-hint">
+                <li id="email.send.to-address.errors.required" ng-if="emailForm.$submitted && emailForm.toAddress.$error.required ">{{'email.field.required'|translate}} {{'email.to.address' | translate}}</li>
+                <li id="email.send.to-address.errors.email" ng-if="emailForm.$submitted && emailForm.toAddress.$error.email ">{{'email.field.notValid'|translate}} {{'email.to.address' | translate}}</li>
             </ul>
         </div>
         <div class="form-group">
-            <label for="subject">{{'email.subject' | translate}}</label>
-            <input type="text" ng-model="mail.subject" id="subject" aria-describedby="emailForm-subject-errors" name="subject"  ng-maxlength="255" >
-            <ul id="emailForm-subject-errors" class="form-hint">
-                <li ng-if="emailForm.$submitted &&  emailForm.subject.$error.maxlength">{{'email.field.subjectTooLong' | translate}}</li>
+            <label for="email.send.subject">{{'email.subject' | translate}}</label>
+            <input id="email.send.subject" type="text" ng-model="mail.subject" aria-describedby="email.send.subject-errors" name="subject"  ng-maxlength="255" >
+            <ul id="email.send.subject-errors" class="form-hint">
+                <li id="email.send.subject.errors.length" ng-if="emailForm.$submitted && emailForm.subject.$error.maxlength">{{'email.field.subjectTooLong' | translate}}</li>
             </ul>
         </div>
 
         <div class="form-group">
-            <label for="text">{{'email.message' | translate}}</label>
-            <div id="text" text-angular ng-model="mail.message"></div>
+            <label for="email.send.text">{{'email.message' | translate}}</label>
+            <div id="email.send.text" text-angular ng-model="mail.message"></div>
         </div>
     </fieldset>
 
-    <input type="submit" value="{{'email.send' | translate}}" ng-disabled="emailForm.$invalid || emailForm.$submitted" />
+    <input id="email.send.submit" type="submit" value="{{'email.send' | translate}}" ng-disabled="emailForm.$invalid || emailForm.$submitted" />
 </form>
