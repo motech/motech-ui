@@ -9,9 +9,13 @@
         
         EmailLogsService.get().then(updateRows);
 
+        $scope.checkboxes = [
+            {label: "email.logging.error", value: "ERROR"},
+            {label: "email.logging.sent", value: "SENT"},
+            {label: "email.logging.received", value: "RECEIVED"}
+        ];
+
         $scope.search = {};
-        $scope.initialSearch = {"deliveryStatus":["ERROR","SENT","RECEIVED"]};
-        $scope.search = $scope.initialSearch;
         $scope.$watch('search', updateSearch, true);
 
         $scope.changePageTo = changePageTo;

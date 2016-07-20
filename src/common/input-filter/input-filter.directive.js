@@ -9,18 +9,13 @@
         return {
             restrict: 'E',
             replace: true,
-            require: 'ngModel',
+            require: '^^inputFilterGroup',
             scope: {
                  ngModel: "=",
                  value: "=?",
-                 label: "@"
+                 label: "="
             },
-            templateUrl: '/common/input-filter/input-filter.html',
-            //controller: 'InputFilterController',
-            //controllerAs: 'InputFilterCtrl',
-            link: function (scope, element, attrs, ctrl) {
-
-            }
+            templateUrl: '/common/input-filter/input-filter.html'
         };
     }
 

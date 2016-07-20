@@ -6,7 +6,7 @@
         </div>
     </motech-list-header>
     <motech-list-item ng-repeat="log in logs">
-        <motech-list-column id="email.logs.id" column-title="ID" >{{log.id}}</motech-list-column> 
+        <motech-list-column id="email.logs.id" column-title="ID" >{{log.id}}</motech-list-column>
         <motech-list-column id="email.logs.status" column-title="Status" >{{log.deliveryStatus}}</motech-list-column>
         <motech-list-column id="email.logs.to" column-title="To" sortable>{{log.toAddress}}</motech-list-column>
         <motech-list-column id="email.logs.from" column-title="From" sortable>{{log.fromAddress}}</motech-list-column>
@@ -21,6 +21,9 @@
         <uib-pagination total-items="totalItems" ng-model="currentPage" ng-change="changePageTo(currentPage)"></uib-pagination>
     </motech-list-footer>
 </motech-list>
+{{search}}
+<br>
+search.deliveryStatus length: {{search.deliveryStatus.length}}
 <motech-sidebar title="{{ 'email.logging.filters' | translate }}">
     <form>
         <fieldset>
@@ -43,20 +46,7 @@
         </fieldset>
         <fieldset>
             <legend>{{'email.logging.disposition' | translate }}</legend>
-            <div class="input-group">
-                <label class="checkbox">
-                    <input id="email.logs.search.error" type="checkbox" checklist-model="search.deliveryStatus" checklist-value="'ERROR'" />
-                    {{'email.logging.error' | translate}}
-                </label>
-                <label class="checkbox">
-                    <input id="email.log.search.sent" type="checkbox" checklist-model="search.deliveryStatus" checklist-value="'SENT'" />
-                    {{'email.logging.sent' | translate}}
-                </label>            
-                <label class="checkbox">
-                    <input id="email.logs.search.received" type="checkbox" checklist-model="search.deliveryStatus" checklist-value="'RECEIVED'" />
-                    {{'email.logging.received' | translate}}
-                </label>
-            </div>
+            <input-filter-group checkboxes="checkboxes" ng-model="search.deliveryStatus"></input-filter-group>
         </fieldset>
     </form>
 </motech-sidebar>

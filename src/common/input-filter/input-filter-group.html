@@ -1,5 +1,3 @@
-<div class="input-group" ng-model="search">
-    <input-filter label="{{'email.logging.error' | translate}}" ng-model="search.deliveryStatus" value="'ERROR'"></input-filter>
-    <input-filter label="{{'email.logging.sent' | translate}}" ng-model="search.deliveryStatus" value="'SENT'"></input-filter>
-    <input-filter label="{{'email.logging.received' | translate}}" ng-model="search.deliveryStatus" value="'RECEIVED'"></input-filter>
+<div class="input-group" ng-repeat="checkbox in checkboxes">
+    <input-filter label="checkbox.label" ng-model="$parent.ngModel" value="checkbox.value"></input-filter>
 </div>
