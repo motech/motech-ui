@@ -56,8 +56,17 @@
              var msgs = jQuery.grep(data, function (message, index) {
                  return jQuery.inArray(message.id, $scope.ignoredMessages) === -1; // not in ignored list
              });
+             $scope.getModuleName = function(messages) {
+                 var moduleNames = ["all"];
+                 jQuery.each(messages, function(i, messages){
+                     moduleNames.push(messages.moduleName);
+                 });
+                 return  $.grep(moduleNames, function(el, index) {
+                     return index === $.inArray(el, moduleNames);
+                 });
+             };
              $scope.messages = msgs;
-             $rootScope.search();
+             $scope.modules = $scope.getModuleName($scope.messages);
          },
          update = function () {
              var i;
@@ -101,11 +110,15 @@
          $rootScope.filterModule = '';
          $rootScope.filterDateTimeFrom = '';
          $rootScope.filterDateTimeTo = '';
+
          $scope.resetItemsPagination();
          $scope.filteredItems = [];
-         $scope.itemsPerPage = 10;
+         $scope.limitPages = [10, 20, 50];
+         $scope.itemsPerPage = $scope.limitPages[0];
+
          $scope.ignoredMessages = $cookieStore.get(IGNORED_MSGS);
          $scope.messages = [];
+         $scope.messagesLevels = ['critical', 'error', 'debug', 'info', 'warn'];
 
          MessagesFactory.query(function (data) {
              messageFilter(data);
@@ -146,8 +159,8 @@
 
          $scope.refresh = function () {
              LoadingModal.open();
+             $location.path('/messages');
              MessagesFactory.query(function (data) {
-                 $location.path('/messages');
                  messageFilter(data);
              });
          };
@@ -157,12 +170,16 @@
          };
 
          $scope.remove = function (message) {
-             $scope.removeObject(message);
+             var i = $scope.messages.indexOf(message);
+             if (i !== -1) {
+                 $scope.messages.splice(i, 1);
+             }
              if ($scope.ignoredMessages === undefined) {
                  $scope.ignoredMessages = [];
              }
              $scope.ignoredMessages.push(message.id);
              $cookieStore.put(IGNORED_MSGS, $scope.ignoredMessages);
+             $scope.refresh();
          };
 
          $scope.setCurrentPage = function (currentPage) {
@@ -182,6 +199,61 @@
              });
              $scope.setCurrentPage(0);
              $scope.groupToPages($scope.filteredItems, $scope.itemsPerPage);
+         };
+
+         $scope.search = function() {
+             $rootScope.query = $scope.query;
+             $rootScope.search();
+         };
+
+         $scope.setFilterLevel = function(filterLevel) {
+             var result, levelExist = function (filterLevel) {
+                 jQuery.each($rootScope.filterLevel, function (i, val) {
+                     if (val === filterLevel) {
+                         result = true;
+                     } else {
+                         result = false;
+                     }
+                     return (!result);
+                 });
+                return result;
+             };
+             if ($rootScope.filterLevel && $rootScope.filterLevel.length === 0) {
+                 $rootScope.filterLevel.push(filterLevel);
+             } else {
+                 if (levelExist(filterLevel)) {
+                     $rootScope.filterLevel.splice($rootScope.filterLevel.indexOf(filterLevel), 1);
+                 } else {
+                     $rootScope.filterLevel.push(filterLevel);
+                 }
+             }
+             $scope.search();
+         };
+
+         $scope.setFilterModule = function(filterModule) {
+             if (filterModule.toLowerCase() === 'all') {
+                 $scope.filterModule = filterModule;
+                 $rootScope.filterModule = '';
+             } else {
+                 $scope.filterModule = filterModule;
+                 $rootScope.filterModule = $scope.filterModule;
+             }
+             $scope.search();
+         };
+
+         $scope.setDateTimeFilter = function(messageDateTimeFrom, messageDateTimeTo) {
+             if (messageDateTimeFrom !== null && messageDateTimeTo === null) {
+                 $rootScope.filterDateTimeFrom = moment(messageDateTimeFrom).toDate().getTime();
+                 $rootScope.$apply();
+                 messageDateTimeTo = '';
+             }
+             if (messageDateTimeTo !== null && messageDateTimeFrom === null) {
+                 $rootScope.filterDateTimeTo = moment(messageDateTimeTo).toDate().getTime();
+                 $rootScope.$apply();
+                 messageDateTimeFrom = '';
+             }
+             $scope.search();
+             $scope.$apply();
          };
 
          $timeout(update, UPDATE_INTERVAL);
