@@ -1,6 +1,22 @@
 (function(){
     'use strict';
 
+    /**
+     * @memberOf motech-scheduler
+     * @ngdoc directive
+     * @name  PeriodAmount
+     * @scope true
+     *
+     * @param { } ng-model Takes variable that contains a string
+     *
+     * @description
+     * Creates repeat period string which is set by adjusting sliders for year, month, day, hour, minute and seconds.
+     * This directive is used in jobs form in Scheduler module when creating repeating period job.
+     *
+     * This directive expects ng-model to be either a period string or undefined.
+     *
+     */
+
     angular.module('motech-scheduler')
         .directive('periodAmount', periodAmountDirective);
 
@@ -32,6 +48,22 @@
                     minute: 360,
                     second: 360
                 },
+
+                /**
+                 * Creates a period string based on passed parameters
+                 *
+                 * @memberOf PeriodAmount
+                 * @param  {number} year Value for years
+                 * @param  {number} month Value for months
+                 * @param  {number} day Value for days
+                 * @param  {number} hour Value for hours
+                 * @param  {number} minute Value for minutes
+                 * @param  {number} second Value for seconds
+                 *
+                 * @returns {string} Period string
+                 *
+                 */
+
                 compileValueInputs = function (year, month, week, day, hour, minute, second) {
                     var valueInputs = [
                         year.toString( 10 ),
@@ -60,6 +92,14 @@
                     });
                     return 'P' + valueInputs.join( "" ).toUpperCase();
                 },
+
+                /**
+                 * Updates the value of the ng-model containing a period string. It is invoked on change of any of the sliders.
+                 *
+                 * @memberOf PeriodAmount
+                 *
+                 */
+
                 refreshPeriod = function () {
                     var fieldId = elem.attr('mds-field-id'),
                     year = periodSlider.children( "#period-year" ).slider( "value" ),
@@ -88,6 +128,14 @@
                     element.focus();
                     element.focusout();
                 },
+
+                /**
+                 * Updates both value and position of each slider based on the value of the ng-model containing a period string. If period string is invalid it sets all sliders to zero.
+                 *
+                 * @memberOf PeriodAmount
+                 *
+                 */
+
                 setParsingPeriod = function () {
                     if (!started) {
                         periodSliders = $("#period-slider > div");
