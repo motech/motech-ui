@@ -22,10 +22,13 @@
                     }
                 }
             })
-            .state('queue', {
-                url: '/queue',
+            .state('queues.queue', {
+                url: '/:queueName',
                 ncyBreadcrumb: {
-                    label: 'cos tam'
+                    label: 'admin.queue.messages.pending'
+                },
+                resolve: {
+                    queue: getQueue
                 },
                 views: {
                     'appArea@': {
@@ -34,5 +37,19 @@
                     }
                 }
             });
+    }
+
+    getQueue.$inject = ['$q', '$state', '$stateParams', 'QueuesFactory'];
+    function getQueue ($q, $state, $stateParams, QueuesFactory) {
+        var deferred = $q.defer();
+        QueuesFactory.details({
+            queueName: $stateParams.queueName
+        },function (data) {
+            deferred.resolve(data);
+        }, function(){
+            deferred.reject();
+            $state.go('queues');
+        });
+        return deferred.promise;
     }
 })();
