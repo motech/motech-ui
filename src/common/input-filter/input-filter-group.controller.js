@@ -7,7 +7,7 @@
      * @name InputFilterGroupController
      *
      * @description
-     * Contains business logic used by the Input Filter Group directive.
+     * Contains logic used by the Input Filter Group directive.
      *
      * This controls adding all values of checkboxes to the ng-model when ng-model is empty.
      *
@@ -23,7 +23,7 @@
 
         /**
          *
-         * This method adds all values of checkboxes to the ng-model when ng-model is empty.
+         * Adds all values of checkboxes to the ng-model when ng-model is empty.
          *
          * @memberOf InputFilterGroupController
          *
