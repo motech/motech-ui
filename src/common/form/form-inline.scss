@@ -1,5 +1,5 @@
 .form-inline {
-    display: block;
+    display: inline-table;
     >*{
         display: inline-block;
         position: relative;
@@ -8,16 +8,19 @@
             padding-right: 0px;
         }
         input[type=text], select{
-            width: 100%;
         }
     }
     .form-group{
         padding-left: 0px; // form-wide sets this to 180px
     }
     .form-group label{
-        position: absolute;
         text-align: left;
-        top: -1.7em;
-        left: 0em;
+        padding-left: 0px;
+        width: 3em;
     }
+    .form-group input{
+            text-align: left;
+            width: 90%;
+            margin-right: 8.5em;
+        }
 }
