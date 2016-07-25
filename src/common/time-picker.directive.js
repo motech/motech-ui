@@ -13,9 +13,7 @@
                 if(!isReadOnly) {
                     angular.element(element).timepicker({
                         onSelect: function (timeTex) {
-                            scope.safeApply(function () {
-                                ngModel.$setViewValue(timeTex);
-                            });
+                            ngModel.$setViewValue(timeTex);
                         }
                     });
                 }
