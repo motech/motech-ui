@@ -8,7 +8,7 @@
             <button class="icon-filter motech-sidebar-button" type="button">{{'scheduler.filters' | translate}}</button>
         </div>
     </motech-list-header>
-    <motech-list-item ng-if="jobs.rows.length==0" class="alert">No jobs found</motech-list-item>
+    <motech-list-item ng-show="jobs.rows.length==0" class="alert">No jobs found</motech-list-item>
     <motech-list-item ng-repeat="job in jobs.rows">
         <div column-title="Name">
             <h4>{{job.name}}</h4>
