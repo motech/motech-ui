@@ -53,12 +53,13 @@
                  * Creates a period string based on passed parameters
                  *
                  * @memberOf PeriodAmount
-                 * @param  {number} year Value for years
-                 * @param  {number} month Value for months
-                 * @param  {number} day Value for days
-                 * @param  {number} hour Value for hours
-                 * @param  {number} minute Value for minutes
-                 * @param  {number} second Value for seconds
+                 * @param {number} year Value for years
+                 * @param {number} month Value for months
+                 * @param {number} week Value for weeks
+                 * @param {number} day Value for days
+                 * @param {number} hour Value for hours
+                 * @param {number} minute Value for minutes
+                 * @param {number} second Value for seconds
                  *
                  * @returns {string} Period string
                  *
