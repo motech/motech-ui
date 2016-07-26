@@ -2,7 +2,6 @@
     @extend .list-unstyled;
     >*{
         margin-bottom: $space-size;
-        padding: $space-size/2;
     }
     >*:nth-child(2n){
         background-color: $gray-lighter;
@@ -10,8 +9,11 @@
 }
 .input-map .form-group{
     padding-left: 0px;
+    margin-bottom: 0.5em;
     >*{
         display: inline-block;
-        width: 48.2%;
+        &:last-child{
+                        margin-left: 15px;
+                    }
     }
 }

@@ -1,5 +1,6 @@
 .form-inline {
-    display: inline-table;
+    display: inline-flex;
+    flex-wrap: wrap;
     >*{
         display: inline-block;
         position: relative;
@@ -12,15 +13,15 @@
     }
     .form-group{
         padding-left: 0px; // form-wide sets this to 180px
+        display: flex;
+        flex-grow: 1;
     }
     .form-group label{
         text-align: left;
-        padding-left: 0px;
-        width: 3em;
+        width: 4em;
     }
     .form-group input{
             text-align: left;
-            width: 90%;
-            margin-right: 8.5em;
+            flex-grow: 1;
         }
 }
