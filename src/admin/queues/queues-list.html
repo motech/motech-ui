@@ -27,21 +27,3 @@
 <div class="alert alert-danger" ng-show="!dataAvailable">
     {{msg('admin.queue.error')}}
 </div>
-
-
-<motech-list ng-show="dataAvailable">
-    <motech-list-item ng-repeat="queue in queues" >
-        <div column-title="Name" class="bundle-main">
-            <a ui-sref="queue({queueName: queue.destination})"
-               ng-click="selectedTabState.selectedTab = 'queue'">{{queue.destination}}</a>
-        </div>
-        <motech-list-column column-title="Number of Pending Messages" sortable>{{queue.queueSize}}</motech-list-column>
-        <motech-list-column column-title="Consumer Count" sortable>{{queue.consumerCount}}</motech-list-column>
-        <motech-list-column column-title="Enqueue Count" sortable>{{queue.enqueueCount}}</motech-list-column>
-        <motech-list-column column-title="Dequeue Count" sortable>{{queue.dequeueCount}}</motech-list-column>
-        <motech-list-column column-title="Expiry Count" sortable>{{queue.expiredCount}}</motech-list-column>
-    </motech-list-item>
-</motech-list>
-<div class="alert alert-danger" ng-show="!dataAvailable">
-    {{msg('admin.queue.error')}}
-</div>

@@ -6,10 +6,7 @@
 
     queuesFactory.$inject = ['$rootScope', '$resource', 'ServerService'];
     function queuesFactory ($rootScope, $resource, ServerService) {
-        var Queue = $resource(
-            ServerService.formatURL('/module/admin/api/queues/')
-        );
-        return Queue;
+        return $resource(ServerService.formatURL('/module/admin/api/queues/'));
     }
 
 })();

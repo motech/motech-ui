@@ -4,11 +4,10 @@
     angular.module('motech-admin')
         .controller('QueueController', controller);
 
-    controller.$inject = ['$scope', '$stateParams', '$http'];
-    function controller ($scope, $stateParams, $http) {
+    controller.$inject = ['$scope', '$stateParams', '$http', 'ServerService'];
+    function controller ($scope, $stateParams, $http, ServerService) {
         $scope.dataAvailable = true;
-        var queue = $stateParams.queueName;
-        $http.get('/module/admin/api/queues/browse?queueName=' + queue).success(function (data) {
+        $http.get(ServerService.formatURL('/module/admin/api/queues/browse?queueName=' + $stateParams.queueName)).success(function (data) {
             $scope.messages = data;
         }).error(function () {
             $scope.dataAvailable = false;

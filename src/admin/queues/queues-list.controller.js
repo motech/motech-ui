@@ -7,10 +7,11 @@
     adminQueueStatsCtrl.$inject = ['$scope', '$rootScope', 'QueuesFactory'];
     function adminQueueStatsCtrl ($scope, $rootScope, QueuesFactory) {
 
-        $scope.dataAvailable = false;
+        $scope.dataAvailable = true;
         QueuesFactory.query(function(queues){
             $scope.queues = queues;
-            $scope.dataAvailable = true;
+        }, function(){
+             $scope.dataAvailable = false;
         });
     }
 })();
