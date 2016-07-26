@@ -1,0 +1,33 @@
+<div id="periodModal" class="period modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="close" data-dismiss="modal">{{'server.btn.close' | translate}}</button>
+                <span class="modal-title" id="importTaskModalLabel">{{'server.form.setPeriod' | translate}}</span>
+            </div>
+            <div class="modal-body">
+                <div id="period-slider">
+                    <label class="slider-label" for="amount-period-year">{{'server.dateTimeUnits.years' | translate}}&#58;</label><input type="text" id="amount-period-year" readonly>
+                    <div id="period-year">0</div>
+                    <label class="slider-label" for="amount-period-month">{{'server.dateTimeUnits.months' | translate}}&#58;</label><input type="text" id="amount-period-month" readonly>
+                    <div id="period-month">0</div>
+                    <label class="slider-label" for="amount-period-week">{{'server.dateTimeUnits.weeks' | translate}}&#58;</label><input type="text" id="amount-period-week" readonly>
+                    <div id="period-week">0</div>
+                    <label class="slider-label" for="amount-period-day">{{'server.dateTimeUnits.days' | translate}}&#58;</label><input type="text" id="amount-period-day" readonly>
+                    <div id="period-day">0</div>
+                    <label class="slider-label" for="amount-period-hour">{{'server.dateTimeUnits.hours' | translate}}&#58;</label><input type="text" id="amount-period-hour" readonly>
+                    <div id="period-hour">0</div>
+                    <label class="slider-label" for="amount-period-minute">{{'server.dateTimeUnits.minutes' | translate}}&#58;</label><input type="text" id="amount-period-minute" readonly>
+                    <div id="period-minute">0</div>
+                    <label class="slider-label" for="amount-period-second">{{'server.dateTimeUnits.seconds' | translate}}&#58;</label><input type="text" id="amount-period-second" readonly>
+                    <div id="period-second">0</div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="button-group-primary">
+                    <button class="button-primary" data-dismiss="modal">{{'server.btn.close' | translate}}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

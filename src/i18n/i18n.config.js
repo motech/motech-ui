@@ -8,15 +8,14 @@
     i18nSetLoader.$inject = ['$translateProvider'];
     function i18nSetLoader ($translateProvider){
         $translateProvider.useSanitizeValueStrategy('sanitizeParameters');
+        $translateProvider.useInterpolation('i18nInterpolator');
         $translateProvider.preferredLanguage('en');
         $translateProvider.useLoader('i18nLoader');
     }
 
     i18nSetMsg.$inject = ['$rootScope','i18nService'];
     function i18nSetMsg($rootScope, i18nService){
-        $rootScope.msg = function(msg){
-            return i18nService.getMessage(msg);
-        };
+        $rootScope.msg = i18nService.getMessage;
     }
 
 })();
