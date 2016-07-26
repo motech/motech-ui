@@ -9,6 +9,12 @@
         
         EmailLogsService.get().then(updateRows);
 
+        $scope.checkboxes = [
+            {label: "email.logging.error", value: "ERROR"},
+            {label: "email.logging.sent", value: "SENT"},
+            {label: "email.logging.received", value: "RECEIVED"}
+        ];
+
         $scope.search = {};
         $scope.$watch('search', updateSearch, true);
 
