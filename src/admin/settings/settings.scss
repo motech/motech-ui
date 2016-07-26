@@ -2,8 +2,15 @@
     >label{
         white-space: normal;
     }
-    >.input-small{
-         float: left;
+    >legend{
+        @extend label;
+        text-align: right !important;
+        width: $sidebar-width !important;
+    }
+    .button-export{
          width: $sidebar-width;
      }
+    .button-file{
+        height: auto;
+    }
 }
