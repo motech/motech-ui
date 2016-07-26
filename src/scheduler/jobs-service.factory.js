@@ -86,7 +86,7 @@
                 listener = scope;
             },
             "setParam": function(fieldName, value) {
-                params[fieldName] = value;
+                params[fieldName] = ((!value || value.length === 0) ? "" : value);
             },
             "setCurrentJob": function(job) {
                 currentJob = job;
