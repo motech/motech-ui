@@ -12,6 +12,8 @@
     padding-left: 0px;
     >*{
         display: inline-block;
-        width: 48.2%;
+    }
+    label, input{
+        width: $sidebar-width;
     }
 }
