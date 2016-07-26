@@ -4,8 +4,6 @@
     <div class="settings-form" ng-repeat="mSettings in moduleSettings">
         <form name="settingsForm">
             <fieldset>
-
-
                 <motech-list>
                     <motech-list-item ng-repeat="setting in mSettings.settings | orderBy:'key'" >
                         <div sortable>{{setting.key}}</div>
@@ -14,13 +12,6 @@
                         </motech-list-column>
                     </motech-list-item>
                 </motech-list>
-
-
-
-                <!--<div ng-repeat="setting in mSettings.settings | orderBy:'key'" class="form-group">
-                    <label for="{{setting.key}}">{{setting.key}}</label>
-                    <input class="form-control" type="text" id="{{setting.key}}" name="{{setting.key}}" ng-model="setting.value"/>
-                </div>-->
             </fieldset>
             <input type="hidden" name="section" value="{{mSettings.section}}" />
             <input type="submit" ng-click="saveSettings(mSettings)" value="{{'admin.submit' | translate}}"/>

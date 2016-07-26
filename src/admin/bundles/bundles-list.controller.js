@@ -29,7 +29,7 @@
             } else if (bundle.bundleId !== undefined) {
                 $state.go('bundles.bundleSettings', {'bundleId': bundle.bundleId});
             } else {
-                //$state.go('admin.platformSettings'); // TODO: go to admin settings page
+                $state.go('platformSettings');
             }
         };
 
