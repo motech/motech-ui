@@ -13,6 +13,19 @@
      * Creates repeat period string which is set by adjusting sliders for year, month, day, hour, minute and seconds.
      * This directive is used in jobs form in Scheduler module when creating repeating period job.
      *
+     * Period string is representing time which separates two events, for example firing a job. It is made up with ordered values standing for number of years, months, weeks, days, hours, minutes and seconds. These values must appear in such order for a period string to be a valid one. If a certain value is equal to 0 (zero) then it is not included in a period string.
+     *
+     * Period string starts with a letter 'P'. Then there can appear values for years (Y), months (M), weeks (W) and days (D). Afterwords there is a letter 'T' and values for hours (H), minutes (M) or seconds (S). If all three values for hours, minutes and seconds are equal to 0 (zero) then letter 'T' is not included in a period string.
+     * For a better understanding here are some examples of different period strings:
+     *
+     * 'P2Y3M5W10DT1H45M30S' stands for a period: 2 years, 3 months, 5 weeks, 10 days, 1 hour, 45 minutes and 30 seconds.
+     *
+     * 'P5WT1H45M30S'        stands for a period: 5 weeks, 1 hour, 45 minutes and 30 seconds. Values for years, months and days do not appear as they are equal to 0 (zero).
+     *
+     * 'PT1H45M'             stands for a period: 1 hour and 45 minutes.
+     *
+     * 'P1M10D'              stands for a period: 1 months and 10 days. There is no letter 'T' in this example as all values for hours, minutes and seconds are equal to 0 (zero).
+     *
      * This directive expects ng-model to be either a period string or undefined.
      *
      */
