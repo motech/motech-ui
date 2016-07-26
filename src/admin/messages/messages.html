@@ -29,7 +29,7 @@
         </fieldset>
     </motech-list-item>
     <motech-list-footer>
-        <uib-pagination total-items="messages" ng-model="currentPage" ng-change="changePageTo(currentPage)" ng-if="messages.length > 0"></uib-pagination>
+        <uib-pagination total-items="messages" ng-model="currentPage" ng-change="changePageTo(currentPage)"></uib-pagination>
     </motech-list-footer>
 </motech-list>
 <motech-sidebar title="{{'admin.messages.filters' | translate }}">
@@ -37,39 +37,38 @@
         <fieldset>
             <legend>{{'admin.messages.search' | translate}}</legend>
             <div class="form-group">
-                <label class="placeholder">{{'admin.messages.search' | translate}}</label>
-                <input type="text" ng-model="query" ng-change="search()" class="form-control input-sm search-query" placeholder="{{'admin.messages.searchByContent' | translate}}">
+                <input type="text" ng-model="filterSearch.query" ng-change="search()" class="form-control input-sm search-query" placeholder="{{msg('admin.messages.searchByContent')}}">
             </div>
         </fieldset>
         <fieldset>
             <legend>{{'admin.messages.date' | translate}}</legend>
             <div class="form-group">
-                <label for="messagesDateTimeFrom" class="placeholder">{{'admin.messages.from' | translate}}</label>
-                <input id="messagesDateTimeFrom" date-picker ng-model="dataTimeFrom" type="datetime" class="form-control input-sm search-query" placeholder="{{'admin.messages.from' | translate}}">
+                <input id="messagesDateTimeFrom" messages-date-picker="" ng-model="dateTimeFrom" max="dateTimeTo" type="datetime" placeholder="{{msg('admin.messages.from')}}" data-event-type="change"
+                       data-search-field="timeFrom">
             </div>
             <div class="form-group">
-                <label for="messagesDateTimeTo" class="placeholder">{{'admin.messages.to' | translate}}</label>
-                <input id="messagesDateTimeTo" date-picker ng-model="dataTimeTo" type="datetime" class="form-control input-sm search-query" placeholder="{{'admin.messages.to' | translate}}">
+                <input id="messagesDateTimeTo" messages-date-picker="" ng-model="dateTimeTo" min="dateTimeFrom" type="datetime" placeholder="{{msg('admin.messages.to')}}" data-event-type="change"
+                       data-search-field="timeTo">
             </div>
         </fieldset>
         <fieldset>
             <legend>{{'admin.messages.moduleName' | translate}}</legend>
             <div class="form-group input-auto">
-                <select ng-model="filterModule">
-                    <option value="" ng-if="!filterModule">
+                <select ng-model="filterModule" ng-change="setFilterModule(filterModule)">
+                    <option ng-if="!filterModule" value="">
                         {{'admin.messages.select' | translate  | uppercase}}
                     </option>
-                    <option ng-repeat="value in modules" ng-click="setFilterModule(value)">
-                        {{value | uppercase}}
+                    <option ng-repeat="filterModule in modules" value="{{filterModule}}">
+                        {{filterModule | uppercase}}
                     </option>
                 </select>
             </div>
         </fieldset>
         <fieldset>
             <legend>{{'admin.messages.level' | translate}}</legend>
-            <div class="input-group" ng-repeat="msgLevel in messagesLevels" ng-click="setFilterLevel(msgLevel)" set-level-filter="msgLevel">
+            <div class="input-group" ng-repeat="msgLevel in messagesLevels">
                 <label class="checkbox">
-                    <input type="checkbox" />&nbsp;{{msg('admin.messages.' + msgLevel) | uppercase}}
+                    <input type="checkbox" ng-model="filterLevel" ng-click="setFilterLevel(msgLevel)" set-level-filter="msgLevel" data-search-field="msgLevel" />&nbsp;{{msg('admin.messages.' + msgLevel) | uppercase}}
                 </label>
             </div>
         </fieldset>

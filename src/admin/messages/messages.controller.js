@@ -61,12 +61,13 @@
                  jQuery.each(messages, function(i, messages){
                      moduleNames.push(messages.moduleName);
                  });
-                 return  $.grep(moduleNames, function(el, index) {
-                     return index === $.inArray(el, moduleNames);
-                 });
+             return  $.grep(moduleNames, function(el, index) {
+                 return index === $.inArray(el, moduleNames);
+             });
              };
              $scope.messages = msgs;
              $scope.modules = $scope.getModuleName($scope.messages);
+             $rootScope.search();
          },
          update = function () {
              var i;
@@ -119,6 +120,8 @@
          $scope.ignoredMessages = $cookieStore.get(IGNORED_MSGS);
          $scope.messages = [];
          $scope.messagesLevels = ['critical', 'error', 'debug', 'info', 'warn'];
+         $scope.filterSearch = {};
+         $scope.filterSearch.query = '';
 
          MessagesFactory.query(function (data) {
              messageFilter(data);
@@ -192,6 +195,11 @@
              $scope.groupToPages($scope.filteredItems, $scope.itemsPerPage);
          };
 
+         $scope.search = function() {
+             $rootScope.query = $scope.filterSearch.query;
+             $rootScope.search();
+         };
+
          $rootScope.search = function () {
              LoadingModal.close();
              $scope.filteredItems = $filter('filter')($scope.messages, function (item) {
@@ -201,22 +209,25 @@
              $scope.groupToPages($scope.filteredItems, $scope.itemsPerPage);
          };
 
-         $scope.search = function() {
-             $rootScope.query = $scope.query;
-             $rootScope.search();
+         $scope.printDate = function (milis) {
+             var date = "";
+             if (milis) {
+                 date = new Date(milis);
+             }
+             return date;
          };
 
          $scope.setFilterLevel = function(filterLevel) {
              var result, levelExist = function (filterLevel) {
                  jQuery.each($rootScope.filterLevel, function (i, val) {
-                     if (val === filterLevel) {
-                         result = true;
-                     } else {
-                         result = false;
-                     }
-                     return (!result);
+                 if (val === filterLevel) {
+                     result = true;
+                 } else {
+                     result = false;
+                 }
+                 return (!result);
                  });
-                return result;
+             return result;
              };
              if ($rootScope.filterLevel && $rootScope.filterLevel.length === 0) {
                  $rootScope.filterLevel.push(filterLevel);
