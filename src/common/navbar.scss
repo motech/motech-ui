@@ -24,6 +24,7 @@ Styleguide 5.1
     padding: 0em 0.5em;
     display: block;
     >*{
+        margin-bottom: 0px;
         margin-right: 1em;
         float: left;
     }
@@ -51,5 +52,20 @@ nav.navbar,
         color: $brand-primary;
         border: $gray-light 1px solid;
         border-bottom-color: transparent;
+    }
+}
+
+.navbar dl{
+    display: inline-block;
+    >*{
+        display: inline-block;
+    }
+    dt:after{
+        content: ": ";
+        white-space: pre;
+    }
+    dd:after{
+        content: ". ";
+        white-space: pre;
     }
 }

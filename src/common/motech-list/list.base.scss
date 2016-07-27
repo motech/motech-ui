@@ -45,6 +45,10 @@
         @extend .clearfix;
         background-color: $brand-accent;
         padding: $space-size;
+        >*{
+            @extend .navbar;
+            border-bottom: 0px;
+        }
         .pagination{
             @extend .button-group-primary;
         }
