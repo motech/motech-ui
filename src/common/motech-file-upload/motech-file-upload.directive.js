@@ -12,7 +12,7 @@
             replace : true,
             transclude: false,
             compile: function (tElement, tAttrs, scope) {
-                var url = '../server/resources/partials/motech-file-upload.html',
+                var url = '/common/motech-file-upload/motech-file-upload.html',
 
                 templateLoader = $http.get(url, {cache: $templateCache})
                     .success(function (html) {
