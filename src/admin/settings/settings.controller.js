@@ -29,30 +29,47 @@
 
         $scope.saveNewSettings = function () {
             LoadingModal.open();
-            $('#noSettingsForm').ajaxSubmit({
-                success: function () {
+            var newSettings = {};
+            var settings = [];
+
+            newSettings.section = "noSettings";
+
+            for (var i in $scope.newSettings) {
+                settings.push({key: 'new.db.' + i, value: $scope.newSettings[i]});
+            }
+
+            newSettings.settings = settings;
+
+            $http.post(ServerService.formatURL('module/admin/api/settings/platform'), newSettings)
+                .success( function () {
                     LoadingModal.close();
                     ModalFactory.showSuccessAlert('admin.settings.saved');
-                    $scope.platformSettings = PlatformSettingsFactory.get();
-                },
-                error: function (response) {
+                })
+                .error( function () {
                     LoadingModal.close();
-                    ModalFactory.showErrorAlert('admin.settings.error');
-                }
-            });
+                    ModalFactory.showErrorAlert('admin.settings.error.location');
+                });
         };
 
         $scope.uploadSettings = function () {
-            $("#settingsFileForm").ajaxSubmit({
-                success: function () {
-                    LoadingModal.close();
-                    ModalFactory.showSuccessAlert('admin.settings.saved');
-                    $scope.platformSettings = PlatformSettingsFactory.get();
-                },
-                error: function (response) {
-                    LoadingModal.close();
-                    ModalFactory.showErrorAlert('admin.settings.error');
-                }
+            LoadingModal.open();
+            var file = $scope.settingsFile;
+            var fd = new FormData();
+
+            fd.append('file', file);
+
+            $http.post(ServerService.formatURL('module/admin/api/settings/platform/upload'), fd, {
+                transformRequest: angular.identity,
+                headers: {'Content-Type': undefined}
+            })
+            .success(function () {
+                LoadingModal.close();
+                ModalFactory.showSuccessAlert('admin.settings.saved');
+                $scope.platformSettings = PlatformSettingsFactory.get();
+            })
+            .error(function () {
+                LoadingModal.close();
+                ModalFactory.showErrorAlert('admin.settings.error');
             });
         };
 
