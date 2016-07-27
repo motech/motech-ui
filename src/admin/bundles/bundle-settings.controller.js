@@ -38,9 +38,8 @@
             );
         };
 
-        $scope.uploadRaw = function (filename, doRestart) {
-            var successHandler,
-            id = '#_raw_' + filename.replace('.', '\\.');
+        $scope.uploadRaw = function (rawSettings, doRestart) {
+            var successHandler
 
             if (doRestart === true) {
                 successHandler = restartBundleHandler;
@@ -53,14 +52,12 @@
 
             LoadingModal.open();
 
-            $(id).ajaxSubmit({
-                success:successHandler,
-                error: function (response) {
+            rawSettings.$save({bundleId:$scope.module.bundleId}, successHandler,
+                function(response) {
                     LoadingModal.close();
                     ModalFactory.showErrorAlertWithResponse('admin.settings.error', 'admin.error', response);
                 }
-            });
-        };
+            );
 	}
 
 })();

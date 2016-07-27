@@ -23,8 +23,8 @@
         <h4 class="settings-section">{{rawFile}}</h4>
         <form id="_raw_{{rawFile}}" name="{{rawFile}}Form">
             <div class="form-group fileinput fileinput-new" data-provides="fileinput">
-                <label>{{msg('admin.button.selectFile')}}</label>
-                <div class="col-sm-9 col-md-10">
+                <label>{{'admin.button.selectFile' | translate}}</label>
+                <div>
                     <motech-file-upload></motech-file-upload>
                     <input type="hidden" value="{{rawFile}}" name="filename" />
                 </div>
