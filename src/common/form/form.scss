@@ -130,6 +130,11 @@ form {
         }
         ul{
             margin: 0px;
+            >*{
+                &:last-child{
+                    margin-bottom: 1.5em;
+                }
+            }
         }
     }
 }
