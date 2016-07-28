@@ -39,7 +39,7 @@
         };
 
         $scope.uploadRaw = function (rawSettings, doRestart) {
-            var successHandler
+            var successHandler;
 
             if (doRestart === true) {
                 successHandler = restartBundleHandler;
@@ -58,6 +58,7 @@
                     ModalFactory.showErrorAlertWithResponse('admin.settings.error', 'admin.error', response);
                 }
             );
+        };
 	}
 
 })();
