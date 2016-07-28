@@ -25,3 +25,12 @@
             flex-grow: 1;
         }
 }
+@media (max-width: $screen-sm) {
+    .form-inline {
+        >*{
+            &:last-child{
+                width: 100%;
+            }
+        }
+    }
+}
