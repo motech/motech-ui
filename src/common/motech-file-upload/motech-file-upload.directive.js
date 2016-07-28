@@ -2,8 +2,9 @@
     'use strict';
 
     angular.module('motech-common')
-        .directive('motechFileUpload', ['$compile', '$timeout', '$http', '$templateCache', motechFileUploadDirective]);
+        .directive('motechFileUpload', motechFileUploadDirective);
 
+    motechFileUploadDirective.$inject = ['$compile', '$timeout', '$http', '$templateCache'];
     function motechFileUploadDirective($compile, $timeout, $http, $templateCache) {
         var templateLoader;
 
@@ -12,7 +13,7 @@
             replace : true,
             transclude: false,
             compile: function (tElement, tAttrs, scope) {
-                var url = '../server/resources/partials/motech-file-upload.html',
+                var url = '/common/motech-file-upload/motech-file-upload.html',
 
                 templateLoader = $http.get(url, {cache: $templateCache})
                     .success(function (html) {
