@@ -8,7 +8,8 @@
 	function controller($scope, $stateParams, $http, BundleSettingsFactory, BundleRawSettingsFactory, LoadingModal, ModalFactory, BundlesFactory){
 
         var restartBundleHandler = function () {
-            $scope.module.$restart();
+            $scope.module.restart();
+            ModalFactory.showSuccessAlert('admin.settings.saved');
         };
 
         $scope.module = BundlesFactory.get({ bundleId:$stateParams.bundleId });
