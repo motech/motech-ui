@@ -85,19 +85,6 @@
                 });
         };
 
-        $scope.saveAll = function () {
-            LoadingModal.open();
-            $http.post(ServerService.formatURL('module/admin/api/settings/platform/list'), $scope.platformSettings.settingsList)
-                .success( function () {
-                    LoadingModal.close();
-                    ModalFactory.showSuccessAlert('admin.settings.saved');
-                })
-                .error( function () {
-                    LoadingModal.close();
-                    ModalFactory.showErrorAlert('admin.settings.error.location');
-                });
-        };
-
         $scope.exportConfig = function () {
             $http.get(ServerService.formatURL('module/admin/api/settings/platform/export'))
             .success(function () {

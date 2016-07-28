@@ -1,6 +1,9 @@
 .form-group{
     >label{
         white-space: normal;
+        >.checkbox{
+            position: static !important;
+        }
     }
     >legend{
         @extend label;
@@ -13,4 +16,10 @@
     .button-file{
         height: auto;
     }
+}
+.section-title{
+    font-size: 18px;
+}
+.partial-title{
+    font-size: 16px;
 }
