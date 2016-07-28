@@ -1,0 +1,15 @@
+<motech-list ng-show="dataAvailable">
+    <motech-list-item ng-repeat="queue in queues" >
+        <motech-list-column column-title="Name" sortable>
+            <a ui-sref="queues.queue({queueName: queue.destination})">{{queue.destination}}</a>
+        </motech-list-column>
+        <motech-list-column column-title="Number of Pending Messages" sortable>{{queue.queueSize}}</motech-list-column>
+        <motech-list-column column-title="Consumer Count" sortable>{{queue.consumerCount}}</motech-list-column>
+        <motech-list-column column-title="Enqueue Count" sortable>{{queue.enqueueCount}}</motech-list-column>
+        <motech-list-column column-title="Dequeue Count" sortable>{{queue.dequeueCount}}</motech-list-column>
+        <motech-list-column column-title="Expiry Count" sortable>{{queue.expiredCount}}</motech-list-column>
+    </motech-list-item>
+</motech-list>
+<div class="alert alert-danger" ng-show="!dataAvailable">
+    {{'admin.queue.error'|translate}}
+</div>
