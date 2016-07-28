@@ -10,7 +10,7 @@
 
         $http.get(ServerService.formatURL('module/admin/api/topics/'))
         .success(function (data) {
-            $scope.topics = data
+            $scope.topi
         })
         .error(function () {
             $scope.dataAvailable = false;
