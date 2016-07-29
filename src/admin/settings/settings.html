@@ -51,8 +51,7 @@
                     <option ng-if="!option.value" value="">{{'mds.form.label.select' | translate}}</option>
                 </select>
                 <input ng-disabled="platformSettings.readOnly" type="text" ng-model="userValidator" />
-                <a class="btn btn-success" ng-disabled="!userValidator" ng-click="addValue(option.key, userValidator)">
-                    <span class="fa fa-fw fa-plus"></span>Add option</a>
+                <button class="button-add" type="button" ng-disabled="!userValidator" ng-click="addValue(option.key, userValidator)">Add option</button>
             </div>
         </div>
         <input ng-if="!platformSettings.readOnly" type="submit" ng-click="saveSettings(pSettings)" value="{{'admin.save' | translate}}" />
