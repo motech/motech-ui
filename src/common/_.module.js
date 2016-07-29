@@ -15,7 +15,8 @@
         'ui.router',
         'ui.bootstrap',
         'checklist-model',
-        'pascalprecht.translate'
+        'pascalprecht.translate',
+        'ncy-angular-breadcrumb'
         ]);
 
 })();
