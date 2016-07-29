@@ -9,6 +9,19 @@
     function jobListController ($scope, $timeout, JobsService, ModalFactory, LoadingModal, i18nService) {
         $scope.jobDetails = {};
 
+        $scope.activityCheckboxes = [
+            {label: 'scheduler.active', value: "ACTIVE"},
+            {label: 'scheduler.finished', value: "FINISHED"},
+            {label: 'scheduler.notstarted', value: "NOTSTARTED"}
+        ];
+
+        $scope.statusCheckboxes = [
+            {label: 'scheduler.ok', value: "OK"},
+            {label: 'scheduler.paused', value: "PAUSED"},
+            {label: 'scheduler.blocked', value: "BLOCKED"},
+            {label: 'scheduler.error', value: "ERROR"}
+        ];
+
         $scope.search = {};
         $scope.$watch('search', updateSearch, true);
 

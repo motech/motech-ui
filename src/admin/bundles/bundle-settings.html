@@ -1,0 +1,36 @@
+<div>
+    <h4 class="frame-title">{{module.name}}</h4>
+
+    <div class="settings-form" ng-repeat="mSettings in moduleSettings">
+        <form name="settingsForm">
+            <fieldset>
+                <motech-list>
+                    <motech-list-item ng-repeat="setting in mSettings.settings | orderBy:'key'" >
+                        <div sortable>{{setting.key}}</div>
+                        <motech-list-column sortable>
+                            <input class="form-control" type="text" id="{{setting.key}}" name="{{setting.key}}" ng-model="setting.value"/>
+                        </motech-list-column>
+                    </motech-list-item>
+                </motech-list>
+            </fieldset>
+            <input type="hidden" name="section" value="{{mSettings.section}}" />
+            <input type="submit" ng-click="saveSettings(mSettings)" value="{{'admin.submit' | translate}}"/>
+            <input type="submit" ng-click="saveSettings(mSettings, true)" value="{{'admin.submitAndRestart' | translate}}"/>
+        </form>
+    </div>
+
+    <div class="settings-form" ng-repeat="rawFile in rawFiles">
+        <h4 class="settings-section">{{rawFile}}</h4>
+        <form id="_raw_{{rawFile}}" name="{{rawFile}}Form">
+            <div class="form-group fileinput fileinput-new" data-provides="fileinput">
+                <label>{{'admin.button.selectFile' | translate}}</label>
+                <div>
+                    <motech-file-upload></motech-file-upload>
+                    <input type="hidden" value="{{rawFile}}" name="filename" />
+                </div>
+            </div>
+            <input type="submit" ng-click="uploadRaw(rawFile)" value="{{'admin.submit' | translate}}">
+            <input type="submit" ng-click="uploadRaw(rawFile, true)" value="{{admin.submitAndRestart' | translate}}">
+        </form>
+    </div>
+</div>

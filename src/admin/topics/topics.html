@@ -1,0 +1,12 @@
+<motech-list>
+    <motech-list-item ng-repeat="topic in topics" ng-show="dataAvailable">
+        <motech-list-column column-title="Name" sortable>{{topic.destination}}</motech-list-column>
+        <motech-list-column column-title="Consumer Count" sortable>{{topic.consumerCount}}</motech-list-column>
+        <motech-list-column column-title="Enqueue Count" sortable>{{topic.enqueueCount}}</motech-list-column>
+        <motech-list-column column-title="Dequeue Count" sortable>{{topic.dequeueCount}}</motech-list-column>
+        <motech-list-column column-title="Expiry Count" sortable>{{topic.expiredCount}}</motech-list-column>
+    </motech-list-item>
+    <motech-list-item ng-show="!dataAvailable" class="alert alert-danger">
+        {{'admin.topic.error' | translate}}
+    </motech-list-item>
+</motech-list>

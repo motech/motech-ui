@@ -1,0 +1,10 @@
+<motech-list ng-show="dataAvailable">
+    <motech-list-item ng-repeat="message in messages" >
+        <motech-list-column column-title="Message ID" sortable>{{message.messageId}}</motech-list-column>
+        <motech-list-column column-title="Redelivered" sortable>{{message.redelivered}}</motech-list-column>
+        <motech-list-column column-title="Timestamp" sortable>{{message.timestamp}}</motech-list-column>
+    </motech-list-item>
+</motech-list>
+<div class="row inside" ng-show="!dataAvailable">
+    {{'admin.queue.message.error'|translate}}
+</div>

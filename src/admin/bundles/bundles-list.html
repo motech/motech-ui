@@ -15,7 +15,7 @@
                 <button class="icon start" ng-click="bundle.start()" ng-if="!bundle.isActive()">{{msg('admin.bundles.start')}}</button>
                 <button class="icon stop" ng-click="bundle.stop()" ng-if="bundle.isActive()">{{msg('admin.bundles.stop')}}</button>
                 <button class="icon restart" ng-click="bundle.restart()" ng-if="bundle.isActive()">{{msg('admin.bundles.restart')}}</button>
-                <button class="icon settings" ng-if="bundle.isActive()">{{msg('admin.settings')}}</button>
+                <button class="icon settings" ng-click="loadBundleSettingsPage(bundle)" ng-if="showSettings(bundle)">{{msg('admin.settings')}}</button>
                 <button class="icon delete" ng-click="bundle.uninstall()">{{msg('admin.bundles.uninstall')}}</button>
             </div>
         </nav>

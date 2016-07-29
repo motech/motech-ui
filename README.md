@@ -29,6 +29,11 @@ brew install node
 npm install -g bower gulp
 ````
 
+### Adding CORS headers
+Before running MOTECH-UI package, you need to enable communication between MOTECH-UI and MOTECH Server. This can be done by adding CORS (Cross-Origin Resource Sharing) headers to your Tomcat configuration file. To understand how to achieve this, follow instructions for [adding CORS to Tomcat from MOTECH documentation](http://docs.motechproject.org/en/latest/deployment/CORS_Headers.html#tomcat-web-server-config).
+
+If any changes were made while the Tomcat server was running, you should restart it.
+
 ### Building and running
 To build and run the MOTECH-UI package, first make sure you have MOTECH 0.29 or greater built and running.
 
