@@ -76,7 +76,7 @@ describe('i18n Service', function() {
     httpBackend.flush();
     rootScope.$apply();
     
-    expect(i18nService.getCurrentLanguage().key).toEqual('pl');
+    expect(i18nService.getCurrentLanguage().key).toEqual('en');
     expect(languages.length).toEqual(2);
   });
 
