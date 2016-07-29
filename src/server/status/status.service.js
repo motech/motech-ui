@@ -21,6 +21,7 @@
 
         this.isBundleStarted = isBundleStarted;
         this.hasBundleError = hasBundleError;
+        this.isBundleStarting = isBundleStarting;
 
         $rootScope.$on('motech.checkStatus', function(){
             getStatus();
@@ -32,9 +33,10 @@
             $http.get(ServerService.formatURL('server/bootstrap/status'))
             .then(function(response){
                 service.running = true;
-                service.startedBundles = response.data.osgiStartedBundles;
-                service.startedPercentage = response.data.startupProgressPercentage/100;
-                
+                service.startedBundles = response.data.startedBundles;
+                service.osgiStartedBundles = response.data.osgiStartedBundles;
+                service.startedPercentage = response.data.startupProgressPercentage;
+
                 if(service.isLoaded()) {
                     deferred.resolve(true);
                 } else {
@@ -42,7 +44,9 @@
                     setTimeout(getStatus, 2000);
                 }
             }).catch(function(){
-                service.errors.push("Could not reach MOTECH server");
+                if(!service.started && service.errors && service.errors.length < 1) {
+                    service.errors.push("Could not reach MOTECH server");
+                }
                 deferred.reject(false);
             });
 
@@ -53,6 +57,7 @@
                 },
                 function(){ // Error
                     service.started = false;
+                    $rootScope.$broadcast('motechServer.errorLoading');
                 },
                 function(){ // Update
                     $rootScope.$broadcast('motech.statusCheck.update');
@@ -62,18 +67,21 @@
             });
             return deferred.promise;
         }
+
         function isRunning () {
             if(service.running) {
                 return true;
             }
             return false;
         }
+
         function isLoaded () {
-            if(service.isRunning() && service.startedPercentage == 1) {
+            if(service.isRunning() && service.startedPercentage == 100) {
                 return true;
             }
             return false;
         }
+
         function hasErrors () {
             if(service.errors.length > 0){
                 return true;
@@ -82,7 +90,15 @@
         }
 
         function isBundleStarted(id) {
-            if(service.startedBundles.indexOf(id) > -1) {
+            if(service.startedBundles && service.startedBundles.indexOf(id) > -1) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+        function isBundleStarting(id) {
+            if(service.osgiStartedBundles && service.osgiStartedBundles.indexOf(id) > -1) {
                 return true;
             } else {
                 return false;

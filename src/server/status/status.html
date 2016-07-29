@@ -1,7 +1,9 @@
-<div ng-class="{error: hasErrors, running: running}">
-    <progress-bar />
-    <div ng-repeat="bundle in bundles">{{bundle.name}}</div>
-    <div ng-if="hasErrors">
-        
+<div class="status-server" ng-class="{error: hasErrors, running: running}">
+    <progress-bar></progress-bar>
+    <div ng-if="!hasErrors" id="bundle.id" name="bundle.name" ng-repeat="bundle in bundles" motech-bundle-status>
+        {{bundle.name}} &#45;&#45; {{bundle.id}}
+    </div>
+    <div ng-if="hasErrors" class="alert alert-danger">
+        <div class="" ng-repeat="error in errors track by $index">{{error}}</div>
     </div>
 </div>

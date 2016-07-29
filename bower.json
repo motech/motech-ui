@@ -29,7 +29,7 @@
     "font-awesome": "4.x",
     "textAngular": "1.x",
     "bootstrap-sass": "^3.3.6",
-    "bootstrap3-dialog": "^1.34.9",
+    "bootstrap3-dialog": "^1.35.2",
     "angular-http-auth": "^1.3.0",
     "flexibility": "^1.0.6",
     "angular-mocks": "^1.5.3",
@@ -65,7 +65,8 @@
     },
     "bootstrap3-dialog": {
       "main": [
-        "dist/js/bootstrap-dialog.min.js"
+        "dist/js/bootstrap-dialog.min.js",
+        "dist/css/bootstrap-dialog.css"
       ]
     },
     "jquery-timepicker-addon": {

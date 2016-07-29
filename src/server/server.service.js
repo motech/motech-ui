@@ -22,6 +22,10 @@
             ready = true;
         });
 
+        $rootScope.$on('motechServer.errorLoading', function(){
+            ready = false;
+        });
+
         function formatUrl (uri) {
             if(uri.indexOf('/') === 0){
                 return formatUrl(uri.substring(1));

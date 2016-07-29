@@ -1,0 +1,73 @@
+.status-server {
+  .loading-text-block {
+    display: none;
+    margin: 0 0 0 10px;
+    &.bundle {
+      display: block;
+      .fa-circle-o {
+        display: inline-block;
+      }
+      .fa-check-circle,
+      .fa-times-circle,
+      .fa-spinner {
+        display: none;
+      }
+      &.bundle-started {
+        .fa-circle-o,
+        .fa-times-circle,
+        .fa-spinner {
+          display: none;
+        }
+        .fa-check-circle {
+          display: inline-block;
+          color: $success;
+        }
+        &.bundle-starting {
+          .fa-spinner {
+            display: none;
+          }
+        }
+      }
+      &.bundle-starting {
+        .fa-spinner {
+          display: inline-block;
+        }
+        .fa-circle-o {
+          display: none;
+        }
+      }
+    }
+    .fa-lg {
+      font-size: 1.5em;
+      line-height: 1.0em;
+      margin-right: 5px;
+      vertical-align: -10%;
+    }
+    &.bundle-error .fa-times-circle {
+      display: inline-block;
+      color: $error;
+    }
+
+    #bundleErrors {
+      margin-top: 20px;
+    }
+
+    #bundleErrors div, #retrievalError {
+      margin: 20px 0;
+    }
+
+    #bundleErrors pre, #retrievalError {
+      white-space: normal;
+      text-align: left;
+    }
+  }
+  .progress {
+    height: 1em;
+    .progress-bar {
+      width: 0;
+      min-width: 1em;
+      line-height: 1.3em;
+      text-shadow: 0 1px 2px $gray;
+    }
+  }
+}

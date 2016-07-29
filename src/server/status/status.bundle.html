@@ -1,3 +1,8 @@
-<div ng-class="{bundle: true, bundle-started:started, bundle-error:error, bundle-starting: starting}">
-    {{name}}
+<div ng-class="{'bundle': true, 'bundle-started':started, 'bundle-error':error, 'bundle-starting': starting}"
+     class="loading-text-block">
+        <i class="fa fa-circle-o fa-fw fa-lg"></i>
+        <i class="fa fa-spinner fa-pulse fa-fw fa-lg"></i>
+        <i class="fa fa-check-circle fa-fw fa-lg"></i>
+        <i class="fa fa-times-circle fa-fw fa-lg"></i>
+        {{name}}
 </div>
