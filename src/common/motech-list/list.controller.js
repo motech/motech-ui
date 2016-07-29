@@ -17,6 +17,7 @@
     controller.$inject = ['$scope'];
     function controller($scope){
         var ctrl = this;
+        $scope.emptyListMessage = "Nothing Found";
         ctrl.columns = [];
         ctrl.hasCollapsibleColumn = false;
 

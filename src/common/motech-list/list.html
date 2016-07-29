@@ -10,6 +10,7 @@
             </li>
         </ul>
     </nav>
+    <div ng-if="$('ul#items li').length==0" class="alert">{{emptyListMessage}}</div>
     <ul ng-transclude class="motech-list-rows"></ul>
     <footer ng-transclude="footer">{{footer}}</footer>
 </section>
