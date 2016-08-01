@@ -10,7 +10,7 @@
         return {
             open: function () {
                 modal = ModalWindow(
-                    $compile('<motech-resetpassword />')($rootScope),
+                    $compile('<reset-password />')($rootScope),
                     $compile('<span>{{ "security.enterEmailQuestions" | translate}}</span>')($rootScope),
                     false);
                 modal.open();

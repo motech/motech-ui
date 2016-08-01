@@ -2,35 +2,21 @@
     'use strict';
 
     angular.module('motech-auth')
-        .directive('motechResetpassword', ResetPasswordForm);
+        .directive('resetPassword', ResetPasswordForm);
 
     function ResetPasswordForm() {
         return {
             restrict: 'EA',
             replace: true,
-            scope:{},
+            require: 'resetFormController',
+            scope: {},
+            controller: 'resetFormController',
             templateUrl: '/auth/reset_password/reset_password.html',
-            controller: ResetFormController,
-            controllerAs: 'ResetCtrl',
             link: Reset_PasswordFormDirective
         };
     }
 
-    ResetFormController.$inject = ['LoginModal', '$http', 'ResetPasswordModal'];
-    function ResetFormController(LoginModal, $http, ResetPasswordModal) {
 
-        this.backToLogin = backToLogin;
-        function backToLogin(){
-            ResetPasswordModal.close();
-            LoginModal.open();
-        }
-
-        this.sendReset = sendReset;
-        function sendReset(email) {
-            return $http({method: "POST", url: "../server/forgot", data: email});
-        }
-
-    }
 
     function Reset_PasswordFormDirective (scope, element, attrs) {
         scope.send = function () {
@@ -51,6 +37,4 @@
             scope.ResetCtrl.backToLogin();
         };
     }
-
-
 })();
