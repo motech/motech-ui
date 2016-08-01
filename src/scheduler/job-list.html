@@ -71,41 +71,11 @@
         </fieldset>
         <fieldset>
             <legend>{{'scheduler.activity' | translate }}</legend>
-            <div class="input-group">
-                <label class="checkbox">
-                    <input type="checkbox" checklist-model="search.activity" checklist-value="'ACTIVE'" />
-                    {{'scheduler.active' | translate}}
-                </label>
-                <label class="checkbox">
-                    <input type="checkbox" checklist-model="search.activity" checklist-value="'FINISHED'" />
-                    {{'scheduler.finished' | translate}}
-                </label>
-                <label class="checkbox">
-                    <input type="checkbox" checklist-model="search.activity" checklist-value="'NOTSTARTED'" />
-                    {{'scheduler.notstarted' | translate}}
-                </label>
-            </div>
+            <input-filter-group checkboxes="activityCheckboxes" ng-model="search.activity"></input-filter-group>
         </fieldset>
         <fieldset>
             <legend>{{'scheduler.status' | translate }}</legend>
-            <div class="input-group">
-                <label class="checkbox">
-                    <input type="checkbox" checklist-model="search.status" checklist-value="'OK'" />
-                    {{'scheduler.ok' | translate}}
-                </label>
-                <label class="checkbox">
-                    <input type="checkbox" checklist-model="search.status" checklist-value="'PAUSED'" />
-                    {{'scheduler.paused' | translate}}
-                </label>
-                <label class="checkbox">
-                    <input type="checkbox" checklist-model="search.status" checklist-value="'BLOCKED'" />
-                    {{'scheduler.blocked' | translate}}
-                </label>
-                <label class="checkbox">
-                    <input type="checkbox" checklist-model="search.status" checklist-value="'ERROR'" />
-                    {{'scheduler.error' | translate}}
-                </label>
-            </div>
+            <input-filter-group checkboxes="statusCheckboxes" ng-model="search.status"></input-filter-group>
         </fieldset>
     </form>
 </motech-sidebar>

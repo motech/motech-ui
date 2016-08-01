@@ -9,8 +9,9 @@
     padding: 10px;
     font-family: Consolas, monaco, monospace;
     font-size: 12px;
+    overflow-x: hidden;
     word-wrap: break-word;
-    overflow: auto;
+    white-space: pre-wrap;
   }
   .sidebar {
     position: fixed;
