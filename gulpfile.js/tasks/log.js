@@ -10,7 +10,7 @@ gulp.task('log', function() {
         }))
         .pipe(jshint.reporter(jshintXMLReporter))
         .on('end', jshintXMLReporter.writeFile({
-            format: 'checkstyle',
+            format: 'junit',
             filePath: 'target/jshint.xml'
         }));
 });
