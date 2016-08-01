@@ -8,7 +8,6 @@
         return {
             restrict: 'EA',
             replace: true,
-            require: 'resetFormController',
             scope: {},
             controller: 'resetFormController',
             templateUrl: '/auth/reset_password/reset_password.html',
@@ -18,10 +17,10 @@
 
 
 
-    function Reset_PasswordFormDirective (scope, element, attrs) {
+    function Reset_PasswordFormDirective (scope, element, attrs, controller) {
         scope.send = function () {
              if (scope.email !== "") {
-                 scope.ResetCtrl.sendReset(scope.email)
+                 controller.sendReset(scope.email)
                      .success(function (response) {
                         scope.error=response;
                         scope.emailGetter=false;
@@ -34,7 +33,7 @@
         };
 
         scope.back = function () {
-            scope.ResetCtrl.backToLogin();
+            controller.backToLogin();
         };
     }
 })();
