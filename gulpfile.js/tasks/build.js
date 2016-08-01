@@ -7,7 +7,7 @@ gulp.task('build', function (cb) {
 });
 
 gulp.task('build:app', function (cb) {
-    gulpSequence('assets', 'fonts', 'images', 'partials', 'index.html', 'motech.css', 'motech.js:hint', 'motech.js:build', 'log.js')(cb);
+    gulpSequence('assets', 'fonts', 'images', 'partials', 'index.html', 'motech.css', 'motech.js:hint', 'motech.js:build')(cb);
 });
 
 gulp.task('build:docs', function(cb){
