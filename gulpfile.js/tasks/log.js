@@ -6,5 +6,7 @@ var jshint = require('gulp-jshint');
 gulp.task('log', function() {
   return gulp.src('src/**/*.js')
     .pipe(jshint())
-    .pipe(jshint.reporter('gulp-jshint-jenkins-reporter'));
+    .pipe(jshint.reporter('gulp-jshint-jenkins-reporter', {
+	filename: 'target' + '/jshint-checkstyle.xml'
+    }));
 });
