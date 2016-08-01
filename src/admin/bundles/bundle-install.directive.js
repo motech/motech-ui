@@ -1,4 +1,4 @@
-(function(){
+(function () {
     'use-strict';
 
     angular.module('motech-admin')
@@ -8,28 +8,34 @@
     function moduleInstall(ServerService) {
         return {
             restrict: 'E',
-            replace: true,
             templateUrl: '/admin/bundles/install-modules.html',
             controller: controller,
-            link: function(scope, element, attrs) {
-                var url = $("#bundleUploadForm").attr("action");
-                url = ServerService.formatURL(url);
-                $("#bundleUploadForm").attr("action", url);
+            link: function (scope) {
+                scope.startOnUpload = function () {
+                    if (scope.startUpload !== true) {
+                        scope.startUpload = true;
+                        $('.start-on-upload').find('i').removeClass("fa-square-o").addClass('fa-check-square-o');
+                    } else {
+                        scope.startUpload = false;
+                        $('.start-on-upload').find('i').removeClass("fa-check-square-o").addClass('fa-square-o');
+                    }
+                };
             }
         };
     }
 
-    controller.$inject = ['$scope', '$rootScope', '$state', 'BundlesFactory', 'LoadingModal', 'ModalFactory'];
-    function controller($scope, $rootScope, $state, BundlesFactory, LoadingModal, ModalFactory) {
+    controller.$inject = ['$scope', '$rootScope', '$timeout', '$state', 'BundlesFactory', 'LoadingModal', 'ModalFactory', 'ModalWindow', 'ServerService'];
+    function controller($scope, $rootScope, $timeout, $state, BundlesFactory, LoadingModal, ModalFactory, ModalWindow, ServerService) {
         $scope.moduleSources = [
             'Repository',
             'File'
         ];
-
+        $scope.startUpload = true;
         $scope.moduleSource = $scope.moduleSources[0];
+        var MODULE_LIST_REFRESH_TIMEOUT = 6000;
 
-        $scope.mavenStr = function(artifactId) {
-            return 'org.motechproject:'.concat(artifactId).concat(':').concat($scope.msg('server.version'));
+        $scope.mavenStr = function (artifactId) {
+            return 'org.motechproject:'.concat(artifactId).concat(':').concat($rootScope.msg('server.version'));
         };
 
         $scope.modules = {};
@@ -57,22 +63,27 @@
 
         $scope.module = "";
 
-        $scope.startOnUpload = function () {
-            if ($scope.startUpload !== true) {
-                $scope.startUpload = true;
-                $('.start-on-upload').find('i').removeClass("fa-square-o").addClass('fa-check-square-o');
-            } else {
-                $scope.startUpload = false;
-                $('.start-on-upload').find('i').removeClass("fa-check-square-o").addClass('fa-square-o');
-            }
-        };
-
         $scope.submitBundle = function () {
-            if (!$scope.isNoModuleOrFileSelected()) {
-                LoadingModal.open();
-                $('#bundleUploadForm').ajaxSubmit({
-                    success: function (data, textStatus, jqXHR) {
-                        if (jqXHR.status === 0 && data) {
+            $("#bundleUploadForm").submit(function(event){
+                if (!$scope.isNoModuleOrFileSelected()) {
+                    LoadingModal.open();
+
+                    var formData = {
+                            moduleSource: $scope.moduleSource,
+                            moduleId: $scope.module,
+                            file: $('#bundleUploadForm input[name=file]').val(),
+                            startBundle: $scope.startBundle
+                        },
+                        url = "/module/admin/api/bundles/upload";
+
+                    url = ServerService.formatURL(url);
+
+                    $.ajax({
+                        type: 'POST',
+                        data: formData,
+                        url: url
+                    }).done(function (data, status, xhr) {
+                        if (xhr.status === 0 && data) {
                             ModalFactory.showErrorWithStackTrace('admin.error', 'admin.bundles.error.start', data);
                             LoadingModal.close();
                         } else {
@@ -92,17 +103,21 @@
                                 ModalFactory.showSuccessAlert('admin.bundles.successInstall', 'admin.bundles.installNewModule');
                             });
                         }
-                    },
-                    error:function (response) {
-                        ModalFactory.showErrorWithStackTrace('admin.error', 'admin.bundles.error.start', response);
-                        LoadingModal.close();
-                    }
-                });
-            } else if ($scope.moduleSource === 'Repository') {
-                ModalFactory.showErrorAlert('admin.bundles.error.moduleNotSelected', 'admin.error');
-            } else {
-                ModalFactory.showErrorAlert('admin.bundles.error.fileNotSelected', 'admin.error');
-            }
+                        $scope.hideInstallModulesModal();
+                    })
+                        .fail(function (response) {
+                            ModalFactory.showErrorWithStackTrace('admin.error', 'admin.bundles.error.start', response);
+                            LoadingModal.close();
+                            $scope.hideInstallModulesModal();
+                        });
+                } else if ($scope.moduleSource === 'Repository') {
+                    ModalFactory.showErrorAlert('admin.bundles.error.moduleNotSelected', 'admin.error');
+                } else {
+                    ModalFactory.showErrorAlert('admin.bundles.error.fileNotSelected', 'admin.error');
+                }
+                $scope.hideInstallModulesModal();
+                event.preventDefault();
+            });
         };
 
         $scope.isNoModuleOrFileSelected = function () {

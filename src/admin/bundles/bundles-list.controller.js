@@ -4,23 +4,25 @@
     angular.module('motech-admin')
         .controller('BundlesListController', bundlesListController);
 
-    bundlesListController.$inject = ['$scope', '$rootScope', '$state', '$http', 'BundlesFactory', 'LoadingModal', 'ServerService'];
-    function bundlesListController ($scope, $rootScope, $state, $http, BundlesFactory, LoadingModal, ServerService) {
+    bundlesListController.$inject = ['$scope', '$compile', '$state', '$http', 'BundlesFactory', 'LoadingModal', 'ServerService', 'ModalWindow'];
+    function bundlesListController($scope, $compile, $state, $http, BundlesFactory, LoadingModal, ServerService, ModalWindow) {
 
-        BundlesFactory.query(function(bundles){
+        BundlesFactory.query(function (bundles) {
             $scope.bundles = bundles;
         });
 
         $scope.bundlesWithSettings = [];
 
-        $http({method:'GET', url:ServerService.formatURL('/module/admin/api/settings/bundles/list')}).
-            success(function (data) {
-                $scope.bundlesWithSettings = data;
-            });
+        $http({
+            method: 'GET',
+            url: ServerService.formatURL('/module/admin/api/settings/bundles/list')
+        }).success(function (data) {
+            $scope.bundlesWithSettings = data;
+        });
 
         $scope.showSettings = function (bundle) {
             return $.inArray(bundle.symbolicName, $scope.bundlesWithSettings) >= 0 ||
-                    (bundle.settingsURL && bundle.settingsURL.length !== 0);
+                (bundle.settingsURL && bundle.settingsURL.length !== 0);
         };
 
         $scope.loadBundleSettingsPage = function loadBundleSettingsPage(bundle) {
@@ -57,6 +59,16 @@
                 }
                 LoadingModal.close();
             }
+        };
+
+        var installModal;
+        $scope.openInstallModulesModal = function () {
+            installModal = ModalWindow($compile('<install-modules></install-modules>')($scope), "Install Modules");
+            installModal.open();
+        };
+
+        $scope.hideInstallModulesModal = function () {
+            installModal.close();
         };
     }
 })();
