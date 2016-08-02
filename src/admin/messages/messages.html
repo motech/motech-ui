@@ -43,12 +43,12 @@
         <fieldset>
             <legend>{{'admin.messages.date' | translate}}</legend>
             <div class="form-group">
-                <input id="messagesDateTimeFrom" messages-date-picker="" ng-model="dateTimeFrom" max="dateTimeTo" type="datetime" placeholder="{{'admin.messages.from' | translate}}" data-event-type="change"
-                       data-search-field="timeFrom">
+                <input id="messagesDateTimeFrom" date-picker ng-model="dateTimeFrom" max="dateTimeTo" type="datetime" placeholder="{{'admin.messages.from' | translate}}" data-event-type="change"
+                       data-search-field="timeFrom" ng-change="setDateFrom(dateTimeFrom)">
             </div>
             <div class="form-group">
-                <input id="messagesDateTimeTo" messages-date-picker="" ng-model="dateTimeTo" min="dateTimeFrom" type="datetime" placeholder="{{'admin.messages.to' | translate}}" data-event-type="change"
-                       data-search-field="timeTo">
+                <input id="messagesDateTimeTo" date-picker ng-model="dateTimeTo" min="dateTimeFrom" type="datetime" placeholder="{{'admin.messages.to' | translate}}" data-event-type="change"
+                       data-search-field="timeTo" ng-change="setDateTo(dateTimeTo)">
             </div>
         </fieldset>
         <fieldset>

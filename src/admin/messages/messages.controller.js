@@ -236,19 +236,30 @@
              $scope.search();
          };
 
+         $scope.setDateFrom = function(dateFrom) {
+             $scope.setDateTimeFilter(dateFrom, $rootScope.filterDateTimeTo);
+         };
+
+         $scope.setDateTo = function(dateTo) {
+             $scope.setDateTimeFilter($rootScope.filterDateTimeFrom, dateTo);
+         };
+
          $scope.setDateTimeFilter = function(messageDateTimeFrom, messageDateTimeTo) {
-             if (messageDateTimeFrom !== null && messageDateTimeTo === null) {
+             if (messageDateTimeFrom !== null) {
                  $rootScope.filterDateTimeFrom = moment(messageDateTimeFrom).toDate().getTime();
-                 $rootScope.$apply();
-                 messageDateTimeTo = '';
              }
-             if (messageDateTimeTo !== null && messageDateTimeFrom === null) {
-                 $rootScope.filterDateTimeTo = moment(messageDateTimeTo).toDate().getTime();
-                 $rootScope.$apply();
+             else {
                  messageDateTimeFrom = '';
              }
+
+             if (messageDateTimeTo !== null) {
+                 $rootScope.filterDateTimeTo = moment(messageDateTimeTo).toDate().getTime();
+             }
+             else {
+                 messageDateTimeTo = '';
+             }
+
              $scope.search();
-             $scope.$apply();
          };
 
          $timeout(update, UPDATE_INTERVAL);
