@@ -11,7 +11,7 @@
             open: function () {
                 modal = ModalWindow(
                     $compile('<reset-password />')($rootScope),
-                    $compile('<span>{{ "security.enterEmailQuestions" | translate}}</span>')($rootScope),
+                    $compile('<span>{{ "security.resetInstructions" | translate}}</span>')($rootScope),
                     false);
                 modal.open();
             },

@@ -15,8 +15,6 @@
         };
     }
 
-
-
     function Reset_PasswordFormDirective (scope, element, attrs, controller) {
         scope.send = function () {
              if (scope.email !== "") {
