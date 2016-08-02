@@ -1,17 +1,17 @@
 <motech-list service="emailLogsService" paginated>
     <motech-list-header>
         <div class="button-group">
-            <button class="icon-export" ng-click="showExportModal()">{{ 'email.logging.export' | translate }}</button>
-            <button class="icon-filter motech-sidebar-button">{{ 'email.logging.filters' | translate }}</button>
+            <button id="email.logs.export" class="icon-export" ng-click="showExportModal()">{{ 'email.logging.export' | translate }}</button>
+            <button id="email.logs.filters" class="icon-filter motech-sidebar-button">{{ 'email.logging.filters' | translate }}</button>
         </div>
     </motech-list-header>
     <motech-list-item ng-repeat="log in logs">
-        <motech-list-column column-title="ID" >{{log.id}}</motech-list-column> 
-        <motech-list-column column-title="Status" >{{log.deliveryStatus}}</motech-list-column>
-        <motech-list-column column-title="To" sortable>{{log.toAddress}}</motech-list-column>
-        <motech-list-column column-title="From" sortable>{{log.fromAddress}}</motech-list-column>
-        <motech-list-column column-title="Subject" sortable>{{log.subject}}</motech-list-column>
-        <motech-list-column column-title="Delivery Time" sortable>{{log.deliveryTime}}</motech-list-column>
+        <motech-list-column id="email.logs.id" column-title="ID" >{{log.id}}</motech-list-column>
+        <motech-list-column id="email.logs.status" column-title="Status" >{{log.deliveryStatus}}</motech-list-column>
+        <motech-list-column id="email.logs.to" column-title="To" sortable>{{log.toAddress}}</motech-list-column>
+        <motech-list-column id="email.logs.from" column-title="From" sortable>{{log.fromAddress}}</motech-list-column>
+        <motech-list-column id="email.logs.subject" column-title="Subject" sortable>{{log.subject}}</motech-list-column>
+        <motech-list-column id="email.logs.delivery-time" column-title="Delivery Time" sortable>{{log.deliveryTime}}</motech-list-column>
         <motech-list-collapsible>
             <div ng-if="log.message" ng-bind-html="log.message"></div>
             <p class="alert alert-warning" ng-if="!log.message">No message</p>
@@ -26,37 +26,24 @@
         <fieldset>
             <legend>{{ 'email.logging.search' | translate }}</legend>
             <div class="form-group">
-                <label for="logsSubject" class="placeholder">{{'email.logging.search' | translate }}</label>
-                <input id="logsSubject" type="text" ng-model="search.subject" />
+                <label for="email.logs.search.subject" class="placeholder">{{'email.logging.search' | translate }}</label>
+                <input id="email.logs.search.subject" type="text" ng-model="search.subject" />
             </div>
         </fieldset>
         <fieldset>
             <legend>{{ 'email.logging.creationDate' | translate }}</legend>
             <div class="form-group">
-                <label for="timeFrom" class="placeholder">{{'email.logging.fromAddress' | translate}}</label>
-                <input id="timeFrom" date-picker ng-model="search.timeFrom" max="search.timeTo" type="datetime" />
+                <label for="email.logs.search.time-from" class="placeholder">{{'email.logging.fromAddress' | translate}}</label>
+                <input id="email.logs.search.time-from" date-picker ng-model="search.timeFrom" max="search.timeTo" type="datetime" />
             </div>
             <div class="form-group">
-                <label for="timeTo" class="placeholder">{{'email.logging.toAddress' | translate}}</label>
-                <input id="timeTo" date-picker ng-model="search.timeTo" min="search.timeFrom" type="datetime"  />
+                <label for="email.logs.search.time-to" class="placeholder">{{'email.logging.toAddress' | translate}}</label>
+                <input id="email.logs.search.time-to" date-picker ng-model="search.timeTo" min="search.timeFrom" type="datetime"  />
             </div>
         </fieldset>
         <fieldset>
             <legend>{{'email.logging.disposition' | translate }}</legend>
-            <div class="input-group">
-                <label class="checkbox">
-                    <input type="checkbox" checklist-model="search.deliveryStatus" checklist-value="'ERROR'" />
-                    {{'email.logging.error' | translate}}
-                </label>
-                <label class="checkbox">
-                    <input type="checkbox" checklist-model="search.deliveryStatus" checklist-value="'SENT'" />
-                    {{'email.logging.sent' | translate}}
-                </label>            
-                <label class="checkbox">
-                    <input type="checkbox" checklist-model="search.deliveryStatus" checklist-value="'RECEIVED'" />
-                    {{'email.logging.received' | translate}}
-                </label>
-            </div>
+            <input-filter-group checkboxes="checkboxes" ng-model="search.deliveryStatus"></input-filter-group>
         </fieldset>
     </form>
 </motech-sidebar>

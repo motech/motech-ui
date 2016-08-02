@@ -9,6 +9,9 @@
         $stateProvider
         .state('bundles', {
             url: '/bundles',
+            ncyBreadcrumb: {
+                label: 'admin.manageModules'
+            },
             views: {
                 'appArea@': {
                     templateUrl: '/admin/bundles/bundles-list.html',
@@ -21,6 +24,9 @@
         })
         .state('bundles.bundle', {
             url: '/:bundleId',
+            ncyBreadcrumb: {
+                label: 'admin.manageModules'
+            },
             resolve: {
                 bundle: getBundle
             },
@@ -28,6 +34,18 @@
                 'appArea@': {
                     templateUrl: '/admin/bundles/bundle.html',
                     controller: 'BundleController'
+                }
+            }
+        })
+        .state('bundles.bundleSettings', {
+            url: 'bundleSettings/:bundleId',
+            ncyBreadcrumb: {
+                label: 'admin.manageModuleSettings'
+            },
+            views: {
+                'appArea@': {
+                    templateUrl: '/admin/bundles/bundle-settings.html',
+                    controller: 'BundleSettingsController'
                 }
             }
         });

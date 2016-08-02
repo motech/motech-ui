@@ -1,0 +1,11 @@
+.motech-list .motech-list-rows .list-item .motech-list-collapsible dt {
+    float: left;
+    clear: left;
+    width: 23%;
+    margin-right: 2%;
+    text-align: right;
+}
+.motech-list .motech-list-rows .list-item .motech-list-collapsible dt,
+.motech-list .motech-list-rows .list-item .motech-list-collapsible dd {
+    white-space: nowrap;
+}

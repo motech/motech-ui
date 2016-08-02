@@ -1,0 +1,108 @@
+#log-file {
+  .padded-block {
+    margin-bottom: 0.7em;
+    padding: 0.6em 1em;
+  }
+  .log-content {
+    background-color: $white;
+    border: 1px solid $list-color;
+    padding: 10px;
+    font-family: Consolas, monaco, monospace;
+    font-size: 12px;
+    overflow-x: hidden;
+    word-wrap: break-word;
+    white-space: pre-wrap;
+  }
+  .sidebar {
+    position: fixed;
+    top: 45%;
+    right: -100px;
+    transition: 500ms right;
+  }
+  .sidebar:hover {
+    right: 0;
+    transition: 500ms right;
+  }
+  .navigation-toggle {
+    position: absolute;
+    right: 100px;
+    background: $dark-blue;
+    color: $white;
+    text-decoration: none;
+    padding: 41px 20px;
+  }
+  .sidebar:hover .navigation-toggle {
+    opacity: 0;
+  }
+  .navigation {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .navigation-items a {
+    display: block;
+    background-color: $dark-blue;
+    color: $white;
+    line-height: 2em;
+    text-decoration: none;
+    padding: 10px 30px;
+    width: 100px;
+  }
+  .navigation-items a:hover {
+    background-color: $blue;
+  }
+}
+
+#log-options {
+  .change-log-levels {
+    border: 1px solid $list-color;
+    margin-bottom: 20px;
+    .list-item {
+      border-top: 1px solid $list-color;
+      margin: 0;
+      padding: 5px 5px 5px 45px;
+      &.change-all {
+        border-top: none;
+        padding: 10px 5px 2px 15px;
+        .label-log-all {
+          width: 155px;
+          float: left;
+          margin-top: 9px;
+          text-align: right;
+        }
+        .change-for-all {
+          margin: 1px 1px 1px 9px;
+        }
+        label {
+          width: auto;
+        }
+      }
+    }
+    .list-item:nth-child(2n+1) {
+      background-color: $gray-lighter;
+    }
+    .btn-log {
+      width: 80px;
+    }
+    .btn-hidden {
+      visibility: hidden;
+    }
+    .btn-inverse {
+      background-color: $gray;
+      border-color: $gray;
+      color: $white;
+      text-shadow: 0 -1px 0 $gray;
+    }
+    .btn-inverse:hover,
+    .btn-inverse:focus,
+    .btn-inverse:active,
+    .btn-inverse.disabled,
+    .btn-inverse[disabled] {
+      background-color: $black;
+      color: $white;
+    }
+  }
+}
+
+
+

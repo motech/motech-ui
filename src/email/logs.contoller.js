@@ -9,6 +9,12 @@
         
         EmailLogsService.get().then(updateRows);
 
+        $scope.checkboxes = [
+            {label: "email.logging.error", value: "ERROR"},
+            {label: "email.logging.sent", value: "SENT"},
+            {label: "email.logging.received", value: "RECEIVED"}
+        ];
+
         $scope.search = {};
         $scope.$watch('search', updateSearch, true);
 
@@ -34,6 +40,7 @@
 
         var searchUpdateTimeout;
         function updateSearch(searchData){
+            LoadingModal.open();
             if(searchUpdateTimeout){
                 clearTimeout(searchUpdateTimeout);
                 searchUpdateTimeout=null;
