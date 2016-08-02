@@ -110,7 +110,7 @@ describe('i18n Service', function() {
     rootScope.$apply();
 
     expect(i18nService.getMessage("sample.message")).not.toEqual("sample.message");
-    expect(i18nService.getMessage("sample.message")).toEqual("Message");
+    expect(i18nService.getMessage("sample.message")).toEqual("mMessage");
   });
 
   it('Can interoperate paramerters into a message', function(){
