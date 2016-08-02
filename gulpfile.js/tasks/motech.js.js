@@ -47,11 +47,8 @@ gulp.task('motech.js:hint', function(){
         .pipe(jshint({
             validthis: true
         }))
-        .pipe(jshint.reporter('default'));
-
-    if(argv.production){
-        stream.pipe(jshint.reporter('fail'));
-    }
+        .pipe(jshint.reporter('default'))
+        .pipe(jshint.reporter('fail'));
 });
 
 gulp.task('motech.js:uglify', function (){
