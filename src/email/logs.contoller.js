@@ -40,7 +40,9 @@
 
         var searchUpdateTimeout;
         function updateSearch(searchData){
-            LoadingModal.open();
+            setTimeout(function() {
+                LoadingModal.open();
+            }, 1000);
             if(searchUpdateTimeout){
                 clearTimeout(searchUpdateTimeout);
                 searchUpdateTimeout=null;
