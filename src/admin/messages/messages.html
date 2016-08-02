@@ -1,6 +1,6 @@
 <motech-list controller="MessagesController" paginated>
     <motech-list-header>
-        <div class="btn-group pull-right">
+        <div class="button-group pull-right">
             <button class="icon-refresh" ng-click="refresh()">{{'admin.refresh' | translate}}</button>
         </div>
         <div class="button-group">
@@ -24,12 +24,12 @@
                 </ul>
             </div>
             <div class="form-group">
-                <a ng-click="remove(message)" class="margin-before05 btn btn-danger btn-sm pull-right"><i class="fa fa-trash-o"></i></a>
+                <button class="delete icon" ng-click="remove(message)">{{'Remove' | translate}}</button>
             </div>
         </fieldset>
     </motech-list-item>
     <motech-list-footer>
-        <uib-pagination total-items="messages" ng-model="currentPage" ng-change="changePageTo(currentPage)"></uib-pagination>
+        <uib-pagination total-items="messages" ng-model="currentPage" ng-change="setCurrentPage(currentPage)"></uib-pagination>
     </motech-list-footer>
 </motech-list>
 <motech-sidebar title="{{'admin.messages.filters' | translate }}">
@@ -37,17 +37,17 @@
         <fieldset>
             <legend>{{'admin.messages.search' | translate}}</legend>
             <div class="form-group">
-                <input type="text" ng-model="filterSearch.query" ng-change="search()" class="form-control input-sm search-query" placeholder="{{msg('admin.messages.searchByContent')}}">
+                <input type="text" ng-model="filterSearch.query" ng-change="search()" class="form-control input-sm search-query" placeholder="{{'admin.messages.searchByContent' | translate}}">
             </div>
         </fieldset>
         <fieldset>
             <legend>{{'admin.messages.date' | translate}}</legend>
             <div class="form-group">
-                <input id="messagesDateTimeFrom" messages-date-picker="" ng-model="dateTimeFrom" max="dateTimeTo" type="datetime" placeholder="{{msg('admin.messages.from')}}" data-event-type="change"
+                <input id="messagesDateTimeFrom" messages-date-picker="" ng-model="dateTimeFrom" max="dateTimeTo" type="datetime" placeholder="{{'admin.messages.from' | translate}}" data-event-type="change"
                        data-search-field="timeFrom">
             </div>
             <div class="form-group">
-                <input id="messagesDateTimeTo" messages-date-picker="" ng-model="dateTimeTo" min="dateTimeFrom" type="datetime" placeholder="{{msg('admin.messages.to')}}" data-event-type="change"
+                <input id="messagesDateTimeTo" messages-date-picker="" ng-model="dateTimeTo" min="dateTimeFrom" type="datetime" placeholder="{{'admin.messages.to' | translate}}" data-event-type="change"
                        data-search-field="timeTo">
             </div>
         </fieldset>
@@ -66,11 +66,7 @@
         </fieldset>
         <fieldset>
             <legend>{{'admin.messages.level' | translate}}</legend>
-            <div class="input-group" ng-repeat="msgLevel in messagesLevels">
-                <label class="checkbox">
-                    <input type="checkbox" ng-model="filterLevel" ng-click="setFilterLevel(msgLevel)" set-level-filter="msgLevel" data-search-field="msgLevel" />&nbsp;{{msg('admin.messages.' + msgLevel) | uppercase}}
-                </label>
-            </div>
+            <input-filter-group checkboxes="levelCheckboxes" ng-model="filterSearch.filterLevel" ng-click="search()"></input-filter-group>
         </fieldset>
     </form>
 </motech-sidebar>

@@ -8,12 +8,13 @@
                                     '$cookieStore', '$filter', 'ModalFactory', 'LoadingModal'];
     function messagesController ($scope, $rootScope, $timeout, $location, MessagesFactory, i18nService,
                                     $cookieStore, $filter, ModalFactory, LoadingModal) {
+
          var UPDATE_INTERVAL = 1000 * 30, searchQuery = '',
          IGNORED_MSGS = 'ignoredMsgs',
          checkLevel = function (messageLevel, filterLevel) {
              var result;
              jQuery.each(filterLevel, function (i, val) {
-                 result = (val === messageLevel.toLowerCase());
+                 result = (val === messageLevel);
                  return (!result);
              });
              return result;
@@ -34,18 +35,18 @@
              var result;
              if ((!searchQuery) && (checkDateTime(message.date, $rootScope.filterDateTimeFrom, $rootScope.filterDateTimeTo))) {
                  if (($rootScope.filterModule === '') || (message.moduleName === $rootScope.filterModule)) {
-                     result = (($rootScope.filterLevel && $rootScope.filterLevel.length === 0) || (checkLevel(message.level, $rootScope.filterLevel)));
+                     result = (($scope.filterSearch.filterLevel && $scope.filterSearch.filterLevel.length === 0) || (checkLevel(message.level, $scope.filterSearch.filterLevel)));
                      return result;
                  }
              } else if ((searchQuery && message.text.toLowerCase().indexOf(searchQuery.toLowerCase()) !== -1) &&
                        (checkDateTime(message.date, $rootScope.filterDateTimeFrom, $rootScope.filterDateTimeTo))) {
                  if ($rootScope.filterModule === '') {
-                     result = (($rootScope.filterLevel && $rootScope.filterLevel.length === 0) ||
-                              (checkLevel(message.level, $rootScope.filterLevel)));
+                     result = (($scope.filterSearch.filterLevel && $scope.filterSearch.filterLevel.length === 0) ||
+                              (checkLevel(message.level, $scope.filterSearch.filterLevel)));
                      return result;
                  } else if (message.moduleName === $rootScope.filterModule) {
-                     result = (($rootScope.filterLevel && $rootScope.filterLevel.length === 0) ||
-                              (checkLevel(message.level, $rootScope.filterLevel)));
+                     result = (($scope.filterSearch.filterLevel && $scope.filterSearch.filterLevel.length === 0) ||
+                              (checkLevel(message.level, $scope.filterSearch.filterLevel)));
                      return result;
                  }
              }
@@ -107,7 +108,6 @@
              }
          };
 
-         $rootScope.filterLevel = [];
          $rootScope.filterModule = '';
          $rootScope.filterDateTimeFrom = '';
          $rootScope.filterDateTimeTo = '';
@@ -117,10 +117,16 @@
          $scope.limitPages = [10, 20, 50];
          $scope.itemsPerPage = $scope.limitPages[0];
 
+         $scope.filterSearch = {};
          $scope.ignoredMessages = $cookieStore.get(IGNORED_MSGS);
          $scope.messages = [];
-         $scope.messagesLevels = ['critical', 'error', 'debug', 'info', 'warn'];
-         $scope.filterSearch = {};
+         $scope.levelCheckboxes = [
+             {label: "admin.messages.critical", value: "CRITICAL"},
+             {label: "admin.messages.error", value: "ERROR"},
+             {label: "admin.messages.debug", value: "DEBUG"},
+             {label: "admin.messages.info", value: "INFO"},
+             {label: "admin.messages.warn", value: "WARN"}
+         ];
          $scope.filterSearch.query = '';
 
          MessagesFactory.query(function (data) {
@@ -196,6 +202,7 @@
          };
 
          $scope.search = function() {
+             LoadingModal.open();
              $rootScope.query = $scope.filterSearch.query;
              $rootScope.search();
          };
@@ -217,31 +224,8 @@
              return date;
          };
 
-         $scope.setFilterLevel = function(filterLevel) {
-             var result, levelExist = function (filterLevel) {
-                 jQuery.each($rootScope.filterLevel, function (i, val) {
-                 if (val === filterLevel) {
-                     result = true;
-                 } else {
-                     result = false;
-                 }
-                 return (!result);
-                 });
-             return result;
-             };
-             if ($rootScope.filterLevel && $rootScope.filterLevel.length === 0) {
-                 $rootScope.filterLevel.push(filterLevel);
-             } else {
-                 if (levelExist(filterLevel)) {
-                     $rootScope.filterLevel.splice($rootScope.filterLevel.indexOf(filterLevel), 1);
-                 } else {
-                     $rootScope.filterLevel.push(filterLevel);
-                 }
-             }
-             $scope.search();
-         };
-
          $scope.setFilterModule = function(filterModule) {
+             LoadingModal.open();
              if (filterModule.toLowerCase() === 'all') {
                  $scope.filterModule = filterModule;
                  $rootScope.filterModule = '';

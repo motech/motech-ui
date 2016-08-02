@@ -30,20 +30,20 @@
             </div>
             <div class="form-group" ng-class="{'has-error': !rule.recipient}">
                 <span class="control-label offset-1">{{'admin.messages.notifications.recipient' | translate}}</span>
-                <input class="form-control input-auto input-large-fluid" ng-model="rule.recipient" type="text" value="" />
+                <input class="form-control input-auto" ng-model="rule.recipient" type="text" />
             </div>
             <div class="form-group">
-            <a ng-click="removeRule(rule)" class="btn btn-danger"><i class="fa fa-trash-o"></i></a>
+            <button class="delete icon" ng-click="removeRule(rule)">{{'Remove' | translate}}</button>
             </div>
         </fieldset>
     </motech-list-item>
     <motech-list-footer>
-        <div class="btn-group">
-            <button class="btn btn-success" ng-click="newRule()"><i class="fa fa-plus"></i>&nbsp;{{'admin.messages.notifications.newRecipient' | translate}}</button>
+        <div class="button-group">
+            <button class="button-add" ng-click="newRule()">{{'admin.messages.notifications.newRecipient' | translate}}</button>
         </div>
-        <div class="btn-group">
-            <button class="btn btn-primary" type="button" ng-click="save()">{{'admin.save' | translate}}</button>
-            <a href="#/messages" class="btn btn-default">{{'admin.cancel' | translate}}</a>
+        <div class="button-group">
+            <button class="button-primary" ng-click="save()">{{'admin.save' | translate}}</button>
+            <button href="#/messages" class="button-primary">{{'admin.cancel' | translate}}</button>
         </div>
     </motech-list-footer>
 </motech-list>
