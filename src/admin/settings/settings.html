@@ -29,21 +29,21 @@
     </fieldset>
 </form>
 
-<div>
+<div class="settings-form">
     <h3>{{'admin.settings.platform' | translate}}</h3>
-    <form class="settings-form" id="platformSettingsForm" ng-repeat="pSettings in platformSettings.settingsList">
+    <form id="platformSettingsForm" ng-repeat="pSettings in platformSettings.settingsList">
         <h4>{{'admin.settings.section.'+ pSettings.section | translate}}</h4>
         <div class="form-group" ng-repeat="option in pSettings.settings">
             <label ng-if="!isBool(option)" for="{{option.key}}">
                 {{'admin.settings.' + option.key | translate}}
-                <span class="icon-documentation" uib-tooltip="{{'admin.settings.tooltip.' + option.key | translate}}"/>
+                <span class="icon-documentation" uib-tooltip="{{'admin.settings.tooltip.' + option.key | translate}}" tooltip-placement="left"/>
             </label>
             <input ng-if="isTextOrNumber(option)"ng-disabled="platformSettings.readOnly" type="text" id="{{option.key}}" name="{{option.key | translate}}" ng-model="option.value" />
             <fieldset ng-if="isBool(option)">
                 <label ng-if="isBool(option)" class="checkbox">
                     <input ng-disabled="platformSettings.readOnly" type="checkbox" id="{{option.key}}" name="{{option.key}}" ng-model="option.value" />
                     {{'admin.settings.' + option.key | translate}}
-                    <span class="icon-documentation" uib-tooltip="{{'admin.settings.tooltip.' + option.key | translate}}"/>
+                    <span class="icon-documentation" uib-tooltip="{{'admin.settings.tooltip.' + option.key | translate}}" tooltip-placement="left"/>
                 </label>
             </fieldset>
             <div ng-if="isCombobox(option)" ng-init="addValue(option.key, option.value)">
@@ -57,9 +57,9 @@
         <input ng-if="!platformSettings.readOnly" type="submit" ng-click="saveSettings(pSettings)" value="{{'admin.save' | translate}}" />
     </form>
 </div>
-<div ng-show="platformSettings.settingsList.length <= 0">
+<div class="settings-form" ng-show="platformSettings.settingsList.length <= 0">
     <h3>{{'admin.settings.noSettings' | translate}}</h3>
-    <form class="settings-form" id="noSettingsForm" ng-submit="saveNewSettings()">
+    <form id="noSettingsForm" ng-submit="saveNewSettings()">
         <fieldset>
             <div class="form-group">
                 <label for="new.db.host">{{'admin.label.db.host' | translate}}</label>
