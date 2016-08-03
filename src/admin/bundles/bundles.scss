@@ -21,3 +21,13 @@
 		top: -0.25em;
 	}
 }
+
+form{
+	padding: 0.5em;
+}
+.form-inline .form-group label{
+	position: static !important;
+}
+#bundleUploadForm .fileinput {
+	margin-bottom: 0;
+}

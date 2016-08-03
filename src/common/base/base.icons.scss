@@ -110,7 +110,6 @@ Styleguide 1.3
 .icon-arrow-down{
     @include icon(caret-down);
 }
-
 .icon-pause{
     @include icon(pause);
 }
@@ -128,4 +127,4 @@ Styleguide 1.3
 }
 .icon-file{
     @include icon(file);
- }
+}
