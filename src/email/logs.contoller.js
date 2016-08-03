@@ -40,12 +40,12 @@
 
         var searchUpdateTimeout;
         function updateSearch(searchData){
-            LoadingModal.open();
             if(searchUpdateTimeout){
                 clearTimeout(searchUpdateTimeout);
                 searchUpdateTimeout=null;
             }
             searchUpdateTimeout = setTimeout(function() {
+                LoadingModal.open();
                 EmailLogsService.get(searchData)
                 .then(updateRows);
             }, 1000);
