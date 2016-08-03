@@ -1,13 +1,15 @@
 <legend class="frame-title">{{'admin.platform.settings' | translate}}</legend>
-<form class="settings-form" id="settingsFileForm" enctype="multipart/form-data" ng-submit="uploadSettings()">
-    <fieldset>
-        <h4>{{'admin.settings.upload' | translate}}</h4>
-        <div class="form-group">
-            <label for="fileInput">{{'admin.settings.fileChosen' | translate}}</label>
-            <input class="button-file" type="file" id="fileInput" name="file" value="{{'server.button.selectFile' | translate}}" admin-import="settingsFile"/>
+<form class="settings-form" id="settingsFileForm" enctype="multipart/form-data">
+    <h4>{{'admin.settings.upload' | translate}}</h4>
+    <div class="form-group fileinput fileinput-new" data-provides="fileInput">
+        <label>{{'admin.settings.fileChosen' | translate}}</label>
+        <div>
+            <motech-file-upload file="settingsFile"></motech-file-upload>
         </div>
-    </fieldset>
-    <input type="submit" value="{{'admin.submit' | translate}}" />
+    </div>
+    <div class="button-group-primary">
+        <button class="button-primary" ng-click="uploadSettings()">{{'admin.submit' | translate}}</button>
+    </div>
 </form>
 <form class="settings-form" id="settingsLocationForm" method="post" ng-submit="uploadFileLocation()">
     <fieldset>
