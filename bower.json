@@ -40,7 +40,8 @@
     "angular-breadcrumb": "^0.4.1",
     "jquery-timepicker-addon": "^1.3.1",
     "jquery-ui": "^1.11.4",
-    "messageformat": "^0.3.1"
+    "messageformat": "^0.3.1",
+    "jasny-bootstrap": "git://github.com/jasny/bootstrap"
   },
   "overrides": {
     "angular-bootstrap": {
@@ -83,6 +84,12 @@
     "messageformat": {
       "main": [
         "./messageformat.js"
+      ]
+    },
+    "jasny-bootstrap": {
+      "main": [
+        "./dist/css/jasny-bootstrap.css",
+        "./js/fileinput.js"
       ]
     }
   },
