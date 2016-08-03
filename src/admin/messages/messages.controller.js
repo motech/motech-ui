@@ -13,10 +13,12 @@
          IGNORED_MSGS = 'ignoredMsgs',
          checkLevel = function (messageLevel, filterLevel) {
              var result;
-             jQuery.each(filterLevel, function (i, val) {
-                 result = (val === messageLevel);
-                 return (!result);
-             });
+             if (filterLevel !== undefined) {
+                 filterLevel.some(function (val, i) {
+                     result = (val === messageLevel);
+                     return (result);
+                 });
+             }
              return result;
          },
          checkDateTime = function (mDateTime, fDateTimeFrom, fDateTimeTo) {
