@@ -13,12 +13,10 @@
 
         $scope.bundlesWithSettings = [];
 
-        $http({
-            method: 'GET',
-            url: ServerService.formatURL('/module/admin/api/settings/bundles/list')
-        }).success(function (data) {
-            $scope.bundlesWithSettings = data;
-        });
+        $http({method: 'GET', url: ServerService.formatURL('/module/admin/api/settings/bundles/list')}).
+            success(function (data) {
+                $scope.bundlesWithSettings = data;
+            });
 
         $scope.showSettings = function (bundle) {
             return $.inArray(bundle.symbolicName, $scope.bundlesWithSettings) >= 0 ||
@@ -37,9 +35,15 @@
 
         $scope.goToSettingsURL = function (moduleName, url) {
             var convertUrl = function (urlParam) {
-                if(urlParam.indexOf('/') === 0) {urlParam = urlParam.replace('/', '');}
-                if(urlParam.indexOf('/') > 0) {urlParam = urlParam.replace('/', '.');}
-                if(urlParam.indexOf('/') > 0) {urlParam = urlParam.replace(/(\/)\w+((\/)\w*)*/i, '');}
+                if (urlParam.indexOf('/') === 0) {
+                    urlParam = urlParam.replace('/', '');
+                }
+                if (urlParam.indexOf('/') > 0) {
+                    urlParam = urlParam.replace('/', '.');
+                }
+                if (urlParam.indexOf('/') > 0) {
+                    urlParam = urlParam.replace(/(\/)\w+((\/)\w*)*/i, '');
+                }
                 return urlParam;
             };
 
@@ -53,7 +57,7 @@
                     }
                 });
                 if (url.indexOf('admin/bundleSettings/') > 0) {
-                    $state.go('admin.bundleSettings', {'bundleId': url.substring(url.lastIndexOf("/")+1)});
+                    $state.go('admin.bundleSettings', {'bundleId': url.substring(url.lastIndexOf("/") + 1)});
                 } else {
                     $state.go(convertUrl(url), $state.params);
                 }
