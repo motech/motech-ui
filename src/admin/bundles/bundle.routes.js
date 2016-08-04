@@ -36,6 +36,18 @@
                     controller: 'BundleController'
                 }
             }
+        })
+        .state('bundles.bundleSettings', {
+            url: 'bundleSettings/:bundleId',
+            ncyBreadcrumb: {
+                label: 'admin.manageModuleSettings'
+            },
+            views: {
+                'appArea@': {
+                    templateUrl: '/admin/bundles/bundle-settings.html',
+                    controller: 'BundleSettingsController'
+                }
+            }
         });
     }
 

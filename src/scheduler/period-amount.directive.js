@@ -1,6 +1,35 @@
 (function(){
     'use strict';
 
+    /**
+     * @memberOf motech-scheduler
+     * @ngdoc directive
+     * @name  PeriodAmount
+     * @scope true
+     *
+     * @param { } ng-model Takes variable that contains a string
+     *
+     * @description
+     * Creates repeat period string which is set by adjusting sliders for year, month, day, hour, minute and seconds.
+     * This directive is used in jobs form in Scheduler module when creating repeating period job.
+     *
+     * Period string is representing time which separates two events, for example firing a job. It is made up with ordered values standing for number of years, months, weeks, days, hours, minutes and seconds. These values must appear in such order for a period string to be a valid one. If a certain value is equal to 0 (zero) then it is not included in a period string.
+     *
+     * Period string starts with a letter 'P'. Then there can appear values for years (Y), months (M), weeks (W) and days (D). Afterwords there is a letter 'T' and values for hours (H), minutes (M) or seconds (S). If all three values for hours, minutes and seconds are equal to 0 (zero) then letter 'T' is not included in a period string.
+     * For a better understanding here are some examples of different period strings:
+     *
+     * 'P2Y3M5W10DT1H45M30S' stands for a period: 2 years, 3 months, 5 weeks, 10 days, 1 hour, 45 minutes and 30 seconds.
+     *
+     * 'P5WT1H45M30S'        stands for a period: 5 weeks, 1 hour, 45 minutes and 30 seconds. Values for years, months and days do not appear as they are equal to 0 (zero).
+     *
+     * 'PT1H45M'             stands for a period: 1 hour and 45 minutes.
+     *
+     * 'P1M10D'              stands for a period: 1 months and 10 days. There is no letter 'T' in this example as all values for hours, minutes and seconds are equal to 0 (zero).
+     *
+     * This directive expects ng-model to be either a period string or undefined.
+     *
+     */
+
     angular.module('motech-scheduler')
         .directive('periodAmount', periodAmountDirective);
 
@@ -32,6 +61,23 @@
                     minute: 360,
                     second: 360
                 },
+
+                /**
+                 * Creates a period string based on passed parameters
+                 *
+                 * @memberOf PeriodAmount
+                 * @param {number} year Value for years
+                 * @param {number} month Value for months
+                 * @param {number} week Value for weeks
+                 * @param {number} day Value for days
+                 * @param {number} hour Value for hours
+                 * @param {number} minute Value for minutes
+                 * @param {number} second Value for seconds
+                 *
+                 * @returns {string} Period string
+                 *
+                 */
+
                 compileValueInputs = function (year, month, week, day, hour, minute, second) {
                     var valueInputs = [
                         year.toString( 10 ),
@@ -60,6 +106,14 @@
                     });
                     return 'P' + valueInputs.join( "" ).toUpperCase();
                 },
+
+                /**
+                 * Updates the value of the ng-model containing a period string. It is invoked on change of any of the sliders.
+                 *
+                 * @memberOf PeriodAmount
+                 *
+                 */
+
                 refreshPeriod = function () {
                     var fieldId = elem.attr('mds-field-id'),
                     year = periodSlider.children( "#period-year" ).slider( "value" ),
@@ -88,6 +142,14 @@
                     element.focus();
                     element.focusout();
                 },
+
+                /**
+                 * Updates both value and position of each slider based on the value of the ng-model containing a period string. If period string is invalid it sets all sliders to zero.
+                 *
+                 * @memberOf PeriodAmount
+                 *
+                 */
+
                 setParsingPeriod = function () {
                     if (!started) {
                         periodSliders = $("#period-slider > div");
