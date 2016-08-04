@@ -82,7 +82,7 @@
                 });
                 var extraSpace = totalWidth - columnsSpace; // 17px off?
                 if(hasMainItem){
-                    row.children('.list-item-main').width(extraSpace);
+                    row.children('.list-item-main').outerWidth(extraSpace);
                 } else {
                     
                 }
@@ -102,27 +102,47 @@
                 var widest = 0;
                 jQuery('.motech-list-rows [motech-list-column-id="'+col.attr('motech-list-column-id')+'"]').each(function(){
                     var cell = jQuery(this);
+                    if(!cell.is('nav')) {
+                        cell = cell.parent();
+                    }
                     if(cell.outerWidth() > widest){
                         widest = cell.outerWidth();
                     }
                 });
-                col.width(widest);
+                if(col.outerWidth() < widest){
+                    col.outerWidth(widest);
+                }
             });
         }
 
-        function setColumnWidth(col){
+        function setColumnWidth(col) {
             var widest = 0;
             if(jQuery('.motech-list-rows [motech-list-column-id="'+col.id+'"]', element).parent().hasClass('list-item-main')){
                 return false;
             }
-            jQuery('.motech-list-rows [motech-list-column-id="'+col.id+'"]', element).each(function(){
+
+            jQuery('.motech-list-rows [motech-list-column-id="'+col.id+'"]',element).each(function(){
                 var cell = jQuery(this);
+                if(!cell.is('nav')){
+                    cell = cell.parent();
+                }
                 if(cell.outerWidth() > widest){
-                    widest = cell.outerWidth() + 1;
+                    widest = cell.outerWidth();
                 }
             });
-            jQuery('.motech-list-rows [motech-list-column-id="'+col.id+'"]', element)
-            .width(widest);
+
+            var header = jQuery('.motech-list-column-headers [motech-list-column-id="'+col.id+'"]',element).outerWidth();
+            if(header > widest) {
+                widest = header;
+            }
+
+            jQuery('.motech-list-rows [motech-list-column-id="'+col.id+'"]',element).each(function(){
+                var cell = jQuery(this);
+                if(!cell.is('nav')){
+                    cell = cell.parent();
+                }
+                cell.outerWidth(widest);
+            });
         }
     }
     
