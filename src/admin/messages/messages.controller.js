@@ -61,7 +61,7 @@
              });
              $scope.getModuleName = function(messages) {
                  var moduleNames = ["all"];
-                 jQuery.each(messages, function(i, messages){
+                 angular.forEach(messages, function(messages, i){
                      moduleNames.push(messages.moduleName);
                  });
              return  $.grep(moduleNames, function(el, index) {
