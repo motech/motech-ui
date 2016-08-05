@@ -1,6 +1,5 @@
 .form-inline {
-    display: inline-flex;
-    flex-wrap: wrap;
+    display: block;
     >*{
         display: inline-block;
         position: relative;
@@ -9,28 +8,17 @@
             padding-right: 0px;
         }
         input[type=text], select{
+            width: 100%;
         }
     }
     .form-group{
         padding-left: 0px; // form-wide sets this to 180px
-        display: flex;
-        flex-grow: 1;
     }
     .form-group label{
+        position: absolute;
         text-align: left;
+        top: -1.7em;
+        left: 0em;
         width: 4em;
-    }
-    .form-group input{
-            text-align: left;
-            flex-grow: 1;
-        }
-}
-@media (max-width: $screen-sm) {
-    .form-inline {
-        >*{
-            &:last-child{
-                width: 100%;
-            }
-        }
     }
 }

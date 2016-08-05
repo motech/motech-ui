@@ -1,7 +1,7 @@
 
 @mixin form-compact() {
     .form-group {
-        display: flex;
+        display: block;
         padding-left: 0px;
         label, legend{
             text-align: left;
@@ -37,7 +37,7 @@
         }
     }
     fieldset.form-group{
-        display: flex;
+        display: block;
         padding-left: $sidebar-width+$space-size*2;
         position: relative;
         >legend {

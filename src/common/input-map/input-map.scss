@@ -10,10 +10,37 @@
 .input-map .form-group{
     padding-left: 0px;
     margin-bottom: 0.5em;
+    display: flex;
+    flex-grow: 1;
     >*{
         display: inline-block;
         &:last-child{
-            margin-left: 15px;
+            margin-left: $space-size;
         }
     }
 }
+.input-map .form-group label{
+    position: static;
+    text-align: left;
+    //width: 4em;
+}
+.input-map .form-group input{
+    text-align: left;
+    flex-grow: 1;
+}
+.input-map .form-inline {
+   width: 100%;
+   display: inline-flex;
+   flex-wrap: wrap;
+   position: relative;
+   top: -0.85em;
+}
+@media (max-width: $screen-sm) {
+    .input-map .form-inline {
+        >*{
+            &:last-child{
+                width: 100%;
+            }
+        }
+     }
+ }
