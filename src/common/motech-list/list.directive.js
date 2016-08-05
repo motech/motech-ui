@@ -121,7 +121,7 @@
                 return false;
             }
 
-            jQuery('.motech-list-rows [motech-list-column-id="'+col.id+'"]',element).each(function(){
+            jQuery('.motech-list-rows [motech-list-column-id="'+col.id+'"]', element).each(function(){
                 var cell = jQuery(this);
                 if(!cell.is('nav')){
                     cell = cell.parent();
@@ -131,12 +131,12 @@
                 }
             });
 
-            var header = jQuery('.motech-list-column-headers [motech-list-column-id="'+col.id+'"]',element).outerWidth();
+            var header = jQuery('.motech-list-column-headers [motech-list-column-id="'+col.id+'"]', element).outerWidth();
             if(header > widest) {
                 widest = header;
             }
 
-            jQuery('.motech-list-rows [motech-list-column-id="'+col.id+'"]',element).each(function(){
+            jQuery('.motech-list-rows [motech-list-column-id="'+col.id+'"]', element).each(function(){
                 var cell = jQuery(this);
                 if(!cell.is('nav')){
                     cell = cell.parent();
