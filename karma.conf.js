@@ -75,6 +75,10 @@ module.exports = function(config) {
     ngHtml2JsPreprocessor: {
       stripPrefix: 'src',
       moduleName: 'motech-templates'
+    },
+
+    proxies: {
+     '/common/': 'http://localhost:8080/src/common/'
     }
   })
 }
