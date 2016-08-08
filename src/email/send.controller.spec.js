@@ -2,7 +2,7 @@ describe('Email Send Controller', function() {
     var scope, controller, $q, emailSendService;
 
     beforeEach(module('motech-email'));
-    beforeEach(inject(function($rootScope, $controller, _$q_, EmailSendService){
+    beforeEach(inject(function($rootScope, $controller, _$q_, EmailSendService) {
         scope = $rootScope.$new();
         controller = $controller('EmailSendController', {
             $scope: scope,

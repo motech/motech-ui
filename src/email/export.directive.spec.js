@@ -2,7 +2,7 @@ describe('Email export directive', function() {
     var element, compile, scope;
 
     beforeEach(module('motech-common'));
-    beforeEach(inject(function($compile, $rootScope){
+    beforeEach(inject(function($compile, $rootScope) {
         compile = $compile;
         scope = $rootScope.$new();
         scope.range = 5;
@@ -12,16 +12,16 @@ describe('Email export directive', function() {
         scope.$digest();
     }));
 
-    it('should pass close', function () {
+    it('should pass close', function() {
         expect(element.attr('close')).toBeDefined();
         expect(element.attr('close')).toEqual('hideExportModal()');
     });
 
-    it('should have tagName with value "EMAIL-EXPORT"', function () {
+    it('should have tagName with value "EMAIL-EXPORT"', function() {
         expect(element.prop("tagName")).toEqual("EMAIL-EXPORT");
     });
 
-    it('should set range and month element', function () {
+    it('should set range and month element', function() {
         expect(element.scope().range).toEqual(scope.range);
         expect(element.scope().month).toEqual(scope.month);
     });
