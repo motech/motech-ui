@@ -16,7 +16,7 @@ describe('Email Send Controller', function() {
             fromAddress : "motech@motech.com",
             message : "<p>hello world/p>",
             subject : "Hello",
-            toAddress : "test@gmail.com"
+            toAddress : "word@hello.com"
         };
         var deferred = $q.defer();
         spyOn(emailSendService, 'send').and.returnValue(deferred.promise);

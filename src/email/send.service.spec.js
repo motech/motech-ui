@@ -7,7 +7,7 @@ describe('Email send service', function() {
     }));
 
     it('should execute sendEmail with good parameters, two times', function() {
-        var message= { name : "John" };
+        var message = { name : "John" };
         spyOn(EmailSendService, "send");
         EmailSendService.send(message);
         expect(EmailSendService.send).toHaveBeenCalledWith(message);
