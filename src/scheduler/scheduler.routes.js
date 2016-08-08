@@ -23,7 +23,7 @@
             }
         })
         .state('scheduler.createOrUpdateJob', {
-            url: "/createOrUpdateJob?action",
+            url: "/createOrUpdateJob?action?currJob",
             ncyBreadcrumb: {
                 label: 'scheduler.scheduleJob'
             },

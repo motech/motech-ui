@@ -94,10 +94,6 @@
             });
         };
 
-        $scope.editJob = function(job) {
-            JobsService.setCurrentJob(job);
-        };
-
         $scope.deleteJob = function(job) {
             ModalFactory.showConfirm("scheduler.confirm.delete", "scheduler.confirm", function(response) {
                 if (response) {
