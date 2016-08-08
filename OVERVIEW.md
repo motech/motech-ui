@@ -11,7 +11,7 @@ Less markup on HTML elements makes it easier for the styles to be changed in one
 MOTECH project uses new technologies (HTML 5, CSS3) and new frameworks like [AngularJS](https://angularjs.org/), [Bootstrap](http://getbootstrap.com/)
 which means that the compatibility of the browsers depends on the extent to which these frameworks support old browsers.
 
-We officialy support IE11 and up, Chrome, Firefox, Safari and Opera. We don't support older versions of Internet Explorer due to framework compatibility, as mentioned above. Unofficially, MOTECH should look and behave well enough in Chromium for Linux, though it is not officially supported.
+We officialy support IE11 and up, Chrome, Firefox, Safari and Opera. We don't support older versions of Internet Explorer due to framework compatibility, as mentioned above.
                                                                                                                                                                               
 
 
