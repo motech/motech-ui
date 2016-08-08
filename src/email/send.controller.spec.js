@@ -13,10 +13,10 @@ describe('Email Send Controller', function() {
 
     it('should execute EmailSendService.send function', function() {
         scope.mail = {
-            fromAddress : "soldevelo@soldevelo.com",
+            fromAddress : "motech@motech.com",
             message : "<p>hello world/p>",
             subject : "Hello",
-            toAddress : "word@hello.com"
+            toAddress : "test@gmail.com"
         };
         var deferred = $q.defer();
         spyOn(emailSendService, 'send').and.returnValue(deferred.promise);

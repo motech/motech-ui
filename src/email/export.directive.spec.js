@@ -17,12 +17,12 @@ describe('Email export directive', function() {
         expect(element.attr('close')).toEqual('hideExportModal()');
     });
 
-    it('should have tagName element with good value', function () {
+    it('should have tagName with value "EMAIL-EXPORT"', function () {
         expect(element.prop("tagName")).toEqual("EMAIL-EXPORT");
     });
 
     it('should set range and month element', function () {
-        expect(element.scope().range).toEqual(5);
-        expect(element.scope().month).toEqual(10);
+        expect(element.scope().range).toEqual(scope.range);
+        expect(element.scope().month).toEqual(scope.month);
     });
 });
