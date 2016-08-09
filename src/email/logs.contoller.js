@@ -19,7 +19,8 @@
         $scope.$watch('search', updateSearch, true);
 
         $scope.changePageTo = changePageTo;
-        
+        $scope.updateRows = updateRows;
+
         $scope.showExportModal = showExportModal;
         $scope.hideExportModal = hideExportModal;
         

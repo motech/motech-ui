@@ -14,23 +14,28 @@
                 </motech-list>
             </fieldset>
             <input type="hidden" name="section" value="{{mSettings.section}}" />
-            <input type="submit" ng-click="saveSettings(mSettings)" value="{{'admin.submit' | translate}}"/>
-            <input type="submit" ng-click="saveSettings(mSettings, true)" value="{{'admin.submitAndRestart' | translate}}"/>
+
+            <div class="button-group-primary">
+                <button class="button-primary button-separator" ng-click="saveSettings(mSettings)">{{'admin.submit' | translate}}</button>
+                <button class="button-primary button-separator" ng-click="saveSettings(mSettings, true)">{{'admin.submitAndRestart' | translate}}</button>
+            </div>
         </form>
     </div>
 
     <div class="settings-form" ng-repeat="rawFile in rawFiles">
-        <h4 class="settings-section">{{rawFile}}</h4>
-        <form id="_raw_{{rawFile}}" name="{{rawFile}}Form">
+        <legend>{{rawFile}}</legend>
+        <form id="_raw_{{rawFile}}" enctype="multipart/form-data" ng-submit="uploadSettings()">
             <div class="form-group fileinput fileinput-new" data-provides="fileinput">
                 <label>{{'admin.button.selectFile' | translate}}</label>
-                <div>
-                    <motech-file-upload></motech-file-upload>
-                    <input type="hidden" value="{{rawFile}}" name="filename" />
+                <div class="form-group">
+                    <motech-file-upload file="fileValue"></motech-file-upload>
+                    <input type="hidden" value="{{rawFile}}" name="filename"/>
                 </div>
             </div>
-            <input type="submit" ng-click="uploadRaw(rawFile)" value="{{'admin.submit' | translate}}">
-            <input type="submit" ng-click="uploadRaw(rawFile, true)" value="{{admin.submitAndRestart' | translate}}">
+            <div class="button-group-primary">
+                <button class="button-primary button-separator" ng-click="uploadRaw(rawFile)">{{'admin.submit' | translate}}</button>
+                <button class="button-primary button-separator" ng-click="uploadRaw(rawFile, true)">{{'admin.submitAndRestart' | translate}}</button>
+            </div>
         </form>
     </div>
 </div>

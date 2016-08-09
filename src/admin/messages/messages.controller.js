@@ -170,7 +170,6 @@
 
          $scope.refresh = function () {
              LoadingModal.open();
-             $location.path('/messages');
              MessagesFactory.query(function (data) {
                  messageFilter(data);
              });
