@@ -144,7 +144,7 @@ describe('Log options controller', function() {
     it('should change logger level', function(){
         controller.config.loggers=[{logName: 'example', logLevel: 5},{logName: 'other example', logLevel: 4}];
 
-        controller.change(controller.config.loggers[1],8);
+        controller.change(controller.config.loggers[1], 8);
 
         expect(controller.config.loggers[1].logLevel).toEqual(8);
     });
