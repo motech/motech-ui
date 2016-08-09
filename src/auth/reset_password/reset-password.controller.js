@@ -10,7 +10,7 @@
         var forgotURL =  ServerService.formatURL('/module/server/forgot');
 
         this.backToLogin = backToLogin;
-        function backToLogin(){
+        function backToLogin() {
             ResetPasswordModal.close();
             LoginModal.open();
         }
@@ -18,12 +18,15 @@
         this.sendReset = sendReset;
         function sendReset(email) {
             var promise = $http({
-            method: "POST",
-            url: forgotURL,
-            data: email,
-            transformResponse: [function(data){
-                return data;
-            }]});
+                method: "POST",
+                url: forgotURL,
+                data: email,
+                transformResponse: [
+                    function(data) {
+                        return data;
+                    }
+                ]
+            });
             return promise;
         }
     }
