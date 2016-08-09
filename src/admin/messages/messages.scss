@@ -1,15 +1,19 @@
 .badge-important {
-  background-color: #b94a48;
+  background-color: $red;
 }
 
 .badge-warning {
-  background-color: #f89406;
+  background-color: $yellow;
 }
 
 .badge-success {
-  background-color: #468847;
+  background-color: $green;
 }
 
 .badge-info {
-  background-color: #3a87ad;
+  background-color: $blue;
+}
+
+.messages-text-field {
+  max-width: $text-field-width;
 }
