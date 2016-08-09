@@ -10,6 +10,10 @@
 
         LoadingModal.open();
 
+        if ($stateParams.currJob !== null) {
+            JobsService.setCurrentJob(findJobByName($stateParams.currJob, JobsService.get()));
+        }
+
         $scope.job = {};
         $scope.job.motechEvent = {};
         $scope.motechEventParameters = {};
@@ -165,6 +169,14 @@
         }
 
         LoadingModal.close();
+
+        function findJobByName (name, jobs) {
+            for (var i = 0; i < jobs.rows.length; i++) {
+                if (jobs.rows[i].name == name) {
+                    return jobs.rows[i];
+                }
+            }
+        }
     }
 
 }());
