@@ -1,51 +1,37 @@
 describe('Reset password Controller', function() {
 
     var scope;
-    var LoginModalMock;
-    var ResetPasswordModalMock;
+    var LoginModal;
+    var ResetPasswordModal;
     var ResetFormCtrl;
 
     beforeEach(module('motech-auth'));
 
-    beforeEach(function() {
-        LoginModalMock = {
-            open: function() {},
-            close: function() {}
-        };
-        ResetPasswordModalMock = {
-            open: function() {},
-            close: function() {}
-        };
-    });
-
-    beforeEach(inject(function($rootScope, $controller) {
-        scope = $rootScope.$new();
-        ResetFormCtrl = $controller('resetFormController', {
-            $scope: scope,
-            LoginModal: LoginModalMock,
-            ResetPasswordModal: ResetPasswordModalMock
-        });
+    beforeEach(inject(function($controller, _LoginModal_, _ResetPasswordModal_) {
+        LoginModal = _LoginModal_;
+        ResetPasswordModal = _ResetPasswordModal_;
+        ResetFormCtrl = $controller('resetFormController');
     }));
 
     it('should call open LoginModal Service method', function() {
-        spyOn(LoginModalMock, 'open');
-        scope.backToLogin();
-        expect(LoginModalMock.open).toHaveBeenCalled();
+        spyOn(LoginModal, 'open');
+        ResetFormCtrl.backToLogin();
+        expect(LoginModal.open).toHaveBeenCalled();
     });
 
     it('should call close ResetPasswordModal Service method', function() {
-        spyOn(ResetPasswordModalMock, 'close');
-        scope.backToLogin();
-        expect(ResetPasswordModalMock.close).toHaveBeenCalled();
+        spyOn(ResetPasswordModal, 'close');
+        ResetFormCtrl.backToLogin();
+        expect(ResetPasswordModal.close).toHaveBeenCalled();
     });
 
     it('should POST forgot email to the server', function() {
         var email = {
             "email": "test@test.com"
         };
-        spyOn(scope, 'sendReset');
-        scope.sendReset(email);
-        expect(scope.sendReset).toHaveBeenCalledWith(email);
+        spyOn(ResetFormCtrl, 'sendReset');
+        ResetFormCtrl.sendReset(email);
+        expect(ResetFormCtrl.sendReset).toHaveBeenCalledWith(email);
     });
 
 });
