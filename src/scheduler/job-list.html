@@ -18,7 +18,7 @@
         <motech-list-collapsible ng-init="getDetails(job)">
             <div ng-if="job.uiDefined">
                 <div class="button-group-primary">
-                    <button class="button-edit" type="button" ui-sref="scheduler.createOrUpdateJob({ action: 'edit', currJob: job.name })">Edit</button>
+                    <button class="button-edit" type="button" ui-sref="scheduler.createOrUpdateJob({ action: 'edit', jobName: job.name })">Edit</button>
                     <button ng-click="deleteJob(job)" class="button-delete">Delete</button>
                 </div>
                 <div class="button-group">

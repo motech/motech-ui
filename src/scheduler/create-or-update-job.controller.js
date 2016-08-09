@@ -10,8 +10,8 @@
 
         LoadingModal.open();
 
-        if ($stateParams.currJob !== null) {
-            JobsService.setCurrentJob(findJobByName($stateParams.currJob, JobsService.get()));
+        if ($stateParams.jobName !== null) {
+            JobsService.setCurrentJob(findJobByName($stateParams.jobName, JobsService.get()));
         }
 
         $scope.job = {};
@@ -172,7 +172,7 @@
 
         function findJobByName (name, jobs) {
             for (var i = 0; i < jobs.rows.length; i++) {
-                if (jobs.rows[i].name == name) {
+                if (jobs.rows[i].name === name) {
                     return jobs.rows[i];
                 }
             }
