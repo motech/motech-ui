@@ -1,5 +1,9 @@
-.alert{
+li+.alert {
+    display:none;
+}
+.alert {
     @extend .alert-warning;
+    display:block;
     text-align: center;
     margin-bottom: 0px;
 }
