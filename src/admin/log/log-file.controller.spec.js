@@ -8,7 +8,7 @@ describe('Log file controller', function(){
         scope = $rootScope.$new();
         serverService = ServerService;
         logFileFactory = LogFileFactory;
-        controller =  $controller('LogFileController', {
+        this.controller =  $controller('LogFileController', {
                 $scope: scope,
                 ServerService: serverService,
                 LogFileFactory: logFileFactory
@@ -25,7 +25,7 @@ describe('Log file controller', function(){
             };
         });
 
-        controller.refresh();
+        this.controller.refresh();
 
         expect(logFileFactory.getLog).toHaveBeenCalled();
         expect(scope.log).toEqual('new value');
@@ -34,7 +34,7 @@ describe('Log file controller', function(){
     it('should get file log path', function(){
         spyOn(serverService, 'formatURL').and.returnValue('proper URL');
 
-        var returnValue = controller.getFileLogPath();
+        var returnValue = this.controller.getFileLogPath();
 
         expect(serverService.formatURL).toHaveBeenCalled();
         expect(returnValue).toEqual('proper URL');
