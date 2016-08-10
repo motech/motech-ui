@@ -39,7 +39,7 @@
             },
             "getJob": {
                 url: ServerService.formatURL('module/scheduler/api/job'),
-                method: "POST"
+                method: "GET"
             },
             "pauseJob": {
                 url: ServerService.formatURL('module/scheduler/api/job/pause'),
