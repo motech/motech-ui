@@ -1,8 +1,8 @@
 <motech-list ng-show="dataAvailable">
     <motech-list-item ng-repeat="queue in queues" >
-        <motech-list-column column-title="Name" sortable>
+        <div column-title="Name" sortable>
             <a ui-sref="queues.queue({queueName: queue.destination})">{{queue.destination}}</a>
-        </motech-list-column>
+        </div>
         <motech-list-column column-title="Number of Pending Messages" sortable>{{queue.queueSize}}</motech-list-column>
         <motech-list-column column-title="Consumer Count" sortable>{{queue.consumerCount}}</motech-list-column>
         <motech-list-column column-title="Enqueue Count" sortable>{{queue.enqueueCount}}</motech-list-column>

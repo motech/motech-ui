@@ -3,14 +3,9 @@
     .form-group {
         display: block;
         padding-left: 0px;
-        >*{
-            width: 100%;
-        }
         label, legend{
-            width: 100%;
             text-align: left;
             position: static;
-            width: 100%;
         }
     }
     fieldset.form-group{
@@ -19,7 +14,7 @@
         >legend, label{
             text-align: left;
             position: static;
-            width: 100%;
+            width: auto;
         }
     }
 }
