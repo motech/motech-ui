@@ -18,7 +18,6 @@ describe('Log options controller', function() {
     }));
 
     beforeEach(function(){
-        controller.config = logOptionsFactory.get();
         controller.config.loggers = [{
             logName: 'example', logLevel: 7
         }];
