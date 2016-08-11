@@ -16,11 +16,17 @@
         };
     }
 
-    LoginFormController.$inject = ['AuthService'];
-    function LoginFormController (AuthService) {
+    LoginFormController.$inject = ['AuthService', 'ResetPasswordModal', 'LoginModal'];
+    function LoginFormController (AuthService, ResetPasswordModal, LoginModal) {
         this.login = login;
         function login (username, password) {
             return AuthService.login(username, password);
+        }
+
+        this.forgotPassword = forgotPassword;
+        function forgotPassword () {
+            LoginModal.close();
+            ResetPasswordModal.open();
         }
     }
 
@@ -36,6 +42,10 @@
             .catch(function(message){
                 scope.error = message;
             });
+        };
+
+        scope.forgot = function () {
+            scope.LoginCtrl.forgotPassword();
         };
     }
 

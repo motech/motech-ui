@@ -1,6 +1,15 @@
 (function () {
-
     'use strict';
+
+    /**
+     * @memberOf motech-scheduler
+     * @ngdoc controller
+     * @name  JobListController
+     *
+     * @description
+     * Controls behaviour of the job list which means viewing details about jobs, switching between pages if there is more than one page and loading filtered job list. What is more, it enables adding, editing, pausing, starting and deleting jobs.
+     *
+     */
 
     angular.module('motech-scheduler')
             .controller('JobListController', jobListController);
@@ -105,10 +114,6 @@
                     });
                 }
             });
-        };
-
-        $scope.editJob = function(job) {
-            JobsService.setCurrentJob(job);
         };
 
         $scope.deleteJob = function(job) {

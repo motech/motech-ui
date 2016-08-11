@@ -1,0 +1,51 @@
+<motech-list controller="MessagesController">
+    <motech-list-header>
+        <h5 class="text-plain inside">{{'admin.messages.notifications.header' | translate}}</h5>
+    </motech-list-header>
+    <motech-list-item ng-repeat="rule in notificationRuleDto.notificationRules">
+        <fieldset class="form-inline">
+            <div class="form-group"> {{'admin.messages.notifications.notificationType' | translate}}
+                <select ng-model="rule.actionType">
+                    <option ng-repeat="available in ['SMS', 'EMAIL']" ng-click="changeRuleActionType(rule, available)" value="{{available}}">
+                        {{'admin.messages.notifications.' + available | translate}}
+                    </option>
+                </select>
+            </div>
+            <div class="form-group"> {{'admin.messages.notifications.level' | translate}}
+                <select ng-model="rule.level">
+                    <option ng-repeat="available in ['CRITICAL', 'ERROR', 'WARN', 'INFO', 'DEBUG']" ng-click="changeRuleLevel(rule, available)" value="{{available}}">
+                        {{'admin.messages.' + available | translate}}
+                    </option>
+                </select>
+            </div>
+            <div class="form-group"> {{'admin.messages.moduleName' | translate}}
+                <select ng-model="rule.moduleName">
+                    <option>
+                        {{'admin.messages.all' | translate}}
+                    </option>
+                    <option ng-repeat="bundle in bundles" ng-click="changeRuleModuleName(rule, bundle)" value="{{bundle.name}}">
+                        {{bundle.name}}
+                    </option>
+                </select>
+            </div>
+            <div class="form-group" ng-class="{'has-error': !rule.recipient}">
+                <span class="control-label offset-1">{{'admin.messages.notifications.recipient' | translate}}</span>
+                <input class="messages-text-field form-control input-auto" ng-model="rule.recipient" type="text" />
+            </div>
+            <div class="form-group">
+            <button class="delete icon" ng-click="removeRule(rule)">{{'Remove' | translate}}</button>
+            </div>
+        </fieldset>
+    </motech-list-item>
+    <motech-list-footer>
+        <div class="button-group">
+            <button class="button-add" ng-click="newRule()">{{'admin.messages.notifications.newRecipient' | translate}}</button>
+        </div>
+        <div class="button-group">
+            <button class="button-primary" ng-click="save()">{{'admin.save' | translate}}</button>
+        </div>
+        <div class="button-group">
+            <button ui-sref="messages" class="button-primary">{{'admin.cancel' | translate}}</button>
+        </div>
+    </motech-list-footer>
+</motech-list>
