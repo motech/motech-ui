@@ -8,23 +8,40 @@
     statusModalListeners.$inject = ['$rootScope', 'ServerStatusService', 'ServerStatusModal'];
     function statusModalListeners($rootScope, ServerStatusService, ServerStatusModal) {
         var showTimeout;
-        $rootScope.$on('motech.statusCheck.start', function(){
-            showTimeout = setTimeout(function(){
-                if(!ServerStatusService.isRunning()){
-                    ServerStatusModal.open('error');
-                } else if (!ServerStatusService.isLoaded()) {
+
+        function setShowTimeout() {
+            clearTimeout(showTimeout);
+            showTimeout = setTimeout(function() {
+                if (ServerStatusService.inFatalError) {
+                    ServerStatusModal.open('error-loading');
+                } else if (ServerStatusService.isRunning()) {
+                    ServerStatusModal.open('server-running');
+                } else if (ServerStatusService.isLoaded()) {
                     ServerStatusModal.open('loaded');
-                } else if (ServerStatusService.hasErrors()){
+                } else if (ServerStatusService.hasErrors()) {
                     ServerStatusModal.open('error');
+                } else {
+                    ServerStatusModal.open('server-running');
                 }
             }, 500);
+        }
+
+        $rootScope.$on('motech.statusCheck.start', function() {
+            setShowTimeout();
         });
-        $rootScope.$on('motech.statusCheck.stop', function(){
-            if(showTimeout){
+
+        $rootScope.$on('motech.statusCheck.update', function() {
+            setShowTimeout();
+        });
+
+        $rootScope.$on('motech.statusCheck.stop', function() {
+            if(showTimeout) {
                 clearTimeout(showTimeout);
                 showTimeout = undefined;
             }
-            if(ServerStatusService.hasErrors()){
+            if (ServerStatusService.inFatalError) {
+                ServerStatusModal.open('error-loading');
+            } else if (ServerStatusService.hasErrors()) {
                 ServerStatusModal.open('error');
             } else {
                 ServerStatusModal.close();
@@ -57,12 +74,15 @@
         }
 
         function setOptions(args) {
-            if (args !== 'error') {
+            if (args === 'error') {
+                title = 'Server connection failed';
+                type = 'type-danger';
+            } else if (args === 'error-loading') {
+                title = 'Server failed to start';
+                type = 'type-danger';
+            } else {
                 title = 'Server Running';
                 type = 'type-primary';
-            } else {
-                title = 'Server Error';
-                type = 'type-danger';
             }
             modal.setTitle(title);
             modal.setType(type);

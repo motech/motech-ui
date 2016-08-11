@@ -1,9 +1,18 @@
 <div class="status-server" ng-class="{error: hasErrors, running: running}">
     <progress-bar></progress-bar>
-    <div ng-if="!hasErrors" id="bundle.id" name="bundle.name" ng-repeat="bundle in bundles" motech-bundle-status>
-        {{bundle.name}} &#45;&#45; {{bundle.id}}
+    <div ng-if="!hasErrors || (errorLoading && running)" id="bundle.id" name="bundle.name" ng-repeat="bundle in bundles"
+         motech-bundle-status>
     </div>
-    <div ng-if="hasErrors" class="alert alert-danger">
-        <div class="" ng-repeat="error in errors track by $index">{{error}}</div>
+    <div ng-if="running" class="space-bottom"></div>
+    <div ng-if="hasErrors" class="error-list">
+        <div ng-if="running" class="error-header">
+            <p>The following errors occurred during startup:</p>
+        </div>
+        <div class="form-group" ng-repeat="error in errors track by $index">
+            <div ng-if="!running">{{error.value}}</div>
+            <div ng-if="running" class="error-content">
+                <pre>{{error.value}}</pre>
+            </div>
+        </div>
     </div>
 </div>

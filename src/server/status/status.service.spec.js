@@ -1,5 +1,5 @@
 describe("Service: Status Server Service", function () {
-    var scope, rootScope, q, http, httpBackend, ServerStatusService, ServerService;
+    var scope, rootScope, q, http, httpBackend, ServerStatusService, ServerService, bundleId;
     beforeEach(function () {
         module('motech-server');
         module('motech-templates');
@@ -13,6 +13,7 @@ describe("Service: Status Server Service", function () {
         http = $http;
         ServerStatusService = _ServerStatusService_;
         ServerService = _ServerService_;
+        bundleId = "org.motechproject.motech-platform-server-bundle";
     }));
 
     beforeEach(function(){
@@ -61,4 +62,37 @@ describe("Service: Status Server Service", function () {
         expect(ServerStatusService.hasErrors()).toBe(true);
     });
 
+    it("should check if server has errors loading", function() {
+        ServerStatusService.errors = [];
+        expect(ServerStatusService.hasErrors()).toBeFalsy();
+        ServerStatusService.errors.push("ERROR [org.eclipse.gemini.blueprint.extender.internal.dependencies.startup.DependencyWaiterApplicationContextExecutor]");
+        ServerStatusService.errors.push("ERROR Unable to create application context for [org.motechproject.motech-platform-server-bundle]");
+        expect(ServerStatusService.hasErrors()).toBe(true);
+        ServerStatusService.osgiStartedBundles = ["org.motechproject.motech-platform-server-bundle", "org.motechproject.motech-email"];
+        ServerStatusService.inFatalError = false;
+        expect(ServerStatusService.isBundleStarting(bundleId)).toBe(true);
+        ServerStatusService.inFatalError = true;
+        expect(ServerStatusService.isBundleStarting(bundleId)).toBe(false);
+    });
+
+    it("should check if specific bundle has error", function() {
+        ServerStatusService.contextErrorsByBundle = {};
+        expect(ServerStatusService.hasBundleError(bundleId)).toBe(false);
+        ServerStatusService.contextErrorsByBundle = {"org.motechproject.motech-platform-server-bundle": "ERROR org.motechproject.osgi.web.ModuleRegistrationDatadfgjdgddgdfgdf not found from bundle [org.motechproject.motech-platform-server-bundle]"};
+        expect(ServerStatusService.hasBundleError(bundleId)).toBe(true);
+    });
+
+    it("should check if specific bundle is started", function() {
+        ServerStatusService.inFatalError = false;
+        ServerStatusService.startedBundles = ["org.motechproject.motech-platform-server", "org.motechproject.motech-platform-server-bundle"];
+        expect(ServerStatusService.isBundleStarted(bundleId)).toBe(true);
+    });
+
+    it("should check if specific bundle is starting or not starting", function() {
+        ServerStatusService.inFatalError = false;
+        ServerStatusService.osgiStartedBundles = ["org.motechproject.motech-platform-server-bundle"];
+        expect(ServerStatusService.isBundleStarting(bundleId)).toBe(true);
+        ServerStatusService.osgiStartedBundles = ["motech-platform-server-bundle"];
+        expect(ServerStatusService.isBundleStarting(bundleId)).toBe(false);
+    });
 });

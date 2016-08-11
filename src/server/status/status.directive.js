@@ -59,6 +59,9 @@
                 }, function (value) {
                     scope.running = value;
                 });
+                scope.$on('motechServer.errorLoading', function() {
+                    scope.errorLoading = true;
+                });
             }
         };
     }

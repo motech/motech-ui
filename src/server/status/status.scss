@@ -1,7 +1,7 @@
 .status-server {
   .loading-text-block {
     display: none;
-    margin: 0 0 0 10px;
+    margin: 0 0 0 $space-size;
     &.bundle {
       display: block;
       .fa-circle-o {
@@ -35,30 +35,27 @@
         .fa-circle-o {
           display: none;
         }
+        &.bundle-error {
+          .fa-spinner {
+            display: none;
+          }
+        }
+      }
+      &.bundle-error {
+        .fa-circle-o {
+          display: none;
+        }
       }
     }
     .fa-lg {
       font-size: 1.5em;
       line-height: 1.0em;
-      margin-right: 5px;
+      margin-right: 0.3em;
       vertical-align: -10%;
     }
     &.bundle-error .fa-times-circle {
       display: inline-block;
       color: $error;
-    }
-
-    #bundleErrors {
-      margin-top: 20px;
-    }
-
-    #bundleErrors div, #retrievalError {
-      margin: 20px 0;
-    }
-
-    #bundleErrors pre, #retrievalError {
-      white-space: normal;
-      text-align: left;
     }
   }
   .progress {
@@ -69,5 +66,23 @@
       line-height: 1.3em;
       text-shadow: 0 1px 2px $gray;
     }
+  }
+  .error-list {
+    .error-header {
+      font-weight: bold;
+      margin-bottom: $space-size;
+    }
+    .error-content pre {
+      word-break: normal;
+      word-wrap: normal;
+      white-space: normal;
+      max-height: 12em;
+    }
+    .form-group:last-child {
+      margin-bottom: 0;
+    }
+  }
+  .space-bottom {
+    margin-bottom: $space-size;
   }
 }
