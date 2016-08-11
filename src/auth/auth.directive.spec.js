@@ -11,7 +11,6 @@ describe("Auth Directive", function () {
         $scope = $rootScope.$new();
         element = angular.element("<div motech-auth></div>");
         $compile(element)($scope);
-        //$scope.$digest();
     }));
 
     it('should pass motech-auth', function() {

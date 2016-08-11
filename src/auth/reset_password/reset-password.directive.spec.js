@@ -9,7 +9,6 @@ describe('Reset password Directive', function() {
         $scope.send = function() {};
         $scope.back = function() {};
         $compile(element)($scope);
-        //scope.$digest();
     }));
 
     it('should have tagName with value "RESET-PASSWORD"', function() {

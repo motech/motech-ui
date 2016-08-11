@@ -9,7 +9,6 @@ describe('Login Directive', function() {
         $scope.doLogin = function() {};
         $scope.forgot = function() {};
         $compile(element)($scope);
-        //$scope.$digest();
     }));
 
     it('should have tagName with value "MOTECH-LOGIN"', function() {
