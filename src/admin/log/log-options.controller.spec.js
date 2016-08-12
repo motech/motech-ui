@@ -1,12 +1,11 @@
 describe('Log options controller', function() {
     var modalFactory, loadingModal, logOptionsFactory, controller, scope;
 
-    beforeEach(module('motech-admin'));
+    beforeEach(module('motech-common'));
 
-    beforeEach(inject(function($rootScope, $controller, ModalFactory, LogOptionsFactory) {
+    beforeEach(inject(function($rootScope, $controller) {
         scope = $rootScope.$new();
-        modalFactory = ModalFactory;
-        logOptionsFactory = LogOptionsFactory;
+
 
         controller = $controller('InputMapController', {$scope: scope});
     }));
