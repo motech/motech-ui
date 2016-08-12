@@ -8,7 +8,7 @@ describe('Log options controller', function() {
         modalFactory = ModalFactory;
         logOptionsFactory = LogOptionsFactory;
 
-        controller = $controller('LogOptionsController', {$scope: scope});
+        controller = $controller('InputMapController', {$scope: scope});
     }));
 
     it('should work, like for real...', function(){
