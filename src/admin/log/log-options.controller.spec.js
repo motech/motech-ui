@@ -3,12 +3,14 @@ describe('Log options controller', function() {
 
     beforeEach(module('motech-admin'));
 
-    beforeEach(inject(function($controller, $rootScope,  ModalFactory, LogOptionsFactory) {
+    beforeEach(inject(function($rootScope, _$controller_, ModalFactory, LogOptionsFactory) {
         scope = $rootScope.$new();
         modalFactory = ModalFactory;
         logOptionsFactory = LogOptionsFactory;
 
-        controller = $controller('LogOptionsController', {});
+        $controller = _$controller_;
+
+        controller = $controller('LogOptionsController', {$scope: scope});
     }));
 
     it('should work, like for real...', function(){
