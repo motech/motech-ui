@@ -16,6 +16,7 @@ describe('Log file controller', function(){
     }));
 
     it('should refresh log', function(){
+        expect(controller).toBeDefined();
         spyOn(logFileFactory, 'getLog').and.callFake(function(){
             return {
                 then: function(success){
