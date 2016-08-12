@@ -10,7 +10,7 @@
             replace: true,
             scope: {},
             controller: 'resetFormController',
-            templateUrl: '/auth/reset_password/reset_password.html',
+            templateUrl: '/auth/reset_password/reset-password.html',
             link: Reset_PasswordFormDirective
         };
     }
