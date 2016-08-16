@@ -40,7 +40,7 @@
         .state('bundles.bundleSettings', {
             url: 'bundleSettings/:bundleId',
             ncyBreadcrumb: {
-                label: 'admin.manageModuleSettings'
+                label: 'admin.settings'
             },
             views: {
                 'appArea@': {
