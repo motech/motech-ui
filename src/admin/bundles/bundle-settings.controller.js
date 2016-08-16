@@ -68,7 +68,7 @@
             .success(successHandler)
             .error(function (response) {
                 LoadingModal.close();
-                ModalFactory.showErrorAlertWithResponse('admin.settings.error', 'admin.error', response);
+                ModalFactory.showErrorAlert('admin.settings.error', 'admin.error');
             });
         };
 	}

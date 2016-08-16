@@ -42,7 +42,8 @@
     "jquery-ui": "^1.11.4",
     "angular-cookies": "^1.5.7",
     "messageformat": "^0.3.1",
-    "jasny-bootstrap": "git://github.com/jasny/bootstrap"
+    "jasny-bootstrap": "git://github.com/jasny/bootstrap",
+    "jquery-i18n-properties": "git://github.com/jquery-i18n-properties/jquery-i18n-properties"
   },
   "overrides": {
     "angular-bootstrap": {
