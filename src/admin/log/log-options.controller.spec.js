@@ -1,26 +1,19 @@
-describe('Log options controller', function() {
-    var modalFactory, loadingModal, logOptionsFactory, controller, scope;
+describe('PasswordController', function() {
+  beforeEach(module('motech-admin'));
 
-    beforeEach(module('motech-admin'));
+  var $controller;
 
-    beforeEach(inject(function($rootScope, $controller, ModalFactory, LoadingModal, LogOptionsFactory) {
-        scope = $rootScope.$new();
-        modalFactory = ModalFactory;
-        logOptionsFactory = LogOptionsFactory;
-        loadingModal = LoadingModal;
+  beforeEach(inject(function(_$controller_){
+    // The injector unwraps the underscores (_) from around the parameter names when matching
+    $controller = _$controller_;
+  }));
 
-        controller = $controller('LogOptionsController', {
-        $scope: scope,
-        ModalFactory: modalFactory,
-        LoadingModal: loadingModal,
-        LogOptionsFactory: logOptionsFactory});
-    }));
+  describe('$scope.grade', function() {
+    it('sets the strength to "strong" if the password length is >8 chars', function() {
+      var $scope = {};
+      var controller = $controller('LogOptionsController', { $scope: $scope });
 
-    it('should work, like for real...', function(){
-        var question = true;
-
-        expect(question).toEqual(true);
-        expect(controller).toBeDefined();
-        expect(controller).not.toBe(null);
+      expect(controller).toBeDefined();
     });
+  });
 });

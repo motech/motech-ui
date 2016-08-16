@@ -4,11 +4,11 @@ describe('Log file controller', function(){
     beforeEach(module('motech-admin'));
 
 
-    beforeEach(inject(function( $controller, ServerService, LogFileFactory){
-    console.log('inside of beforeEach');
+    beforeEach(inject(function($rootScope, $controller, _ServerService_, _LogFileFactory_){
         ok='k';
-        serverService = ServerService;
-        logFileFactory = LogFileFactory;
+        scope = $rootScope.$new();
+        serverService = _ServerService_;
+        logFileFactory = _LogFileFactory_;
         controller =  $controller('LogFileController', {
                 $scope: scope,
                 ServerService: serverService,
