@@ -4,8 +4,9 @@ describe('Log file controller', function(){
     beforeEach(module('motech-admin'));
 
 
-    beforeEach(inject(function($rootScope, $controller, ServerService, LogFileFactory){
-        scope = $rootScope.$new();
+    beforeEach(inject(function($scope, $controller, ServerService, LogFileFactory){
+       // scope = $rootScope.$new();
+        scope = $scope;
         serverService = ServerService;
         logFileFactory = LogFileFactory;
         controller =  $controller('LogFileController', {
