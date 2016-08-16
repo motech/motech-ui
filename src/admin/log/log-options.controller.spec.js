@@ -1,7 +1,5 @@
-describe('PasswordController', function() {
-   beforeEach(function () {
-          module('motech-admin');
-      });
+describe('Log OptionsController', function() {
+  beforeEach(module('motech-admin'));
 
   var $controller;
 
@@ -10,10 +8,15 @@ describe('PasswordController', function() {
     $controller = _$controller_;
   }));
 
-  describe('$scope.grade', function() {
+  describe('tests', function() {
+    var $scope, controller;
+
+    beforeEach(function() {
+      $scope = {};
+      controller = $controller('LogOptionsController', { $scope: $scope });
+    });
+
     it('sets the strength to "strong" if the password length is >8 chars', function() {
-      var $scope = {};
-      var controller = $controller('LogOptionsController', { $scope: $scope });
 
       expect(controller).toBeDefined();
     });
