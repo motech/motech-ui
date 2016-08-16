@@ -18,7 +18,8 @@ describe('Log file controller', function(){
                 ServerService: serverService,
                 LogFileFactory: logFileFactory
             });
-    })});
+    });
+    });
 
     it('should work', function(){
         expect(serverService).toBeDefined();
