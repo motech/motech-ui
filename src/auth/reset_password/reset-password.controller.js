@@ -17,7 +17,13 @@
 
         this.sendReset = sendReset;
         function sendReset(email) {
-            var promise = $http.post(forgotURL, email);
+            var promise = $http({
+            method: "POST",
+            url: forgotURL,
+            data: email,
+            transformResponse: [function(data){
+                return data;
+            }]});
             return promise;
         }
     }
