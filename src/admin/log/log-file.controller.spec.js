@@ -1,12 +1,11 @@
 describe('Log file controller', function(){
-    var scope, serverService, logFileFactory, controller;
+    var scope, serverService, logFileFactory, controller, ok;
 
     beforeEach(module('motech-admin'));
 
 
-    beforeEach(inject(function($scope, $controller, ServerService, LogFileFactory){
-       // scope = $rootScope.$new();
-        scope = $scope;
+    beforeEach(inject(function( $controller, ServerService, LogFileFactory){
+        ok='k';
         serverService = ServerService;
         logFileFactory = LogFileFactory;
         controller =  $controller('LogFileController', {
@@ -17,10 +16,10 @@ describe('Log file controller', function(){
     }));
 
     it('should work', function(){
-        expect(scope).toBeDefined();
         expect(serverService).toBeDefined();
         expect(logFileFactory).toBeDefined();
         expect(controller).toBeDefined();
+        expect(ok).toBeDefined();
 
     });
 });
