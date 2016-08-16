@@ -5,6 +5,7 @@ describe('Log file controller', function(){
 
 
     beforeEach(inject(function( $controller, ServerService, LogFileFactory){
+    console.log('inside of beforeEach');
         ok='k';
         serverService = ServerService;
         logFileFactory = LogFileFactory;
