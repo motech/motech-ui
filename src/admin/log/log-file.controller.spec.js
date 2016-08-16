@@ -5,9 +5,11 @@ describe('Log file controller', function(){
             module('motech-admin');
         });
 
+    beforeEach(function(){
+        ok = 'nic';
+    });
 
     beforeEach(inject(function($rootScope, $controller, _ServerService_, _LogFileFactory_){
-        ok='k';
         scope = $rootScope.$new();
         serverService = _ServerService_;
         logFileFactory = _LogFileFactory_;
