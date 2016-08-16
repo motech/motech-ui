@@ -1,5 +1,7 @@
 describe('PasswordController', function() {
-  beforeEach(module('motech-admin'));
+   beforeEach(function () {
+          module('motech-admin');
+      });
 
   var $controller;
 

@@ -1,7 +1,9 @@
 describe('Log file controller', function(){
     var scope, serverService, logFileFactory, controller, ok;
 
-    beforeEach(module('motech-admin'));
+     beforeEach(function () {
+            module('motech-admin');
+        });
 
 
     beforeEach(inject(function($rootScope, $controller, _ServerService_, _LogFileFactory_){
