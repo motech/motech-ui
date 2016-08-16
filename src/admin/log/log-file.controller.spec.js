@@ -15,29 +15,10 @@ describe('Log file controller', function(){
             });
     }));
 
-    it('should refresh log', function(){
-        expect(controller).toBeDefined();
-        spyOn(logFileFactory, 'getLog').and.callFake(function(){
-            return {
-                then: function(success){
-                    success('new value');
-                    return this;
-                }
-            };
-        });
+    if('should work', function(){
+        expect(scope).toBeDefined();
+        expect(serverService).toBeDefined();
+        expect(logFileFactory).toBeDefined();
 
-        controller.refresh();
-
-        expect(logFileFactory.getLog).toHaveBeenCalled();
-        expect(scope.log).toEqual('new value');
-    });
-
-    it('should get file log path', function(){
-        spyOn(serverService, 'formatURL').and.returnValue('proper URL');
-
-        var returnValue = controller.getFileLogPath();
-
-        expect(serverService.formatURL).toHaveBeenCalled();
-        expect(returnValue).toEqual('proper URL');
     });
 });
