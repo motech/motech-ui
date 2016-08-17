@@ -18,9 +18,9 @@ describe('Log file controller', function(){
     }));
 
     it('should work', function(){
+        expect(scope).toBeDefined();
         expect(serverService).toBeDefined();
         expect(logFileFactory).toBeDefined();
-        expect(controller).toBeDefined();
         expect(ok).toBeDefined();
 
     });
