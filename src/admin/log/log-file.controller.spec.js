@@ -10,16 +10,11 @@ describe('Log file controller', function(){
         console.log("not injected");
     });
 
-    beforeEach( inject(function($rootScope, $controller, _ServerService_, _LogFileFactory_){
+    beforeEach( inject(function($rootScope, _ServerService_, _LogFileFactory_){
         scope = $rootScope.$new();
         console.log("injected");
         serverService = _ServerService_;
         logFileFactory = _LogFileFactory_;
-        controller =  $controller('LogFileController', {
-                $scope: scope,
-                ServerService: serverService,
-                LogFileFactory: logFileFactory
-            });
     }));
 
     it('should work', function(){
