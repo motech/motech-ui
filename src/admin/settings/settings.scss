@@ -1,5 +1,4 @@
 .settings-form{
-
     >h3{
         font-size: $h3-size !important;
     }
@@ -22,7 +21,8 @@
              width: $sidebar-width;
          }
         .button-file{
-            height: auto;
+            width: 90%;
         }
+
     }
 }

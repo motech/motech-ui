@@ -3,7 +3,9 @@
     <h4>{{'admin.settings.upload' | translate}}</h4>
     <div class="form-group fileinput fileinput-new" data-provides="fileinput">
         <label>{{'admin.settings.fileChosen' | translate}}</label>
-        <motech-file-upload file="settingsFile"></motech-file-upload>
+        <div class="button-file">
+            <motech-file-upload file="settingsFile"></motech-file-upload>
+        </div>
     </div>
     <div class="button-group-primary">
         <button class="button-primary" ng-click="uploadSettings()">{{'admin.submit' | translate}}</button>
