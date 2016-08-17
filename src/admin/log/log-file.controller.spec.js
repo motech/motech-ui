@@ -10,17 +10,14 @@ describe('Log file controller', function(){
         console.log("not injected");
     });
 
-    beforeEach( inject(function($rootScope, _ServerService_, _LogFileFactory_){
+    beforeEach( inject(function($rootScope){
         scope = $rootScope.$new();
         console.log("injected");
-        serverService = _ServerService_;
-        logFileFactory = _LogFileFactory_;
+
     }));
 
     it('should work', function(){
         expect(scope).toBeDefined();
-        expect(serverService).toBeDefined();
-        expect(logFileFactory).toBeDefined();
         expect(ok).toBeDefined();
 
     });
