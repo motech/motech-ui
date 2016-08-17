@@ -116,20 +116,6 @@
             });
         };
 
-        $scope.editJob = editJob;
-
-        /**
-         * Sets job which will be available for edition.
-         *
-         * @memberOf JobListController
-         *
-         * @param {Object} job Unique job from job list which certain edit button refers to.
-         */
-
-        function editJob(job) {
-            JobsService.setCurrentJob(job);
-        }
-
         $scope.deleteJob = function(job) {
             ModalFactory.showConfirm("scheduler.confirm.delete", "scheduler.confirm", function(response) {
                 if (response) {

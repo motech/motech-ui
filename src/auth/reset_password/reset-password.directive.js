@@ -10,7 +10,7 @@
             replace: true,
             scope: {},
             controller: 'resetFormController',
-            templateUrl: '/auth/reset_password/reset_password.html',
+            templateUrl: '/auth/reset_password/reset-password.html',
             link: Reset_PasswordFormDirective
         };
     }
@@ -25,7 +25,7 @@
                         scope.processed=true;
                      })
                      .error(function (response) {
-                        scope.error = 'security.tokenSendError';
+                        scope.error = response;
                      });
              }
         };

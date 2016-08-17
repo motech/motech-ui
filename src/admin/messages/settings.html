@@ -30,7 +30,7 @@
             </div>
             <div class="form-group" ng-class="{'has-error': !rule.recipient}">
                 <span class="control-label offset-1">{{'admin.messages.notifications.recipient' | translate}}</span>
-                <input class="form-control input-auto" ng-model="rule.recipient" type="text" />
+                <input class="messages-text-field form-control input-auto" ng-model="rule.recipient" type="text" />
             </div>
             <div class="form-group">
             <button class="delete icon" ng-click="removeRule(rule)">{{'Remove' | translate}}</button>
@@ -43,6 +43,8 @@
         </div>
         <div class="button-group">
             <button class="button-primary" ng-click="save()">{{'admin.save' | translate}}</button>
+        </div>
+        <div class="button-group">
             <button ui-sref="messages" class="button-primary">{{'admin.cancel' | translate}}</button>
         </div>
     </motech-list-footer>
