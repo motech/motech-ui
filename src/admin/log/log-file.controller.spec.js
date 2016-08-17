@@ -7,10 +7,12 @@ describe('Log file controller', function(){
 
     beforeEach(function(){
         ok = 'nic';
+        console.log("not injected");
     });
 
-    beforeEach(function(){ inject(function($rootScope, $controller, _ServerService_, _LogFileFactory_){
+    beforeEach( inject(function($rootScope, $controller, _ServerService_, _LogFileFactory_){
         scope = $rootScope.$new();
+        console.log("injected");
         serverService = _ServerService_;
         logFileFactory = _LogFileFactory_;
         controller =  $controller('LogFileController', {
@@ -18,8 +20,7 @@ describe('Log file controller', function(){
                 ServerService: serverService,
                 LogFileFactory: logFileFactory
             });
-    });
-    });
+    }));
 
     it('should work', function(){
         expect(serverService).toBeDefined();
