@@ -10,15 +10,13 @@ describe('Log file controller', function(){
         console.log("not injected");
     });
 
-  beforeEach(inject(function($rootScope, $controller){
+  beforeEach(inject(function($rootScope){
     console.log("injected");
     scope = $rootScope.$new();
-    controller = $controller('LogFileController', {$scope: scope});
   }));
 
     it('should work', function(){
         expect(scope).toBeDefined();
-        expect(controller).toBeDefined();
         expect(ok).toBeDefined();
 
     });
