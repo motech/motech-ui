@@ -1,4 +1,4 @@
-describe('Email export directive', function() {
+describe('Server info directive', function() {
     var element, compile, scope;
 
     beforeEach(module('motech-common'));
