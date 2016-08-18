@@ -2,6 +2,7 @@ describe('Auth Service', function () {
     var AuthService;
 
     beforeEach(module('motech-auth'));
+
     beforeEach(inject(function (_AuthService_) {
         AuthService = _AuthService_;
     }));

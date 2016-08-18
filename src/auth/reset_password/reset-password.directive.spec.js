@@ -1,14 +1,15 @@
 describe('Reset password Directive', function() {
-    var element, $scope;
+    var element;
+    var scope;
 
     beforeEach(module('motech-auth'));
 
     beforeEach(inject(function($compile, $rootScope){
-        $scope = $rootScope.$new();
+        scope = $rootScope.$new();
         element = angular.element('<reset-password></reset-password>');
-        $scope.send = function() {};
-        $scope.back = function() {};
-        $compile(element)($scope);
+        scope.send = function() {};
+        scope.back = function() {};
+        $compile(element)(scope);
     }));
 
     it('should have tagName with value "RESET-PASSWORD"', function() {

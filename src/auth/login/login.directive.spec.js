@@ -1,14 +1,17 @@
 describe('Login Directive', function() {
-    var $scope, $compile, element;
+    var scope;
+    var compile;
+    var element;
 
     beforeEach(module('motech-auth'));
-    beforeEach(inject(function($rootScope, _$compile_) {
-        $scope = $rootScope.$new();
-        $compile = _$compile_;
+
+    beforeEach(inject(function($rootScope, $compile) {
+        scope = $rootScope.$new();
+        compile = $compile;
         element = angular.element("<motech-login></motech-login>");
-        $scope.doLogin = function() {};
-        $scope.forgot = function() {};
-        $compile(element)($scope);
+        scope.doLogin = function() {};
+        scope.forgot = function() {};
+        compile(element)(scope);
     }));
 
     it('should have tagName with value "MOTECH-LOGIN"', function() {

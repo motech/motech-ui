@@ -1,5 +1,4 @@
 describe('Reset password Controller', function() {
-
     var scope;
     var LoginModal;
     var ResetPasswordModal;
