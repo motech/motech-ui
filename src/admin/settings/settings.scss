@@ -20,9 +20,22 @@
         .button-export{
              width: $sidebar-width;
          }
-        .button-file{
-            width: 90%;
+        .upload-file{
+            width: 100%;
+            .button-file{
+                display: table-row;
+            }
         }
-
     }
+}
+
+.fileinput {
+  .form-control {
+    display: table-cell;
+  }
+}
+
+.fileinput-exists .fileinput-new,
+.fileinput-new .fileinput-exists {
+  display: none;
 }
