@@ -1,8 +1,6 @@
-describe('i18n form', function() {
+describe('i18n form directive', function() {
     var element, scope, compile;
 
-  // Store references to $rootScope and $compile
-  // so they are available to all tests in this describe block
     beforeEach(inject(function($compile, $rootScope) {
         compile = $compile;
         scope = $rootScope.$new();
