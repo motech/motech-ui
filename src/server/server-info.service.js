@@ -19,21 +19,18 @@
 
         function updateInformation(){
             $q.all({
-                time: $http.get(ServerService.formatURL('module/server/gettime'), {}),
-                uptime: $http.get(ServerService.formatURL('module/server/getUptime'), {}),
-                node: $http.get(ServerService.formatURL('module/server/getNodeName'), {}),
-                eventChannel: $http.get(ServerService.formatURL('module/server/isInboundChannelActive'), {})
-            }).then(function(responses){
+                status: $http.get(ServerService.formatURL('module/server/getStatus'), {}),
+            }).then(function(response){
                 var information = {};
 
-                information.currentStamp = responses.time.data;
+                information.currentStamp = response.status.data[0].time;
                 information.currentTime = formatDate(information.currentStamp);
 
-                information.uptimeStamp = responses.uptime.data;
+                information.uptimeStamp = response.status.data[0].uptime;
                 information.uptime = formatTimeSince(information.uptimeStamp);
 
-                information.node = responses.node.data;
-                information.eventChannel = responses.eventChannel.data;
+                information.node = response.status.data[0].nodeName;
+                information.eventChannel = response.status.data[0].inboundChannelActive;
 
                 service.information = information;
             });
