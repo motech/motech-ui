@@ -4,8 +4,8 @@
     angular.module('motech-common')
         .factory('ModalFactory', factory);
 
-    factory.$inject = ['BootstrapDialog', 'BootstrapDialogManager', '$translate'];
-    function factory (BootstrapDialog, BootstrapDialogManager, $translate) {
+    factory.$inject = ['BootstrapDialog', 'BootstrapDialogManager', '$translate', 'CommonFactory'];
+    function factory (BootstrapDialog, BootstrapDialogManager, $translate, CommonFactory) {
 
         var modalFactory = {},
 
@@ -152,7 +152,7 @@
             var msg = { value: "server.error", literal: false, params: [] },
                 responseData = (typeof(response) === 'string') ? response : response.data;
 
-            msg = parseResponse(responseData, defaultMsg);
+            msg = CommonFactory.parseResponse(responseData, defaultMsg);
 
             if (callback) {
                 callback(msg.value, title, msg.params);
@@ -172,7 +172,7 @@
             }
         };
 
-        modalFactory.showErrorWithStackTrace = function(msg, title, response) {
+        modalFactory.showErrorWithStackTrace = function (msg, title, response) {
             var defaultMsg = 'server.error';
             if (response) {
                 if(response.responseText) {
@@ -193,6 +193,5 @@
         };
 
         return modalFactory;
-
     }
 })();
