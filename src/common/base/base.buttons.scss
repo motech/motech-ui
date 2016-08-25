@@ -20,11 +20,35 @@ markup:
 Styleguide 1.2
 */
 
-button.button,
+button,
 .button,
 .button-default {
     @extend .btn;
     @include button($btn-default-color, $btn-default-bg, $btn-default-border);
+}
+button.btn-default,
+.btn-default {
+    @include button($btn-default-color, $btn-default-bg, $btn-default-border);
+}
+button.btn-primary,
+.btn-primary {
+    @include button($btn-primary-color, $btn-primary-bg, $btn-primary-border);
+}
+button.btn-success,
+.btn-success {
+    @include button($btn-success-color, $btn-success-bg, $btn-success-border);
+}
+button.btn-info,
+.btn-info {
+    @include button($btn-info-color, $btn-info-bg, $btn-info-border);
+}
+button.btn-warning,
+.btn-warning {
+    @include button($btn-warning-color, $btn-warning-bg, $btn-warning-border);
+}
+button.btn-danger,
+.btn-danger {
+    @include button($btn-danger-color, $btn-danger-bg, $btn-danger-border);
 }
 button.primary,
 .button-primary {
