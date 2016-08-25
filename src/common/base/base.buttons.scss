@@ -5,6 +5,7 @@ Buttons represent taking an action in MOTECH - juxoposed to a link which represe
 
 markup:
 <button >Button</button>
+<button class="button">Button</button>
 <button class="active">Active Button</button>
 <button class="disabled">Disabled Button</button>
 <button class="button-primary">Primary Button</button>
@@ -19,7 +20,7 @@ markup:
 Styleguide 1.2
 */
 
-button,
+button.button,
 .button,
 .button-default {
     @extend .btn;
