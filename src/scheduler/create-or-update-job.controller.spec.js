@@ -15,6 +15,7 @@ describe('Create or update job Controller', function () {
     };
 
     beforeEach(module('motech-scheduler'));
+
     beforeEach(inject(function ($rootScope, $controller, _JobsService_, _ModalFactory_, _LoadingModal_, _i18nService_) {
         MotechAlertSpy = jasmine.createSpy('MotechAlertSpy');
         scope = $rootScope.$new();
