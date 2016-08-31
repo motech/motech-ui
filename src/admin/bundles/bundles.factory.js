@@ -29,7 +29,6 @@
             return this.state === "ACTIVE";
         };
 
-
         function callbackSuccess(){
             LoadingModal.close();
             $rootScope.$broadcast('motech.refresh');
@@ -55,7 +54,7 @@
             LoadingModal.open();
             this.$restart(callbackSuccess);
         };
-        
+
         Bundle.prototype.uninstall = function(){
             var bundle = this;
             MotechConfirm(i18nService.getMessage('admin.bundles.stateChangeWarning')) // 'admin.remove' (remove button text)

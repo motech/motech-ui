@@ -1,0 +1,85 @@
+<legend class="frame-title">{{'admin.platform.settings' | translate}}</legend>
+<form class="settings-form" id="settingsFileForm" enctype="multipart/form-data">
+    <h4>{{'admin.settings.upload' | translate}}</h4>
+    <div class="form-group fileinput fileinput-new" data-provides="fileinput">
+        <label>{{'admin.settings.fileChosen' | translate}}</label>
+        <div class="upload-file">
+            <motech-file-upload class="button-file" file="settingsFile"></motech-file-upload>
+        </div>
+    </div>
+    <div class="button-group-primary">
+        <button class="button-primary" ng-click="uploadSettings()">{{'admin.submit' | translate}}</button>
+    </div>
+</form>
+<form class="settings-form" id="settingsLocationForm" method="post" ng-submit="uploadFileLocation()">
+    <fieldset>
+        <h4>{{'admin.settings.location' | translate}}</h4>
+        <div class="form-group">
+            <label for="settingsLocation">{{'admin.settings.location.new' | translate}}</label>
+            <input type="text" id="settingsLocation" name="settingsLocation" ng-model="location"/>
+        </div>
+    </fieldset>
+    <input type="submit" value="{{'admin.submit' | translate}}"/>
+</form>
+<form class="settings-form">
+    <fieldset>
+        <h4>{{'admin.settings.importexport.header' | translate}}</h4>
+        <div class="form-group">
+            <label for="exportConfig">{{'admin.settings.importexport.export' | translate}}</label>
+            <input class="button button-export" type="button" id="exportConfig" name="exportConfig" ng-click="exportConfig()" value="{{'admin.settings.importexport.exportButton' | translate}}" />
+        </div>
+    </fieldset>
+</form>
+
+<div class="settings-form">
+    <h3>{{'admin.settings.platform' | translate}}</h3>
+    <form id="platformSettingsForm" ng-repeat="pSettings in platformSettings.settingsList">
+        <h4>{{'admin.settings.section.'+ pSettings.section | translate}}</h4>
+        <div class="form-group" ng-repeat="option in pSettings.settings">
+            <label ng-if="!isBool(option)" for="{{option.key}}">
+                {{'admin.settings.' + option.key | translate}}
+                <span class="icon-documentation" uib-tooltip="{{'admin.settings.tooltip.' + option.key | translate}}" tooltip-placement="left"/>
+            </label>
+            <input ng-if="isTextOrNumber(option)"ng-disabled="platformSettings.readOnly" type="text" id="{{option.key}}" name="{{option.key | translate}}" ng-model="option.value" />
+            <fieldset ng-if="isBool(option)">
+                <label ng-if="isBool(option)" class="checkbox">
+                    <input ng-disabled="platformSettings.readOnly" type="checkbox" id="{{option.key}}" name="{{option.key}}" ng-model="option.value" />
+                    {{'admin.settings.' + option.key | translate}}
+                    <span class="icon-documentation" uib-tooltip="{{'admin.settings.tooltip.' + option.key | translate}}" tooltip-placement="left"/>
+                </label>
+            </fieldset>
+            <div ng-if="isCombobox(option)" ng-init="addValue(option.key, option.value)">
+                <select ng-model="option.value" ng-disabled="platformSettings.readOnly" ng-options="value for value in getComboboxValues(option.key)">
+                    <option ng-if="!option.value" value="">{{'mds.form.label.select' | translate}}</option>
+                </select>
+                <input ng-disabled="platformSettings.readOnly" type="text" ng-model="userValidator" />
+                <button class="button-add" type="button" ng-disabled="!userValidator" ng-click="addValue(option.key, userValidator)">Add option</button>
+            </div>
+        </div>
+        <input ng-if="!platformSettings.readOnly" type="submit" ng-click="saveSettings(pSettings)" value="{{'admin.save' | translate}}" />
+    </form>
+</div>
+<div class="settings-form" ng-show="platformSettings.settingsList.length <= 0">
+    <h3>{{'admin.settings.noSettings' | translate}}</h3>
+    <form id="noSettingsForm" ng-submit="saveNewSettings()">
+        <fieldset>
+            <div class="form-group">
+                <label for="new.db.host">{{'admin.label.db.host' | translate}}</label>
+                <input id="new.db.host" type="text" name="db.host" ng-model="newSettings.host"/>
+            </div>
+            <div class="form-group">
+                <label for="new.db.port">{{'admin.label.db.port' | translate}}</label>
+                <input id="new.db.port" type="text" name="db.port" ng-model="newSettings.port"/>
+            </div>
+            <div class="form-group">
+                <label for="new.db.user">{{'admin.label.db.username' | translate}}</label>
+                <input id="new.db.user" type="text" name="db.username" ng-model="newSettings.username"/>
+            </div>
+            <div class="form-group">
+                <label for="new.db.password">{{'admin.label.db.password' | translate}}</label>
+                <input id="new.db.password" type="text" name="db.host" ng-model="newSettings.password"/>
+            </div>
+        </fieldset>
+        <input type="submit" value="{{'admin.submit' | translate}}" class="button-primary" />
+    </form>
+</div>

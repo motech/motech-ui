@@ -13,7 +13,7 @@
                     $compile('<motech-login />')($rootScope),
                     $compile('<span>{{ "security.signInUser" | translate}}</span>')($rootScope),
                     false);
-                modal.open();                    
+                modal.open();
             },
             close: function(){
                 if(modal){

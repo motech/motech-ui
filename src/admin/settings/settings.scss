@@ -1,0 +1,41 @@
+.settings-form{
+    >h3{
+        font-size: $h3-size !important;
+    }
+    h4{
+        font-size: $h4-size !important;
+    }
+    .form-group{
+        >label{
+            white-space: normal;
+            >.checkbox{
+                position: static !important;
+            }
+        }
+        >legend{
+            @extend label;
+            text-align: right !important;
+            width: $sidebar-width !important;
+        }
+        .button-export{
+             width: $sidebar-width;
+         }
+        .upload-file{
+            width: 100%;
+            .button-file{
+                display: table-row;
+            }
+        }
+    }
+}
+
+.fileinput {
+  .form-control {
+    display: table-cell;
+  }
+}
+
+.fileinput-exists .fileinput-new,
+.fileinput-new .fileinput-exists {
+  display: none;
+}

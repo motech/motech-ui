@@ -25,7 +25,7 @@
                         scope.processed=true;
                      })
                      .error(function (response) {
-                        scope.error = 'security.tokenSendError';
+                        scope.error = response;
                      });
              }
         };
