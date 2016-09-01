@@ -1,10 +1,14 @@
-describe('Period Amount directive', function() {
+describe('Period amount Directive', function() {
     var compile, scope, element;
     var ngModelName = 'periodString';
 
-    beforeEach(module('motech-common'));
+    beforeEach(module('motech-scheduler'));
 
-    beforeEach(inject(function($compile, $rootScope){
+    beforeEach(inject(function($compile, $rootScope, $httpBackend){
+        $httpBackend.when('GET', '/server/status/status.html').respond({});
+        $httpBackend.when('GET', 'http://localhost:8080/motech-platform-server/server/bootstrap/status').respond({});
+        $httpBackend.when('GET', 'scheduler/period-modal.html').respond({});
+
         compile = $compile;
         scope = $rootScope.$new();
 
@@ -22,15 +26,15 @@ describe('Period Amount directive', function() {
         scope.$digest();
     }));
 
-    it('Should load period amount', function() {
+    it('should load period amount', function() {
         expect(element.attr('period-amount')).toBeDefined();
     });
 
-    it('Should pass ng-model', function() {
+    it('should pass ng-model', function() {
         expect(element.attr('ng-model')).toEqual(ngModelName);
     });
 
-    it('Should set slider max values', function() {
+    it('should set slider max values', function() {
         var maxValues = {
             year: 10,
             month: 24,
