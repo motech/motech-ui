@@ -1,9 +1,12 @@
 .settings-form{
+    margin-bottom: 30px;
     >h3{
         font-size: $h3-size !important;
+        border-bottom: 2px solid;
     }
     h4{
         font-size: $h4-size !important;
+        border-bottom: 1px solid;
     }
     .form-group{
         >label{
@@ -38,4 +41,12 @@
 .fileinput-exists .fileinput-new,
 .fileinput-new .fileinput-exists {
   display: none;
+}
+
+#platformSettingsForm{
+    margin-bottom: 30px;
+}
+
+.select-list{
+    margin-bottom: 10px;
 }
