@@ -78,7 +78,7 @@ describe('Create or update job Controller', function () {
     });
 
     describe('create or update job method', function () {
-        it('should execute MotechAlert with with good parameters if scope.dates.startDate greater than scope.dates.endDate', function () {
+        it('should execute MotechAlert with good parameters if scope.dates.startDate is before scope.dates.endDate', function () {
             var currentDate = new Date();
             scope.dates.startDate = scope.parseDateToString(currentDate);
             scope.dates.endDate = scope.parseDateToString(currentDate.addDays(1));
@@ -90,7 +90,7 @@ describe('Create or update job Controller', function () {
                                        [scope.dates.startDate, scope.dates.endDate]), "scheduler.error");
         });
 
-        it('should not execute MotechAlert with with good parameters if scope.dates.endDate greater than scope.dates.startDate', function () {
+        it('should not execute MotechAlert with good parameters if scope.dates.startDate is after scope.dates.endDate', function () {
             var currentDate = new Date();
             scope.dates.endDate = scope.parseDateToString(currentDate);
             scope.dates.startDate = scope.parseDateToString(currentDate.addDays(1));
@@ -123,7 +123,7 @@ describe('Create or update job Controller', function () {
             expect(JobsService.createJob).not.toHaveBeenCalled();
         });
 
-        it('should show confirm if if action is "edit"', function () {
+        it('should show confirm if action is "edit"', function () {
             spyOn(ModalFactory, 'showConfirm');
 
             scope.createOrUpdateJob('edit');
@@ -131,7 +131,7 @@ describe('Create or update job Controller', function () {
             expect(ModalFactory.showConfirm).toHaveBeenCalled();
         });
 
-        it('should not show confirm if if action is not "edit"', function () {
+        it('should not show confirm if action is not "edit"', function () {
             spyOn(ModalFactory, 'showConfirm');
 
             scope.createOrUpdateJob();
