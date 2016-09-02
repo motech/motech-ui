@@ -22,7 +22,7 @@
         .state('tasks.settings', {
             url: '/settings',
             ncyBreadcrumb: {
-                label: 'task.settings.title'
+                label: 'task.tab.settings'
             },
             views:{
                 'appArea@': {
