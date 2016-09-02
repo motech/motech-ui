@@ -8,7 +8,7 @@
         </div>
     </div>
     <div class="button-group-primary">
-        <button class="button-primary" ng-click="uploadSettings()">{{'admin.submit' | translate}}</button>
+        <button class="button-primary" ng-click="uploadSettings()">{{'admin.save' | translate}}</button>
     </div>
 </form>
 <form class="settings-form" id="settingsLocationForm" method="post" ng-submit="uploadFileLocation()">
@@ -19,7 +19,7 @@
             <input type="text" id="settingsLocation" name="settingsLocation" ng-model="location"/>
         </div>
     </fieldset>
-    <input type="submit" value="{{'admin.submit' | translate}}"/>
+    <input type="submit" value="{{'admin.save' | translate}}"/>
 </form>
 <form class="settings-form">
     <fieldset>
@@ -49,7 +49,7 @@
                 </label>
             </fieldset>
             <div ng-if="isCombobox(option)" ng-init="addValue(option.key, option.value)">
-                <select ng-model="option.value" ng-disabled="platformSettings.readOnly" ng-options="value for value in getComboboxValues(option.key)">
+                <select class="select-list" ng-model="option.value" ng-disabled="platformSettings.readOnly" ng-options="value for value in getComboboxValues(option.key)">
                     <option ng-if="!option.value" value="">{{'mds.form.label.select' | translate}}</option>
                 </select>
                 <input ng-disabled="platformSettings.readOnly" type="text" ng-model="userValidator" />
@@ -57,29 +57,5 @@
             </div>
         </div>
         <input ng-if="!platformSettings.readOnly" type="submit" ng-click="saveSettings(pSettings)" value="{{'admin.save' | translate}}" />
-    </form>
-</div>
-<div class="settings-form" ng-show="platformSettings.settingsList.length <= 0">
-    <h3>{{'admin.settings.noSettings' | translate}}</h3>
-    <form id="noSettingsForm" ng-submit="saveNewSettings()">
-        <fieldset>
-            <div class="form-group">
-                <label for="new.db.host">{{'admin.label.db.host' | translate}}</label>
-                <input id="new.db.host" type="text" name="db.host" ng-model="newSettings.host"/>
-            </div>
-            <div class="form-group">
-                <label for="new.db.port">{{'admin.label.db.port' | translate}}</label>
-                <input id="new.db.port" type="text" name="db.port" ng-model="newSettings.port"/>
-            </div>
-            <div class="form-group">
-                <label for="new.db.user">{{'admin.label.db.username' | translate}}</label>
-                <input id="new.db.user" type="text" name="db.username" ng-model="newSettings.username"/>
-            </div>
-            <div class="form-group">
-                <label for="new.db.password">{{'admin.label.db.password' | translate}}</label>
-                <input id="new.db.password" type="text" name="db.host" ng-model="newSettings.password"/>
-            </div>
-        </fieldset>
-        <input type="submit" value="{{'admin.submit' | translate}}" class="button-primary" />
     </form>
 </div>
