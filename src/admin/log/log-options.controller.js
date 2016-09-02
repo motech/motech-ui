@@ -8,19 +8,19 @@
     function logOptionsController(ModalFactory, LoadingModal, LogOptionsFactory) {
         var logOptions = this;
 
-        logOptions.config = LogOptionsFactory.get();
-        logOptions.logs = [{name: "", level: "off"}];
-        logOptions.availableLevels = ['off', 'trace', 'debug', 'info', 'warn', 'error', 'fatal', 'all'];
-        logOptions.logNameValidPattern = /^((?!root).*)|^(root.+)/i;
-        logOptions.save = save;
-        logOptions.add = add;
-        logOptions.forAll = forAll;
-        logOptions.change = change;
-        logOptions.changeNew = changeNew;
-        logOptions.changeRoot = changeRoot;
-        logOptions.remove = remove;
-        logOptions.removeNew = removeNew;
-        logOptions.levelsCss = levelsCss;
+        this.config = LogOptionsFactory.get();
+        this.logs = [{name: "", level: "off"}];
+        this.availableLevels = ['off', 'trace', 'debug', 'info', 'warn', 'error', 'fatal', 'all'];
+        this.logNameValidPattern = /^((?!root).*)|^(root.+)/i;
+        this.save = save;
+        this.add = add;
+        this.forAll = forAll;
+        this.change = change;
+        this.changeNew = changeNew;
+        this.changeRoot = changeRoot;
+        this.remove = remove;
+        this.removeNew = removeNew;
+        this.levelsCss = levelsCss;
 
         function save () {
             jQuery.each(logOptions.logs, function (index) {
