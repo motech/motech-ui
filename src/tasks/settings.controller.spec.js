@@ -46,14 +46,14 @@ describe('Tasks settings Controller', function () {
     });
 
     it('should be numeric', function () {
-        var prop = 'test'
+        var prop = 'test';
         scope.settings[prop] = '22';
 
         expect(scope.isNumeric(prop)).toBe(true);
     });
 
     it('should not be numeric', function () {
-        var prop = 'test'
+        var prop = 'test';
         scope.settings[prop] = 'not_numeric';
 
         expect(scope.isNumeric(prop)).toBe(false);
