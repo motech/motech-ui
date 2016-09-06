@@ -8,6 +8,7 @@
             'motech-auth',
             'motech-email',
             'motech-scheduler',
+            'motech-tasks',
             'motech-i18n',
             'motech-admin'
         ]);

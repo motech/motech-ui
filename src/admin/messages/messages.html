@@ -7,11 +7,6 @@
             <button class="icon-filter motech-sidebar-button" type="button">{{'admin.messages.filters' | translate}}</button>
         </div>
     </motech-list-header>
-    <motech-list-body>
-        <div class="alert alert-info" ng-show="messages.length < 1">
-            <span><p>{{'admin.messages.empty' | translate}}</p></span>
-        </div>
-    </motech-list-body>
     <motech-list-item ng-repeat="message in pagedItems[currentPage]">
         <fieldset class="form-inline">
             <div class="form-group">
@@ -28,6 +23,7 @@
             </div>
         </fieldset>
     </motech-list-item>
+    <div class="alert">{{'admin.messages.emptyMessagesList' | translate}}</div>
     <motech-list-footer>
         <uib-pagination total-items="messages" ng-model="currentPage" ng-change="setCurrentPage(currentPage)"></uib-pagination>
     </motech-list-footer>

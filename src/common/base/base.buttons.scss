@@ -4,7 +4,7 @@ Buttons
 Buttons represent taking an action in MOTECH - juxoposed to a link which represents navigating through MOTECH. Most buttons should be the default color, with the exception of: a primary action button (which submits a form of changes a state), an add button which is creating new data in MOTECH (and should launch a modal window), or a delete button (which much launch a modal window to confirm the action).
 
 markup:
-<button >Button</button>
+<button class="button">Button</button>
 <button class="active">Active Button</button>
 <button class="disabled">Disabled Button</button>
 <button class="button-primary">Primary Button</button>
@@ -25,9 +25,37 @@ button,
     @extend .btn;
     @include button($btn-default-color, $btn-default-bg, $btn-default-border);
 }
+button.btn-default,
+.btn-default {
+    @include button($btn-default-color, $btn-default-bg, $btn-default-border);
+}
+button.btn-primary,
+.btn-primary {
+    @include button($btn-primary-color, $btn-primary-bg, $btn-primary-border);
+}
+button.btn-success,
+.btn-success {
+    @include button($btn-success-color, $btn-success-bg, $btn-success-border);
+}
+button.btn-info,
+.btn-info {
+    @include button($btn-info-color, $btn-info-bg, $btn-info-border);
+}
+button.btn-warning,
+.btn-warning {
+    @include button($btn-warning-color, $btn-warning-bg, $btn-warning-border);
+}
+button.btn-danger,
+.btn-danger {
+    @include button($btn-danger-color, $btn-danger-bg, $btn-danger-border);
+}
 button.primary,
 .button-primary {
     @include button($btn-primary-color, $btn-primary-bg, $btn-primary-border);
+}
+button.btn-inverse,
+    .btn-inverse {
+    @include button($btn-default-bg, $btn-default-color, $btn-default-border);
 }
 button.add,
 .button-add,

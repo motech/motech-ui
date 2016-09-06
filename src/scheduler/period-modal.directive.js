@@ -14,7 +14,7 @@
             compile: function (tElement, tAttrs, scope) {
                 var url = 'scheduler/period-modal.html',
 
-                templateLoader = $http.get(url, {cache: $templateCache})
+                templateLoader = $http.get(url, { cache: $templateCache })
                     .success(function (html) {
                         tElement.html(html);
                     });
