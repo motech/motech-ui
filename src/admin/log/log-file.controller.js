@@ -5,7 +5,7 @@
         .controller('LogFileController', logFileController);
 
     logFileController.$inject = ['$scope', 'ServerService', 'LogFileFactory'];
-    function logFileController($scope, ServerService,  LogFileFactory) {
+    function logFileController($scope, ServerService, LogFileFactory) {
 
         this.refresh = refresh;
         this.getFileLogPath = getFileLogPath;
