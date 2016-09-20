@@ -23,7 +23,7 @@ var paths = {
         return path.join(config.app.src, item);
     }),
     dest: path.join(config.app.dest)
-}
+};
 
 gulp.task('motech.js', function () {
     gulpSequence('motech.js:hint', 'motech.js:build')();
