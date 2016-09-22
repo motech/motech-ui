@@ -1,0 +1,88 @@
+.status-server {
+  .loading-text-block {
+    display: none;
+    margin: 0 0 0 $space-size;
+    &.bundle {
+      display: block;
+      .fa-circle-o {
+        display: inline-block;
+      }
+      .fa-check-circle,
+      .fa-times-circle,
+      .fa-spinner {
+        display: none;
+      }
+      &.bundle-started {
+        .fa-circle-o,
+        .fa-times-circle,
+        .fa-spinner {
+          display: none;
+        }
+        .fa-check-circle {
+          display: inline-block;
+          color: $success;
+        }
+        &.bundle-starting {
+          .fa-spinner {
+            display: none;
+          }
+        }
+      }
+      &.bundle-starting {
+        .fa-spinner {
+          display: inline-block;
+        }
+        .fa-circle-o {
+          display: none;
+        }
+        &.bundle-error {
+          .fa-spinner {
+            display: none;
+          }
+        }
+      }
+      &.bundle-error {
+        .fa-circle-o {
+          display: none;
+        }
+      }
+    }
+    .fa-lg {
+      font-size: 1.5em;
+      line-height: 1.0em;
+      margin-right: 0.3em;
+      vertical-align: -10%;
+    }
+    &.bundle-error .fa-times-circle {
+      display: inline-block;
+      color: $error;
+    }
+  }
+  .progress {
+    height: 1em;
+    .progress-bar {
+      width: 0;
+      min-width: 1em;
+      line-height: 1.3em;
+      text-shadow: 0 1px 2px $gray;
+    }
+  }
+  .error-list {
+    .error-header {
+      font-weight: bold;
+      margin-bottom: $space-size;
+    }
+    .error-content pre {
+      word-break: normal;
+      word-wrap: normal;
+      white-space: normal;
+      max-height: 12em;
+    }
+    .form-group:last-child {
+      margin-bottom: 0;
+    }
+  }
+  .space-bottom {
+    margin-bottom: $space-size;
+  }
+}

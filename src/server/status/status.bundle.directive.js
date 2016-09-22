@@ -7,13 +7,13 @@
     statusDirective.$inject = ['ServerStatusService'];
     function statusDirective(ServerStatusService) {
         return {
-            restrict: 'EA',
+            restrict: 'A',
             replace: true,
             scope:{
                 id: "=",
                 name: "="
             },
-            templateUrl: '/server/status.bundle.html',
+            templateUrl: '/server/status/status.bundle.html',
             link: function (scope, element, attrs) {
                 scope.$on('motech.statusCheck.start', update);
                 scope.$on('motech.statusCheck.update', update);
@@ -22,6 +22,7 @@
                 function update() {
                     scope.started = ServerStatusService.isBundleStarted(scope.id);
                     scope.error = ServerStatusService.hasBundleError(scope.id);
+                    scope.starting = ServerStatusService.isBundleStarting(scope.id);
                 }
             }
         };

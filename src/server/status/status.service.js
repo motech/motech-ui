@@ -11,6 +11,10 @@
         this.running = false;
         this.started = false;
         this.errors = [];
+        this.errorLoading = false;
+        this.bundleErrorsByBundle = null;
+        this.contextErrorsByBundle = null;
+        this.inFatalError = false;
 
         this.startedBundles = [];
 
@@ -21,68 +25,100 @@
 
         this.isBundleStarted = isBundleStarted;
         this.hasBundleError = hasBundleError;
+        this.isBundleStarting = isBundleStarting;
 
-        $rootScope.$on('motech.checkStatus', function(){
+        $rootScope.$on('motech.checkStatus', function() {
             getStatus();
         });
 
         function getStatus() {
-            var deferred = $q.defer();
+            var deferred = $q.defer(),
+                showTimeout;
             $rootScope.$broadcast('motech.statusCheck.start');
             $http.get(ServerService.formatURL('server/bootstrap/status'))
-            .then(function(response){
+            .then(function(response) {
                 service.running = true;
-                service.startedBundles = response.data.osgiStartedBundles;
-                service.startedPercentage = response.data.startupProgressPercentage/100;
-                
+                service.startedBundles = response.data.startedBundles;
+                service.osgiStartedBundles = response.data.osgiStartedBundles;
+                service.startedPercentage = response.data.startupProgressPercentage;
+                service.bundleErrorsByBundle = response.data.bundleErrorsByBundle;
+                service.contextErrorsByBundle = response.data.contextErrorsByBundle;
+                service.inFatalError = response.data.inFatalError;
+
                 if(service.isLoaded()) {
                     deferred.resolve(true);
+                } else if(service.inFatalError) {
+                    var errorKeys = Object.keys(service.contextErrorsByBundle);
+                    service.errors = [];
+                    if(angular.isArray(errorKeys)) {
+                        angular.forEach(errorKeys, function (errorKey) {
+                            service.errors.push({key: errorKey, value: service.contextErrorsByBundle[errorKey]});
+                        });
+                    }
+                    clearTimeout(showTimeout);
+                    $rootScope.$broadcast('motechServer.errorLoading');
                 } else {
                     deferred.notify(response.data.startupProgressPercentage);
-                    setTimeout(getStatus, 2000);
+                    showTimeout = setTimeout(getStatus, 2000);
                 }
-            }).catch(function(){
-                service.errors.push("Could not reach MOTECH server");
+            }).catch(function(response) {
+                service.running = false;
+                service.errors = [];
+                service.errors.push({key: "", value: "Could not reach MOTECH server."});
+
                 deferred.reject(false);
             });
 
-            deferred.promise.then(
-                function(){ // Success
+            deferred.promise
+                .then(
+                function() { // Success
                     service.started = true;
                     $rootScope.$broadcast('motechServer.loaded');
                 },
-                function(){ // Error
+                function() { // Error
                     service.started = false;
+                    $rootScope.$broadcast('motechServer.errorLoading');
                 },
-                function(){ // Update
+                function() { // Update
                     $rootScope.$broadcast('motech.statusCheck.update');
                 }
-            ).finally(function(){
+            ).finally(function() {
                 $rootScope.$broadcast('motech.statusCheck.stop');
             });
             return deferred.promise;
         }
+
         function isRunning () {
             if(service.running) {
                 return true;
             }
             return false;
         }
+
         function isLoaded () {
-            if(service.isRunning() && service.startedPercentage == 1) {
+            if(service.isRunning() && service.startedPercentage == 100) {
                 return true;
             }
             return false;
         }
+
         function hasErrors () {
-            if(service.errors.length > 0){
+            if(service.errors.length > 0) {
                 return true;
             }
             return false;
         }
 
         function isBundleStarted(id) {
-            if(service.startedBundles.indexOf(id) > -1) {
+            if(service.startedBundles && service.startedBundles.indexOf(id) > -1) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+        function isBundleStarting(id) {
+            if(!service.inFatalError && service.osgiStartedBundles && service.osgiStartedBundles.indexOf(id) > -1) {
                 return true;
             } else {
                 return false;
@@ -90,7 +126,11 @@
         }
 
         function hasBundleError (id) {
-            return false;
+            if(Object.keys(service.contextErrorsByBundle) && Object.keys(service.contextErrorsByBundle).indexOf(id) > -1) {
+                return true;
+            } else {
+                return false;
+            }
         }
 
     }

@@ -5,6 +5,8 @@ $gray: lighten($black, 30);
 $gray-light: lighten($black, 80);
 $gray-lighter: #FAFAFA;
 $white: #FFFFFF;
+$green: #449d44;
+$red: #d9534f;
 
 $dark-blue: #144573;
 $blue: lighten($dark-blue, 15);
@@ -20,6 +22,9 @@ $brand-accent: $powder-blue;
 
 $btn-default-bg: #eee;
 $btn-primary-bg: $blue;
+
+$success: $green;
+$error: $red;
 
 // LAYOUT
 $space-size: 15px;
