@@ -81,4 +81,4 @@ module.exports = function(config) {
      '/common/': 'http://localhost:8080/src/common/'
     }
   })
-}
+};

@@ -12,7 +12,7 @@
      */
 
     angular.module('motech-scheduler')
-            .controller('JobListController', jobListController);
+        .controller('JobListController', jobListController);
 
     jobListController.$inject = ['$scope', '$timeout', 'JobsService', 'ModalFactory', 'LoadingModal', 'i18nService'];
     function jobListController ($scope, $timeout, JobsService, ModalFactory, LoadingModal, i18nService) {
@@ -69,8 +69,7 @@
         }
 
         $scope.getDetails = function(job) {
-            if ($scope.jobDetails[job.name] !== undefined) {
-            } else {
+            if ($scope.jobDetails[job.name] === undefined) {
                 if (!job.uiDefined) {
                     JobsService.getDetails(job, function(data) {
                         $scope.jobDetails[job.name] = data;
@@ -109,8 +108,8 @@
                 if (response) {
                     LoadingModal.open();
                     JobsService.resumeJob(job, function(updated) {
-                       $scope.updateJob(job, updated);
-                       LoadingModal.close();
+                        $scope.updateJob(job, updated);
+                        LoadingModal.close();
                     });
                 }
             });

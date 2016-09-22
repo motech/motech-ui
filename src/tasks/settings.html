@@ -1,0 +1,15 @@
+<legend>{{ 'task.settings.title' | translate }}</legend>
+<form id="tasks.settings.form" name="tasksSettingsForm">
+    <fieldset>
+        <div class="form-group">
+            <label for="tasks.settings.possibleErrors">{{'task.settings.label.possibleErrors' | translate }}</label>
+            <input id="tasks.settings.possibleErrors" ng-model="settings.taskPossibleErrors" type="text" required/>
+            <ul>
+                <li ng-hide="isNumeric('taskPossibleErrors')" class="error">{{ 'task.settings.error.possibleErrors' | translate }}</li>
+            </ul>
+        </div>
+    </fieldset>
+
+    <input id="tasks.settings.submit" ng-disabled="tasksSettingsForm.$invalid" ng-click="submit()" type="submit" value="{{ 'task.settings.submit' | translate }}" />
+    </fieldset>
+</form>

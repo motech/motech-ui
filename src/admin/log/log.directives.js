@@ -8,10 +8,13 @@
     function logContent () {
         return {
             restrict: 'A',
+            scope: {
+                logContent: '='
+            },
             link: function(scope, element, attrs) {
                 var elem = angular.element(element);
 
-                scope.$watch('log', function( newValue, oldValue ) {
+                scope.$watch('logContent', function( newValue, oldValue ) {
                     if (newValue !== oldValue) {
                         if (newValue === 'server.tomcat.error.logFileNotFound') {
                             elem.html(scope.msg(newValue));

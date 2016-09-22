@@ -1,0 +1,52 @@
+.settings-form{
+    margin-bottom: 30px;
+    >h3{
+        font-size: $h3-size !important;
+        border-bottom: 2px solid;
+    }
+    h4{
+        font-size: $h4-size !important;
+        border-bottom: 1px solid;
+    }
+    .form-group{
+        >label{
+            white-space: normal;
+            >.checkbox{
+                position: static !important;
+            }
+        }
+        >legend{
+            @extend label;
+            text-align: right !important;
+            width: $sidebar-width !important;
+        }
+        .button-export{
+             width: $sidebar-width;
+         }
+        .upload-file{
+            width: 100%;
+            .button-file{
+                display: table-row;
+            }
+        }
+    }
+}
+
+.fileinput {
+  .form-control {
+    display: table-cell;
+  }
+}
+
+.fileinput-exists .fileinput-new,
+.fileinput-new .fileinput-exists {
+  display: none;
+}
+
+#platformSettingsForm{
+    margin-bottom: 30px;
+}
+
+.select-list{
+    margin-bottom: 10px;
+}

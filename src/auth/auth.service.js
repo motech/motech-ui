@@ -28,7 +28,7 @@
                     'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
                 }
             });
-            
+
             promise.then(function () {
                 authService.loginConfirmed();
                 deferred.resolve();
